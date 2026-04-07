@@ -1,6 +1,7 @@
 aid: sertica
 name: SERTICA
-description: 'Build interfaces to SERTICA Maintenance without any involvement from SERTICA. '
+description: >-
+  Build interfaces to SERTICA Maintenance without any involvement from SERTICA.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -16,8 +17,7 @@ apis:
   - aid: sertica:sertica
     name: SERTICA
     description: >-
-      Build interfaces to SERTICA Maintenance without any involvement from
-      SERTICA. 
+      Build interfaces to SERTICA Maintenance without any involvement from SERTICA.
     humanURL: ' https://www.sertica.com/modules/maintenance-api/#gref'
     tags:
       - API

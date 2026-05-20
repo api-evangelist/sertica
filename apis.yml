@@ -12,6 +12,9 @@ modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/sertica/refs/heads/main/apis.yml
 specificationVersion: '0.19'
+common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/showcase/sertica
 apis:
   - aid: sertica:sertica
     name: SERTICA

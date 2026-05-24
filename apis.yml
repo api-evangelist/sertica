@@ -15,6 +15,8 @@ specificationVersion: '0.19'
 common:
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/sertica
+  - type: LLMsTxt
+    url: https://sertica.com/llms.txt
 apis:
   - aid: sertica:sertica
     name: SERTICA

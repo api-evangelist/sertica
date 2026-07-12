@@ -13,10 +13,14 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/sertica/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 common:
+  - type: DomainSecurity
+    url: security/sertica-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/sertica
   - type: LlmsText
     url: https://sertica.com/llms.txt
+  - url: https://www.sertica.com/blog/
+    type: Blog
 apis:
   - aid: sertica:sertica
     name: SERTICA

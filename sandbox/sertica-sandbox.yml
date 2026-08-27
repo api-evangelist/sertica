@@ -1,0 +1,54 @@
+generated: '2026-08-27'
+method: probed
+source: https://docs.sertica.com/api/swagger/index.html
+description: >-
+  SERTICA publishes a live, public, interactive API browser - a Swagger UI bound to the full
+  3,340-operation contract. It is a console, not a test-data sandbox: there are no published
+  test credentials, no test-vs-live key prefixes, no magic test identifiers and no fixture
+  tooling, because every SERTICA deployment is a separate customer site with its own data.
+console:
+  url: https://docs.sertica.com/api/swagger/index.html
+  type: Swagger UI
+  status: 200
+  probed: '2026-08-27'
+  spec_url: https://docs.sertica.com/api/swagger/v1/swagger.json
+  public: true
+  authentication_required_to_browse: false
+  authentication_required_to_execute: true
+  description: >-
+    The provider describes it in the contract itself as an "Online API browser for SERTICA
+    Web API", and warns that "some endpoints are restricted by license or user rights and
+    may not be available in your environment". Each endpoint's description names the
+    required license and user rights.
+  provider_instructions: >-
+    "The documentation is shown by writing 'api/swagger' after the address to the SERTICA
+    site: https://<sitename>.sertica.com/api/swagger. It is also possible to test different
+    requests from the swagger tool and test which replies it will return. Test the request
+    by filling out the required data and click on 'Execute'."
+  provider_instructions_url: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+test_environment:
+  published: false
+  test_credentials: none published
+  test_key_prefix: none - authentication is a real SERTICA user login exchanged for a JWT
+  magic_test_values: none published
+  test_clock: none
+  fixtures: none
+  note: >-
+    To execute a call an integrator needs a user on a real SERTICA site. The provider's
+    guidance is to create a dedicated interface user with only the rights the integration
+    needs ("First, a user must be created for the purpose. The user must have access to read
+    component data").
+rehearsal_affordances:
+  description: >-
+    In place of a sandbox, SERTICA offers 35 read-only precondition operations that answer
+    whether a state change would be permitted before it is attempted - the can*, allow* and
+    validate* families. For an agent this is the safest available rehearsal mechanism.
+  artifact: conventions/sertica-conventions.yml
+  examples:
+  - PurchaseOrderAllowCancelOrder
+  - CanBeReversed
+  - RequisitionCanApproveForPurchase
+  - ValidateLicense
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

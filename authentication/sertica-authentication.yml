@@ -1,0 +1,71 @@
+generated: '2026-08-27'
+method: searched
+source: openapi/sertica-web-api-openapi.json
+docs: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+description: >-
+  SERTICA Web API authentication. The spec declares a single HTTP bearer scheme; the
+  provider's own support documentation supplies the token-issuing flow, the lifetime, and
+  the per-user authorization model that the spec expresses only as prose inside each
+  operation's 403 response description.
+summary:
+  types:
+  - http
+  api_key_in: []
+  oauth2_flows: []
+schemes:
+- name: Bearer
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT Authorization header using the Bearer scheme
+  sources:
+  - openapi/sertica-web-api-openapi.json
+token_issuance:
+  operation: CreateJwtToken
+  method: POST
+  path: /Auth
+  request_body:
+    login: string
+    password: string
+  response_field: accessToken
+  header: 'Authorization: Bearer <accessToken>'
+  lifetime: 24 hours (provider-stated default)
+  lifetime_source: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  note: >-
+    A second token operation, CreateAccessToken (POST /Auth/accessToken), is declared in
+    the spec without a summary; the support article documents only POST /Auth. A separate
+    short-lived download token is issued by GET /Auth/fileDownloadToken.
+multi_factor:
+  supported: true
+  mechanism: TOTP authenticator app
+  operations:
+  - SetupTotp
+  - ConfirmTotpSetup
+  - GenerateRecoveryCodes
+  - DisableTotp
+  introduced: Ver 5.15.89 (2025-11-17)
+  source: https://support.sertica.com/hc/en-us/articles/31855511177757-Ver-5-15-89
+authorization_model:
+  style: per-user rights, evaluated per operation
+  description: >-
+    Every request is bound to a SERTICA user, and a caller sees only the data that user
+    can see. 3,028 of 3,340 operations declare a 403 whose description names the exact
+    User Right key required (for example "AnalyticsMain / View", "ChangeRequest / View").
+    This is a real, machine-extractable permission surface, but it is carried in prose
+    inside response descriptions rather than in OAuth scopes.
+  discovery_operations:
+  - Get list of valid user rights for the user   # GET /Auth/userRights
+  - Get list of roles assigned to user           # GET /Auth/{login}/roles
+  - Get List of Units current user has access to # GET /Auth/units
+  oauth2: false
+  scopes: none
+external_identity:
+  operation: AuthIntegrations
+  path: /Auth/integrations
+  note: >-
+    Returns the configured Authentication Integrations for the site. The spec does not
+    enumerate the supported providers and the public docs do not document them, so the
+    set of external identity providers is site-specific and not stated here.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

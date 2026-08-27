@@ -1,0 +1,215 @@
+generated: '2026-08-27'
+method: searched
+source: openapi/sertica-web-api-openapi.json
+docs: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+description: >-
+  Cross-cutting request/response semantics for the SERTICA Web API, searched from the
+  provider's support documentation and derived from the 3,340-operation OpenAPI.
+authentication:
+  style: JWT bearer
+  obtain: POST /Auth with {login, password} -> accessToken
+  header: 'Authorization: Bearer <accessToken>'
+  lifetime: 24 hours (default)
+  artifact: authentication/sertica-authentication.yml
+  note: Every request is bound to a SERTICA user; data visibility follows that user's rights.
+idempotency:
+  supported: false
+  key_header: null
+  evidence: >-
+    No Idempotency-Key parameter, header or request-body field appears anywhere in the
+    3,340-operation contract, and the support documentation does not describe safe retry.
+    Retrying a POST such as AddCounterReading is not protected by the API; the only
+    guard is a domain rule (a counter reading must be later and higher than the last one).
+  agent_guidance: >-
+    Treat every POST/PUT/DELETE as non-idempotent. Use the GET can*/allow* precondition
+    probes below to decide before acting, and reconcile by reading the resource back
+    rather than by re-sending.
+pagination:
+  style: page-number
+  parameters:
+  - name: page
+    in: query
+    operations: 627
+  - name: pageSize
+    in: query
+    operations: 627
+    default: 25
+    default_source: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  note: >-
+    List endpoints return a page of results. The published default page size is 25; the
+    documented example passes ?pageSize=50. There is no cursor and no documented maximum
+    page size.
+search:
+  style: POST search body
+  description: >-
+    Almost every resource ships a matching search family rather than query-string filters:
+    POST /<Resource>/search (SearchDefinition body with filters and sorting),
+    POST /<Resource>/searchCount, POST /<Resource>/searchIndex/{guid} and
+    GET /<Resource>/searchInfo, which returns structured information about what and how you
+    can search for. searchInfo is the machine-readable filter vocabulary for that resource
+    and is the correct first call for an agent building a query.
+  operations_example:
+  - SearchJobs
+  - AdvancedSearchJobs
+  - SearchCountJobs
+  - JobSearchInfo
+preconditions_dry_run:
+  supported: true
+  style: dedicated GET/POST precondition probes
+  count: 35
+  description: >-
+    SERTICA publishes an unusually complete precondition surface: read-only can*, allow*
+    and validate* operations that answer whether a state transition is permitted for the
+    current user BEFORE it is attempted. This is the closest thing the API has to a
+    dry-run, and it is a genuine agent-safety affordance.
+  examples:
+  - operationId: PurchaseOrderAllowCancelOrder
+    path: /PurchaseOrders/{purchaseOrderNo}/allowCancelOrder
+    guards: PurchaseOrderCancelOrder
+  - operationId: CanBeReversed
+    path: /ImInvoices/{invoiceNo}/canBeReversed
+    guards: CreateReversal
+  - operationId: CanBeApproved
+    path: /ImInvoices/{invoiceNo}/CanBeApproved
+  - operationId: RequisitionCanApproveForPurchase
+    path: /Requisitions/{requisitionNo}/canapproveforpurchase
+  - operationId: RequisitionCanReject
+    path: /Requisitions/{requisitionNo}/canreject
+  - operationId: RfqAllowSendToSupplier
+    path: /RequestForQuotes/{requestForQuoteNo}/allowSendToSupplier
+  - operationId: ValidateLicense
+    path: /License/validate
+  caveat: >-
+    These are precondition checks, not a mode flag. There is no ?dry_run= parameter and no
+    simulated write - a probe tells you whether the call would be allowed, not what it
+    would produce.
+reversibility:
+  grade: documented
+  rationale: >-
+    Real reversal operations exist and are named in the contract, and several are paired
+    with an explicit permission probe. NO published time window bounds any of them - the
+    support site documents none, and the spec declares none - so this cannot be graded
+    verified. An agent can find out WHETHER a reversal is currently allowed (by calling
+    the can*/allow* probe) but not HOW LONG it will remain allowed.
+  write_surfaces:
+  - surface: Invoice Management (ImInvoices)
+    reversal:
+      operationId: CreateReversal
+      path: POST /ImInvoices/{invoiceNo}/createReversal
+      summary: Create reversed ImInvoice
+    precondition:
+      operationId: CanBeReversed
+      path: GET /ImInvoices/{invoiceNo}/canBeReversed
+    window: not stated
+  - surface: Purchase orders
+    reversal:
+      operationId: PurchaseOrderCancelOrder
+      path: POST /PurchaseOrders/{purchaseOrderNo}/cancelorder
+    precondition:
+      operationId: PurchaseOrderAllowCancelOrder
+      path: GET /PurchaseOrders/{purchaseOrderNo}/allowCancelOrder
+    window: not stated
+  - surface: Requisitions
+    reversal:
+      operationId: RequisitionCancel
+      path: POST /Requisitions/{requisitionNo}/cancel
+      summary: Cancels a local requisition
+    precondition:
+      operationId: RequisitionCanReject
+      path: POST /Requisitions/{requisitionNo}/canreject
+    window: not stated
+  - surface: Shipments
+    reversal:
+      operationId: CancelShipment
+      path: POST /Shipments/{shipmentNo}/cancel
+    undo_receipt:
+      operationId: UndoReceiveWarehouseShipment
+      path: POST /Shipments/{shipmentNo}/unreceive
+    window: not stated
+  - surface: Job histories (completed maintenance)
+    reversal:
+      operationId: ReopenJobHistory
+      path: POST /JobHistories/{jobhistoryGuid}/Reopen
+      summary: Reopens a finalized job history
+    window: not stated
+  - surface: Jobs
+    reversal:
+      operationId: DeactivateJobs
+      path: POST /Jobs/DeactivateJobs
+    also:
+    - EnableJob
+    - DisableJob
+    window: not stated
+  - surface: Forms
+    reversal:
+      operationId: ReopenForm
+      path: POST /forms/{formNo}/reopen
+    window: not stated
+  - surface: Vessel reports
+    reversal:
+      operationId: ReopenVesselReport
+      path: POST /VesselReports/{vesselReportNo}/reopen
+    also:
+    - RejectVesselReport
+    window: not stated
+  - surface: Documents
+    reversal:
+      operationId: CheckinDocumentFile
+      path: POST /Documents/{documentNo}/checkin
+      note: >-
+        Version control is on for every document, so a checkout/checkin cycle preserves the
+        prior version rather than overwriting it.
+      source: https://support.sertica.com/hc/en-us/articles/27546686136477-Version-Control
+    window: not stated
+  irreversible:
+  - operationId: SignOrbOperations
+    path: POST /OrbOperations/sign
+    note: >-
+      Signing a statutory electronic record book entry (Oil, Garbage and Ballast Record
+      Books) has no reversal operation in the contract. Treat as terminal.
+  - operationId: anonymize
+    path: POST /Users/{userNo}/anonymize
+    note: GDPR anonymisation; no counterpart operation exists.
+versioning:
+  scheme: product release (year.month), not URL- or header-versioned
+  current: 5.26.9
+  current_source: openapi info + assembly version strings in components.schemas
+  api_version_label: v1
+  note: >-
+    The contract declares info.version "v1" and the servers entry is the relative path
+    /api. There is no version segment in any path and no version header. The API moves
+    with the product, which is versioned 5.<year>.<release> since January 2026.
+  artifact: lifecycle/sertica-lifecycle.yml
+error_envelope:
+  format: vendor ValidationResult (NOT RFC 9457)
+  artifact: errors/sertica-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers: none published
+  status_on_exhaustion: not documented (429 appears on zero operations)
+  artifact: rate-limits/sertica-rate-limits.yml
+request_tracing:
+  request_id_header: none documented
+  audit_trail: >-
+    Most resources expose GET /<Resource>/{id}/history, which returns the change history of
+    the record itself. That is a domain audit trail, not request correlation.
+content_negotiation:
+  request: application/json
+  response: application/json, text/json and text/plain are declared on most operations
+  note: >-
+    text/plain is declared alongside JSON on error and success bodies throughout, an
+    artifact of the ASP.NET generator rather than a deliberate content-negotiation design.
+metadata_extensibility:
+  mechanism: customer-defined property definitions
+  description: >-
+    Components, Jobs, Items, Documents, LogbookEvents and PurchaseOrders each expose a
+    propertyDefinitions family (create/read/update/delete plus listValues), so a site can
+    add its own fields. An integration must read the property definitions for a resource
+    before assuming a fixed field set.
+  example_operations:
+  - GetJobPropertyDefinitions
+  - CreateJobPropertyDefinition
+  - GetJobPropertyDefinitionListValues
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

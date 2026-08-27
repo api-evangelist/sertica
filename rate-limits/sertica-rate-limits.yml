@@ -3,85 +3,75 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: SERTICA
 providerId: sertica
+generated: '2026-08-27'
+method: searched
+source: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-08-27'
 tags:
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the SERTICA API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  SERTICA publishes no rate limits for the Web API, returns no rate-limit response headers,
+  and declares no 429 anywhere in its 3,340-operation contract. What it does publish is a
+  paging default, which bounds response size rather than request rate. Recorded as a
+  measured zero.
+limit_count: 0
+limits: []
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header is documented, and none appears in
+    the OpenAPI. An agent has no runtime signal to back off on.
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - SERTICA
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - SERTICA
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - SERTICA
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - SERTICA
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - SERTICA
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  throttled: null
+  quotaExceeded: null
+  note: >-
+    429 is declared on zero of 3,340 operations. The declared status set is 200/201/204,
+    400, 401, 403, 404 and 500.
+response_size_controls:
+  pagination:
+    style: page-number
+    parameters:
+    - page
+    - pageSize
+    default_page_size: 25
+    default_page_size_source: >-
+      "When returning a list from an endpoint, the list will then be 'paged'. This means
+      that you will receive a selection of the list that matches the pageSize being used.
+      The standard is 25."
+    documented_example: '?pageSize=50'
+    maximum_page_size: not documented
+    operations_with_paging: 627
+token_lifetime:
+  value: 24 hours
+  note: >-
+    The only published time-bound constraint on API use. Tokens are reusable until expiry,
+    so a long-running integration must re-authenticate daily.
+deployment_note: >-
+  SERTICA runs a separate site per customer (https://<sitename>.sertica.com). Any throttling
+  that exists is a property of that customer's own deployment and its licence, not a shared
+  public quota - which is the most likely reason no public limit is published.
+evidence:
+- url: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  status: 200
+  note: The provider's API overview. Documents tokens and paging; no rate limits.
+- url: https://support.sertica.com/hc/en-us/articles/29158673899293-Standard-HTTP-Response-Codes
+  status: 200
+  note: The published response-code reference lists 200, 400, 401, 403 and 500. No 429.
+- url: https://docs.sertica.com/api/swagger/v1/swagger.json
+  status: 200
+  note: 3,340 operations, zero declaring 429 and zero declaring a rate-limit header.
+previous_content_note: >-
+  This file previously held five scaffold limits (10/100/1000 requests per minute across
+  free/professional/enterprise tiers) written by a 2026-05-04 bulk sweep and marked
+  method: generated. Those numbers were never published by SERTICA. Replaced on 2026-08-27
+  with this searched, evidenced record.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

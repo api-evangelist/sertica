@@ -1,0 +1,146 @@
+generated: '2026-08-27'
+method: derived
+source: openapi/sertica-web-api-openapi.json
+description: >-
+  Cross-cutting and domain-standard conformance for the SERTICA Web API. Cross-cutting
+  entries are derived from the contract; the maritime domain-standard entries are read from
+  the contract's own schema fields and resource names, not from marketing prose.
+standards:
+- id: openapi-3-0
+  conforms: true
+  evidence: 'openapi: 3.0.4, 2,743 paths, 3,340 operations, 1,104 component schemas'
+- id: rest
+  conforms: true
+  evidence: >-
+    Provider-stated - "The API is designed with the principles of a REST http services...
+    Request/response data is in JSON format" (support article 28558470734109).
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; a single http/bearer JWT scheme issued by POST /Auth.
+- id: oidc
+  conforms: false
+  evidence: >-
+    No openIdConnect scheme and no /.well-known/openid-configuration served on any SERTICA
+    host. GET /Auth/integrations implies configurable external identity per site, but the
+    protocol is not declared.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a vendor SerticaWebApi.Models.ValidationResult body on application/json;
+    application/problem+json appears on zero operations.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No Sunset or Deprecation headers; zero operations marked deprecated.
+- id: idempotency
+  conforms: false
+  evidence: No Idempotency-Key header, parameter or body field anywhere in the contract.
+- id: pagination
+  conforms: true
+  evidence: 'page and pageSize query parameters on 627 operations; documented default pageSize 25.'
+- id: json-api
+  conforms: false
+  evidence: Plain JSON resource bodies; no JSON:API media type or document structure.
+- id: odata
+  conforms: false
+  evidence: >-
+    No $metadata surface and no OData query options. Filtering is done with a proprietary
+    SearchDefinition body posted to /<Resource>/search, described by GET /<Resource>/searchInfo.
+- id: scim
+  conforms: false
+  evidence: >-
+    User provisioning exists (/Users, /Users/{userNo}/roles, /Users/{userNo}/anonymize) but
+    uses SERTICA's own schema; no urn:ietf:params:scim schema URNs appear.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt not served on any SERTICA host (see well-known/sertica-well-known.yml).
+domain_standards:
+- id: sfi-group-system
+  label: SFI Group System (maritime technical coding standard)
+  conforms: true
+  evidence: >-
+    Contract-level - sfiNo and sfiName string fields on SERTICA's own component/account
+    schemas, plus AccountSFI and AccountSFI_Update user rights declared in operation 403
+    descriptions.
+  spec_location: components.schemas - sfiNo / sfiName properties
+  why_it_matters: >-
+    SFI is the shared classification shipping companies, yards and suppliers already use to
+    identify shipboard systems and components. A buyer whose fleet data is SFI-coded can map
+    SERTICA components without a bespoke crosswalk.
+- id: marpol-electronic-record-books
+  label: IMO MARPOL electronic record books (Oil, Garbage and Ballast Water)
+  conforms: true
+  evidence: >-
+    Contract-level - dedicated ElectronicLogBook resource families with statutory shape:
+    /OrbOperations (Oil Record Book, MARPOL Annex I) with Soundings, Receivers,
+    SealSubSealPoints and Signers plus POST /OrbOperations/sign; /GrbOperations (Garbage
+    Record Book, MARPOL Annex V) with DischargedProducts, GarbageReceivers and
+    GrbOperationEnvironmentalItems; /BrbOperations (Ballast Water Record Book) with
+    Soundings, Receivers and Signers. Printout operations exist for each
+    (GetPrintoutForOperations, GetPrintoutForGrbOperations, GetPrintoutForBrbOperations).
+  spec_location: >-
+    paths /OrbOperations*, /GrbOperations*, /BrbOperations*, /OrbNoons*;
+    schemas SerticaWebApi.Models.ElectronicLogBook.*
+  why_it_matters: >-
+    These are statutory record books a port state control officer inspects. The signing and
+    printout operations are the part that carries regulatory weight, and they are exposed
+    on the API rather than only in the UI.
+  caveat: >-
+    SERTICA does not publish a conformance statement against a named IMO circular
+    (e.g. MEPC.312(74) electronic record book guidelines), so this records the contract's
+    own statutory shape, not a certified conformance claim.
+- id: punchout-procurement
+  label: PunchOut e-procurement (cXML/OpenTRANS-style supplier catalogue round trip)
+  conforms: true
+  evidence: >-
+    Contract-level - /Requisitions/{requisitionNo}/punchout,
+    /PurchaseOrders/{purchaseOrderNo}/punchout, /Addresses/{addressNo}/punchouts,
+    /Options/testPunchoutConnection, and an AddressPunchOut schema. The purchase-order
+    transmission enum names the interoperating channels explicitly: OpenTRANS, ShipServ,
+    EDI, SeaProc, Source2Sea, PunchOut, Connect.
+  spec_location: >-
+    schemas Logihold.BusinessObjects.LogiholdObjModel.SystemData+PurchaseOrderConfirmedVia
+    and SerticaWebApi.Models.AddressBook.AddressPunchOut
+  why_it_matters: >-
+    Maritime procurement runs on ShipServ and PunchOut catalogues. A supplier already on one
+    of those networks connects through an existing channel rather than a bilateral connector.
+  caveat: >-
+    The enum names the channels; the specific cXML/OpenTRANS profile version is not declared
+    in the contract and is not documented publicly.
+- id: shipdex
+  label: Shipdex (maritime technical data exchange protocol)
+  conforms: partial
+  evidence: >-
+    /Components/shipdex with operationId ValidateShipdexSetup ("Checks if the current Shipdex
+    setup is valid") - the API exposes setup validation for Shipdex, but no import/export
+    operation for Shipdex payloads appears in the contract.
+  spec_location: paths /Components/shipdex, /Components/{componentNo}/shipdex
+compliance_program:
+  published: false
+  evidence:
+  - url: https://trust.sertica.com/
+    status: '000'
+    note: DNS does not resolve
+  - url: https://www.sertica.com/privacy-policy/
+    status: 200
+    note: >-
+      GDPR-framed privacy policy citing Regulation (EU) 2016/679 art.13, and a downloadable
+      Data Processing Agreement. This is a data-protection notice, not a certification page.
+  finding: >-
+    No trust centre and no named security certification (SOC 2, ISO 27001, PCI DSS,
+    FedRAMP) is published on SERTICA's own site. Third-party listings describe the SERTICA
+    system as DNV/BV certified, which is class-society product approval rather than an
+    information-security certification, so no Compliance pointer is emitted.
+regulatory_context:
+  sector: maritime / shipping fleet management
+  regimes_touched:
+  - IMO MARPOL Annex I (Oil Record Book)
+  - IMO MARPOL Annex V (Garbage Record Book)
+  - IMO Ballast Water Management Convention (Ballast Water Record Book)
+  - ISM Code (management system documents, change requests, controlled copies)
+  - EU GDPR (privacy policy, /Users/{userNo}/anonymize)
+  note: >-
+    The API carries the record-keeping surface for these regimes. That is not the same as
+    SERTICA asserting certified conformance to them, and no such assertion is published.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

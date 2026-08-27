@@ -1,0 +1,123 @@
+generated: '2026-08-27'
+method: derived
+source: openapi/sertica-web-api-openapi.json
+status: candidate
+description: >-
+  SERTICA publishes no MCP server. This is a DERIVED candidate tool set, selected from real
+  operationIds in the 3,340-operation SERTICA Web API so that an integrator (or SERTICA
+  itself) has a grounded starting point. Nothing here is served by SERTICA today.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+  note: >-
+    Searched npm (0 results for "sertica"), PyPI, NuGet, RubyGems, crates.io, the GitHub API
+    (no sertica organisation, no first-party repository), support.sertica.com and
+    sertica.com. No hosted MCP endpoint and no stdio package exists. SERTICA does ship an
+    in-product "SERTICA AI Assistant" (announced 2026), but it is an in-app feature, not an
+    MCP surface an external agent can call.
+search_evidence:
+- url: https://registry.npmjs.org/-/v1/search?text=sertica
+  status: 200
+  result: 0 packages
+- url: https://api.github.com/orgs/sertica
+  status: 404
+- url: https://www.sertica.com/news/introducing-sertica-ai-assistant/
+  status: 200
+  result: in-product AI assistant, not an MCP server
+server:
+  name: sertica
+  transport: null
+  url: null
+prerequisites:
+  base_url: https://{sitename}.sertica.com/api
+  auth: >-
+    A SERTICA user on the customer's own site, exchanged for a 24-hour JWT via
+    CreateJwtToken. Every tool below inherits that user's rights - an MCP server for SERTICA
+    is necessarily per-site and per-user, not a shared multi-tenant endpoint.
+tools:
+- name: search_components
+  description: Search the component (equipment) register with SERTICA's SearchDefinition filters.
+  source_operation: openapi/sertica-web-api-openapi.json#SearchComponents
+  consequence: read
+- name: get_component
+  description: Get one component by component number.
+  source_operation: openapi/sertica-web-api-openapi.json#GetComponent
+  consequence: read
+- name: list_jobs
+  description: List maintenance jobs, paged.
+  source_operation: openapi/sertica-web-api-openapi.json#GetJobs
+  consequence: read
+- name: search_jobs
+  description: Advanced search over maintenance jobs.
+  source_operation: openapi/sertica-web-api-openapi.json#AdvancedSearchJobs
+  consequence: read
+- name: get_job_search_info
+  description: Return the machine-readable filter vocabulary for job search before building a query.
+  source_operation: openapi/sertica-web-api-openapi.json#JobSearchInfo
+  consequence: read
+- name: get_job
+  description: Get one maintenance job by job number.
+  source_operation: openapi/sertica-web-api-openapi.json#GetJob
+  consequence: read
+- name: get_job_history
+  description: Get the completed-work history for a job.
+  source_operation: openapi/sertica-web-api-openapi.json#GetHistoryForJob
+  consequence: read
+- name: list_counters
+  description: List counters (running hours, meters) that drive maintenance planning.
+  source_operation: openapi/sertica-web-api-openapi.json#GetCounters
+  consequence: read
+- name: get_counter_readings
+  description: Read the reading series for one counter.
+  source_operation: openapi/sertica-web-api-openapi.json#GetReadings
+  consequence: read
+- name: add_counter_reading
+  description: >-
+    Record a new counter reading. Not idempotent and not reversible - the date must be later
+    and the value higher than the last reading.
+  source_operation: openapi/sertica-web-api-openapi.json#AddCounterReading
+  consequence: write
+- name: search_items
+  description: Search the spare-parts and stock item catalogue.
+  source_operation: openapi/sertica-web-api-openapi.json#SearchItems
+  consequence: read
+- name: list_certificates
+  description: List vessel and equipment certificates.
+  source_operation: openapi/sertica-web-api-openapi.json#GetCertificates
+  consequence: read
+- name: search_purchase_orders
+  description: Search purchase orders.
+  source_operation: openapi/sertica-web-api-openapi.json#SearchPurchaseOrders
+  consequence: read
+- name: can_cancel_purchase_order
+  description: Check whether a purchase order may be cancelled by the current user before attempting it.
+  source_operation: openapi/sertica-web-api-openapi.json#PurchaseOrderAllowCancelOrder
+  consequence: read
+- name: list_units
+  description: List the vessels/units the authenticated user can reach.
+  source_operation: openapi/sertica-web-api-openapi.json#AuthUnits
+  source_operation_note: >-
+    Declared in the spec with a prose operationId, "Get List of Units current user has
+    access to" (GET /Auth/units), rather than a token identifier.
+  consequence: read
+- name: get_user_rights
+  description: Return the current user's SERTICA user rights, so a caller can tell in advance which operations will 403.
+  source_operation_note: >-
+    GET /Auth/userRights - declared with the prose operationId "Get list of valid user
+    rights for the user".
+  consequence: read
+coverage:
+  rest_operations_total: 3340
+  candidate_tools: 16
+  note: >-
+    Deliberately small. 3,340 operations is far past any usable tool budget, and 254 of the
+    resource families are the same CRUD + search + searchCount + searchInfo + history + copy
+    template. A real SERTICA MCP server should expose the search/searchInfo pair per domain
+    rather than one tool per operation.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

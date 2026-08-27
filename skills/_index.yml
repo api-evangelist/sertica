@@ -1,0 +1,51 @@
+generated: '2026-08-27'
+method: generated
+source: openapi/sertica-web-api-openapi.json
+description: >-
+  Packaged Agent Skills for the SERTICA Web API. Every operationId referenced in these
+  skills was verified against the harvested 3,340-operation contract. The rules about
+  idempotency, reversibility, precondition probes and error handling come from
+  conventions/sertica-conventions.yml and errors/sertica-problem-types.yml.
+skills:
+- file: sertica-authenticate.md
+  name: Authenticate against a SERTICA site
+  api: openapi/sertica-web-api-openapi.json
+  operations:
+  - CreateJwtToken
+  - AuthIntegrations
+  - SetupTotp
+- file: sertica-read-maintenance-data.md
+  name: Read maintenance data from SERTICA
+  api: openapi/sertica-web-api-openapi.json
+  operations:
+  - SearchInfoComponents
+  - SearchComponents
+  - GetComponent
+  - JobSearchInfo
+  - AdvancedSearchJobs
+  - GetJob
+  - GetHistoryForJob
+  - SearchJobHistories
+- file: sertica-record-counter-reading.md
+  name: Record a counter reading in SERTICA
+  api: openapi/sertica-web-api-openapi.json
+  operations:
+  - GetCounters
+  - GetReadings
+  - AddCounterReading
+  - GetReadingsGraphData
+- file: sertica-procurement-state-changes.md
+  name: Change procurement state safely in SERTICA
+  api: openapi/sertica-web-api-openapi.json
+  operations:
+  - PurchaseOrderAllowCancelOrder
+  - PurchaseOrderCancelOrder
+  - RequisitionCanApproveForPurchase
+  - RequisitionCancel
+  - CanBeReversed
+  - CreateReversal
+  - CancelShipment
+  - UndoReceiveWarehouseShipment
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

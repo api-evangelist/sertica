@@ -1,0 +1,62 @@
+generated: '2026-08-27'
+method: searched
+source: public package registry searches, 2026-08-27
+description: >-
+  No first-party SERTICA client library exists in any public package registry, and SERTICA
+  publishes no GitHub organisation. The provider's own integration examples are raw HTTP
+  calls in PowerShell. Recorded as a measured absence, not an unchecked gap.
+package_count: 0
+official_package_count: 0
+packages: []
+registries_searched:
+- registry: npm
+  url: https://registry.npmjs.org/-/v1/search?text=sertica
+  status: 200
+  results: 0
+- registry: pypi
+  url: https://pypi.org/pypi/sertica/json
+  status: 404
+  results: 0
+- registry: nuget
+  url: https://azuresearch-usnc.nuget.org/query?q=sertica
+  status: 200
+  results: 0
+  note: >-
+    Notable because the API itself is ASP.NET Core (Swashbuckle-generated OpenAPI, ASP.NET
+    result types in the error schemas) - a first-party .NET client would be the natural
+    package to ship.
+- registry: rubygems
+  url: https://rubygems.org/api/v1/gems/sertica.json
+  status: 404
+  results: 0
+- registry: crates.io
+  url: https://crates.io/api/v1/crates?q=sertica
+  status: 200
+  results: 0
+- registry: packagist
+  url: https://packagist.org/search.json?q=sertica
+  status: 200
+  results: 0
+  note: Matches returned are unrelated packages (serialdata, verticalresponse).
+- registry: github
+  url: https://api.github.com/orgs/sertica
+  status: 404
+  results: 0
+  note: >-
+    No SERTICA GitHub organisation. A repository search for "sertica" returns only this
+    API Evangelist profile repository and an unrelated student project.
+provider_guidance:
+  approach: direct HTTP
+  evidence: >-
+    The provider's two published integration examples call the API with PowerShell
+    Invoke-WebRequest against https://<sitename>.sertica.com/api - no SDK is referenced.
+  urls:
+  - https://support.sertica.com/hc/en-us/articles/28558504030365-Example-Get-component-data
+  - https://support.sertica.com/hc/en-us/articles/28558575813149-Example-Insert-counter-reading
+finding: >-
+  With a 3,340-operation OpenAPI published at a stable URL, generated clients are
+  straightforward for a consumer to produce - but SERTICA ships none itself, so every
+  integrator generates and maintains their own. No SDKs pointer is emitted.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

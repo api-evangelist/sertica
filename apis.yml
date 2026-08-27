@@ -1,48 +1,154 @@
 aid: sertica
 name: SERTICA
 description: >-
-  Build interfaces to SERTICA Maintenance without any involvement from SERTICA.
+  SERTICA is a maritime fleet and ship management system from RINA (originally built by
+  Logimatic in Denmark, first code written in 1989), used to run planned maintenance,
+  procurement, HSQE, crewing, performance, logbooks and vessel reporting across a fleet.
+  It is deployed as a per-customer site rather than a shared multi-tenant service, and it
+  publishes a genuinely large machine-readable contract: the SERTICA Web API is an
+  OpenAPI 3.0.4 document with 2,743 paths, 3,340 operations and 1,104 schemas, served
+  publicly at https://docs.sertica.com/api/swagger/v1/swagger.json and browsable in a live
+  Swagger UI. It is a REST/JSON API authenticated with a 24-hour JWT obtained by posting a
+  SERTICA user login to /Auth, with authorization expressed as per-user SERTICA user
+  rights rather than OAuth scopes. Beyond CRUD it carries the statutory maritime surface -
+  MARPOL Oil, Garbage and Ballast Water electronic record books with signing and printout
+  operations, SFI-coded components, ISM management-system documents, and PunchOut/ShipServ
+  procurement integration.
 type: Index
 accessModel:
-  pricing: freemium
-  onboarding: unknown
+  pricing: enterprise
+  onboarding: sales
   trial: false
   try_now: false
   public: false
-  label: Freemium
-  confidence: medium
+  label: Enterprise
+  confidence: high
   source:
   - plans
-  generated: '2026-07-22'
-  method: derived
+  - https://www.sertica.com/modules/maintenance-api/
+  generated: '2026-08-27'
+  method: searched
+  note: >-
+    The Maintenance API is a licensed module of a per-vessel SERTICA deployment. No price,
+    tier or quota is published; every route to a price is a contact form. The contract is
+    public and readable without an account, but calling it requires a user on a customer's
+    own SERTICA site.
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sertica.png
-tags: []
+tags:
+- Maritime
+- Shipping
+- Fleet Management
+- Maintenance
+- Procurement
+- Asset Management
+- Compliance
+- Enterprise Software
 created: '2025-02-12'
-modified: '2026-03-16'
+modified: '2026-08-27'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/sertica/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 common:
+  - type: Website
+    url: https://www.sertica.com/
+  - type: AgenticAccess
+    url: agentic-access/sertica-agentic-access.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: ChangeLog
+    url: changelog/sertica-changelog.yml
+  - type: Conformance
+    url: conformance/sertica-conformance.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
   - type: DomainSecurity
     url: security/sertica-domain-security.yml
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/sertica-lifecycle.yml
+  - type: Overlay
+    url: overlays/sertica-web-api-overlay.yaml
+  - type: Packages
+    url: packages/sertica-packages.yml
+  - type: Plans
+    url: plans/sertica-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/sertica-rate-limits.yml
+  - type: Sandbox
+    url: sandbox/sertica-sandbox.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+  - type: Documentation
+    url: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: GettingStarted
+    url: https://support.sertica.com/hc/en-us/articles/28558504030365-Example-Get-component-data
+  - type: Support
+    url: https://support.sertica.com/hc/en-us
+  - type: PrivacyPolicy
+    url: https://www.sertica.com/privacy-policy/
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/sertica
   - type: LlmsText
-    url: https://sertica.com/llms.txt
-  - url: https://www.sertica.com/blog/
-    type: Blog
+    url: https://www.sertica.com/llms.txt
+  - type: Blog
+    url: https://www.sertica.com/blog/
 apis:
   - aid: sertica:sertica
-    name: SERTICA
+    name: SERTICA Web API
     description: >-
-      Build interfaces to SERTICA Maintenance without any involvement from SERTICA.
-    humanURL: ' https://www.sertica.com/modules/maintenance-api/#gref'
-    tags: []
+      The SERTICA Web API - the single REST/JSON contract behind every SERTICA module. 3,340
+      operations across 254 resource families cover maintenance (components, jobs, job
+      histories, counters, procedures), procurement (requisitions, requests for quote,
+      purchase orders, invoices, shipments), HSQE (certificates, forms, management systems),
+      performance (vessel and voyage reports) and the statutory electronic logbooks (Oil,
+      Garbage and Ballast Water record books). Authentication is a 24-hour JWT issued by
+      POST /Auth; every call is bound to a SERTICA user and returns only what that user's
+      rights allow. Endpoints are additionally gated by product licence, so the callable
+      surface differs between deployments.
+    humanURL: https://www.sertica.com/modules/maintenance-api/
+    baseURL: https://{sitename}.sertica.com/api
+    baseURLNote: >-
+      Templated on purpose. SERTICA runs a separate site per customer; the provider's own
+      documentation instructs integrators to call https://<sitename>.sertica.com/api with
+      their own site name. https://docs.sertica.com/api is the vendor's public API browser
+      instance of the same contract.
+    tags:
+    - Maritime
+    - Fleet Management
+    - Maintenance
+    - Procurement
+    - Compliance
     properties:
+      - type: OpenAPI
+        url: openapi/sertica-web-api-openapi.json
       - type: Documentation
-        url: ' https://www.sertica.com/modules/maintenance-api/#gref'
+        url: https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+      - type: APIReference
+        url: https://docs.sertica.com/api/swagger/index.html
+      - type: ErrorCatalog
+        url: errors/sertica-problem-types.yml
+      - type: Authentication
+        url: authentication/sertica-authentication.yml
+      - type: Conventions
+        url: conventions/sertica-conventions.yml
+      - type: DataModel
+        url: data-model/sertica-data-model.yml
+      - type: Webhooks
+        url: asyncapi/sertica-webhooks.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-27'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1

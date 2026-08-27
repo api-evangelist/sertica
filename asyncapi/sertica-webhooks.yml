@@ -1,0 +1,124 @@
+generated: '2026-08-27'
+method: derived
+source: openapi/sertica-web-api-openapi.json
+spec_type: none
+description: >-
+  SERTICA ships an outbound webhook subsystem, but publishes no AsyncAPI document and no
+  public event catalogue. This artifact records the webhook surface as it is expressed in
+  the REST contract - the management API, the delivery log, and the retry semantics - which
+  is what an integrator can actually observe. No event names or payload schemas are
+  asserted, because SERTICA does not publish them.
+asyncapi_document:
+  published: false
+  probed:
+  - url: https://docs.sertica.com/asyncapi.yaml
+    status: 200
+    note: SPA shell, not a document
+  - url: https://api.github.com/orgs/sertica
+    status: 404
+webhooks:
+  supported: true
+  model: customer-configured, script-driven
+  announced: Ver. 5.26.9 (2026-08-25) - "Screens to administer and edit webhooks is now available"
+  announced_url: https://support.sertica.com/hc/en-us/articles/38618932747549-Ver-5-26-9
+  description: >-
+    Webhooks are records inside SERTICA, created and edited through the API or the new admin
+    screens, rather than a fixed catalogue of vendor-defined events. A webhook binds a
+    script (WebhookScriptNode / WebhookScriptNodeType), one or more target APIs
+    (WebhookApi), optional schedules (WebhookSchedule) and expected responses
+    (WebhookResponse). Delivery attempts are recorded as WebhookLog entries.
+  management_operations:
+  - operationId: Getwebhooks
+    method: GET
+    path: /Webhooks
+    note: The declared operationId is lower-case 'w' - Getwebhooks, not GetWebhooks.
+  - operationId: CreateWebhook
+    method: POST
+    path: /Webhooks
+  - operationId: GetWebhook
+    method: GET
+    path: /Webhooks/{webhookNo}
+  - operationId: UpdateWebhook
+    method: PUT
+    path: /Webhooks/{webhookNo}
+  - operationId: CopyWebhook
+    method: GET
+    path: /Webhooks/{webhookNo}/copy
+  - operationId: ExecuteWebhook
+    method: POST
+    path: /Webhooks/{webhookNo}/execute
+    note: Fires a configured webhook on demand - the manual test/trigger path.
+  - operationId: GetWebhookSchedules
+    method: GET
+    path: /Webhooks/{webhookNo}/webhookschedules
+  - operationId: GetWebhookAPIs
+    method: GET
+    path: /Webhooks/{webhookNo}/webhookapis
+  - operationId: GetWebhookResponses
+    method: GET
+    path: /Webhooks/{webhookNo}/responses
+  - operationId: SearchWebhooks
+    method: POST
+    path: /Webhooks/search
+  - method: POST
+    path: /Webhooks/validate
+    note: Declared without an operationId; validates a webhook script.
+  delivery_log:
+    description: >-
+      Every entity that can emit records its own webhook delivery log, searchable and
+      individually retransmittable. This is an unusually good observability surface - a
+      failed delivery is visible, replayable and resolvable per record rather than only in
+      aggregate.
+    per_entity_operations:
+    - entity: Job
+      search: SearchJobWebhookLogs
+      count: SearchJobWebhookLogsCount
+      retransmit: RetransmitJobWebhookLog
+      resolve: ResolveJobWebhookLog
+    - entity: JobHistory
+      search: SearchJobHistoryWebhookLogs
+      count: SearchJobHistoryWebhookLogsCount
+      retransmit: RetransmitJobHistoryWebhookLog
+      resolve: ResolveJobHistoryWebhookLog
+    - entity: Component
+      search: SearchComponentWebhookLogs
+      count: SearchComponentWebhookLogsCount
+      retransmit: RetransmitComponentWebhookLog
+      resolve: ResolveComponentWebhookLog
+    - entity: Item
+      note: /Items/{itemNo}/webhooklogs family
+    - entity: VesselReport
+      note: /VesselReports/{vesselReportNo}/webhooklogs family
+    - entity: Webhook
+      search: SearchWebhookWebhookLogs
+      count: SearchWebhookWebhookLogsCount
+    status_enums:
+    - Logihold.BusinessObjects.LogiholdObjModel.SystemData+WebhookStatus
+    - Logihold.BusinessObjects.LogiholdObjModel.SystemData+WebhookLogStatus
+  schemas:
+  - SerticaWebApi.Models.Webhooks.Webhook
+  - SerticaWebApi.Models.Webhooks.WebhookApi
+  - SerticaWebApi.Models.Webhooks.WebhookSchedule
+  - SerticaWebApi.Models.Webhooks.WebhookLog
+  - SerticaWebApi.Models.Webhooks.WebhookResponse
+  - SerticaWebApi.Models.Webhooks.WebhookScriptNode
+  - SerticaWebApi.Models.Webhooks.WebhookScriptNodeType
+  - SerticaWebApi.Models.Webhooks.WebhookScriptValidation
+  - SerticaWebApi.Models.Webhooks.WebhookRunScriptResult
+  - SerticaWebApi.Models.Webhooks.ApiWebhookExecuteResult
+  security:
+    signing: not documented
+    replay_protection: not documented
+    note: >-
+      No payload signature header, timestamp or shared-secret scheme is declared in the
+      contract or documented on the support site. A receiver cannot verify that a delivery
+      came from SERTICA other than by network controls.
+gaps:
+- No AsyncAPI document.
+- No published event catalogue - which entity changes can fire a webhook is a per-site configuration question, not a documented contract.
+- No payload schema for the delivered body; only the log and script models are typed.
+- No signature/verification scheme published.
+- No public documentation article for webhooks on support.sertica.com as of 2026-08-27, only the release-note line announcing the admin screens.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

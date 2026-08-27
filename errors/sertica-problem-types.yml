@@ -1,0 +1,93 @@
+generated: '2026-08-27'
+method: searched
+source: openapi/sertica-web-api-openapi.json
+docs: https://support.sertica.com/hc/en-us/articles/29158673899293-Standard-HTTP-Response-Codes
+format: vendor-json
+description: >-
+  Error catalogue for the SERTICA Web API, derived from the 4xx/5xx responses declared on
+  all 3,340 operations and enriched from the provider's published "Standard HTTP Response
+  Codes" article. SERTICA does NOT use RFC 9457 application/problem+json; it returns a
+  vendor ValidationResult envelope on application/json, text/json and text/plain.
+envelope:
+  media_types:
+  - application/json
+  - text/json
+  - text/plain
+  schema: SerticaWebApi.Models.ValidationResult
+  shape:
+    isValid: boolean
+    errors: array of ErrorReason { text, fieldName }
+    brokenRules: array of BrokenRule
+    subResults: map of nested ValidationResult
+  note: >-
+    The field-level detail an agent needs is in errors[].fieldName / errors[].text. There
+    is no stable machine error code, no type URI and no problem+json content type, so
+    errors are correlated by HTTP status plus the human-readable text.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Invalid data - includes validationResult
+  occurrences: 1742
+  body: SerticaWebApi.Models.ValidationResult
+  common_descriptions:
+  - Bad Request
+  - Returns a validation result with information about the bad request
+  remediation: >-
+    Read errors[].fieldName and errors[].text from the ValidationResult and correct the
+    offending field before retrying. Business preconditions have dedicated GET can*/allow*
+    probes (see conventions/sertica-conventions.yml) - call those first rather than
+    discovering the rule from a 400.
+  source_operations:
+  - CreateAccountingDimension
+  - UpdateAccountingDimension
+  - AddCounterReading
+- status: 401
+  title: Unauthorized
+  meaning: Token missing, expired, or invalid
+  occurrences: 3092
+  common_descriptions:
+  - If user is unauthorized
+  remediation: >-
+    Re-issue a JWT with CreateJwtToken (POST /Auth). Tokens expire 24 hours after issue by
+    default, so a long-running integration must refresh rather than cache indefinitely.
+- status: 403
+  title: Not Allowed
+  meaning: User lacks permission
+  occurrences: 3028
+  remediation: >-
+    The 403 description on each operation names the exact User Right key and level
+    required (e.g. "ChangeRequest / View"). Grant the right to the integration user, or
+    call GET /Auth/userRights to see what the current user actually holds.
+  note: >-
+    This is the richest authorization signal in the contract - the required right is
+    declared per operation, but as HTML prose inside the response description rather than
+    as a scope or an extension.
+- status: 404
+  title: Not Found
+  meaning: The addressed record does not exist or is not visible to this user
+  occurrences: 781
+  body: SerticaWebApi.Models.ValidationResult (33 operations) or an empty ASP.NET NotFound
+  common_descriptions:
+  - If a document with the supplied Document No cannot be found
+  - Not Found
+  remediation: >-
+    Confirm the record number/GUID. Because visibility is per-user, a 404 can also mean the
+    record exists but is outside the user's unit access - check GET /Auth/units.
+- status: 500
+  title: Internal Server Error
+  meaning: Unhandled error in API
+  occurrences: 3340
+  common_descriptions:
+  - The api has encountered an unhandled exception. See Sertica logs for details
+  remediation: >-
+    Not retryable by an agent on its own. The published guidance is to inspect the SERTICA
+    server logs on the customer's own site; escalate to the site administrator or RINA
+    support.
+gaps:
+- No RFC 9457 problem+json.
+- No stable machine-readable error code registry; errors carry free text only.
+- No documented rate-limit status (429 is declared on zero operations).
+- 5,127 response entries reference ValidationResult but no operation ships a response example.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

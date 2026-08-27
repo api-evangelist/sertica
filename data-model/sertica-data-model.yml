@@ -1,0 +1,332 @@
+generated: '2026-08-27'
+method: derived
+source: openapi/sertica-web-api-openapi.json
+description: >-
+  Entity graph for the SERTICA Web API, derived from the 200-response schemas of the
+  top-level resource collections and from the sub-resource path segments each collection
+  exposes. 254 tags and 1,104 component schemas were reduced to the core business entities
+  an integration actually addresses; the full set is in the spec.
+identifiers:
+  style: mixed - human-readable record numbers and GUIDs
+  pattern: >-
+    Most entities are addressed by their business number (componentNo, jobNo, itemNo,
+    documentNo, purchaseOrderNo, invoiceNo, requisitionNo, counterNo, unitNo) as a path
+    parameter typed string. GUIDs are used where the record has no natural number -
+    jobhistoryGuid, webhookLogGuid, propertyDefinitionGuid - and in every
+    searchIndex/{guid} operation.
+  note: >-
+    A number is unique within a SERTICA site, not globally. Site identity is the hostname
+    (https://<sitename>.sertica.com), so an integration spanning several sites must qualify
+    every identifier with its site.
+tenancy:
+  boundary: Unit
+  description: >-
+    Unit is the vessel/organisational boundary that scopes visibility. GET /Auth/units
+    returns the tree of Units and UnitGroups the current user can reach, and record
+    visibility follows it. Sections subdivide a Unit; Companies own Units.
+entities:
+- name: Component
+  collection: /Components
+  schema: SerticaWebApi.Models.Component.Component
+  domain: maintenance
+  operations: 40
+  relationships:
+  - has_many: Item
+    via: /Components/{componentNo}/Items
+  - has_many: Address
+    via: /Components/{componentNo}/Suppliers
+    as: suppliers
+  - has_many: CounterHistory
+    via: /Components/{componentNo}/counterhistories
+  - has_many: Document
+    via: /Components/{componentNo}/documents
+  - has_many: WebhookLog
+    via: /Components/{componentNo}/webhooklogs
+  fields_of_note:
+  - sfiNo
+  - sfiName
+- name: Job
+  collection: /Jobs
+  schema: SerticaWebApi.Models.Job.Job
+  domain: maintenance
+  operations: 55
+  relationships:
+  - belongs_to: Component
+    via: componentNo
+  - has_many: JobHistory
+    via: /Jobs/{jobNo}/history
+  - has_many: Item
+    via: /Jobs/{jobNo}/items
+  - has_many: Resource
+    via: /Jobs/{jobNo}/resources
+  - has_many: Trigger
+    via: /Jobs/{jobNo}/triggers
+  - has_many: FormTemplate
+    via: /Jobs/{jobNo}/formTemplates
+  - has_many: JobGroup
+    via: /Jobs/{jobNo}/jobgroups
+  - has_many: Document
+    via: /Jobs/{jobNo}/documents
+- name: JobHistory
+  collection: /JobHistories
+  schema: SerticaWebApi.Models.JobHistory.JobHistory
+  domain: maintenance
+  operations: 31
+  note: The completed-work record produced when a Job is finalized. Reopenable.
+  relationships:
+  - belongs_to: Job
+  - has_many: Item
+    via: /JobHistories/{jobhistoryGuid}/items
+  - has_many: Document
+    via: /JobHistories/{jobhistoryGuid}/documents
+  - has_many: Form
+    via: /JobHistories/{jobhistoryGuid}/formTemplates
+- name: Counter
+  collection: /Counters
+  schema: SerticaWebApi.Models.Counter.Counter
+  domain: maintenance
+  operations: 15
+  note: >-
+    Running-hours and meter readings that drive maintenance planning. The most commonly
+    integrated write surface, per the provider's own example article.
+  relationships:
+  - belongs_to: Component
+  - has_many: CounterReading
+    via: /Counters/{counterNo}/readings
+  - belongs_to: CounterType
+- name: Item
+  collection: /Items
+  schema: SerticaWebApi.Models.Item.Item
+  domain: stock
+  operations: 39
+  relationships:
+  - has_many: Component
+    via: /Items/{itemNo}/Components
+  - has_many: Warehouse
+    via: /Items/{itemNo}/warehouses
+  - has_many: Address
+    via: /Items/{itemNo}/suppliers
+  - has_many: PurchaseOrder
+    via: /Items/{itemNo}/purchaseOrders
+  - belongs_to: ItemGroup
+- name: Document
+  collection: /Documents
+  schema: SerticaWebApi.Models.Document.Document
+  domain: document-management
+  operations: 28
+  note: Version-controlled; checkout/checkin creates a new version rather than overwriting.
+  relationships:
+  - belongs_to: DocumentClass
+  - has_many: DocumentWebLink
+    via: /Documents/{documentNo}/documentweblinks
+- name: Unit
+  collection: /Units
+  schema: SerticaWebApi.Models.UnitManagement.Unit
+  domain: fleet
+  operations: 19
+  note: The vessel / organisational unit. The tenancy boundary for every other entity.
+  relationships:
+  - has_many: User
+    via: /Units/{unitNo}/users
+  - has_many: Company
+    via: /Units/{unitNo}/companies
+  - has_many: FunctionArea
+    via: /Units/{unitNo}/FunctionAreas
+- name: Address
+  collection: /Addresses
+  schema: SerticaWebApi.Models.AddressBook.Address
+  domain: procurement
+  operations: 25
+  note: Suppliers, yards, receivers and contacts all live in the address book.
+  relationships:
+  - has_many: Contact
+    via: /Addresses/{addressNo}/contacts
+  - has_many: AddressPunchOut
+    via: /Addresses/{addressNo}/punchouts
+  - has_many: AddressEvaluation
+    via: /Addresses/{addressNo}/AddressEvaluations
+- name: Requisition
+  collection: /Requisitions
+  schema: SerticaWebApi.Models.Requisition.Requisition
+  domain: procurement
+  operations: 46
+  relationships:
+  - has_many: Component
+    via: /Requisitions/{requisitionNo}/components
+  - creates: PurchaseOrder
+    via: /Requisitions/{requisitionNo}/createPurchaseOrder
+- name: RequestForQuote
+  collection: /RequestForQuotes
+  schema: SerticaWebApi.Models.RequestForQuote.RequestForQuote
+  domain: procurement
+  operations: 29
+  relationships:
+  - belongs_to: Requisition
+    via: /RequestForQuotes/{requestForQuoteNo}/requisitions
+  - creates: PurchaseOrder
+    via: /RequestForQuotes/{requestForQuoteNo}/createPurchaseOrder
+- name: PurchaseOrder
+  collection: /PurchaseOrders
+  schema: SerticaWebApi.Models.PurchaseOrder.PurchaseOrder
+  domain: procurement
+  operations: 63
+  relationships:
+  - belongs_to: Address
+    as: supplier
+  - has_many: Shipment
+    via: /PurchaseOrders/{purchaseOrderNo}/createCarrier
+  - has_many: Approval
+    via: /PurchaseOrders/{purchaseOrderNo}/approvals
+- name: ImInvoice
+  collection: /ImInvoices
+  schema: SerticaWebApi.Models.ImInvoice.ImInvoice
+  domain: procurement
+  operations: 53
+  note: Invoice Management, added in release 5.26.3 (March 2026). Reversible.
+  relationships:
+  - belongs_to: PurchaseOrder
+  - has_many: ImInvoice
+    via: /ImInvoices/{invoiceNo}/relatedinvoices
+- name: Shipment
+  collection: /Shipments
+  schema: SerticaWebApi.Models.Distribution.Shipment
+  domain: distribution
+  operations: 25
+  relationships:
+  - belongs_to: Carrier
+  - belongs_to: Warehouse
+    as: pickup / destination
+- name: Certificate
+  collection: /Certificates
+  schema: SerticaWebApi.Models.Certificate.Certificate
+  domain: hsqe
+  operations: 20
+  relationships:
+  - has_many: Document
+    via: /Certificates/{certificateNo}/Documents
+  - has_many: CertificateNotificationSetting
+    via: /Certificates/{certificateNo}/notificationSettings
+  - belongs_to: CertificateGroup
+- name: Form
+  collection: /Forms
+  schema: SerticaWebApi.Models.Form.Form
+  domain: hsqe
+  operations: 29
+  relationships:
+  - belongs_to: FormTemplate
+  - has_many: FormResponse
+    via: /Forms/{formNo}/formresponses
+- name: ManagementSystem
+  collection: /ManagementSystems
+  schema: SerticaWebApi.Models.ManagementSystem.ManagementSystem
+  domain: hsqe
+  operations: 26
+  note: ISM/ISO documentation with change requests, approvers and controlled copies.
+  relationships:
+  - has_many: Unit
+    via: /ManagementSystems/{managementSystemNo}/units
+  - has_many: ManagementSystemChangeRequest
+- name: VesselReport
+  collection: /VesselReports
+  schema: SerticaWebApi.Models.WebVesselReportingSystem.VesselReport
+  domain: performance
+  operations: 36
+  relationships:
+  - belongs_to: VesselReportType
+  - has_many: Consumption
+    via: /VesselReports/{vesselReportNo}/consumptions
+- name: VoyageReport
+  collection: /VoyageReports
+  schema: SerticaWebApi.Models.VoyageReporting.VoyageReport
+  domain: performance
+  operations: 21
+  relationships:
+  - has_many: Cargo
+    via: /VoyageReports/{voyageReportNo}/cargoes
+  - has_many: MeItem
+    via: /VoyageReports/{voyageReportNo}/meItems
+- name: OrbOperation
+  collection: /OrbOperations
+  schema: SerticaWebApi.Models.ElectronicLogBook.OrbOperation
+  domain: electronic-logbook
+  operations: 19
+  note: Oil Record Book entry (MARPOL Annex I). Signed entries are terminal.
+  relationships:
+  - has_many: OrbOperationSounding
+  - has_many: OrbOperationSigner
+  - has_many: OrbOperationReceiver
+- name: GrbOperation
+  collection: /GrbOperations
+  schema: SerticaWebApi.Models.ElectronicLogBook.GrbOperation
+  domain: electronic-logbook
+  operations: 18
+  note: Garbage Record Book entry (MARPOL Annex V).
+- name: BrbOperation
+  collection: /BrbOperations
+  schema: SerticaWebApi.Models.ElectronicLogbook.BrbOperation
+  domain: electronic-logbook
+  operations: 18
+  note: Ballast Water Record Book entry.
+- name: LogbookEvent
+  collection: /LogbookEvents
+  schema: SerticaWebApi.Models.LogbookEvent.LogbookEvent
+  domain: electronic-logbook
+  operations: 16
+- name: User
+  collection: /Users
+  schema: SerticaWebApi.Models.UserManagement.User
+  domain: administration
+  operations: 20
+  relationships:
+  - has_many: Unit
+    via: /Users/{userNo}/units
+  - has_many: Role
+    via: /Users/{userNo}/roles
+- name: Webhook
+  collection: /Webhooks
+  schema: SerticaWebApi.Models.Webhooks.Webhook
+  domain: integration
+  operations: 24
+  relationships:
+  - has_many: WebhookSchedule
+  - has_many: WebhookLog
+  - has_many: WebhookApi
+  - has_many: WebhookResponse
+- name: Account
+  collection: /Accounts
+  schema: SerticaWebApi.Models.Accounting.Account
+  domain: accounting
+  operations: 8
+  fields_of_note:
+  - sfiNo
+- name: Budget
+  collection: /Budgets
+  schema: SerticaWebApi.Models.Budget.Budget
+  domain: accounting
+  operations: 9
+  relationships:
+  - has_many: BudgetLine
+  - has_many: Approver
+extensibility:
+  mechanism: propertyDefinitions
+  applies_to:
+  - Components
+  - Jobs
+  - Items
+  - Documents
+  - LogbookEvents
+  - PurchaseOrders
+  note: >-
+    Each of these exposes a propertyDefinitions family so a customer site can add its own
+    fields. The entity shape above is the vendor baseline, not the shape of any one site.
+coverage:
+  entities_modelled: 27
+  top_level_resource_collections: 254
+  component_schemas_in_spec: 1104
+  note: >-
+    Only the core business entities are modelled here. Reference/lookup collections
+    (CountryCodes, Currencies, FuelTypes, DeliveryConditions and ~200 others) follow the
+    identical CRUD + search + history + copy pattern and are not enumerated.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

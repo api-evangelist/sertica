@@ -1,0 +1,86 @@
+generated: '2026-08-27'
+method: searched
+source: https://support.sertica.com/hc/en-us/articles/33235538471965-Ver-5-26-1
+description: >-
+  Versioning, release and support posture for SERTICA and its Web API, searched from the
+  provider's support site. SERTICA is deployed as a per-customer site, so "release"
+  means a rollout window applied to customer sites, not a dated API version.
+versioning:
+  scheme: calendar product release, 5.<two-digit year>.<release number in year>
+  current: 5.26.9
+  current_source: >-
+    openapi/sertica-web-api-openapi.json - assembly version strings (5.26.9.1) inside
+    components.schemas, matching the published Ver. 5.26.9 release note
+  changed: '2026-01'
+  change_note: >-
+    The version identifier advanced from 5.15.90 straight to 5.26.1 in January 2026. The
+    provider states the number now reflects the release year and the release ordinal within
+    that year, "making it easier to understand when a version was published".
+  change_source: https://support.sertica.com/hc/en-us/articles/33235538471965-Ver-5-26-1
+  api_versioning:
+    style: none
+    detail: >-
+      The OpenAPI declares info.version "v1" and serves from the relative base /api. No path
+      segment, header or query parameter selects an API version, and no second version is
+      published. The API surface therefore moves with the product release.
+release_cadence:
+  observed: roughly monthly
+  mechanism: >-
+    Each release note names the ISO week in which customer sites will be updated, e.g.
+    "The customer sites will be updated during week 35 (starting August 25th)". Customers do
+    not choose the API version; the site is upgraded on the vendor's schedule.
+  recent_releases:
+  - version: 5.26.9
+    date: '2026-08-25'
+    rollout_week: 35
+  - version: 5.26.7
+    date: '2026-06-29'
+    rollout_week: 27
+  - version: 5.26.6
+    date: '2026-06-02'
+    rollout_week: 23
+  - version: 5.26.5
+    date: '2026-05-06'
+    rollout_week: 19
+  - version: 5.26.4
+    date: '2026-04-15'
+    rollout_week: 16
+  artifact: changelog/sertica-changelog.yml
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: 0
+  evidence: >-
+    Zero of 3,340 operations carry deprecated: true, and no deprecation, sunset or breaking-
+    change policy is published on support.sertica.com or sertica.com. Release notes describe
+    additions and corrections; they do not announce removals or a notice period.
+  finding: >-
+    An integrator has no published contract for how long an endpoint will keep working, and
+    no runtime signal (RFC 8594 Sunset/Deprecation headers) to detect a pending removal.
+status_page:
+  url: null
+  evidence:
+  - url: https://status.sertica.com/
+    status: '000'
+    note: DNS does not resolve
+  finding: >-
+    No status page was found. Because SERTICA runs a separate site per customer, availability
+    is per-site and is handled through support rather than a shared public status page.
+sla:
+  url: null
+  uptime_target: null
+  note: Not published publicly; SERTICA is sold through RINA with per-contract terms.
+support:
+  help_center: https://support.sertica.com/hc/en-us
+  yacht_help_center: https://yachtsupport.sertica.com/hc/en-us
+  contact: sertica@rina.org
+  phone: '+45 7214 1214'
+history:
+  first_code: '1989'
+  launched: '1991'
+  vendor: RINA (acquired Logimatic's SERTICA business)
+  source: https://www.sertica.com/about-us/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

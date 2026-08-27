@@ -1,0 +1,74 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the SERTICA Web API
+  version: 1.0.0
+extends: openapi/sertica-web-api-openapi.json
+x-provenance:
+  generated: '2026-08-27'
+  method: generated
+  source: openapi/sertica-web-api-openapi.json
+  note: >-
+    Captures API Evangelist's observations about the harvested contract without mutating it.
+    The original document is archived verbatim at
+    openapi/_original/sertica-web-api-openapi-original.json.
+actions:
+- target: $.info
+  description: Record where this contract was harvested from and what deployment it describes.
+  update:
+    x-apievangelist-source: https://docs.sertica.com/api/swagger/v1/swagger.json
+    x-apievangelist-harvested: '2026-08-27'
+    x-apievangelist-product-version: 5.26.9
+    x-apievangelist-deployment: >-
+      Per-customer site. The published base is https://{sitename}.sertica.com/api; the
+      spec's relative servers entry (/api) resolves against whichever SERTICA site serves it.
+      https://docs.sertica.com/api is the vendor's public API browser instance.
+- target: $.info
+  description: Contract-quality observations, so a consumer knows what to expect before generating a client.
+  update:
+    x-apievangelist-contract-notes:
+      operations: 3340
+      paths: 2743
+      component_schemas: 1104
+      tags: 254
+      operations_with_operationid: 3149
+      operations_missing_operationid: 191
+      operations_with_summary: 3002
+      operations_with_description: 0
+      operations_with_examples: 0
+      deprecated_operations: 0
+      note_operationid_style: >-
+        191 operations declare no operationId at all (most DELETEs among them), and a
+        handful declare prose instead of an identifier - "Get current user info",
+        "Get list of valid user rights for the user", "Get List of Units current user has
+        access to". Casing is also inconsistent (Getwebhooks, CopCounter,
+        AllowReceiveRequisitionr). Generated clients will produce awkward or colliding
+        method names until these are normalised.
+      note_no_examples: >-
+        No operation carries a request or response example, and 5,127 error responses
+        reference ValidationResult without one. Examples are the cheapest single
+        improvement available to this contract.
+      note_content_types: >-
+        text/plain is declared alongside application/json and text/json on most responses,
+        an artifact of the ASP.NET generator rather than a real content-negotiation design.
+- target: $.info
+  description: Domain standards the contract itself declares, for discovery.
+  update:
+    x-apievangelist-domain-standards:
+    - sfi-group-system
+    - marpol-electronic-record-books
+    - punchout-procurement
+    - shipdex
+- target: $.components.securitySchemes.Bearer
+  description: Document how the bearer token is actually obtained, which the scheme alone does not say.
+  update:
+    x-apievangelist-token-endpoint: POST /Auth
+    x-apievangelist-token-request: '{ "login": "<user>", "password": "<password>" }'
+    x-apievangelist-token-response-field: accessToken
+    x-apievangelist-token-lifetime: PT24H
+    x-apievangelist-authorization: >-
+      Per-user SERTICA user rights, not scopes. The required right for an operation is
+      stated in prose inside that operation's 403 response description.
+- target: $.paths['/Auth'].post
+  description: Flag the authentication entry point for agents and generated clients.
+  update:
+    x-apievangelist-role: authentication-entry-point

@@ -1,0 +1,120 @@
+generated: '2026-08-27'
+method: probed
+source: live HTTP probes, 2026-08-27
+description: >-
+  Probe of the /.well-known/ discovery surface on every SERTICA host. Nothing is served.
+  Two of the three hosts answer every path with the same body, so a bare status code is not
+  evidence of a document; a control probe was run on each to establish that.
+hit_count: 0
+hosts:
+- host: https://docs.sertica.com
+  role: documentation host and the host serving the OpenAPI
+  soft_404_control:
+    path: /.well-known/definitely-not-a-real-path-9f3a
+    status: 200
+    content_type: text/html
+    bytes: 91267
+    note: >-
+      SPA catch-all. Every /.well-known/* path returns the identical 91,267-byte Angular
+      shell with content-type text/html, so every 200 below is a miss, not a hit.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: SPA shell (text/html, 91267 bytes) - not a document
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: SPA shell - not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: SPA shell - not a document
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: SPA shell - not a document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: SPA shell - not a document
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    note: SPA shell - not a document
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    note: SPA shell - not a document
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    note: SPA shell - not a document
+- host: https://support.sertica.com
+  role: Zendesk help centre carrying the API documentation
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: https://www.sertica.com
+  role: marketing site
+  edge_note: >-
+    The origin answers our probe with HTTP 454 and a 7,294-byte error page for every path,
+    including the site root, while the same URLs render normally in a browser. This is an
+    edge bot policy, not a 404 - the paths were not readable by this probe, so no
+    conclusion is drawn about what is or is not served there.
+  documents:
+  - path: /.well-known/security.txt
+    status: 454
+    file: null
+    note: edge bot challenge - undetermined
+  - path: /.well-known/openid-configuration
+    status: 454
+    file: null
+    note: edge bot challenge - undetermined
+  - path: /.well-known/oauth-authorization-server
+    status: 454
+    file: null
+    note: edge bot challenge - undetermined
+  - path: /.well-known/api-catalog
+    status: 454
+    file: null
+    note: edge bot challenge - undetermined
+  - path: /.well-known/ai-plugin.json
+    status: 454
+    file: null
+    note: edge bot challenge - undetermined
+  - path: /.well-known/agent-card.json
+    status: 454
+    file: null
+    note: edge bot challenge - undetermined
+  - path: /.well-known/agent.json
+    status: 454
+    file: null
+    note: edge bot challenge - undetermined
+finding: >-
+  No WellKnown or SecurityTxt pointer is emitted. Not one probe returned a real document on
+  any host, so asserting the surface would credit SERTICA with something it does not serve.
+  Note that www.sertica.com DOES serve a working /llms.txt (harvested to llms/sertica-llms.txt),
+  so the site is not hostile to machine readers - it simply publishes nothing under /.well-known/.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -44,7 +44,7 @@ accessModel:
     tier or quota is published; every route to a price is a contact form. The contract is
     public and readable without an account, but calling it requires a user on a customer's
     own SERTICA site.
-position: Consumer
+position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sertica.png
 tags:

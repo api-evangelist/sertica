@@ -416,31 +416,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-analyticsreports-api
-  name: SERTICA Analytics Reports API
-  description: The AnalyticsReports API from SERTICA — 10 operation(s) for analyticsreports.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - AnalyticsReports
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-analyticsreports-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-analyticsresources-api
   name: SERTICA Analytics Resources API
   description: The AnalyticsResources API from SERTICA — 6 operation(s) for analyticsresources.
@@ -854,31 +829,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-certificategrouprules-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-certificategroups-api
-  name: SERTICA Certificate Groups API
-  description: The CertificateGroups API from SERTICA — 11 operation(s) for certificategroups.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - CertificateGroups
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-certificategroups-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -1423,31 +1373,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-countrycodes-api
-  name: SERTICA Country Codes API
-  description: The CountryCodes API from SERTICA — 8 operation(s) for countrycodes.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - CountryCodes
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-countrycodes-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-currencies-api
   name: SERTICA Currencies API
   description: The Currencies API from SERTICA — 9 operation(s) for currencies.
@@ -1700,31 +1625,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-documentgroups-api
-  name: SERTICA Document Groups API
-  description: The DocumentGroups API from SERTICA — 8 operation(s) for documentgroups.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - DocumentGroups
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-documentgroups-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-documentmailtemplates-api
   name: SERTICA Document Mail Templates API
   description: The DocumentMailTemplates API from SERTICA — 8 operation(s) for documentmailtemplates.
@@ -1810,31 +1710,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-documenttree-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-documenttypes-api
-  name: SERTICA Document Types API
-  description: The DocumentTypes API from SERTICA — 8 operation(s) for documenttypes.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - DocumentTypes
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-documenttypes-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -2051,31 +1926,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-eventreports-api
-  name: SERTICA Event Reports API
-  description: The EventReports API from SERTICA — 9 operation(s) for eventreports.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - EventReports
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-eventreports-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-excelimport-api
   name: SERTICA Excel Import API
   description: The ExcelImport API from SERTICA — 4 operation(s) for excelimport.
@@ -2136,31 +1986,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-externalcalendars-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-externalitems-api
-  name: SERTICA External Items API
-  description: The ExternalItems API from SERTICA — 6 operation(s) for externalitems.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - ExternalItems
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-externalitems-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -2363,31 +2188,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-formtemplatehelpimagedocuments-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-formtemplates-api
-  name: SERTICA Form Templates API
-  description: The FormTemplates API from SERTICA — 22 operation(s) for formtemplates.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - FormTemplates
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-formtemplates-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -2803,31 +2603,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-itemgroups-api
-  name: SERTICA Item Groups API
-  description: The ItemGroups API from SERTICA — 8 operation(s) for itemgroups.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - ItemGroups
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-itemgroups-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-itemgroupselection-api
   name: SERTICA Item Group Selection API
   description: The ItemGroupSelection API from SERTICA — 2 operation(s) for itemgroupselection.
@@ -3003,31 +2778,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-itemtypes-api
-  name: SERTICA Item Types API
-  description: The ItemTypes API from SERTICA — 8 operation(s) for itemtypes.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - ItemTypes
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-itemtypes-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-itemwarehousehistories-api
   name: SERTICA Item Warehouse Histories API
   description: The ItemWarehouseHistories API from SERTICA — 3 operation(s) for itemwarehousehistories.
@@ -3088,31 +2838,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-jobgroups-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-jobhistories-api
-  name: SERTICA Job Histories API
-  description: The JobHistories API from SERTICA — 31 operation(s) for jobhistories.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - JobHistories
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-jobhistories-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -3416,31 +3141,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-jobsequences-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-jobtemplates-api
-  name: SERTICA Job Templates API
-  description: The JobTemplates API from SERTICA — 12 operation(s) for jobtemplates.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - JobTemplates
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-jobtemplates-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -4118,31 +3818,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-measurementlocations-api
-  name: SERTICA Measurement Locations API
-  description: The MeasurementLocations API from SERTICA — 8 operation(s) for measurementlocations.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - MeasurementLocations
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-measurementlocations-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-measurements-api
   name: SERTICA Measurements API
   description: The Measurements API from SERTICA — 15 operation(s) for measurements.
@@ -4153,31 +3828,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-measurements-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-measurementtypes-api
-  name: SERTICA Measurement Types API
-  description: The MeasurementTypes API from SERTICA — 8 operation(s) for measurementtypes.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - MeasurementTypes
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-measurementtypes-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -4522,31 +4172,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-paymentconditions-api
-  name: SERTICA Payment Conditions API
-  description: The PaymentConditions API from SERTICA — 8 operation(s) for paymentconditions.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - PaymentConditions
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-paymentconditions-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-ports-api
   name: SERTICA Ports API
   description: The Ports API from SERTICA — 8 operation(s) for ports.
@@ -4798,31 +4423,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-purchaseorders-api
-  name: SERTICA Purchase Orders API
-  description: The PurchaseOrders API from SERTICA — 65 operation(s) for purchaseorders.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - PurchaseOrders
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-purchaseorders-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-purchasetypes-api
   name: SERTICA Purchase Types API
   description: The PurchaseTypes API from SERTICA — 10 operation(s) for purchasetypes.
@@ -5058,31 +4658,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-roles-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-scheduledtasks-api
-  name: SERTICA Scheduled Tasks API
-  description: The ScheduledTasks API from SERTICA — 14 operation(s) for scheduledtasks.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - ScheduledTasks
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-scheduledtasks-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -5726,56 +5301,6 @@ apis:
     url: data-model/sertica-data-model.yml
   - type: Webhooks
     url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-usergroups-api
-  name: SERTICA User Groups API
-  description: The UserGroups API from SERTICA — 14 operation(s) for usergroups.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - UserGroups
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-usergroups-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-userrights-api
-  name: SERTICA User Rights API
-  description: The UserRights API from SERTICA — 2 operation(s) for userrights.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - UserRights
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-userrights-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
 - aid: sertica:sertica-users-api
   name: SERTICA Users API
   description: The Users API from SERTICA — 20 operation(s) for users.
@@ -5786,56 +5311,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-users-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-usersettings-api
-  name: SERTICA User Settings API
-  description: The UserSettings API from SERTICA — 6 operation(s) for usersettings.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - UserSettings
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-usersettings-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
-  - type: APIReference
-    url: https://docs.sertica.com/api/swagger/index.html
-  - type: ErrorCatalog
-    url: errors/sertica-problem-types.yml
-  - type: Authentication
-    url: authentication/sertica-authentication.yml
-  - type: Conventions
-    url: conventions/sertica-conventions.yml
-  - type: DataModel
-    url: data-model/sertica-data-model.yml
-  - type: Webhooks
-    url: asyncapi/sertica-webhooks.yml
-- aid: sertica:sertica-valuelists-api
-  name: SERTICA Value Lists API
-  description: The ValueLists API from SERTICA — 9 operation(s) for valuelists.
-  humanURL: https://www.sertica.com/modules/maintenance-api/
-  baseURL: https://{sitename}.sertica.com/api
-  tags:
-  - ValueLists
-  properties:
-  - type: OpenAPI
-    url: openapi/sertica-valuelists-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
@@ -6495,6 +5970,531 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sertica-webtasklistconfigurations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-analytics-reports-api
+  name: SERTICA Analytics Reports API
+  description: The Analytics Reports API from SERTICA — 10 operation(s) for analytics reports.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Analytics Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-analytics-reports-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-certificate-groups-api
+  name: SERTICA Certificate Groups API
+  description: The Certificate Groups API from SERTICA — 11 operation(s) for certificate groups.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Certificate Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-certificate-groups-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-country-codes-api
+  name: SERTICA Country Codes API
+  description: The Country Codes API from SERTICA — 8 operation(s) for country codes.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Country Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-country-codes-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-document-groups-api
+  name: SERTICA Document Groups API
+  description: The Document Groups API from SERTICA — 8 operation(s) for document groups.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Document Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-document-groups-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-document-types-api
+  name: SERTICA Document Types API
+  description: The Document Types API from SERTICA — 8 operation(s) for document types.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Document Types
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-document-types-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-event-reports-api
+  name: SERTICA Event Reports API
+  description: The Event Reports API from SERTICA — 9 operation(s) for event reports.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Event Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-event-reports-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-external-items-api
+  name: SERTICA External Items API
+  description: The External Items API from SERTICA — 6 operation(s) for external items.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - External Items
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-external-items-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-form-templates-api
+  name: SERTICA Form Templates API
+  description: The Form Templates API from SERTICA — 22 operation(s) for form templates.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Form Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-form-templates-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-item-groups-api
+  name: SERTICA Item groups API
+  description: The Item groups API from SERTICA — 8 operation(s) for item groups.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Item groups
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-item-groups-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-item-types-api
+  name: SERTICA Item Types API
+  description: The Item Types API from SERTICA — 8 operation(s) for item types.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Item Types
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-item-types-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-job-histories-api
+  name: SERTICA Job Histories API
+  description: The Job Histories API from SERTICA — 31 operation(s) for job histories.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Job Histories
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-job-histories-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-job-templates-api
+  name: SERTICA Job Templates API
+  description: The Job Templates API from SERTICA — 12 operation(s) for job templates.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Job Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-job-templates-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-measurement-locations-api
+  name: SERTICA Measurement Locations API
+  description: The Measurement Locations API from SERTICA — 8 operation(s) for measurement locations.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Measurement Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-measurement-locations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-measurement-types-api
+  name: SERTICA Measurement Types API
+  description: The Measurement Types API from SERTICA — 8 operation(s) for measurement types.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Measurement Types
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-measurement-types-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-payment-conditions-api
+  name: SERTICA Payment Conditions API
+  description: The Payment Conditions API from SERTICA — 8 operation(s) for payment conditions.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Payment Conditions
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-payment-conditions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-purchase-orders-api
+  name: SERTICA Purchase Orders API
+  description: The Purchase Orders API from SERTICA — 65 operation(s) for purchase orders.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Purchase Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-purchase-orders-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-scheduled-tasks-api
+  name: SERTICA Scheduled Tasks API
+  description: The Scheduled Tasks API from SERTICA — 14 operation(s) for scheduled tasks.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Scheduled Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-scheduled-tasks-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-user-groups-api
+  name: SERTICA User Groups API
+  description: The User Groups API from SERTICA — 14 operation(s) for user groups.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - User Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-user-groups-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-user-rights-api
+  name: SERTICA User rights API
+  description: The User rights API from SERTICA — 2 operation(s) for user rights.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - User rights
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-user-rights-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-user-settings-api
+  name: SERTICA User Settings API
+  description: The User Settings API from SERTICA — 6 operation(s) for user settings.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - User Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-user-settings-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface
+  - type: APIReference
+    url: https://docs.sertica.com/api/swagger/index.html
+  - type: ErrorCatalog
+    url: errors/sertica-problem-types.yml
+  - type: Authentication
+    url: authentication/sertica-authentication.yml
+  - type: Conventions
+    url: conventions/sertica-conventions.yml
+  - type: DataModel
+    url: data-model/sertica-data-model.yml
+  - type: Webhooks
+    url: asyncapi/sertica-webhooks.yml
+- aid: sertica:sertica-value-lists-api
+  name: SERTICA Value Lists API
+  description: The Value Lists API from SERTICA — 9 operation(s) for value lists.
+  humanURL: https://www.sertica.com/modules/maintenance-api/
+  baseURL: https://{sitename}.sertica.com/api
+  tags:
+  - Value Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/sertica-value-lists-api-openapi.yml
   - type: Documentation
     url: >-
       https://support.sertica.com/hc/en-us/articles/28558470734109-SERTICA-Application-Programming-Interface

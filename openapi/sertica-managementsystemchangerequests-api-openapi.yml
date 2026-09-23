@@ -1,0 +1,3032 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Management System Change Requests API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: ManagementSystemChangeRequests
+paths:
+  /ManagementSystemChangeRequests:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Gets a list of ManagementSystemChangeRequests
+      operationId: GetManagementSystemChangeRequests
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Creates a new managementSystemChangeRequest record
+      operationId: CreateManagementSystemChangeRequest
+      requestBody:
+        description: The ManagementSystemChangeRequest Object, including reference lists
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Gets a specific ManagementSystemChangeRequest
+      operationId: GetManagementSystemChangeRequest
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: the changeRequestNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested managementSystemChangeRequest
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an managementSystemChangeRequest with the supplied ManagementSystemChangeRequest No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Updates an existing ManagementSystemChangeRequest
+      operationId: UpdateManagementSystemChangeRequest
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The changeRequestNo of the managementSystemChangeRequest to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The ManagementSystemChangeRequest DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+      responses:
+        '200':
+          description: Returns the updated ManagementSystemChangeRequest object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Deletes an managementSystemChangeRequest record
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The changeRequestNo of the ManagementSystemChangeRequest to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_Delete</td><td style='border-bottom:none'>Delete</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      operationId: deleteManagementSystemChangeRequestsByChangeRequestNo
+      x-operation-id-source: derived
+  /ManagementSystemChangeRequests/{changeRequestNo}/history:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Gets history for a specific ManagementSystemChangeRequest
+      operationId: GetManagementSystemChangeRequestHistory
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The changeRequestNo to get
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested managementSystemChangeRequest
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an managementSystemChangeRequest with the supplied ManagementSystemChangeRequest No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/search:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Search for managementSystemChangeRequests Takes a SearchDefinition input, which…
+      operationId: SearchManagementSystemChangeRequests
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/searchCount:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns number of hits in a search for ManagementSystemChangeRequests Takes a…
+      operationId: SearchCountManagementSystemChangeRequests
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/searchIndex/{managementSystemChangeRequestGuid}:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Get index of a record in a search for ManagementSystemChangeRequests Takes a…
+      operationId: SearchIndexManagementSystemChangeRequests
+      parameters:
+      - name: managementSystemChangeRequestGuid
+        in: path
+        description: The managementSystemChangeRequest to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/searchInfo:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoManagementSystemChangeRequests
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /ManagementSystemChangeRequests/{changeRequestNo}/copy:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Copies an existing managementSystemChangeRequest to a new object
+      operationId: CopyManagementSystemChangeRequest
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The changeRequestNo of the managementSystemChangeRequest to copy
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the new ManagementSystemChangeRequest object with properties from original
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/responses:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Gets a list of ChangeRequest responses
+      operationId: GetManagementSystemChangeRequestResponses
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The ChangeRequest no. to fetch values for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/responses/count:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns number of ManagementSystemChangeRequestResponses for ChangeRequestNo
+      operationId: CountManagementSystemChangeRequestResponses
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The ChangeRequestNo
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/addResponse:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Add response
+      operationId: AddManagementSystemChangeRequestResponse
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The ChangeRequestNo to fetch for
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The ManagementSystemChangeRequestResponse DTO to send
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/units:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns the units for a Change Request
+      operationId: GetChangeRequestUnits
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestUnit'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestUnit'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestUnit'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/affectedunits:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns the affected units for a Change Request
+      operationId: GetChangeRequestAffectedUnits
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestUnit'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestUnit'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestUnit'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/markAsMinorChange:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Marks ManagementSystemChangeRequest as minor change
+      operationId: MarkManagementSystemChangeRequestAsMinorChange
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The changeRequestNo of the managementSystemChangeRequest to be marked as minor change
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the updated ManagementSystemChangeRequest object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_AllowMarkUnmarkAsMinorChan</td><td style='border-bottom:none'>Function</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/unmarkAsMinorChange:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Unmarks ManagementSystemChangeRequest as minor change
+      operationId: UnmarkManagementSystemChangeRequestAsMinorChange
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: The changeRequestNo of the managementSystemChangeRequest to be unmarked as minor change
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the updated ManagementSystemChangeRequest object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_AllowMarkUnmarkAsMinorChan</td><td style='border-bottom:none'>Function</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/changeRequestUpdateDocument:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      operationId: ChangeRequestUpdateDocument
+      parameters:
+      - name: changeRequestNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Choose the file to upload
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - File
+              type: object
+              properties:
+                File:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Change request update document
+      x-summary-source: derived
+  /ManagementSystemChangeRequests/{changeRequestNo}/approvers:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns the approvers for a Change Request
+      operationId: GetChangeRequestApprovers
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestApprover'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestApprover'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestApprover'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/currentUserCanApprove:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns if current user is allowed to approve a change request
+      operationId: CurrentUserCanApproveChangeRequest
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/requestApproval:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Request Approval for a change request
+      operationId: ChangeRequestRequestApproval
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/approve:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Approves a Change Request
+      operationId: ChangeRequestApprove
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/reject:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Rejects a Change Request approval request
+      operationId: ChangeRequestReject
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/changetodraft:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Change a Change Request approval status to Draft
+      operationId: ChangeRequestChangeToDraft
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/changetorequested:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Change a Change Request approval status to Requested
+      operationId: ChangeRequestChangeToRequested
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/bypassapproval:
+    post:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Bypass approval on a Change a Change Request
+      operationId: ChangeRequestBypassApproval
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/awaitingMyApproval:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns a list of change requests that is awaiting my approval The mapper
+      operationId: GetChangeRequestAwaitingMyApproval
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ManagementSystemChangeRequests/{changeRequestNo}/compare:
+    get:
+      tags:
+      - ManagementSystemChangeRequests
+      summary: Returns a pdf of the compared documents
+      operationId: Compare
+      parameters:
+      - name: changeRequestNo
+        in: path
+        description: the changeRequestNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested managementSystemChangeRequest
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/System.IO.File'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.IO.File'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.IO.File'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an managementSystemChangeRequest with the supplied ManagementSystemChangeRequest No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ChangeRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest:
+      type: object
+      properties:
+        changeRequestNo:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ChangeRequestStatus'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ChangeRequestType'
+        managementSystemNo:
+          type:
+          - string
+          - 'null'
+        managementSystemTitle:
+          type:
+          - string
+          - 'null'
+        managementSystemDocumentNo:
+          type:
+          - string
+          - 'null'
+        managementSystemDocumentName:
+          type:
+          - string
+          - 'null'
+        managementSystemDocumentId:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentName:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        requestedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        requestedByUserNo:
+          type:
+          - string
+          - 'null'
+        requestedByUserName:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        area:
+          type:
+          - string
+          - 'null'
+        commonDocument:
+          type:
+          - boolean
+          - 'null'
+        managementSystemDocumentRevisionNo:
+          type: integer
+          format: int32
+        minorChange:
+          type:
+          - boolean
+          - 'null'
+        minorChangeApproverGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        releaseInformation:
+          type:
+          - string
+          - 'null'
+        sourceNo:
+          type:
+          - string
+          - 'null'
+        sourceName:
+          type:
+          - string
+          - 'null'
+        criticalityNo:
+          type:
+          - string
+          - 'null'
+        criticalityName:
+          type:
+          - string
+          - 'null'
+        managementSystemIsLocked:
+          type:
+          - boolean
+          - 'null'
+        hasApprover:
+          type:
+          - boolean
+          - 'null'
+        affectedUnits:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.UnitManagement.Unit'
+        units:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestUnit'
+        approvers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ChangeRequestApprover'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ChangeRequestStatus:
+      enum:
+      - Draft
+      - Requested
+      - Accepted
+      - Rejected
+      - Published
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ChangeRequestType:
+      enum:
+      - Change
+      - Delete
+      - UnitChange
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UnitForSale:
+      enum:
+      - 'No'
+      - 'Yes'
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          readOnly: true
+        issues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssue'
+          readOnly: true
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssue'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.UnitManagement.UnitCompany:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        standardText1No:
+          type:
+          - string
+          - 'null'
+        standardText1Text:
+          type:
+          - string
+          - 'null'
+        standardText2No:
+          type:
+          - string
+          - 'null'
+        standardText2Text:
+          type:
+          - string
+          - 'null'
+        standardText3No:
+          type:
+          - string
+          - 'null'
+        standardText3Text:
+          type:
+          - string
+          - 'null'
+        default:
+          type:
+          - boolean
+          - 'null'
+        externalReference1:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments:
+      type: object
+      properties:
+        changeRequestWithOlderRevisionAnswer:
+          type:
+          - boolean
+          - 'null'
+        remark:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssueReason:
+      enum:
+      - DocumentCouldNotBeValidated
+      - ChangeRequestWithOlderRevisionWarning
+      - UnitChangeMissingChangeOnUnit
+      - DocumentHasOutstandingChangeRequests
+      - IsDocNoStillUniquePerUnitIfStatusIsChangedTo
+      - DocumentUsedOnJobError
+      - ChangeToDraftDenied
+      - ChangeToRequestedDenied
+      - BypassApprovalDenied
+      type: string
+    SerticaWebApi.Models.FunctionArea.FunctionAreaUnit:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        functionAreaNo:
+          type:
+          - string
+          - 'null'
+        functionAreaName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssue:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssueReason'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
+      enum:
+      - User
+      - Role
+      type: string
+    SerticaWebApi.Models.ChangeRequestUnit:
+      type: object
+      properties:
+        changeRequestNo:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        addUnit:
+          type: boolean
+        removeUnit:
+          type: boolean
+        existsOnDocument:
+          type: boolean
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ChangeRequestApprover:
+      type: object
+      properties:
+        changeRequestNo:
+          type:
+          - string
+          - 'null'
+        approverNo:
+          type:
+          - string
+          - 'null'
+        approverName:
+          type:
+          - string
+          - 'null'
+        approvalOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.UnitManagement.UnitDocumentClass:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        documentClassNo:
+          type:
+          - string
+          - 'null'
+        documentClassName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    System.IO.File:
+      type: object
+      additionalProperties: false
+    SerticaWebApi.Models.UnitManagement.Unit:
+      type: object
+      properties:
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        versionNo:
+          type:
+          - string
+          - 'null'
+        convertedToMultipleJobGroups:
+          type:
+          - boolean
+          - 'null'
+        imoNo:
+          type:
+          - string
+          - 'null'
+        vesselTypeNo:
+          type:
+          - string
+          - 'null'
+        vesselTypeName:
+          type:
+          - string
+          - 'null'
+        technicalResponsibleNo:
+          type:
+          - string
+          - 'null'
+        technicalResponsibleName:
+          type:
+          - string
+          - 'null'
+        remark:
+          type:
+          - string
+          - 'null'
+        corporateEntity:
+          type:
+          - string
+          - 'null'
+        businessUnit:
+          type:
+          - string
+          - 'null'
+        licenseTypeGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        licenseTypeName:
+          type:
+          - string
+          - 'null'
+        laidUp:
+          type:
+          - boolean
+          - 'null'
+        testUnit:
+          type:
+          - boolean
+          - 'null'
+        inactiveUnit:
+          type:
+          - boolean
+          - 'null'
+        unitExportTimestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sqlServerVersionNumber:
+          type:
+          - string
+          - 'null'
+        sqlServerVersionName:
+          type:
+          - string
+          - 'null'
+        sqlServerEdition:
+          type:
+          - string
+          - 'null'
+        isSqlExpress:
+          type: boolean
+        databaseSizeInKb:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        superintendentNo:
+          type:
+          - string
+          - 'null'
+        superintendentName:
+          type:
+          - string
+          - 'null'
+        superintendentPhone:
+          type:
+          - string
+          - 'null'
+        superintendentEmail:
+          type:
+          - string
+          - 'null'
+        marineSuperintendentNo:
+          type:
+          - string
+          - 'null'
+        marineSuperintendentName:
+          type:
+          - string
+          - 'null'
+        marineSuperintendentPhone:
+          type:
+          - string
+          - 'null'
+        marineSuperintendentEmail:
+          type:
+          - string
+          - 'null'
+        mailAddress:
+          type:
+          - string
+          - 'null'
+        satCNo:
+          type:
+          - string
+          - 'null'
+        satTelNo:
+          type:
+          - string
+          - 'null'
+        mobilePhoneNo:
+          type:
+          - string
+          - 'null'
+        satFaxNo:
+          type:
+          - string
+          - 'null'
+        flagNo:
+          type:
+          - string
+          - 'null'
+        flagName:
+          type:
+          - string
+          - 'null'
+        homeport:
+          type:
+          - string
+          - 'null'
+        grossTonnage:
+          type:
+          - number
+          - 'null'
+          format: double
+        dateOfFirstRegistry:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        officialNo:
+          type:
+          - string
+          - 'null'
+        callSign:
+          type:
+          - string
+          - 'null'
+        mmsi:
+          type:
+          - string
+          - 'null'
+        firstFrameNumber:
+          type: number
+          format: double
+        lastFrameNumber:
+          type: number
+          format: double
+        darso:
+          type:
+          - string
+          - 'null'
+        modelDesignID:
+          type:
+          - string
+          - 'null'
+        modelDesignText:
+          type:
+          - string
+          - 'null'
+        forSale:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_UnitForSale'
+        warValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        hullAndMachineryValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        jointVenturePartner:
+          type:
+          - string
+          - 'null'
+        mortgage:
+          type:
+          - string
+          - 'null'
+        coInsured:
+          type:
+          - string
+          - 'null'
+        coInsuredAddress:
+          type:
+          - string
+          - 'null'
+        classSocietyNo:
+          type:
+          - string
+          - 'null'
+        classSocietyName:
+          type:
+          - string
+          - 'null'
+        classNotation:
+          type:
+          - string
+          - 'null'
+        harmonizedSurveyDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        classID:
+          type:
+          - string
+          - 'null'
+        safetyManagementSystemID:
+          type:
+          - string
+          - 'null'
+        safetyManagementSystemText:
+          type:
+          - string
+          - 'null'
+        owner:
+          type:
+          - string
+          - 'null'
+        manager:
+          type:
+          - string
+          - 'null'
+        performanceTarget:
+          type:
+          - number
+          - 'null'
+          format: double
+        ownershipTypeID:
+          type:
+          - string
+          - 'null'
+        ownershipTypeText:
+          type:
+          - string
+          - 'null'
+        managementTypeID:
+          type:
+          - string
+          - 'null'
+        managementTypeText:
+          type:
+          - string
+          - 'null'
+        yard:
+          type:
+          - string
+          - 'null'
+        yardNo:
+          type:
+          - string
+          - 'null'
+        keelLaid:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        builtDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        ageInYears:
+          type:
+          - string
+          - 'null'
+        countryCodeNo:
+          type:
+          - string
+          - 'null'
+        countryCodeName:
+          type:
+          - string
+          - 'null'
+        users:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.UserUnit'
+        companies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.UnitManagement.UnitCompany'
+        documentClasses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.UnitManagement.UnitDocumentClass'
+        functionAreas:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.FunctionArea.FunctionAreaUnit'
+        hasAccess:
+          type: boolean
+        incineratorPresent:
+          type:
+          - boolean
+          - 'null'
+        incineratorRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        incineratorInstallationYear:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        owsPresent:
+          type:
+          - boolean
+          - 'null'
+        owsRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        bwmpPresent:
+          type:
+          - boolean
+          - 'null'
+        bwCapacity:
+          type:
+          - number
+          - 'null'
+          format: double
+        ballastWaterManagementCertificate:
+          type:
+          - string
+          - 'null'
+        bpAhead:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        bpAstern:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        ballastWaterCapacity:
+          type:
+          - number
+          - 'null'
+          format: double
+        freshWaterCapacity:
+          type:
+          - number
+          - 'null'
+          format: double
+        fuelMGOCapacity:
+          type:
+          - number
+          - 'null'
+          format: double
+        lubeOilCapacity:
+          type:
+          - number
+          - 'null'
+          format: double
+        lengthWaterline:
+          type:
+          - number
+          - 'null'
+          format: double
+        depthMoulded:
+          type:
+          - number
+          - 'null'
+          format: double
+        economicalSpeed:
+          type:
+          - number
+          - 'null'
+          format: double
+        aftDeckArea:
+          type:
+          - number
+          - 'null'
+          format: double
+        beam:
+          type:
+          - number
+          - 'null'
+          format: double
+        displacement:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalKW:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        ownerCompanyNo:
+          type:
+          - string
+          - 'null'
+        ownerCompanyName:
+          type:
+          - string
+          - 'null'
+        ownerCompanyInternalEntity:
+          type:
+          - boolean
+          - 'null'
+        ownerCompanyCountryCodeNo:
+          type:
+          - string
+          - 'null'
+        managerCompanyNo:
+          type:
+          - string
+          - 'null'
+        managerCompanyName:
+          type:
+          - string
+          - 'null'
+        managerCompanyInternalEntity:
+          type:
+          - boolean
+          - 'null'
+        managerCompanyCountryCodeNo:
+          type:
+          - string
+          - 'null'
+        byManagementAgreement:
+          type:
+          - boolean
+          - 'null'
+        managementOfficeNo:
+          type:
+          - string
+          - 'null'
+        managementOfficeName:
+          type:
+          - string
+          - 'null'
+        operatorCompanyNo:
+          type:
+          - string
+          - 'null'
+        operatorCompanyName:
+          type:
+          - string
+          - 'null'
+        operatorCompanyInternalEntity:
+          type:
+          - boolean
+          - 'null'
+        operatorCompanyCountryCodeNo:
+          type:
+          - string
+          - 'null'
+        operationID:
+          type:
+          - string
+          - 'null'
+        operationText:
+          type:
+          - string
+          - 'null'
+        statusAnalysisDataID:
+          type:
+          - string
+          - 'null'
+        statusAnalysisDataText:
+          type:
+          - string
+          - 'null'
+        regionNo:
+          type:
+          - string
+          - 'null'
+        regionName:
+          type:
+          - string
+          - 'null'
+        subRegionNo:
+          type:
+          - string
+          - 'null'
+        subRegionName:
+          type:
+          - string
+          - 'null'
+        bareboatCharterer:
+          type:
+          - string
+          - 'null'
+        charteringArrangement:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse:
+      type: object
+      properties:
+        changeRequestNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.UserManagement.UserUnit:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        inactiveUser:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        inactiveUnit:
+          type: boolean
+        userTitle:
+          type:
+          - string
+          - 'null'
+        selectAtLogin:
+          type: boolean
+        markAsReadRight:
+          type: boolean
+        acknowledgeRight:
+          type: boolean
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

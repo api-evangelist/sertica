@@ -1,0 +1,307 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web User Rights API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: User rights
+paths:
+  /UserRights:
+    get:
+      tags:
+      - User rights
+      summary: Gets all user rights
+      operationId: GetUserRights
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UserRight</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UserRights/{userRightKey}/{userGroupNo}:
+    post:
+      tags:
+      - User rights
+      summary: Grants the right for the specified user right key and user group no
+      operationId: CreateUserRight
+      parameters:
+      - name: userRightKey
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: userGroupNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UserRight_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - User rights
+      summary: Revokes the right for the specified user right key and user group no
+      operationId: DeleteUserRight
+      parameters:
+      - name: userRightKey
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: userGroupNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.InextiaUserRight'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UserRight_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.UserManagement.InextiaUserRight:
+      type: object
+      properties:
+        inextiaKey:
+          type:
+          - string
+          - 'null'
+        inextiaParentKey:
+          type:
+          - string
+          - 'null'
+        indexType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.UserManagement.InextiaUserRightIndexType'
+        nameTextID:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        descriptionTextID:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        userRightKey:
+          type:
+          - string
+          - 'null'
+        userRightGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        rightID:
+          type: integer
+          format: int32
+        userGroupGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        userRightResourceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        hasUserRight:
+          type:
+          - boolean
+          - 'null'
+        userGroupNo:
+          type:
+          - string
+          - 'null'
+        userGroupName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.UserManagement.InextiaUserRightIndexType:
+      enum:
+      - Root
+      - Group
+      - Entity
+      - GeneralUserRights
+      - FieldUserRights
+      - ReferenceUserRights
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

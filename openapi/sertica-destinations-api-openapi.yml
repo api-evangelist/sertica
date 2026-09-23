@@ -1,0 +1,888 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Destinations API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: Destinations
+paths:
+  /Destinations:
+    get:
+      tags:
+      - Destinations
+      summary: Gets a list of Destinations
+      operationId: GetDestinations
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - Destinations
+      summary: Creates a new Destination record
+      operationId: CreateDestination
+      requestBody:
+        description: The Destination Object, including reference lists
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Destinations/{destinationNo}:
+    get:
+      tags:
+      - Destinations
+      summary: Gets a specific Destination
+      operationId: GetDestination
+      parameters:
+      - name: destinationNo
+        in: path
+        description: the Destination No to get with
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested Destination
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a Destination with the supplied Destination No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - Destinations
+      summary: Updates an existing Destination
+      operationId: UpdateDestination
+      parameters:
+      - name: destinationNo
+        in: path
+        description: The Destination No of the Destination to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The Destination DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+      responses:
+        '200':
+          description: Returns the updated Destination object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - Destinations
+      summary: Deletes an Destination record
+      parameters:
+      - name: destinationNo
+        in: path
+        description: The Destination No of the Destination to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination_Delete</td><td style='border-bottom:none'>Delete</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      operationId: deleteDestinationsByDestinationNo
+      x-operation-id-source: derived
+  /Destinations/{destinationNo}/history:
+    get:
+      tags:
+      - Destinations
+      summary: Gets history for a specific Destination
+      operationId: GetDestinationHistory
+      parameters:
+      - name: destinationNo
+        in: path
+        description: The Destination No to get with
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested Destination history
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a Destination with the supplied Destination No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Destinations/searchInfo:
+    get:
+      tags:
+      - Destinations
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoDestinations
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /Destinations/search:
+    post:
+      tags:
+      - Destinations
+      summary: Search for Destinations Takes a SearchDefinition input, which can include…
+      operationId: SearchDestinations
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Destinations/searchCount:
+    post:
+      tags:
+      - Destinations
+      summary: Returns number of hits in a search for Destinations Takes a SearchDefinition…
+      operationId: SearchCountDestinations
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Destinations/searchIndex/{destinationGuid}:
+    post:
+      tags:
+      - Destinations
+      summary: Get index of a record in a search for Destinations Takes a SearchDefinition…
+      operationId: SearchIndexDestinations
+      parameters:
+      - name: destinationGuid
+        in: path
+        description: The Destination to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Destinations/{destinationNo}/copy:
+    get:
+      tags:
+      - Destinations
+      summary: Copies an existing Destination to a new object
+      operationId: CopyDestination
+      parameters:
+      - name: destinationNo
+        in: path
+        description: The Destination No of the Destination to copy
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the new Destination object with properties from original
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Destination'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Destination_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.Destination:
+      type: object
+      properties:
+        destinationNo:
+          type:
+          - string
+          - 'null'
+        destinationName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

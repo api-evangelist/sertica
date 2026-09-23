@@ -1,0 +1,2777 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Addresses API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: Addresses
+paths:
+  /Addresses:
+    get:
+      tags:
+      - Addresses
+      summary: Gets a list of Addresss
+      operationId: GetAddresses
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - Addresses
+      summary: Creates a new address record
+      operationId: CreateAddress
+      requestBody:
+        description: The Address Object, including reference lists
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}:
+    get:
+      tags:
+      - Addresses
+      summary: Gets a specific Address
+      operationId: GetAddress
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested address
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an address with the supplied Address No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - Addresses
+      summary: Updates an existing Address
+      operationId: UpdateAddress
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo of the address to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The Address DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+      responses:
+        '200':
+          description: Returns the updated Address object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - Addresses
+      summary: Deletes a address record
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo of the Address to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Delete</td><td style='border-bottom:none'>Delete</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      operationId: deleteAddressesByAddressNo
+      x-operation-id-source: derived
+  /Addresses/{addressNo}/history:
+    get:
+      tags:
+      - Addresses
+      summary: Gets history for a specific Address
+      operationId: GetAddressHistory
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo to get
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested address
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an address with the supplied Address No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/search:
+    post:
+      tags:
+      - Addresses
+      summary: Search for Addresss Takes a SearchDefinition input, which can include filters…
+      operationId: SearchAddresses
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/searchCount:
+    post:
+      tags:
+      - Addresses
+      summary: Returns number of hits in a search for Addresss Takes a SearchDefinition input…
+      operationId: SearchCountAddresss
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/searchIndex/{addressGuid}:
+    post:
+      tags:
+      - Addresses
+      summary: Get index of a record in a search for address Takes a SearchDefinition input…
+      operationId: SearchIndexAddresses
+      parameters:
+      - name: addressGuid
+        in: path
+        description: The address to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/searchInfo:
+    get:
+      tags:
+      - Addresses
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoAddresss
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /Addresses/{addressNo}/Contacts:
+    get:
+      tags:
+      - Addresses
+      summary: Returns a list of Contacts used for the Address
+      operationId: GetAddressContacts
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo to fetch contacts for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the contacts for the address
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/AddressEvaluations:
+    get:
+      tags:
+      - Addresses
+      summary: Returns a list of Address Evaluations belonging to the Address
+      operationId: GetAddressEvaluations
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo to fetch address evaluations for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the address evaluations belonging to the address
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementQA</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/addressEvaluations/{groupId}:
+    get:
+      tags:
+      - Addresses
+      summary: Returns a list of Address Evaluations belonging to the given groupId
+      operationId: GetAddressEvaluationsByGroupId
+      parameters:
+      - name: groupId
+        in: path
+        description: The groupId to fetch address evaluations for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the address evaluations belonging to the groupId
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementQA</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/addressEvaluations:
+    post:
+      tags:
+      - Addresses
+      summary: Creates new address evaluation records
+      operationId: CreateAddressEvaluations
+      requestBody:
+        description: The list of Address evaluation Objects
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementQA</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - Addresses
+      summary: Updates existing address evaluation records
+      operationId: UpdateAddressEvaluations
+      requestBody:
+        description: The list of Address evaluation Objects
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementQA</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/searchAddressEvaluations:
+    post:
+      tags:
+      - Addresses
+      summary: Search for AddresssEvaluations Takes a SearchDefinition input, which can…
+      operationId: SearchAddressEvaluations
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementQA</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/Documents:
+    get:
+      tags:
+      - Addresses
+      summary: Returns a list of Documents on the Address
+      operationId: GetAddressDocumentLinks
+      parameters:
+      - name: addressNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressDocument'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressDocument'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressDocument'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/copy:
+    get:
+      tags:
+      - Addresses
+      summary: Copies an existing Address to a new object
+      operationId: CopyAddress
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo of the address to copy
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the new Address object with properties from original
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.Address'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/responses:
+    get:
+      tags:
+      - Addresses
+      summary: Gets a list of Address Responses
+      operationId: GetAddressResponses
+      parameters:
+      - name: addressNo
+        in: path
+        description: The Address No. to fetch values for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/responses/count:
+    get:
+      tags:
+      - Addresses
+      summary: Returns number of AddressResponses for AddressNo
+      operationId: CountAddressResponses
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{AddressNo}/addResponse:
+    post:
+      tags:
+      - Addresses
+      summary: Add response
+      operationId: AddAddressResponse
+      parameters:
+      - name: addressNo
+        in: path
+        description: The AddressNo to fetch for
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The AddressResponse DTO to send
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressResponse'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/units:
+    get:
+      tags:
+      - Addresses
+      summary: Fetches all Unit Filters attached to the Address
+      operationId: GetAddressUnits
+      parameters:
+      - name: addressNo
+        in: path
+        description: The addressNo to fetch addressUnits for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the units for the Address
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressUnit'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressUnit'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressUnit'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/itemtypes:
+    get:
+      tags:
+      - Addresses
+      summary: Fetches all ItemTypes attached to the Address
+      operationId: GetAddressItemTypes
+      parameters:
+      - name: addressNo
+        in: path
+        description: The addressNo to fetch addressItemTypes for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the ItemTypes for the Address
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressItemType'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressItemType'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressItemType'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ItemTypesOnHeader</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/addressaddresscategories:
+    get:
+      tags:
+      - Addresses
+      summary: Fetches all AddressAddressCategories attached to the Address
+      operationId: GetAddressAddressCategories
+      parameters:
+      - name: addressNo
+        in: path
+        description: The addressNo to fetch AddressAddressCategories for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the AddressAddressCategories for the Address
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressAddressCategory'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressAddressCategory'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressAddressCategory'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/deliverycosts:
+    get:
+      tags:
+      - Addresses
+      summary: Fetches all DeliveryCosts attached to the Address
+      operationId: GetAddressDeliveryCosts
+      parameters:
+      - name: addressNo
+        in: path
+        description: The addressNo to fetch addressDeliveryCostss for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the DeliveryCostss for the Address
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressDeliveryCost'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressDeliveryCost'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressDeliveryCost'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/alternatepayers:
+    get:
+      tags:
+      - Addresses
+      summary: Fetches all AlternatePayer attached to the Address
+      operationId: GetAddressAlternatePayers
+      parameters:
+      - name: addressNo
+        in: path
+        description: The addressNo to fetch AddressAlternatePayers for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the AlternatePayers for the Address
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressAlternatePayer'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressAlternatePayer'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressAlternatePayer'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/punchouts:
+    get:
+      tags:
+      - Addresses
+      summary: Fetches all PunchOut References attached to the Address
+      operationId: GetAddressPunchOuts
+      parameters:
+      - name: addressNo
+        in: path
+        description: The addressNo to fetch AddressPunchOut for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the PunchOuts for the Address
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressPunchOut'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressPunchOut'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressPunchOut'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>PunchoutIntegration</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/contacts/{guid}/generateConnectPassword:
+    post:
+      tags:
+      - Addresses
+      summary: Generate new password for Connect
+      operationId: GenerateAddressContactConnectPassword
+      parameters:
+      - name: guid
+        in: path
+        description: Address Contact guid
+        required: true
+        schema:
+          type: string
+      - name: addressNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Addresses/{addressNo}/contacts/{guid}/unlockAccount:
+    post:
+      tags:
+      - Addresses
+      summary: Unlock AddressContact account in connect
+      operationId: UnlockAddressContactAccount
+      parameters:
+      - name: guid
+        in: path
+        description: Address Contact guid
+        required: true
+        schema:
+          type: string
+      - name: addressNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Address_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    SerticaWebApi.Models.AddressBook.AddressDeliveryCost:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        deliveryCostNo:
+          type:
+          - string
+          - 'null'
+        deliveryCostName:
+          type:
+          - string
+          - 'null'
+        defaultAmount:
+          type:
+          - number
+          - 'null'
+          format: double
+        poValueLimit:
+          type:
+          - number
+          - 'null'
+          format: double
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.AddressBook.AddressPunchOut:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        supplierId:
+          type:
+          - string
+          - 'null'
+        clientId:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        authUrl:
+          type:
+          - string
+          - 'null'
+        authPost:
+          type:
+          - string
+          - 'null'
+        punchOutId:
+          type:
+          - string
+          - 'null'
+        punchOutToken:
+          type:
+          - string
+          - 'null'
+        punchOutType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PunchOutType'
+        rePunchOut:
+          type:
+          - boolean
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressAvailable:
+      enum:
+      - AllUnits
+      - ListOfUnits
+      - OfficeOnly
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PunchOutType:
+      enum:
+      - Standard
+      - Webhook
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressEvaluation:
+      type: object
+      properties:
+        addressName:
+          type:
+          - string
+          - 'null'
+        addressNo:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionName:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionNo:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerName:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerNo:
+          type:
+          - string
+          - 'null'
+        comment:
+          type:
+          - string
+          - 'null'
+        groupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        addressGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressContact:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        areaOfResponsibility:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        inductedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expireDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        location:
+          type:
+          - string
+          - 'null'
+        externalReference:
+          type:
+          - string
+          - 'null'
+        addressGuid:
+          type: string
+          format: uuid
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        connectLogin:
+          type:
+          - string
+          - 'null'
+        connectPasswordExpireDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        connectLockedUntilDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        hasConnectPassword:
+          type: boolean
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressItemType:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        itemTypeNo:
+          type:
+          - string
+          - 'null'
+        itemTypeName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierForwardType:
+      enum:
+      - None
+      - Email
+      - EmailWeb
+      - Excel
+      - Tobit
+      - ShipServ
+      - SeaProc
+      - Connect
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressClassificationAction:
+      enum:
+      - None
+      - Warning
+      - Block
+      type: string
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressResponse:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressUnit:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressAlternatePayer:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.Address:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        addressLines:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        zipCode:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        telefax:
+          type:
+          - string
+          - 'null'
+        mobilePhone:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        homepage:
+          type:
+          - string
+          - 'null'
+        remarks:
+          type:
+          - string
+          - 'null'
+        frameworkAgreement:
+          type: boolean
+        countryCodeNo:
+          type:
+          - string
+          - 'null'
+        countryCodeName:
+          type:
+          - string
+          - 'null'
+        addressTypes:
+          $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressTypeSearchFlag'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        vendorNo:
+          type:
+          - string
+          - 'null'
+        defaultDiscount:
+          type:
+          - number
+          - 'null'
+          format: double
+        paymentConditionNo:
+          type:
+          - string
+          - 'null'
+        paymentConditionName:
+          type:
+          - string
+          - 'null'
+        deliveryConditionNo:
+          type:
+          - string
+          - 'null'
+        deliveryConditionName:
+          type:
+          - string
+          - 'null'
+        communicationLanguageNo:
+          type:
+          - string
+          - 'null'
+        communicationLanguageName:
+          type:
+          - string
+          - 'null'
+        inactive:
+          type:
+          - boolean
+          - 'null'
+        addressAvailability:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressAvailable'
+        vatNo:
+          type:
+          - string
+          - 'null'
+        expireDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        defaultDeliveryPlaceNo:
+          type:
+          - string
+          - 'null'
+        defaultDeliveryPlaceName:
+          type:
+          - string
+          - 'null'
+        deliveryPortNo:
+          type:
+          - string
+          - 'null'
+        deliveryPortName:
+          type:
+          - string
+          - 'null'
+        standardTextNo:
+          type:
+          - string
+          - 'null'
+        standardTextName:
+          type:
+          - string
+          - 'null'
+        requestForQuoteForwardType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierForwardType'
+        requestForQuoteForwardTypeValue:
+          type:
+          - string
+          - 'null'
+        purchaseOrderForwardType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierPurchaseOrderForwardType'
+        purchaseOrderForwardTypeValue:
+          type:
+          - string
+          - 'null'
+        productDescription:
+          type:
+          - string
+          - 'null'
+        csrNo:
+          type:
+          - string
+          - 'null'
+        csrName:
+          type:
+          - string
+          - 'null'
+        csrProductGroupNo:
+          type:
+          - string
+          - 'null'
+        csrProductGroupName:
+          type:
+          - string
+          - 'null'
+        hasContactWithConnectLogin:
+          type: boolean
+        punchOutAvailable:
+          type: boolean
+        itemTypesAsString:
+          type:
+          - string
+          - 'null'
+        itemTypeNamesAsString:
+          type:
+          - string
+          - 'null'
+        addressClassificationNo:
+          type:
+          - string
+          - 'null'
+        addressClassificationName:
+          type:
+          - string
+          - 'null'
+        addressClassificationAction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressClassificationAction'
+        sendReminder:
+          type: boolean
+        rfQsTotal:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rfQsRejected:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        pOsTotal:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        lastEvaluationReviewDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        addressEvaluations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressEvaluation'
+        addressAddressCategories:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressAddressCategory'
+        contacts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressContact'
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressDocument'
+        units:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressUnit'
+        deliveryCosts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressDeliveryCost'
+        alternatePayers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressAlternatePayer'
+        punchOuts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressPunchOut'
+        itemTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AddressBook.AddressItemType'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierPurchaseOrderForwardType:
+      enum:
+      - None
+      - Email
+      - EmailWeb
+      - ShipServ
+      - OpenTRANS
+      - Tobit
+      - EDI
+      - SeaProc
+      - Connect
+      - Source2Sea
+      - Punchout
+      type: string
+    SerticaWebApi.Models.AddressBook.AddressTypeSearchFlag:
+      enum:
+      - All
+      - Supplier
+      - DeliveryPlace
+      - InvoiceAddress
+      - ShipYard
+      - SurveyOrganization
+      - Agent
+      - Unit
+      - Manufacturer
+      - CertificateAuthority
+      - Customer
+      - Office
+      - Contractor
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.AddressBook.AddressDocument:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pageNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressAddressCategory:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        addressCategoryNo:
+          type:
+          - string
+          - 'null'
+        addressCategoryName:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

@@ -1,0 +1,1562 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Options API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: Options
+paths:
+  /Options/labeltemplates:
+    get:
+      tags:
+      - Options
+      summary: Gets all the LabelOptionsDocumentLink objects
+      operationId: GetAllLabelOptionsDocumentLinks
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/labeltemplates/{type}:
+    get:
+      tags:
+      - Options
+      summary: Gets the LabelOptionsDocumentLink objects for the specified type
+      operationId: GetLabelOptionsDocumentLinks
+      parameters:
+      - name: type
+        in: path
+        description: The type of the option documents to get
+        required: true
+        schema:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_LabelType'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options:
+    get:
+      tags:
+      - Options
+      summary: Gets the Options object
+      operationId: GetOptions
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/{optionKey}:
+    get:
+      tags:
+      - Options
+      operationId: GetSingleOptionsValue
+      parameters:
+      - name: optionKey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get single options value
+      x-summary-source: derived
+  /Options/{guid}:
+    put:
+      tags:
+      - Options
+      summary: Updates the options object
+      operationId: UpdateOptions
+      parameters:
+      - name: guid
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Options_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/reportLogo:
+    get:
+      tags:
+      - Options
+      operationId: GetReportLogo
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: string
+                format: binary
+            text/json:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get report logo
+      x-summary-source: derived
+    post:
+      tags:
+      - Options
+      summary: Update options Report Logo with a new image
+      operationId: UpdateReportLogo
+      requestBody:
+        description: Choose the file to upload
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - File
+              type: object
+              properties:
+                File:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Options_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/defaultreportLogo:
+    post:
+      tags:
+      - Options
+      summary: Resets the report logo to the standard INEXTIA logo
+      operationId: SetDefaultReportLogo
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Options_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/shipdexresources:
+    get:
+      tags:
+      - Options
+      summary: Gets all the ShipdexResources objects
+      operationId: GetAllShipdexResources
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsShipdexResource'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsShipdexResource'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsShipdexResource'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/imagesettings:
+    get:
+      tags:
+      - Options
+      summary: Gets all the ImageSettings objects
+      operationId: GetAllImageSettings
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsImageSetting'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsImageSetting'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsImageSetting'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/dynamicreporttemplates:
+    get:
+      tags:
+      - Options
+      summary: Gets all the DynamicReportOptionsDocumentLink objects
+      operationId: GetAllDynamicReportOptionsDocumentLinks
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/dynamicreporttemplates/{type}:
+    get:
+      tags:
+      - Options
+      summary: Gets the DynamicReportOptionsDocumentLink objects for the specified type
+      operationId: GetDynamicReportOptionsDocumentLinks
+      parameters:
+      - name: type
+        in: path
+        description: The type of the option documents to get
+        required: true
+        schema:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_GenericReportType'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/purchaseyearonunits:
+    post:
+      tags:
+      - Options
+      summary: Changes purchase year options on all units for which the current user has access
+      operationId: SetPurchaseYearOnUnits
+      parameters:
+      - name: year
+        in: query
+        description: Two digits (00-99)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.Options'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Options_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Options/testPunchoutConnection:
+    post:
+      tags:
+      - Options
+      summary: Test connection for punchout options
+      operationId: TestPunchoutConnectionIndustry
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.PunchoutConnectionInput'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.PunchoutConnectionInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.PunchoutConnectionInput'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.PunchoutConnectionInput'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: Not Found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Options_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>WebhooksIntegration</td></tr><tr><td style='border-bottom:none;padding-right:5px'>PunchoutIntegration</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    SerticaWebApi.Models.SystemOptions.OptionsShipdexResource:
+      type: object
+      properties:
+        resourceNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        specification:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexSpecification'
+        memberArea:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexMemberArea'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.SystemOptions.PunchoutConnectionInput:
+      type: object
+      properties:
+        punchoutID:
+          type:
+          - string
+          - 'null'
+        punchoutURL:
+          type:
+          - string
+          - 'null'
+        punchoutTokenKey:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_LabelType'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ComponentSortOrder:
+      enum:
+      - Alphabetical
+      - BySortOrder
+      type: string
+    SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_GenericReportType'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        communicationLanguageNo:
+          type:
+          - string
+          - 'null'
+        communicationLanguageName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageArea:
+      enum:
+      - SerticaForm
+      - Forum
+      - Workshop
+      - SparePart
+      - Job
+      - JobHistory
+      - DockJob
+      - Component
+      - Inspection
+      - JobRequest
+      - LogbookEvent
+      - FormTemplateHelpImage
+      - ElectronicLogbooks
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_RequisitionForwardType:
+      enum:
+      - ForwardAllToTechnicalApproval
+      - ForwardAllToAwaitingOrder
+      - ForwardSelectedAccountsToTechnicalApproval
+      - ForwardSelectedAccountsToAwaitingOrder
+      - ForwardAllToRFQ
+      - ForwardSelectedAccountsToRFQ
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension:
+      enum:
+      - DimensionOriginal
+      - Dimension1536x1152
+      - Dimension1280x960
+      - Dimension1024x768
+      - Dimension800x600
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_GenericReportType:
+      enum:
+      - Requisition
+      - PurchaseOrder
+      - RequestForQuote
+      - Job
+      - JobList
+      - PurchaseOrderServiceOrder
+      - Reminder
+      - DockList
+      - Shipment
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_StockValue:
+      enum:
+      - FIFO
+      - PresentValue
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexMemberArea:
+      enum:
+      - sk01
+      - sk02
+      - sk03
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexSpecification:
+      enum:
+      - pc01
+      - pc02
+      - pc03
+      - pc04
+      - pc05
+      - pc06
+      - pc07
+      - pc08
+      - pc09
+      - pc10
+      type: string
+    SerticaWebApi.Models.SystemOptions.OptionsImageSetting:
+      type: object
+      properties:
+        imageArea:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageArea'
+        imageDimension:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
+        imageQuality:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        optionsGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_LabelType:
+      enum:
+      - Item
+      - ItemLocation
+      - Component
+      - Measurement
+      - Counter
+      - JobRequestTemplate
+      - Barricade
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FrequencyType:
+      enum:
+      - Minutes
+      - Hours
+      - Days
+      - Months
+      - Seconds
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OrderBy:
+      enum:
+      - None
+      - JobNo
+      - NextDate
+      - LastDoneDateNextDate
+      type: string
+    SerticaWebApi.Models.SystemOptions.Options:
+      type: object
+      properties:
+        componentTypeMandatory:
+          type:
+          - boolean
+          - 'null'
+        componentLocationMandatory:
+          type:
+          - boolean
+          - 'null'
+        componentAccountMandatory:
+          type:
+          - boolean
+          - 'null'
+        componentManufacturerMandatory:
+          type:
+          - boolean
+          - 'null'
+        componentTypeNoMandatory:
+          type:
+          - boolean
+          - 'null'
+        jobNameMandatory:
+          type:
+          - boolean
+          - 'null'
+        jobTriggerMandatory:
+          type:
+          - boolean
+          - 'null'
+        responsibleMandatoryOnJob:
+          type:
+          - boolean
+          - 'null'
+        jobGroupMandatory:
+          type:
+          - boolean
+          - 'null'
+        resourcesMandatory:
+          type:
+          - boolean
+          - 'null'
+        hideUsersAndUserGroupsAsResources:
+          type:
+          - boolean
+          - 'null'
+        postponeReasonMandatory:
+          type:
+          - boolean
+          - 'null'
+        jobPostponementWorkflow:
+          type:
+          - boolean
+          - 'null'
+        messageExpectedFaultMandatory:
+          type:
+          - boolean
+          - 'null'
+        warnOnMissingResource:
+          type:
+          - boolean
+          - 'null'
+        autoGenerateJobNo:
+          type: boolean
+        allowOnlyUseOfUserGroupAsResponsibleOnJob:
+          type: boolean
+        copyComponentAccountToJob:
+          type: boolean
+        jobCriticalRunOnceJobGroupGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        jobBreakdownJobGroupName:
+          type:
+          - string
+          - 'null'
+        jobBreakdownJobGroupNo:
+          type:
+          - string
+          - 'null'
+        webExternalCalendarIntegration:
+          type: boolean
+        jobHistoryRemarkMandatory:
+          type:
+          - boolean
+          - 'null'
+        resourceMandatoryJobHistory:
+          type:
+          - boolean
+          - 'null'
+        jobHistoryDefaultDoneDate:
+          type:
+          - boolean
+          - 'null'
+        transferResourceEstimateFromJobToJobHistory:
+          type:
+          - boolean
+          - 'null'
+        transferSparePartsFromJobToJobHistory:
+          type:
+          - boolean
+          - 'null'
+        registerHoursOverDays:
+          type:
+          - boolean
+          - 'null'
+        jobCopyTextToRemarkOnHistory:
+          type:
+          - boolean
+          - 'null'
+        lockCounterReadingFieldOnJobHistory:
+          type:
+          - boolean
+          - 'null'
+        automaticallyAddCurrentUserIfMandatory:
+          type:
+          - boolean
+          - 'null'
+        labelOptionsDocumentLinks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
+        shipdexManufacturerNo:
+          type:
+          - string
+          - 'null'
+        shipdexManufacturerName:
+          type:
+          - string
+          - 'null'
+        shipdexComponentItemNo:
+          type:
+          - string
+          - 'null'
+        shipdexComponentItemName:
+          type:
+          - string
+          - 'null'
+        shipdexSuppliesNo:
+          type:
+          - string
+          - 'null'
+        shipdexSuppliesName:
+          type:
+          - string
+          - 'null'
+        shipdexSupportEquipmentNo:
+          type:
+          - string
+          - 'null'
+        shipdexSupportEquipmentName:
+          type:
+          - string
+          - 'null'
+        shipdexResources:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsShipdexResource'
+        autoGenerateSparePartNo:
+          type:
+          - boolean
+          - 'null'
+        sparePartPrefix:
+          type:
+          - string
+          - 'null'
+        sparePartSerialNoLength:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        defaultItemWarehouseNo:
+          type:
+          - string
+          - 'null'
+        defaultItemWarehouseName:
+          type:
+          - string
+          - 'null'
+        itemWarehouseMandatory:
+          type:
+          - boolean
+          - 'null'
+        itemLocationMandatory:
+          type:
+          - boolean
+          - 'null'
+        itemMinStockonWarehouseMandatory:
+          type:
+          - boolean
+          - 'null'
+        stockValue:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_StockValue'
+        useJobHistoryDoneDateForWarehouseHistory:
+          type:
+          - boolean
+          - 'null'
+        doNotShowItemsWithoutLocationInItemLocationTree:
+          type:
+          - boolean
+          - 'null'
+        sparePartImageDimension:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
+        sparePartImageQuality:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        serticaAppShowDocuments:
+          type:
+          - boolean
+          - 'null'
+        serticaAppShowJobTemplates:
+          type:
+          - boolean
+          - 'null'
+        serticaAppShowReportedBy:
+          type:
+          - boolean
+          - 'null'
+        serticaAppShowRemarks:
+          type:
+          - boolean
+          - 'null'
+        sparePartTextOnStockAdjustments:
+          type:
+          - boolean
+          - 'null'
+        statusChangeSubjectNo:
+          type:
+          - string
+          - 'null'
+        statusChangeSubjectName:
+          type:
+          - string
+          - 'null'
+        statusChangeBodyNo:
+          type:
+          - string
+          - 'null'
+        statusChangeBodyName:
+          type:
+          - string
+          - 'null'
+        formApproveSubjectNo:
+          type:
+          - string
+          - 'null'
+        formApproveSubjectName:
+          type:
+          - string
+          - 'null'
+        formApproveBodyNo:
+          type:
+          - string
+          - 'null'
+        formApproveBodyName:
+          type:
+          - string
+          - 'null'
+        formResponseSubjectNo:
+          type:
+          - string
+          - 'null'
+        formResponseSubjectName:
+          type:
+          - string
+          - 'null'
+        formResponseBodyNo:
+          type:
+          - string
+          - 'null'
+        formResponseBodyName:
+          type:
+          - string
+          - 'null'
+        formsImageDimension:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
+        formsImageQuality:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        defaultImageDimension:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
+        defaultImageQuality:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        imageSettings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsImageSetting'
+        year:
+          type:
+          - string
+          - 'null'
+        fleetSerialNo:
+          type:
+          - string
+          - 'null'
+        unitSerialNo:
+          type:
+          - string
+          - 'null'
+        eposUnitNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderAccountMandatory:
+          type: boolean
+        purchaseOrderDepartmentMandatory:
+          type: boolean
+        purchaseOrderComponentMandatory:
+          type: boolean
+        purchaseOrderProjectMandatory:
+          type: boolean
+        standardDeliveryPlaceNo:
+          type:
+          - string
+          - 'null'
+        standardDeliveryPlaceName:
+          type:
+          - string
+          - 'null'
+        standardCurrencyNo:
+          type:
+          - string
+          - 'null'
+        standardCurrencyName:
+          type:
+          - string
+          - 'null'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        requisitionForwardType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_RequisitionForwardType'
+        disableLocalRequisition:
+          type: boolean
+        descriptionMandatory:
+          type: boolean
+        departmentMandatory:
+          type: boolean
+        measureUnitMandatory:
+          type: boolean
+        requestedDeliveryDateMandatory:
+          type: boolean
+        estimatedCostsMandatoryServiceOrders:
+          type: boolean
+        estimatedCostsMandatoryOtherOrders:
+          type: boolean
+        rfqEmailSubjectNo:
+          type:
+          - string
+          - 'null'
+        rfqEmailSubjectName:
+          type:
+          - string
+          - 'null'
+        rfqEmailBodyNo:
+          type:
+          - string
+          - 'null'
+        rfqEmailBodyName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderEmailSubjectNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderEmailSubjectName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderEmailBodyNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderEmailBodyName:
+          type:
+          - string
+          - 'null'
+        addComponentInfoToProcurementRequisition:
+          type: boolean
+        purchaseOrderApprovalInvalidationRemarksToSupplier:
+          type: boolean
+        purchaseOrderApprovalInvalidationSupplier:
+          type: boolean
+        purchaseOrderApprovalInvalidationCurrency:
+          type: boolean
+        purchaseOrderApprovalInvalidationPositionOrderedQuantity:
+          type: boolean
+        purchaseOrderApprovalInvalidationPositionPrice:
+          type: boolean
+        purchaseOrderApprovalInvalidationPositionName:
+          type: boolean
+        purchaseOrderApprovalInvalidationPositionNumberOfPositions:
+          type: boolean
+        serticaPunchOutID:
+          type:
+          - string
+          - 'null'
+        punchOutURL:
+          type:
+          - string
+          - 'null'
+        punchoutAPITokenKey:
+          type:
+          - string
+          - 'null'
+        punchOutAPITokenHasValue:
+          type:
+          - boolean
+          - 'null'
+        punchOutRetryConfirmationRequestsForDays:
+          type: integer
+          format: int32
+        dynamicReportOptionsDocumentLinks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
+        logbookEventComponentNoMandatory:
+          type: boolean
+        logbookEventSubjectMandatory:
+          type: boolean
+        logbookEventDescriptionMandatory:
+          type: boolean
+        sqlCommandTimeout:
+          type: integer
+          format: int32
+        orderJobsBy:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_OrderBy'
+        componentSortOrder:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ComponentSortOrder'
+        industryApprovalAppAvailabilityJobPostponement:
+          type: boolean
+        industryApprovalAppAvailabilityForm:
+          type: boolean
+        defaultUserLanguageNo:
+          type:
+          - string
+          - 'null'
+        defaultUserLanguageName:
+          type:
+          - string
+          - 'null'
+        certificateWindowDueOverdueCalc:
+          type:
+          - boolean
+          - 'null'
+        inheritableNotificationSettings:
+          type:
+          - boolean
+          - 'null'
+        arrangeCertificateGroupsBySortOrder:
+          type:
+          - boolean
+          - 'null'
+        hideCertificateGroupNoInCertificateBrowser:
+          type:
+          - boolean
+          - 'null'
+        copyCertificateVerificationDateOnRenew:
+          type:
+          - boolean
+          - 'null'
+        azureADUseAzureADlogin:
+          type: boolean
+        azureADClientId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        azureADTenantId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        azureADAttemptAutomaticlogIn:
+          type: boolean
+        azureADLogUserOutOnExit:
+          type: boolean
+        webOutlookCalendarIntegration:
+          type: boolean
+        autoGenerateDocumentNo:
+          type: boolean
+        checkInShowVersionPopup:
+          type: boolean
+        jobHistoryDataEntryWebTokenExpiration:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        jobHistoryDataEntryWebTokenExpirationFrequency:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FrequencyType'
+        fullScreenDashboardRefreshRate:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

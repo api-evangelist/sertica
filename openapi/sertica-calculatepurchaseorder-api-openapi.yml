@@ -1,0 +1,3081 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Calculate Purchase Order API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: CalculatePurchaseOrder
+paths:
+  /CalculatePurchaseOrder/availableSuppliers:
+    post:
+      tags:
+      - CalculatePurchaseOrder
+      operationId: CalculatePOGetAvailableSuppliers
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOSupplier'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOSupplier'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOSupplier'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>CalculatePurchaseOrder</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Calculate PO get available suppliers
+      x-summary-source: derived
+  /CalculatePurchaseOrder/availablePositions:
+    post:
+      tags:
+      - CalculatePurchaseOrder
+      operationId: CalculatePOGetAvailablePositions
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOPosition'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOPosition'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOPosition'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>CalculatePurchaseOrder</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Calculate PO get available positions
+      x-summary-source: derived
+  /CalculatePurchaseOrder/availablePorts:
+    post:
+      tags:
+      - CalculatePurchaseOrder
+      operationId: CalculatePOGetAvailablePorts
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOPort'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOPort'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOPort'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>CalculatePurchaseOrder</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Calculate PO get available ports
+      x-summary-source: derived
+  /CalculatePurchaseOrder:
+    post:
+      tags:
+      - CalculatePurchaseOrder
+      operationId: CalculatePOCreatePurchaseOrders
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.ApiCalculatePOSaveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.ApiCalculatePOSaveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.ApiCalculatePOSaveResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>PurchaseOrder_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Calculate PO create purchase orders
+      x-summary-source: derived
+  /CalculatePurchaseOrder/setupCreatePurchaseOrders:
+    post:
+      tags:
+      - CalculatePurchaseOrder
+      operationId: CalculatePOSetupCreatePurchaseOrders
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.ApiCalculatePOSaveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.ApiCalculatePOSaveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.CalculatePurchaseOrder.ApiCalculatePOSaveResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>CalculatePurchaseOrder</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Calculate PO setup create purchase orders
+      x-summary-source: derived
+components:
+  schemas:
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderUnit:
+      type: object
+      properties:
+        purchaseOrderGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDescription:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        requisitionNo:
+          type:
+          - string
+          - 'null'
+        requisitionDescription:
+          type:
+          - string
+          - 'null'
+        exchangeRateUnit:
+          type:
+          - number
+          - 'null'
+          format: double
+        createdFromSharedPO:
+          type:
+          - boolean
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrder:
+      type: object
+      properties:
+        prepaid:
+          type:
+          - boolean
+          - 'null'
+        urgent:
+          type:
+          - boolean
+          - 'null'
+        invoiceExpected:
+          type:
+          - boolean
+          - 'null'
+        deliveryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        eta:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        etd:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        freightForwarderReceptionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        latestFreightForwardReceptionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        orderDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        purchaseOrderCreateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalCost:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        totalCostsInStandardCurrency:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        discountPercentage:
+          type:
+          - number
+          - 'null'
+          format: double
+        exchangeRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        invoiceTotalCostsInCurrency:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        invoiceTotalCostsInStandardCurrency:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        invoicedAmount:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        invoicedAmountInStandardCurrency:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        invoiceDifference:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        invoiceDifferenceInStandardCurrency:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        invoiceDeviationInPercent:
+          type:
+          - number
+          - 'null'
+          format: double
+        invoiceStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus'
+        orderStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderStatus'
+        requisitionType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ProcurementRequisitionTypeEnum'
+        transitReceivedStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_TransitReceivedStatus'
+        orderWorkflow:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderWorkflow'
+        accountName:
+          type:
+          - string
+          - 'null'
+        accountNo:
+          type:
+          - string
+          - 'null'
+        agentNo:
+          type:
+          - string
+          - 'null'
+        agentName:
+          type:
+          - string
+          - 'null'
+        areaSFINo:
+          type:
+          - string
+          - 'null'
+        classNo:
+          type:
+          - string
+          - 'null'
+        className:
+          type:
+          - string
+          - 'null'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        deliveryConditionNo:
+          type:
+          - string
+          - 'null'
+        deliveryConditionName:
+          type:
+          - string
+          - 'null'
+        deliveryPlaceName:
+          type:
+          - string
+          - 'null'
+        deliveryPlaceNo:
+          type:
+          - string
+          - 'null'
+        deliveryPlacePortName:
+          type:
+          - string
+          - 'null'
+        deliveryPlacePortNo:
+          type:
+          - string
+          - 'null'
+        deliveryPortName:
+          type:
+          - string
+          - 'null'
+        deliveryPortNo:
+          type:
+          - string
+          - 'null'
+        departmentName:
+          type:
+          - string
+          - 'null'
+        departmentNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        divisionName:
+          type:
+          - string
+          - 'null'
+        divisionNo:
+          type:
+          - string
+          - 'null'
+        externalReference:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
+          type:
+          - string
+          - 'null'
+        externalReference4:
+          type:
+          - string
+          - 'null'
+        icName:
+          type:
+          - string
+          - 'null'
+        icNo:
+          type:
+          - string
+          - 'null'
+        incidentNo:
+          type:
+          - string
+          - 'null'
+        internalUnitReference:
+          type:
+          - string
+          - 'null'
+        communicationLanguageNo:
+          type:
+          - string
+          - 'null'
+        communicationLanguageName:
+          type:
+          - string
+          - 'null'
+        marketProductName:
+          type:
+          - string
+          - 'null'
+        marketProductNo:
+          type:
+          - string
+          - 'null'
+        navisionCompanyNo:
+          type:
+          - string
+          - 'null'
+        paymentConditionNo:
+          type:
+          - string
+          - 'null'
+        paymentConditionName:
+          type:
+          - string
+          - 'null'
+        projectCodeName:
+          type:
+          - string
+          - 'null'
+        projectCodeNo:
+          type:
+          - string
+          - 'null'
+        projectNo:
+          type:
+          - string
+          - 'null'
+        projectName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderCreateUserNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaserUserName:
+          type:
+          - string
+          - 'null'
+        purchaserUserNo:
+          type:
+          - string
+          - 'null'
+        purposeNo:
+          type:
+          - string
+          - 'null'
+        remarkToSupplier:
+          type:
+          - string
+          - 'null'
+        remarkToOffice:
+          type:
+          - string
+          - 'null'
+        orderConfirmationRemark:
+          type:
+          - string
+          - 'null'
+        supplierQuoteReference:
+          type:
+          - string
+          - 'null'
+        routeName:
+          type:
+          - string
+          - 'null'
+        routeNo:
+          type:
+          - string
+          - 'null'
+        sundryName:
+          type:
+          - string
+          - 'null'
+        sundryNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierAAGReference:
+          type:
+          - string
+          - 'null'
+        vendorNo:
+          type:
+          - string
+          - 'null'
+        vismaAgentName:
+          type:
+          - string
+          - 'null'
+        vismaAgentNo:
+          type:
+          - string
+          - 'null'
+        workflowCompanyNo:
+          type:
+          - string
+          - 'null'
+        supplierAttention:
+          type:
+          - string
+          - 'null'
+        deliveryPlaceAttention:
+          type:
+          - string
+          - 'null'
+        paidCash:
+          type:
+          - boolean
+          - 'null'
+        componentNo:
+          type:
+          - string
+          - 'null'
+        componentName:
+          type:
+          - string
+          - 'null'
+        itemTypeNo:
+          type:
+          - string
+          - 'null'
+        itemTypeName:
+          type:
+          - string
+          - 'null'
+        deliveryDateToBeAdvised:
+          type:
+          - boolean
+          - 'null'
+        deliveryPlaceToBeAdvised:
+          type:
+          - boolean
+          - 'null'
+        supplierPhone:
+          type:
+          - string
+          - 'null'
+        supplierVatNo:
+          type:
+          - string
+          - 'null'
+        showPrice:
+          type:
+          - boolean
+          - 'null'
+        sendReminder:
+          type:
+          - boolean
+          - 'null'
+        orderConfirmationNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderConfirmStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderConfirmStatus'
+        confirmedVia:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderConfirmedVia'
+        orderConfirmationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        orderedVia:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierPurchaseOrderForwardType'
+        sentTo:
+          type:
+          - string
+          - 'null'
+        sentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        viewDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        showInWeb:
+          type:
+          - boolean
+          - 'null'
+        supplierDocuments:
+          type:
+          - boolean
+          - 'null'
+        nextApproverNo:
+          type:
+          - string
+          - 'null'
+        nextApproverName:
+          type:
+          - string
+          - 'null'
+        approvalSetupNo:
+          type:
+          - string
+          - 'null'
+        approvalSetupName:
+          type:
+          - string
+          - 'null'
+        orderedByUserNo:
+          type:
+          - string
+          - 'null'
+        orderedByUserName:
+          type:
+          - string
+          - 'null'
+        forwardDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        originalDeliveryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        version:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        copiedFromGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        shared:
+          type:
+          - boolean
+          - 'null'
+        sharedUnitPO:
+          type:
+          - boolean
+          - 'null'
+        deliveryDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        totalCO2:
+          type:
+          - number
+          - 'null'
+          format: double
+        customProperties: {}
+        positionsSubTotal:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        deliveryCostsSubTotal:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        accountingDimensions: {}
+        usedDimensions: {}
+        addressClassificationAction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressClassificationAction'
+        punchOut:
+          type:
+          - boolean
+          - 'null'
+        addressPunchOutName:
+          type:
+          - string
+          - 'null'
+        punchOutStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PunchOutStatus'
+        portLocode:
+          type:
+          - string
+          - 'null'
+        createdFromRequisitionNo:
+          type:
+          - string
+          - 'null'
+        sourceRfqForNewOrderGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        rejectCoherentRfqsWhenSaving:
+          type:
+          - boolean
+          - 'null'
+        positions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderPosition'
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderDocument'
+        responses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderResponse'
+        deliveryCosts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderDeliveryCost'
+        requestForQuotes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.RequestForQuote.RequestForQuotePurchaseOrder'
+        requisitions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderRequisition'
+        units:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderUnit'
+        sharedUnits:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderSharedUnit'
+        approvals:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderApproval'
+        evaluations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ProcurementQA.EvaluationObjectLink.EvaluationQuestionPurchaseOrderLink'
+        standardTexts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderStandardText'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderStandardText:
+      type: object
+      properties:
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDescription:
+          type:
+          - string
+          - 'null'
+        standardTextNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Framework.Amount:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_EvaluationProcess:
+      enum:
+      - RejectingRFQ
+      - PlacingPurchaseOrder
+      - ReceivingRequisition
+      - ReceivingShipment
+      - TransitReceiving
+      - EvaluateSupplier
+      - ReceivingPurchaseOrder
+      - EvaluateImInvoice
+      type: string
+    SerticaWebApi.Models.Item.ItemSupplierPortPrice:
+      type: object
+      properties:
+        itemSupplierPortGuid:
+          type: string
+          format: uuid
+        portCodeNo:
+          type:
+          - string
+          - 'null'
+        portName:
+          type:
+          - string
+          - 'null'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        priceStandardCurrency:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expiryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ProcurementQA.EvaluationObjectLink.EvaluationQuestionPurchaseOrderLink:
+      type: object
+      properties:
+        addressName:
+          type:
+          - string
+          - 'null'
+        addressNo:
+          type:
+          - string
+          - 'null'
+        objectNo:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionName:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionNo:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerName:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerNo:
+          type:
+          - string
+          - 'null'
+        comment:
+          type:
+          - string
+          - 'null'
+        groupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        evaluationStep:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_EvaluationProcess'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOPort:
+      type: object
+      properties:
+        isQuotedPort:
+          type: boolean
+        isCatalogPort:
+          type: boolean
+        portCodeNo:
+          type:
+          - string
+          - 'null'
+        portName:
+          type:
+          - string
+          - 'null'
+        deliveryPlaceNo:
+          type:
+          - string
+          - 'null'
+        deliveryPlaceName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderConfirmStatus:
+      enum:
+      - None
+      - WaitingForReply
+      - DeclinedBySupplier
+      - AcceptedBySupplier
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.IssueType:
+      enum:
+      - Error
+      - Warning
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.CalculatePOSaveResultIssue:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.CalculatePOSaveResultIssueReason'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.IssueType'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.CalculatePOTypes:
+      enum:
+      - Requisition
+      - RequestForQuote
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount:
+      type: object
+      properties:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        rate:
+          type:
+          - number
+          - 'null'
+          format: double
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderResponse:
+      type: object
+      properties:
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        purchaseOrderGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.RequestForQuote.RequestForQuotePurchaseOrder:
+      type: object
+      properties:
+        requestForQuoteNo:
+          type:
+          - string
+          - 'null'
+        requestForQuoteDescription:
+          type:
+          - string
+          - 'null'
+        requestForQuoteUnitNo:
+          type:
+          - string
+          - 'null'
+        requestForQuoteUnitName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDescription:
+          type:
+          - string
+          - 'null'
+        purchaseOrderUnitOwnerNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderUnitOwnerName:
+          type:
+          - string
+          - 'null'
+        numberOfConnectedRFQs:
+          type:
+          - string
+          - 'null'
+        totalPrice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        totalPriceInStandardCurrency:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Item.ItemSupplierPort:
+      type: object
+      properties:
+        itemSupplierGuid:
+          type: string
+          format: uuid
+        itemSupplierNo:
+          type:
+          - string
+          - 'null'
+        itemSupplierDescription:
+          type:
+          - string
+          - 'null'
+        itemNo:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        portCodeNo:
+          type:
+          - string
+          - 'null'
+        portName:
+          type:
+          - string
+          - 'null'
+        standardPort:
+          type:
+          - boolean
+          - 'null'
+        currentPrice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        currentPriceStandardCurrency:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        prices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Item.ItemSupplierPortPrice'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PunchOutStatus:
+      enum:
+      - Draft
+      - Waiting
+      - Received
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderStatus:
+      enum:
+      - NotOrdered
+      - Ordered
+      - PartlyReceived
+      - Received
+      - Cancelled
+      type: string
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderApproval:
+      type: object
+      properties:
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderGuid:
+          type: string
+          format: uuid
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyDecimalPlaces:
+          type: integer
+          format: int32
+        amount:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        level:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        current:
+          type:
+          - boolean
+          - 'null'
+        purchaseOrderChecksum:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        singleApprovalValidation:
+          type:
+          - boolean
+          - 'null'
+        userNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.CalculatePOSaveResultIssueReason:
+      enum:
+      - NoOrdersCreated
+      - MixedItemTypes
+      - ValidatePositionsAgainstSupplier
+      - CurrentUserNotAllowedToPurchase
+      - PositionsMissingRequiredSFI
+      - PositionsMissingRequiredItemType
+      - PromptForRejectRemainingQuotes
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressClassificationAction:
+      enum:
+      - None
+      - Warning
+      - Block
+      type: string
+    SerticaWebApi.Models.Item.ItemSupplierPrice:
+      type: object
+      properties:
+        itemSupplierGuid:
+          type: string
+          format: uuid
+        itemSupplierNo:
+          type:
+          - string
+          - 'null'
+        itemSupplierDescription:
+          type:
+          - string
+          - 'null'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        netPrice:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        discount:
+          type:
+          - number
+          - 'null'
+          format: double
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expiryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        priceNettoStandardCurrency:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderSharedUnit:
+      type: object
+      properties:
+        purchaseOrderGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDescription:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ProcurementRequisitionTypeEnum:
+      enum:
+      - NormalShip
+      - LocalShip
+      - NormalLand
+      - ServiceOrder
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderWorkflow:
+      enum:
+      - Draft
+      - AwaitingPriceApproval
+      - AwaitingOrder
+      - OpenForChanges
+      - Closed
+      - AwaitingGatekeeperReview
+      - NotApproved
+      type: string
+    SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOSupplier:
+      type: object
+      properties:
+        isQuotedSupplier:
+          type:
+          - boolean
+          - 'null'
+        isCatalogSupplier:
+          type:
+          - boolean
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        availableSparePartSuppliers:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Item.ItemSupplier'
+      additionalProperties: false
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderDeliveryCost:
+      type: object
+      properties:
+        deliveryCostNo:
+          type:
+          - string
+          - 'null'
+        deliveryCostName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderName:
+          type:
+          - string
+          - 'null'
+        cost:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        sfiNo:
+          type:
+          - string
+          - 'null'
+        sfiName:
+          type:
+          - string
+          - 'null'
+        accountNo:
+          type:
+          - string
+          - 'null'
+        accountName:
+          type:
+          - string
+          - 'null'
+        classNo:
+          type:
+          - string
+          - 'null'
+        className:
+          type:
+          - string
+          - 'null'
+        departmentNo:
+          type:
+          - string
+          - 'null'
+        departmentName:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        accountingDimensions: {}
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderConfirmedVia:
+      enum:
+      - None
+      - Email
+      - Phone
+      - Fax
+      - Connect
+      - Other
+      - OpenTRANS
+      - ShipServ
+      - Tobit
+      - EDI
+      - SeaProc
+      - Source2Sea
+      - PunchOut
+      type: string
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderPosition:
+      type: object
+      properties:
+        bunker:
+          type: boolean
+        deliveryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        latestReceivedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        receivedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        discountPercentage:
+          type:
+          - number
+          - 'null'
+          format: double
+        unitPrice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        orderedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        receivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        rejectedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        requestedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        positionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        drawingNo:
+          type:
+          - string
+          - 'null'
+        drawingPosNo:
+          type:
+          - string
+          - 'null'
+        equipmentName:
+          type:
+          - string
+          - 'null'
+        equipmentRating:
+          type:
+          - string
+          - 'null'
+        itemTypeNo:
+          type:
+          - string
+          - 'null'
+        manufacture:
+          type:
+          - string
+          - 'null'
+        measureUnitNo:
+          type:
+          - string
+          - 'null'
+        measureUnitName:
+          type:
+          - string
+          - 'null'
+        model:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        positionClassNo:
+          type:
+          - string
+          - 'null'
+        positionClassName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        referenceNo:
+          type:
+          - string
+          - 'null'
+        remark:
+          type:
+          - string
+          - 'null'
+        supplierRemark:
+          type:
+          - string
+          - 'null'
+        sfiNo:
+          type:
+          - string
+          - 'null'
+        sfiName:
+          type:
+          - string
+          - 'null'
+        itemName:
+          type:
+          - string
+          - 'null'
+        itemNo:
+          type:
+          - string
+          - 'null'
+        itemUnitNo:
+          type:
+          - string
+          - 'null'
+        componentName:
+          type:
+          - string
+          - 'null'
+        componentNo:
+          type:
+          - string
+          - 'null'
+        standardNo:
+          type:
+          - string
+          - 'null'
+        supplierItemNo:
+          type:
+          - string
+          - 'null'
+        supplierItemDescription:
+          type:
+          - string
+          - 'null'
+        typeNo:
+          type:
+          - string
+          - 'null'
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        internalRemark:
+          type:
+          - string
+          - 'null'
+        rejectRemark:
+          type:
+          - string
+          - 'null'
+        listNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        totalPrice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        allowThirdPartyItem:
+          type:
+          - boolean
+          - 'null'
+        outstandingQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        supplierItemDeliveryDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        maxStock:
+          type:
+          - number
+          - 'null'
+          format: double
+        minStock:
+          type:
+          - number
+          - 'null'
+          format: double
+        stock:
+          type:
+          - number
+          - 'null'
+          format: double
+        ordered:
+          type:
+          - number
+          - 'null'
+          format: double
+        requested:
+          type:
+          - number
+          - 'null'
+          format: double
+        dimension:
+          type:
+          - string
+          - 'null'
+        referencePosNo:
+          type:
+          - string
+          - 'null'
+        classification:
+          type:
+          - string
+          - 'null'
+        daysUntilDelivery:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        receivedByUserNo:
+          type:
+          - string
+          - 'null'
+        receivedByUserName:
+          type:
+          - string
+          - 'null'
+        deliveryNoteNo:
+          type:
+          - string
+          - 'null'
+        hsCodeNo:
+          type:
+          - string
+          - 'null'
+        hsWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        cO2:
+          type:
+          - number
+          - 'null'
+          format: double
+        accountNo:
+          type:
+          - string
+          - 'null'
+        accountName:
+          type:
+          - string
+          - 'null'
+        transitReceivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        invoiceQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        departmentNo:
+          type:
+          - string
+          - 'null'
+        departmentName:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        accountingDimensions: {}
+        supplierPartAuxiliaryID:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionRequisitionPositions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrderPositionRequisitionPosition'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderDocument:
+      type: object
+      properties:
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        sendToSupplier:
+          type:
+          - boolean
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pageNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.CalculatePurchaseOrder.ApiCalculatePOSaveResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        issues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.CalculatePOSaveResultIssue'
+        createdPurchaseOrders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.PurchaseOrder.PurchaseOrder'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderPositionRequisitionPosition:
+      type: object
+      properties:
+        ownerUnitNo:
+          type:
+          - string
+          - 'null'
+        ownerUnitName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        procurementRequisitionPositionGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        procurementRequisitionForSharedUnitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        amount:
+          type:
+          - number
+          - 'null'
+          format: double
+        requestedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        rejectedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        receivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        receivedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        receivedByUserNo:
+          type:
+          - string
+          - 'null'
+        receivedByUserName:
+          type:
+          - string
+          - 'null'
+        rejectRemark:
+          type:
+          - string
+          - 'null'
+        requisitionNo:
+          type:
+          - string
+          - 'null'
+        requisitionPositionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        componentNo:
+          type:
+          - string
+          - 'null'
+        componentName:
+          type:
+          - string
+          - 'null'
+        positionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        orderedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        unitPrice:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        discountPercentage:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalPrice:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        itemNo:
+          type:
+          - string
+          - 'null'
+        itemName:
+          type:
+          - string
+          - 'null'
+        itemUnitNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        measureUnitNo:
+          type:
+          - string
+          - 'null'
+        measureUnitName:
+          type:
+          - string
+          - 'null'
+        externalReference:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.PurchaseOrder.PurchaseOrderRequisition:
+      type: object
+      properties:
+        requisitionNo:
+          type:
+          - string
+          - 'null'
+        requisitionDescription:
+          type:
+          - string
+          - 'null'
+        requisitionUnitNo:
+          type:
+          - string
+          - 'null'
+        requisitionUnitName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDescription:
+          type:
+          - string
+          - 'null'
+        purchaseOrderOwnerUnitNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderOwnerUnitName:
+          type:
+          - string
+          - 'null'
+        referencedUnitNo:
+          type:
+          - string
+          - 'null'
+        referencedUnitName:
+          type:
+          - string
+          - 'null'
+        requestedDeliveryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierPurchaseOrderForwardType:
+      enum:
+      - None
+      - Email
+      - EmailWeb
+      - ShipServ
+      - OpenTRANS
+      - Tobit
+      - EDI
+      - SeaProc
+      - Connect
+      - Source2Sea
+      - Punchout
+      type: string
+    SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePurchaseOrderArguments:
+      type: object
+      properties:
+        'no':
+          type:
+          - string
+          - 'null'
+        calculatePOType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.CalculatePOTypes'
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOPosition:
+      type: object
+      properties:
+        positionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        positionName:
+          type:
+          - string
+          - 'null'
+        mainObjectNo:
+          type:
+          - string
+          - 'null'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        quantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        discount:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalPrice:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        totalPriceStdCurrency:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        deliveryDays:
+          type:
+          - number
+          - 'null'
+          format: double
+        allowThirdPartyItem:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus:
+      enum:
+      - NotInvoiced
+      - PartlyInvoiced
+      - FullyInvoiced
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_TransitReceivedStatus:
+      enum:
+      - NotReceived
+      - PartlyReceived
+      - Received
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.PurchaseOrderPreview:
+      type: object
+      properties:
+        originRFQGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        deliveryPlaceNo:
+          type:
+          - string
+          - 'null'
+        portCodeNo:
+          type:
+          - string
+          - 'null'
+        deliveryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        urgent:
+          type:
+          - boolean
+          - 'null'
+        deliveryDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        discount:
+          type:
+          - number
+          - 'null'
+          format: double
+        isQuotedSupplier:
+          type: boolean
+        supplierGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deliveryPlaceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        currencyGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        positions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.PurchaseOrderPositionPreview'
+      additionalProperties: false
+    SerticaWebApi.Models.Item.ItemSupplier:
+      type: object
+      properties:
+        itemGuid:
+          type: string
+          format: uuid
+        itemNo:
+          type:
+          - string
+          - 'null'
+        itemName:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        standardSupplier:
+          type: boolean
+        supplierItemNo:
+          type:
+          - string
+          - 'null'
+        supplierItemDescription:
+          type:
+          - string
+          - 'null'
+        deliveryDays:
+          type: integer
+          format: int32
+        currentPrice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        currentDiscount:
+          type:
+          - number
+          - 'null'
+          format: double
+        itemSupplierInactive:
+          type: boolean
+        minimumOrderQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        packSize:
+          type:
+          - number
+          - 'null'
+          format: double
+        ports:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Item.ItemSupplierPort'
+        prices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Item.ItemSupplierPrice'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.PurchaseOrderPositionPreview:
+      type: object
+      properties:
+        positionNo:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        deliveryDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        orderedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        originSparePartCatalogueSupplierGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitPrice:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        discount:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+      additionalProperties: false
+    SerticaWebApi.Models.CalculatePurchaseOrder.CalculatePOCreateArguments:
+      type: object
+      properties:
+        'no':
+          type:
+          - string
+          - 'null'
+        calculatePOType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.CalculatePOTypes'
+        fromSingleSupplier:
+          type: boolean
+        createSharedUnitPO:
+          type: boolean
+        acceptPositionSuppliers:
+          type: boolean
+        rejectRemainingQuotes:
+          type: boolean
+        orders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.CalculatePO.PurchaseOrderPreview'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

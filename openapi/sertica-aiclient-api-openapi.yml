@@ -1,0 +1,244 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web AI Client API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: AiClient
+paths:
+  /AiClient/ask-question:
+    put:
+      tags:
+      - AiClient
+      summary: Asks a question to the AI through the AI Service
+      operationId: AIAskQuestion
+      requestBody:
+        description: Question and relevant context for asking AI
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientAskModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientAskModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientAskModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientAskModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientAskResponseModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientAskResponseModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientAskResponseModel'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_ChangeAvailableForAI</td><td style='border-bottom:none'>Function</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    SerticaWebApi.Models.AiClient.AiClientAskResponseModel:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        answer:
+          type:
+          - string
+          - 'null'
+        talkId:
+          type:
+          - string
+          - 'null'
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientDocumentModel'
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.AiClient.AiClientAskModel:
+      type: object
+      properties:
+        question:
+          type:
+          - string
+          - 'null'
+        managementSystemNo:
+          type:
+          - string
+          - 'null'
+        history:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiChatHistory'
+        unitNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.AiClient.AiClientDocumentModel:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        managementSystemNo:
+          type:
+          - string
+          - 'null'
+        unitNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.AiClient.AiChatHistory:
+      type: object
+      properties:
+        role:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

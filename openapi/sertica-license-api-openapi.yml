@@ -1,0 +1,404 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web License API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: License
+paths:
+  /License:
+    get:
+      tags:
+      - License
+      operationId: GetAllLicenseValues
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.License.License'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.License.License'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.License.License'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      summary: Get all license values
+      x-summary-source: derived
+  /License/{licenseKey}:
+    get:
+      tags:
+      - License
+      operationId: GetSingleLicenseValue
+      parameters:
+      - name: licenseKey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      summary: Get single license value
+      x-summary-source: derived
+  /License/RequiredAppVersion/{appId}:
+    get:
+      tags:
+      - License
+      operationId: GetRequiredAppVersion
+      parameters:
+      - name: appId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      summary: Get required app version
+      x-summary-source: derived
+  /License/validate:
+    get:
+      tags:
+      - License
+      operationId: ValidateLicense
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.Licensing.LicenseValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.Licensing.LicenseValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.Licensing.LicenseValidationResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.Licensing.LicenseValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.Licensing.LicenseValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.Licensing.LicenseValidationResult'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      summary: Validate license
+      x-summary-source: derived
+components:
+  schemas:
+    Logimatic.StandardFunctionsCS.IntegrationMode:
+      enum:
+      - None
+      - SupplierMustMatchVendor
+      - Torm
+      - AXMode
+      - AddressTypeRestrictions
+      - FilterInvoiceFields
+      - FilterProjectFields
+      - FilterProjectCodeFields
+      - AutoGenerateAddressNo
+      - ExternalReferencesOnUnit
+      - Humboldt
+      - EDIInterface
+      - MDMInterface
+      - OpusCapita
+      - RALAX
+      - SvitzerAzureServiceBus
+      - CozmosAzureServiceBus
+      - MintraOCSAPIAdapter
+      - ItemWebhookExport
+      type: string
+    Logihold.BusinessObjects.Licensing.LicenseValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        message:
+          type:
+          - string
+          - 'null'
+        issues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.Licensing.LicenseValidationIssue'
+          readOnly: true
+      additionalProperties: false
+    Logimatic.StandardFunctionsCS.AIIntegrationFlag:
+      enum:
+      - None
+      - ManagementSystem
+      type: string
+    SerticaWebApi.Models.License.License:
+      type: object
+      properties:
+        serticaVersion:
+          type:
+          - string
+          - 'null'
+        fleetManagementRole:
+          $ref: '#/components/schemas/Logimatic.StandardFunctionsCS.FleetManagementRole'
+        fleetManagement:
+          type: boolean
+        iosAppEnabled:
+          type: integer
+          format: int32
+        serticaForms:
+          type: boolean
+        inextiaForms:
+          type: boolean
+        maintenanceApp:
+          type: integer
+          format: int32
+        jobRelations:
+          type: boolean
+        useExpectedFaultCode:
+          type: boolean
+        forms:
+          type: boolean
+        formsOnJob:
+          type: boolean
+        sparePartLocation:
+          type: boolean
+        customObjectProperties:
+          type: boolean
+        shipDexIntegration:
+          type: boolean
+        inextiaMenuUserrights:
+          type: boolean
+        managementSystemWeb:
+          type: boolean
+        gpsCoordinates:
+          type: boolean
+        inextiaJobRelations:
+          type: boolean
+        genericJobRequestModule:
+          type: boolean
+        jobSequence:
+          type: boolean
+        jobSafetyModule:
+          type: boolean
+        pdfPrintFromSERTICAApp:
+          type: boolean
+        inextiaDocumentTree:
+          type: boolean
+        inextiaDynamicLayout:
+          type: boolean
+        jobHistoryDataEntryWeb:
+          type: boolean
+        showJobsNearby:
+          type: boolean
+        managementSystemOnJob:
+          type: boolean
+        aiIntegration:
+          $ref: '#/components/schemas/Logimatic.StandardFunctionsCS.AIIntegrationFlag'
+        inextiaGPSLocation:
+          type: boolean
+        inextiaProcurement:
+          type: boolean
+        inextiaFullProcurement:
+          type: boolean
+        customerType:
+          $ref: '#/components/schemas/Logimatic.StandardFunctionsCS.CustomerType'
+        multipleCompaniesOnUnit:
+          type: boolean
+        dashboard:
+          type: boolean
+        inextiaLogbook:
+          type: boolean
+        googleMapsKey:
+          type:
+          - string
+          - 'null'
+        approvalWeb:
+          type: boolean
+        userRoles:
+          type: boolean
+        managementSystemReadLogging:
+          type: boolean
+        webCertificateHandling:
+          type: boolean
+        webDashboards:
+          type: boolean
+        unitLength:
+          type: integer
+          format: int32
+        webVesselReportingSystem:
+          type: boolean
+        inextiaAnalytics:
+          type: boolean
+        azureADLogin:
+          type: boolean
+        webOutlookCalendarIntegration:
+          type: boolean
+        tobitInterface:
+          type: boolean
+        shipServInterface:
+          type: boolean
+        seaProcInterface:
+          type: boolean
+        connectProcurementIntegration:
+          type: boolean
+        openTRANSInterface:
+          type: boolean
+        source2Sea:
+          type: boolean
+        calculatePOPortPrices:
+          type: boolean
+        integrationMode:
+          $ref: '#/components/schemas/Logimatic.StandardFunctionsCS.IntegrationMode'
+        punchoutIntegration:
+          type: boolean
+        spireAisIntegration:
+          type: boolean
+        invoiceManagement:
+          type: boolean
+        procurementDistributionModule:
+          type: boolean
+        itemTypesOnHeader:
+          type: boolean
+        procurementQA:
+          type: boolean
+        webhooksIntegration:
+          type: boolean
+        sertica5WebExtensionsAnalytics:
+          type: boolean
+        sertica5WebExtensionsTaskList:
+          type: boolean
+        sertica5WebExtensionsDocumentManagement:
+          type: boolean
+        inextiaJobEmailNotification:
+          type: boolean
+        inextiaDocumentEmailNotification:
+          type: boolean
+        accountLayout:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_AccountLayout'
+        procurementApprovalSetup:
+          type: boolean
+        inextiaFormsFileBased:
+          type: boolean
+        dataWarehouse:
+          type: boolean
+        electronicLogbook:
+          type: boolean
+        oilRecordBook:
+          type: boolean
+        garbageRecordBook:
+          type: boolean
+        ozoneDepletingSubstancesRecordBook:
+          type: boolean
+        ballastRecordBook:
+          type: boolean
+        testVersion:
+          type: boolean
+        testVersionText:
+          type:
+          - string
+          - 'null'
+        maxExceedingDaysOnJob:
+          type: boolean
+        maintenance:
+          type: boolean
+        masterDataManagementWeb:
+          type: boolean
+        acknowledgeJobHistories:
+          type: boolean
+        defectJob:
+          type: boolean
+        webExternalCalendarIntegration:
+          type: boolean
+        enableSectionGroupInFleet:
+          type: boolean
+        sectionGroupsDisabled:
+          type: boolean
+        maxFileSize:
+          type: integer
+          format: int64
+        priorityUserDefined:
+          type: boolean
+        useUtcDates:
+          type: boolean
+        webhooksMode:
+          $ref: '#/components/schemas/Logimatic.StandardFunctionsCS.WebhooksMode'
+        scheduledWebhooks:
+          type: boolean
+        mailAccountOnUnitCompany:
+          type: boolean
+      additionalProperties: false
+    Logimatic.StandardFunctionsCS.WebhooksMode:
+      enum:
+      - RestrictedAccess
+      - FullAccess
+      type: string
+    Logimatic.StandardFunctionsCS.CustomerType:
+      enum:
+      - Inextia
+      - Sertica
+      type: string
+    Logihold.BusinessObjects.Licensing.LicenseValidationIssue:
+      type: object
+      properties:
+        license:
+          type:
+          - string
+          - 'null'
+        value: {}
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logimatic.StandardFunctionsCS.FleetManagementRole:
+      enum:
+      - None
+      - Unit
+      - Fleet
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AccountLayout:
+      enum:
+      - Clipper
+      - A2SEA
+      - Epr
+      - Axis
+      - Svitzer
+      - AccountSFI
+      - CORO_AS
+      - TORM
+      - Visma
+      - Echebastar
+      - JL
+      - DBB
+      - ClassSFIOnPositions
+      - NineDimensions
+      - AccountingDimensions
+      type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

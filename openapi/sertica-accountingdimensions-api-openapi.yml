@@ -1,0 +1,1342 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Accounting Dimensions API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: AccountingDimensions
+paths:
+  /AccountingDimensions:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Gets a list of AccountingDimensions
+      operationId: GetAccountingDimensions
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - AccountingDimensions
+      summary: Creates a new accountingDimension record
+      operationId: CreateAccountingDimension
+      requestBody:
+        description: The AccountingDimension Object, including reference lists
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/{dimensionNo}:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Gets a specific AccountingDimension
+      operationId: GetAccountingDimension
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: the dimensionNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested accountingDimension
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an accountingDimension with the supplied Dimension No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - AccountingDimensions
+      summary: Updates an existing AccountingDimension
+      operationId: UpdateAccountingDimension
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: The dimensionNo of the accountingDimension to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The AccountingDimension DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+      responses:
+        '200':
+          description: Returns the updated AccountingDimension object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - AccountingDimensions
+      summary: Deletes an accountingDimension record
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: The dimensionNo of the AccountingDimension to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension_Delete</td><td style='border-bottom:none'>Delete</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      operationId: deleteAccountingDimensionsByDimensionNo
+      x-operation-id-source: derived
+  /AccountingDimensions/{dimensionNo}/history:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Gets history for a specific AccountingDimension
+      operationId: GetAccountingDimensionHistory
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: The dimensionNo to get
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested accountingDimension
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an accountingDimension with the supplied Dimension No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/search:
+    post:
+      tags:
+      - AccountingDimensions
+      summary: Search for accountingDimensions Takes a SearchDefinition input, which can…
+      operationId: SearchAccountingDimensions
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/searchCount:
+    post:
+      tags:
+      - AccountingDimensions
+      summary: Returns number of hits in a search for AccountingDimensions Takes a…
+      operationId: SearchCountAccountingDimensions
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/searchIndex/{accountingDimensionGuid}:
+    post:
+      tags:
+      - AccountingDimensions
+      summary: Get index of a record in a search for AccountingDimensions Takes a…
+      operationId: SearchIndexAccountingDimensions
+      parameters:
+      - name: accountingDimensionGuid
+        in: path
+        description: The accountingDimension to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/searchInfo:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoAccountingDimensions
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /AccountingDimensions/{dimensionNo}/copy:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Copies an existing accountingDimension to a new object
+      operationId: CopyAccountingDimension
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: The DimensionNo of the accountingDimension to copy
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the new AccountingDimension object with properties from original
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimension'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/{dimensionNo}/values:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Gets the list of values for a AccountingDimension
+      operationId: GetAccountingDimensionValues
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionValue'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionValue'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionValue'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/{dimensionNo}/derivedvalues:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Gets the list of derived values for a AccountingDimension
+      operationId: GetAccountingDimensionDerivedValues
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionDerivedValue'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionDerivedValue'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionDerivedValue'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/{dimensionNo}/mandatoryvalues:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Gets the list of mandatory values for a AccountingDimension
+      operationId: GetAccountingDimensionMandatoryValues
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionMandatoryValue'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionMandatoryValue'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionMandatoryValue'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AccountingDimensions/{dimensionNo}/affectors:
+    get:
+      tags:
+      - AccountingDimensions
+      summary: Gets the list of affectors for a AccountingDimension
+      operationId: GetAccountingDimensionAccountingDimensionAffectors
+      parameters:
+      - name: dimensionNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionAccountingDimensionAffector'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionAccountingDimensionAffector'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionAccountingDimensionAffector'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AccountingDimension</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Accounting.AccountingDimensionAccountingDimensionAffector:
+      type: object
+      properties:
+        accountingDimensionNo:
+          type:
+          - string
+          - 'null'
+        accountingDimensionName:
+          type:
+          - string
+          - 'null'
+        dimensionNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type: string
+          format: uuid
+        affectorOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        availableOnInvoice:
+          type:
+          - boolean
+          - 'null'
+        availableOnPurchaseOrderHeader:
+          type:
+          - boolean
+          - 'null'
+        availableOnPurchaseOrderPosition:
+          type:
+          - boolean
+          - 'null'
+        availableOnRequisitionHeader:
+          type:
+          - boolean
+          - 'null'
+        availableOnRequisitionPosition:
+          type:
+          - boolean
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.Accounting.AccountingDimensionDerivedValue:
+      type: object
+      properties:
+        dimensionNo:
+          type:
+          - string
+          - 'null'
+        dimensionName:
+          type:
+          - string
+          - 'null'
+        derivedValueConfiguration:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Accounting.AccountingDimensionMandatoryValue:
+      type: object
+      properties:
+        dimensionNo:
+          type:
+          - string
+          - 'null'
+        dimensionName:
+          type:
+          - string
+          - 'null'
+        mandatory:
+          type:
+          - boolean
+          - 'null'
+        readOnly:
+          type:
+          - boolean
+          - 'null'
+        mandatoryValueConfiguration:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.Accounting.AccountingDimension:
+      type: object
+      properties:
+        dimensionNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        inactive:
+          type:
+          - boolean
+          - 'null'
+        order:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        availableOnInvoice:
+          type:
+          - boolean
+          - 'null'
+        availableOnPurchaseOrderHeader:
+          type:
+          - boolean
+          - 'null'
+        availableOnPurchaseOrderPosition:
+          type:
+          - boolean
+          - 'null'
+        availableOnRequisitionHeader:
+          type:
+          - boolean
+          - 'null'
+        availableOnRequisitionPosition:
+          type:
+          - boolean
+          - 'null'
+        affectorOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionValue'
+        derivedValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionDerivedValue'
+        affectors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionAccountingDimensionAffector'
+        mandatoryValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Accounting.AccountingDimensionMandatoryValue'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Accounting.AccountingDimensionValue:
+      type: object
+      properties:
+        dimensionNo:
+          type:
+          - string
+          - 'null'
+        dimensionName:
+          type:
+          - string
+          - 'null'
+        valueNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        inactive:
+          type:
+          - boolean
+          - 'null'
+        externalReference:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

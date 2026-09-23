@@ -1,0 +1,715 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Data Transactions API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: DataTransactions
+paths:
+  /DataTransactions/search:
+    post:
+      tags:
+      - DataTransactions
+      summary: Search for DataTransactions Takes a SearchDefinition input, which can include…
+      operationId: SearchDataTransactions
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Transactions.DataTransaction'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Transactions.DataTransaction'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Transactions.DataTransaction'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>DataTransaction</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /DataTransactions/searchInfo:
+    get:
+      tags:
+      - DataTransactions
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoDataTransactions
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /DataTransactions/searchCount:
+    post:
+      tags:
+      - DataTransactions
+      summary: Returns number Takes a SearchDefinition input, which can include filters and…
+      operationId: SearchCountDataTransactions
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>DataTransaction</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /DataTransactions/searchIndex/{dataTransactionGuid}:
+    post:
+      tags:
+      - DataTransactions
+      summary: Get index of a record in a search for Data Transactions Takes a…
+      operationId: SearchDataTransactionIndex
+      parameters:
+      - name: dataTransactionGuid
+        in: path
+        description: The data transaction to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>DataTransaction</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /DataTransactions/Outgoing/{dataTransactionNo}/retransmit:
+    post:
+      tags:
+      - DataTransactions
+      summary: Mark Data Transaction for Retransmission
+      operationId: RetransmitDataTransaction
+      parameters:
+      - name: dataTransactionNo
+        in: path
+        description: DataTransactionNo
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>DataTransaction_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /DataTransactions/{direction}/{dataTransactionNo}/Data:
+    get:
+      tags:
+      - DataTransactions
+      summary: Returns a list of DataTransactionData used for the DataTransactions
+      operationId: GetDataTransactionData
+      parameters:
+      - name: dataTransactionNo
+        in: path
+        description: The DataTransactionNo to fetch data for
+        required: true
+        schema:
+          type: string
+      - name: direction
+        in: path
+        description: The direction of the DataTransaction to fetch data for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the Transaction Data for the Data Transaction
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Transactions.DataTransactionData'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Transactions.DataTransactionData'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Transactions.DataTransactionData'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>DataTransaction</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_TransactionStatus:
+      enum:
+      - Open
+      - Closed
+      - TransmittedToWS
+      - ReceivedInWS
+      - ReceivedInLH
+      - VersionConflict
+      - Error
+      - Retransmit
+      - Confirmed
+      - Final
+      - Missing
+      - ManualTransfer
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_TransactionDirection:
+      enum:
+      - Outgoing
+      - Incoming
+      type: string
+    SerticaWebApi.Models.Transactions.DataTransaction:
+      type: object
+      properties:
+        transactionNo:
+          type: integer
+          format: int32
+        transactionOrder:
+          type: integer
+          format: int32
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_TransactionStatus'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_TransactionDirection'
+        retransmitCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Transactions.DataTransactionData:
+      type: object
+      properties:
+        transactionOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGUID:
+          type:
+          - string
+          - 'null'
+        objectLiveGuid:
+          type:
+          - string
+          - 'null'
+        objectTable:
+          type:
+          - string
+          - 'null'
+        typeName:
+          type:
+          - string
+          - 'null'
+        transactionGuid:
+          type:
+          - string
+          - 'null'
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

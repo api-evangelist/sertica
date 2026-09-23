@@ -1,0 +1,4926 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Im Invoices API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: ImInvoices
+paths:
+  /ImInvoices:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a list of ImInvoices
+      operationId: GetInvoices
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - ImInvoices
+      summary: Creates a new invoice record
+      operationId: CreateImInvoice
+      requestBody:
+        description: The ImInvoice Object, including reference lists
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a specific ImInvoice
+      operationId: GetImInvoice
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The InvoiceNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested ImInvoice
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an ImInvoice with the supplied Invoice No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/calculatedFields:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a specific ImInvoice
+      operationId: GetImInvoiceCalculatedFields
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The InvoiceNo to get calculated fields for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested ImInvoice
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an ImInvoice with the supplied Invoice No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/history:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets history for a specific ImInvoice
+      operationId: GetImInvoiceHistory
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The InvoiceNo to get
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested ImInvoice
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an ImInvoice with the supplied Invoice No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/search:
+    post:
+      tags:
+      - ImInvoices
+      summary: Search for ImInvoices Takes a SearchDefinition input, which can include filters…
+      operationId: SearchImInvoices
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/searchIndex/{invoiceGuid}:
+    post:
+      tags:
+      - ImInvoices
+      summary: Get index of a record in a search for ImInvoice Takes a SearchDefinition input…
+      operationId: SearchIndexImInvoices
+      parameters:
+      - name: invoiceGuid
+        in: path
+        description: The ImInvoice to find index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/searchCount:
+    post:
+      tags:
+      - ImInvoices
+      summary: Returns number of hits in a search for ImInvoices Takes a SearchDefinition…
+      operationId: SearchCountImInvoices
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/searchInfo:
+    get:
+      tags:
+      - ImInvoices
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoImInvoices
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /ImInvoices/build:
+    post:
+      tags:
+      - ImInvoices
+      summary: Builds a record and returns it without persisting it
+      operationId: BuildInvoice
+      requestBody:
+        description: The DTO containing user choices for building invoice
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceCreateSelection'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceCreateSelection'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceCreateSelection'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceCreateSelection'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{imInvoiceNo}:
+    put:
+      tags:
+      - ImInvoices
+      summary: Updates an existing Invoice
+      operationId: UpdateImInvoice
+      parameters:
+      - name: imInvoiceNo
+        in: path
+        description: The imInvoiceNo of the imInvoice to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The ImInvoice DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+      responses:
+        '200':
+          description: Returns the updated ImInvoice object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/positions:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a list of ImInvoice positions
+      operationId: GetImInvoicePositions
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The Invoice No. to fetch values for
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/positions/calculatedFields:
+    get:
+      tags:
+      - ImInvoices
+      operationId: GetInvoicePositionsCalculatedFields
+      parameters:
+      - name: invoiceNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get invoice positions calculated fields
+      x-summary-source: derived
+  /ImInvoices/{invoiceNo}/positions/{positionNo}:
+    get:
+      tags:
+      - ImInvoices
+      operationId: GetInvoicePosition
+      parameters:
+      - name: invoiceNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: positionNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get invoice position
+      x-summary-source: derived
+  /ImInvoices/{invoiceNo}/positions/{positionNo}/calculatedFields:
+    get:
+      tags:
+      - ImInvoices
+      operationId: GetInvoicePositionCalculatedFields
+      parameters:
+      - name: invoiceNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: positionNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get invoice position calculated fields
+      x-summary-source: derived
+  /ImInvoices/{invoiceNo}/approval:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a list of ImInvoice Approvers
+      operationId: GetImInvoiceApprovers
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The Invoice No. to fetch values for
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprover'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprover'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprover'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/approveFromApprovalWeb:
+    post:
+      tags:
+      - ImInvoices
+      summary: Approve Invoice
+      operationId: ApproveInvoiceFromApprovalWeb
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The InvoiceNo to approve
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Approve</td><td style='border-bottom:none'>Function</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ApprovalWeb</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/rejectFromApprovalWeb:
+    post:
+      tags:
+      - ImInvoices
+      summary: Reject Invoice
+      operationId: RejectInvoiceFromApprovalWeb
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The InvoiceNo to reject
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The info needed to reject the invoice
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Reject</td><td style='border-bottom:none'>Function</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ApprovalWeb</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/UpdateExternalPaymentInfo:
+    post:
+      tags:
+      - ImInvoices
+      summary: Updates external payment information on an Invoice
+      operationId: UpdateExternalPaymentInfo
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The InvoiceNo of the invoice to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The external payment information to set
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceExternalPaymentInfo'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceExternalPaymentInfo'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceExternalPaymentInfo'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceExternalPaymentInfo'
+      responses:
+        '200':
+          description: If the external payment info was updated
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an invoice with the supplied Invoice No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/documents/primary:
+    get:
+      tags:
+      - ImInvoices
+      summary: Returns a specific job document
+      operationId: GetPrimaryInvoiceDocument
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The Invoice No
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '200':
+          description: Returns the primary invoice  document for the invoice
+        '404':
+          description: If a primary invoice document for the invoice cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/purchaseOrders:
+    get:
+      tags:
+      - ImInvoices
+      summary: Returns a list of Purchase Orders used on the Invoice
+      operationId: GetImInvoicePurchaseOrders
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The InvoiceNo to fetch documents for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the purchase orders for the ImInvoice
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePurchaseOrder'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePurchaseOrder'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePurchaseOrder'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/responses:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a list of ImInvoice Responses
+      operationId: GetImInvoiceResponses
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The Invoice No. to fetch values for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - ImInvoices
+      summary: Add response
+      operationId: AddImInvoiceResponse
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The invoiceNo to fetch for
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The ImInvoiceResponse DTO to send
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>InextiaFullProcurement</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/responses/count:
+    get:
+      tags:
+      - ImInvoices
+      summary: Returns number of ImInvoiceResponses for invoiceNo
+      operationId: CountImInvoiceResponses
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The InvoiceNo
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/additionalCosts:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a list of ImInvoice additional costs
+      operationId: GetImInvoiceAdditionalCosts
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The Invoice No. to fetch values for
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceAdditionalCost'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceAdditionalCost'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceAdditionalCost'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/documents:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a list of ImInvoice documents
+      operationId: GetImInvoiceDocuments
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: The Invoice No. to fetch values for
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceDocument2Link'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceDocument2Link'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceDocument2Link'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/purchaseordertotals:
+    get:
+      tags:
+      - ImInvoices
+      operationId: GetImInvoicePurchaseOrderTotals
+      parameters:
+      - name: invoiceNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceTotal'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceTotal'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceTotal'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get im invoice purchase order totals
+      x-summary-source: derived
+  /ImInvoices/{invoiceNo}/relatedinvoices:
+    get:
+      tags:
+      - ImInvoices
+      summary: Gets a list of related Invoices
+      operationId: GetImInvoiceRelatedInvoices
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>RequestForQuote</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canBeReversed:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if current user can reverse invoice
+      operationId: CanBeReversed
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Reversal</td><td style='border-bottom:none'>Function</td></tr><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/createReversal:
+    post:
+      tags:
+      - ImInvoices
+      summary: Create reversed ImInvoice
+      operationId: CreateReversal
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceReversal'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceReversal'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceReversal'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceReversal'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Reversal</td><td style='border-bottom:none'>Function</td></tr><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canBeAutomatched:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if current invoice can be automatched
+      operationId: CanBeAutomatched
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/automatchInvoice:
+    post:
+      tags:
+      - ImInvoices
+      summary: Automatch current invoice
+      operationId: AutoMatch
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canBePutOnHold:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if current invoice can be put on hold by the current user
+      operationId: CanBePutOnHold
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/putOnHold:
+    post:
+      tags:
+      - ImInvoices
+      summary: Put the current invoice on hold
+      operationId: PutOnHold
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canBeResumed:
+    get:
+      tags:
+      - ImInvoices
+      summary: Checks if the invoice can be taken out of hold/resumed by the current user
+      operationId: CanBeResumed
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/resume:
+    post:
+      tags:
+      - ImInvoices
+      summary: Resumes the invoice
+      operationId: Resume
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canReturnToDraft:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if Invoice can be returned to draft by current user
+      operationId: CanReturnToDraft
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/returnToDraft:
+    post:
+      tags:
+      - ImInvoices
+      summary: Returns invoice to draft
+      operationId: ReturnToDrafr
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceReturnToDraft'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceReturnToDraft'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceReturnToDraft'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceReturnToDraft'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canBeRejected:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if Invoice can be rejected by currentuser
+      operationId: CanBeRejected
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/reject:
+    post:
+      tags:
+      - ImInvoices
+      summary: Rejects the current invoice
+      operationId: Reject
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/addDocument:
+    post:
+      tags:
+      - ImInvoices
+      summary: Add Document to a closed invoice
+      operationId: AddDocumentToClosedInvoice
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: list of documentNos to add
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canBeMovedToAnotherUnit:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if Invoice can be moved to another unit
+      operationId: CanBeMovedToAnotherUnit
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/moveToAnotherUnit:
+    post:
+      tags:
+      - ImInvoices
+      summary: Move Invoice to another Unit
+      operationId: MoveToAnotherUnit
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceMoveToUnitResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceMoveToUnitResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceMoveToUnitResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canResponsibleBeChanged:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if responsible of invoice can be changed
+      operationId: canResponsibleBeChanged
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/changeResponsible:
+    post:
+      tags:
+      - ImInvoices
+      summary: Change responsible User on Invoice
+      operationId: changeResponsible
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Arguments for method
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/canBeForwardedForApproval:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if Invoice can be forwarded for approval
+      operationId: CanBeForwardedForApproval
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/PrepareForwardForApproval:
+    post:
+      tags:
+      - ImInvoices
+      summary: Check what issues may occur for invoice when forwarding for approval
+      operationId: PrepareForForwardForApproval
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/ExecuteForwardForApproval:
+    post:
+      tags:
+      - ImInvoices
+      summary: Execute forward for approval for one or more invoices
+      operationId: ExecuteForwardForApproval
+      requestBody:
+        description: Contains invoice numbers and user arguments
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecuteForwardForApprovalRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecuteForwardForApprovalRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecuteForwardForApprovalRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecuteForwardForApprovalRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/CanBeApproved:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if Invoice can be approved
+      operationId: CanBeApproved
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/PrepareApprove:
+    post:
+      tags:
+      - ImInvoices
+      summary: Check what issues may occur for invoice when forwarding for approval
+      operationId: PrepareApprove
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/ExecuteApprove:
+    post:
+      tags:
+      - ImInvoices
+      summary: Execute approve for one or more invoices
+      operationId: ExecuteApprove
+      requestBody:
+        description: Contains invoice numbers and user arguments
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecuteApproveRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecuteApproveRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecuteApproveRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecuteApproveRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/CanBePreApproved:
+    get:
+      tags:
+      - ImInvoices
+      summary: Check if Invoice can be pre approved
+      operationId: CanBePreApproved
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/PreparePreApprove:
+    post:
+      tags:
+      - ImInvoices
+      summary: Check what issues may occur for invoice when Pre Approving
+      operationId: PreparePreApprove
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/ExecutePreApprove:
+    post:
+      tags:
+      - ImInvoices
+      summary: Execute pre approve for one or more invoices
+      operationId: ExecutePreApprove
+      requestBody:
+        description: Contains invoice numbers and user arguments
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecutePreApproveRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecutePreApproveRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecutePreApproveRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ExecutePreApproveRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /ImInvoices/{invoiceNo}/changeApprovalSetup:
+    post:
+      tags:
+      - ImInvoices
+      summary: Change approval setup
+      operationId: ChangeApprovalSetup
+      parameters:
+      - name: invoiceNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ImInvoice_AllowChangeApprovalFlow</td><td style='border-bottom:none'>Function</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalSelectionKey:
+      enum:
+      - ApprovalSetup
+      - Approver
+      type: string
+    SerticaWebApi.Models.Framework.Amount:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveMessageType'
+        message:
+          type:
+          - string
+          - 'null'
+        affectedInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        isBlocking:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredDecision:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDecisionKey'
+        question:
+          type:
+          - string
+          - 'null'
+        affectedInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        triggeredResponseLog:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification'
+        isOptional:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredDecision:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDecisionKey'
+        question:
+          type:
+          - string
+          - 'null'
+        affectedInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        triggeredResponseLog:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.MoveToUnitIssue:
+      type: object
+      properties:
+        objectNo:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoicePosition:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        quantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        measuringUnitNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        discountPercent:
+          type:
+          - number
+          - 'null'
+          format: double
+        vatCode:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        departmentNo:
+          type:
+          - string
+          - 'null'
+        departmentUnitExternalReference1:
+          type:
+          - string
+          - 'null'
+        departmentUnitExternalReference2:
+          type:
+          - string
+          - 'null'
+        departmentUnitExternalReference3:
+          type:
+          - string
+          - 'null'
+        projectNo:
+          type:
+          - string
+          - 'null'
+        projectUnitExternalReference1:
+          type:
+          - string
+          - 'null'
+        projectUnitExternalReference2:
+          type:
+          - string
+          - 'null'
+        projectUnitExternalReference3:
+          type:
+          - string
+          - 'null'
+        incidentNo:
+          type:
+          - string
+          - 'null'
+        classNo:
+          type:
+          - string
+          - 'null'
+        sfiNo:
+          type:
+          - string
+          - 'null'
+        itemTypeNo:
+          type:
+          - string
+          - 'null'
+        userNo:
+          type:
+          - string
+          - 'null'
+        itemNo:
+          type:
+          - string
+          - 'null'
+        customReference1:
+          type:
+          - string
+          - 'null'
+        accountNo:
+          type:
+          - string
+          - 'null'
+        positionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        sapInternalOrderNo:
+          type:
+          - string
+          - 'null'
+        lineAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        vatAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        lineTotal:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        unitExternalReference1:
+          type:
+          - string
+          - 'null'
+        unitExternalReference2:
+          type:
+          - string
+          - 'null'
+        unitExternalReference3:
+          type:
+          - string
+          - 'null'
+        materialNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        purchaseOrderPositionUnitNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionReceivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        purchaseOrderPositionOrderedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        purchaseOrderPositionOutstandingQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        purchaseOrderPositionRejectedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        measureUnitNo:
+          type:
+          - string
+          - 'null'
+        supplierItemNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionPrice:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        purchaseOrderCurrencyNo:
+          type:
+          - string
+          - 'null'
+        approvedInvoicedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        outstandingQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        vatName:
+          type:
+          - string
+          - 'null'
+        vatRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        positionUnitNo:
+          type:
+          - string
+          - 'null'
+        positionUnitName:
+          type:
+          - string
+          - 'null'
+        sfiName:
+          type:
+          - string
+          - 'null'
+        projectName:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionReferenceValue:
+          type:
+          - string
+          - 'null'
+        className:
+          type:
+          - string
+          - 'null'
+        incidentDescription:
+          type:
+          - string
+          - 'null'
+        incidentCategory:
+          type:
+          - string
+          - 'null'
+        departmentName:
+          type:
+          - string
+          - 'null'
+        invoiceCurrencyNo:
+          type:
+          - string
+          - 'null'
+        itemUnitNo:
+          type:
+          - string
+          - 'null'
+        handled:
+          type:
+          - boolean
+          - 'null'
+        accountingDimensions: {}
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PerInvoiceCostTypeSelectionRequirement:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        requiresUserInput:
+          type: boolean
+        preselectedCostTypeNo:
+          type:
+          - string
+          - 'null'
+        availableOptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ExecuteForwardForApprovalRequest:
+      type: object
+      properties:
+        invoiceNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        context:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalArguments'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleArguments:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        massChangeResponsible:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
+        appliedToInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        scope:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope'
+        defaultMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderWorkflow:
+      enum:
+      - Draft
+      - AwaitingPriceApproval
+      - AwaitingOrder
+      - OpenForChanges
+      - Closed
+      - AwaitingGatekeeperReview
+      - NotApproved
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceOperationResult:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        passedValidation:
+          type: boolean
+        executedSuccessfully:
+          type: boolean
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason:
+      enum:
+      - MissingItemCertificates
+      - CompanyPolicy
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus:
+      enum:
+      - NotInvoiced
+      - PartlyInvoiced
+      - FullyInvoiced
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveArguments:
+      type: object
+      properties:
+        decisions:
+          type:
+          - object
+          - 'null'
+          properties:
+            AcceptMissingItemCertificates:
+              type: boolean
+            AcceptInvoiceDifferences:
+              type: boolean
+            MissingItemTypeContinueWithRemainingInvoices:
+              type: boolean
+            AcceptPOAlreadyFullyInvoiced:
+              type: boolean
+            ConfirmNextApproverUpdate:
+              type: boolean
+            ApproveViaNextApproverUpdate:
+              type: boolean
+            UpdateSupplierItemPrice:
+              type: boolean
+            ContinueWithMultiSelect:
+              type: boolean
+            UnitAccessContinueWithRemainingInvoices:
+              type: boolean
+            ConfirmApproval:
+              type: boolean
+          additionalProperties: false
+        selections:
+          type:
+          - object
+          - 'null'
+          properties:
+            CostType:
+              type: array
+              items:
+                type: string
+          additionalProperties: false
+        responseLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData'
+        doNotCancelChanges:
+          type: boolean
+        poStatusSelections:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceSetPOStatus'
+        perInvoiceCostTypeSelections:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - array
+            - 'null'
+            items:
+              type: string
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveSelectionKey:
+      enum:
+      - CostType
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalArguments:
+      type: object
+      properties:
+        decisions:
+          type:
+          - object
+          - 'null'
+          properties:
+            AcceptMissingItemCertificates:
+              type: boolean
+            AcceptInvoiceDifferences:
+              type: boolean
+            MissingItemTypeContinueWithRemainingInvoices:
+              type: boolean
+          additionalProperties: false
+        selections:
+          type:
+          - object
+          - 'null'
+          properties:
+            ApprovalSetup:
+              type: array
+              items:
+                type: string
+            Approver:
+              type: array
+              items:
+                type: string
+          additionalProperties: false
+        responseLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoiceMoveToUnitResult:
+      type: object
+      properties:
+        imInvoice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        issues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.MoveToUnitIssue'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
+      enum:
+      - User
+      - Role
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        flowType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType'
+        displayInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage'
+        requiredInput:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInputContract'
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        invoiceResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInvoiceOperationResult'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        hasBlockingErrors:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderStatus:
+      enum:
+      - NotOrdered
+      - Ordered
+      - PartlyReceived
+      - Received
+      - Cancelled
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceDocumentType:
+      enum:
+      - VendorInvoice
+      - VendorCreditNote
+      - InternalInvoice
+      - InternalCreditNote
+      - Prepayment
+      - Purchase
+      - PrepaymentCreditNote
+      type: string
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInvoiceOperationResult:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        passedValidation:
+          type: boolean
+        executedSuccessfully:
+          type: boolean
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredSelection:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveSelectionKey'
+        requiresUserInput:
+          type: boolean
+        availableOptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
+        preselectedNo:
+          type:
+          - string
+          - 'null'
+        allowMultiple:
+          type: boolean
+        hasPreselection:
+          type: boolean
+          readOnly: true
+        hasOptions:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
+        scope:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope'
+        appliedToInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        defaultMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoiceExternalPaymentInfo:
+      type: object
+      properties:
+        externalDocumentNo:
+          type:
+          - string
+          - 'null'
+        externalCreateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        paymentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        clearingDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        paymentStatus:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalInputContract:
+      type: object
+      properties:
+        decisions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredDecision'
+        selections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredSelection'
+        invoiceResponseLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceReversal:
+      type: object
+      properties:
+        postingDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceDocument2Link:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        isInvoice:
+          type:
+          - boolean
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pageNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogStatus:
+      enum:
+      - OK
+      - Cancel
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDecisionKey:
+      enum:
+      - AcceptMissingItemCertificates
+      - AcceptInvoiceDifferences
+      - MissingItemTypeContinueWithRemainingInvoices
+      - AcceptPOAlreadyFullyInvoiced
+      - ConfirmNextApproverUpdate
+      - ApproveViaNextApproverUpdate
+      - UpdateSupplierItemPrice
+      - ContinueWithMultiSelect
+      - UnitAccessContinueWithRemainingInvoices
+      - ConfirmApproval
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceAdditionalCost:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        positionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        deliveryCostNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        vatNo:
+          type:
+          - string
+          - 'null'
+        vatName:
+          type:
+          - string
+          - 'null'
+        vatRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        vatAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        postingDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        additionalCostUnitNo:
+          type:
+          - string
+          - 'null'
+        additionalCostUnitName:
+          type:
+          - string
+          - 'null'
+        accountSFINo:
+          type:
+          - string
+          - 'null'
+        accountSFIName:
+          type:
+          - string
+          - 'null'
+        projectNo:
+          type:
+          - string
+          - 'null'
+        projectName:
+          type:
+          - string
+          - 'null'
+        incidentNo:
+          type:
+          - string
+          - 'null'
+        incidentDescription:
+          type:
+          - string
+          - 'null'
+        category:
+          type:
+          - string
+          - 'null'
+        departmentNo:
+          type:
+          - string
+          - 'null'
+        departmentName:
+          type:
+          - string
+          - 'null'
+        userNo:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        invoiceCurrencyNo:
+          type:
+          - string
+          - 'null'
+        classNo:
+          type:
+          - string
+          - 'null'
+        className:
+          type:
+          - string
+          - 'null'
+        handled:
+          type:
+          - boolean
+          - 'null'
+        accountingDimensions: {}
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveMessageType:
+      enum:
+      - InvoiceWillBeSkipped
+      - InvoiceSkippedMissingItemType
+      - NotAuthorized
+      - EmptyDimensions
+      - MissingItemType
+      - AlternatePayerNotAllowed
+      - InvoiceSkippedNoUnitAccess
+      - InvoiceSkippedInvalidPostingPeriod
+      - InvoiceSkippedMissingCertificates
+      - ApprovalResponsibleCannotApprove
+      - NoNextApprover
+      - NoneOfSelectedInvoicesCanBeApproved
+      - ValidationFailed
+      - ContractValidationFailed
+      - ExecutionFailed
+      - MultiSelectNotSupported
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        flowType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType'
+        displayInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage'
+        requiredInput:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalInputContract'
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        invoiceResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceOperationResult'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        hasBlockingErrors:
+          type: boolean
+          readOnly: true
+        requiresUserInput:
+          type: boolean
+          readOnly: true
+        canProceedToExecution:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        recipientId:
+          type:
+          - string
+          - 'null'
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        dialogStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogStatus'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.POStatusSelectionRequirement:
+      type: object
+      properties:
+        invoicePurchaseOrderGuid:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        suggestedStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus'
+        index:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        defaultMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceInterfaceDocumentType:
+      enum:
+      - None
+      - NormalInvoice
+      - DetailedInvoice
+      - ApprovedInvoice
+      - CostInvoice
+      - TemporaryInvoice
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.ProcurementQA.EvaluationObjectLink.EvaluationQuestionImInvoiceLink:
+      type: object
+      properties:
+        addressName:
+          type:
+          - string
+          - 'null'
+        addressNo:
+          type:
+          - string
+          - 'null'
+        objectNo:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionName:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionNo:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerName:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerNo:
+          type:
+          - string
+          - 'null'
+        comment:
+          type:
+          - string
+          - 'null'
+        groupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        evaluationStep:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_EvaluationProcess'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ExecuteApproveRequest:
+      type: object
+      properties:
+        invoiceNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        context:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveArguments'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PreApproveArguments:
+      type: object
+      properties:
+        decisions:
+          type:
+          - object
+          - 'null'
+          properties:
+            AcceptInvoiceDifferences:
+              type: boolean
+            ContinueWithMultiSelect:
+              type: boolean
+            ConfirmPreApproval:
+              type: boolean
+          additionalProperties: false
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType:
+      enum:
+      - ProcurementApprovalSetup
+      - InvoiceApprovalFlow
+      - CompanyUserApproval
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption:
+      type: object
+      properties:
+        'no':
+          type:
+          - string
+          - 'null'
+        data: {}
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalMessageType:
+      enum:
+      - InvoiceWillBeSkipped
+      - InvoiceSkippedMissingPositionsWithPO
+      - InvoiceSkippedMissingPositionsWithoutPO
+      - InvoiceSkippedMissingItemType
+      - NotAuthorized
+      - EmptyDimensions
+      - MissingItemType
+      - AlternatePayerNotAllowed
+      - ApproverNotFound
+      - ValidationFailed
+      - ContractValidationFailed
+      - ExecutionFailed
+      - MultiSelectNotSupported
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceSetPOStatus:
+      enum:
+      - Auto
+      - PartlyInvoiced
+      - FullyInvoiced
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo:
+      type: object
+      properties:
+        remarks:
+          type:
+          - string
+          - 'null'
+        rejectReasonNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDecisionKey:
+      enum:
+      - AcceptMissingItemCertificates
+      - AcceptInvoiceDifferences
+      - MissingItemTypeContinueWithRemainingInvoices
+      type: string
+    SerticaWebApi.Models.ImInvoice.ExecutePreApproveRequest:
+      type: object
+      properties:
+        invoiceNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        context:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PreApproveArguments'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_EvaluationProcess:
+      enum:
+      - RejectingRFQ
+      - PlacingPurchaseOrder
+      - ReceivingRequisition
+      - ReceivingShipment
+      - TransitReceiving
+      - EvaluateSupplier
+      - ReceivingPurchaseOrder
+      - EvaluateImInvoice
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceCreateSelection:
+      type: object
+      properties:
+        selectedPurchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        selectedUnitNo:
+          type:
+          - string
+          - 'null'
+        selectedCompanyNo:
+          type:
+          - string
+          - 'null'
+        selectedSupplierNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoiceReturnToDraft:
+      type: object
+      properties:
+        response:
+          type:
+          - string
+          - 'null'
+        recipientNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount:
+      type: object
+      properties:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        rate:
+          type:
+          - number
+          - 'null'
+          format: double
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type:
+          - string
+          - 'null'
+        imInvoice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus:
+      enum:
+      - Draft
+      - AwaitingApproval
+      - Approved
+      - Rejected
+      - OnHold
+      - ApprovedOnHold
+      - PostApprovalRequired
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInputContract:
+      type: object
+      properties:
+        decisions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredDecision'
+        selections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredSelection'
+        invoiceResponseLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement'
+        poStatusSelections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.POStatusSelectionRequirement'
+        perInvoiceCostTypeSelections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PerInvoiceCostTypeSelectionRequirement'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoicePurchaseOrder:
+      type: object
+      properties:
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDescription:
+          type:
+          - string
+          - 'null'
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        invoiceDescription:
+          type:
+          - string
+          - 'null'
+        showInHeader:
+          type:
+          - boolean
+          - 'null'
+        setPoStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceSetPOStatus'
+        invoiceStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        subTotal:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        positionsSubTotal:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        deliveryCostsSubTotal:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        purchaserResourceNo:
+          type:
+          - string
+          - 'null'
+        approverResourceNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderUnitNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderClassNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderClassName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDepartmentNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDepartmentName:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalMessageType'
+        message:
+          type:
+          - string
+          - 'null'
+        affectedInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        isBlocking:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoiceTotal:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        matched:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        difference:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoice:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        isOverdue:
+          type: boolean
+        overdueDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        invoiceDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dueDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderDescription:
+          type:
+          - string
+          - 'null'
+        purchaseOrderStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderStatus'
+        purchaseOrderWorkflow:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderWorkflow'
+        purchaseOrderSetPOStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceSetPOStatus'
+        multiplePurchaseOrders:
+          type:
+          - boolean
+          - 'null'
+        documentWebLinkNo:
+          type:
+          - string
+          - 'null'
+        totalOutstandingForInvoicingForAllPurchaseOrders:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        exchangeRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        canApprove:
+          type:
+          - boolean
+          - 'null'
+        standardCurrencyCode:
+          type:
+          - string
+          - 'null'
+        supplierInvoiceNo:
+          type:
+          - string
+          - 'null'
+        supplierVATNo:
+          type:
+          - string
+          - 'null'
+        documentType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceDocumentType'
+        vatCodeNo:
+          type:
+          - string
+          - 'null'
+        vatCodeName:
+          type:
+          - string
+          - 'null'
+        vatRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus'
+        referenceImInvoiceNo:
+          type:
+          - string
+          - 'null'
+        referenceImInvoiceDescription:
+          type:
+          - string
+          - 'null'
+        automatched:
+          type:
+          - boolean
+          - 'null'
+        approvedOnHold:
+          type:
+          - boolean
+          - 'null'
+        preApproved:
+          type:
+          - boolean
+          - 'null'
+        reversal:
+          type:
+          - boolean
+          - 'null'
+        importedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        supplierDueDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        registeredDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        postingDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        responsibleUserNo:
+          type:
+          - string
+          - 'null'
+        responsibleUserName:
+          type:
+          - string
+          - 'null'
+        nextApproverNo:
+          type:
+          - string
+          - 'null'
+        nextApproverName:
+          type:
+          - string
+          - 'null'
+        nextApproverType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        forwardForApprovalResponsibleNo:
+          type:
+          - string
+          - 'null'
+        forwardForApprovalResponsibleName:
+          type:
+          - string
+          - 'null'
+        prepaidStartDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        prepaidEndDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        firstForwardedForApprovalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        externalReference1:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
+          type:
+          - string
+          - 'null'
+        externalReference4:
+          type:
+          - string
+          - 'null'
+        externalSystem:
+          type:
+          - string
+          - 'null'
+        externalDocumentNo:
+          type:
+          - string
+          - 'null'
+        paymentStatus:
+          type:
+          - string
+          - 'null'
+        paymentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        clearingDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        externalCreateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        alternatePayerNo:
+          type:
+          - string
+          - 'null'
+        alternatePayerName:
+          type:
+          - string
+          - 'null'
+        interfaceDocumentType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceInterfaceDocumentType'
+        invoiceNetAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        invoiceNetAmountMatched:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        invoiceNetAmountDifference:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        additionalCostAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        additionalCostMatched:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        additionalCostDifference:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        vatAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        vatMatched:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        vatDifference:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        invoiceTotalAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        invoiceTotalMatched:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        invoiceTotalDifference:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        invoiceTotalAmountInStandardCurrency:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        tryMatching:
+          type: boolean
+        accountingDimensions: {}
+        usedDimensions: {}
+        invoiceSubTotal:
+          type: number
+          format: double
+        approvalSetupNo:
+          type:
+          - string
+          - 'null'
+        approvalSetupName:
+          type:
+          - string
+          - 'null'
+        purchaseOrders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePurchaseOrder'
+        responses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceResponse'
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceDocument2Link'
+        positions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoicePosition'
+        additionalCosts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceAdditionalCost'
+        evaluations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ProcurementQA.EvaluationObjectLink.EvaluationQuestionImInvoiceLink'
+        approvers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoiceApprover'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceResponse:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        imInvoiceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoiceApprover:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        reasonNo:
+          type:
+          - string
+          - 'null'
+        reasonName:
+          type:
+          - string
+          - 'null'
+        amount:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        current:
+          type: boolean
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredSelection:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalSelectionKey'
+        promptText:
+          type:
+          - string
+          - 'null'
+        requiresUserInput:
+          type: boolean
+        availableOptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
+        preselectedNo:
+          type:
+          - string
+          - 'null'
+        allowMultiple:
+          type: boolean
+        hasPreselection:
+          type: boolean
+          readOnly: true
+        hasOptions:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope:
+      enum:
+      - SharedAcrossInvoices
+      - PerInvoice
+      type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

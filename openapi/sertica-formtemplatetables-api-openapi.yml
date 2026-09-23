@@ -1,0 +1,2563 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Form Template Tables API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: FormTemplateTables
+paths:
+  /FormTemplateTables:
+    get:
+      tags:
+      - FormTemplateTables
+      summary: Gets a list of Form Template Tables
+      operationId: GetFormTemplateTables
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - FormTemplateTables
+      summary: Creates a new form template record
+      operationId: CreateFormTemplateTable
+      requestBody:
+        description: The Form Template Table Object, including reference lists
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /FormTemplateTables/{formTemplateTableNo}:
+    get:
+      tags:
+      - FormTemplateTables
+      summary: Gets a specific FormTemplateTable
+      operationId: GetFormTemplateTable
+      parameters:
+      - name: formTemplateTableNo
+        in: path
+        description: The FormTemplateTableNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested form template
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a form template with the supplied Form Template Table No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - FormTemplateTables
+      summary: Updates an existing FormTemplateTable
+      operationId: UpdateFormTemplateTable
+      parameters:
+      - name: formTemplateTableNo
+        in: path
+        description: The FormTemplateTableNo of the form template to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The Form Template Table DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+      responses:
+        '200':
+          description: Returns the updated FormTemplateTable object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - FormTemplateTables
+      summary: Deletes a form template record
+      parameters:
+      - name: formTemplateTableNo
+        in: path
+        description: The FormTemplateTableNo of the FormTemplateTable to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable_Delete</td><td style='border-bottom:none'>Delete</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      operationId: deleteFormTemplateTablesByFormTemplateTableNo
+      x-operation-id-source: derived
+  /FormTemplateTables/{formTemplateTableNo}/history:
+    get:
+      tags:
+      - FormTemplateTables
+      summary: Gets history for a specific FormTemplateTable
+      operationId: GetFormTemplateTableHistory
+      parameters:
+      - name: formTemplateTableNo
+        in: path
+        description: The FormTemplateTableNo to get
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested form template
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a  form template with the supplied Form Template Table No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /FormTemplateTables/search:
+    post:
+      tags:
+      - FormTemplateTables
+      summary: Search for Form Template Tables Takes a SearchDefinition input, which can…
+      operationId: SearchFormTemplateTables
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /FormTemplateTables/searchIndex/{formTemplateGuid}:
+    post:
+      tags:
+      - FormTemplateTables
+      summary: Get index of a record in a search for form templates Takes a SearchDefinition…
+      operationId: SearchIndexFormTemplateTables
+      parameters:
+      - name: formTemplateGuid
+        in: path
+        description: The form template to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /FormTemplateTables/searchCount:
+    post:
+      tags:
+      - FormTemplateTables
+      summary: Returns number of hits in a search for Form Template Tables Takes a…
+      operationId: SearchCountFormTemplateTables
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /FormTemplateTables/searchInfo:
+    get:
+      tags:
+      - FormTemplateTables
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoFormTemplateTables
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /FormTemplateTables/{formTemplateTableNo}/copy:
+    get:
+      tags:
+      - FormTemplateTables
+      summary: Copies an existing FormTemplateTable to a new object
+      operationId: CopyFormTemplateTable
+      parameters:
+      - name: formTemplateTableNo
+        in: path
+        description: The FormTemplateTableNo of the formTemplate to copy
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the new FormTemplateTable object with properties from original
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateTable'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /FormTemplateTables/availableTags/{columnType}:
+    get:
+      tags:
+      - FormTemplateTables
+      parameters:
+      - name: columnType
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateTableColumnSetupDataType'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WordFields'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WordFields'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WordFields'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>FormTemplateTable</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get form template tables available tags by column type
+      x-summary-source: derived
+      operationId: getFormTemplateTablesAvailableTagsByColumnType
+      x-operation-id-source: derived
+components:
+  schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateValuesJSON:
+      type: object
+      properties:
+        value:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        text:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.WordFields:
+      enum:
+      - Subject
+      - EventReportUnitLead
+      - EventReportCompanyLead
+      - FormRemarks
+      - UnitNo
+      - UnitName
+      - UnitImoNo
+      - UnitVesselTypeName
+      - UnitCallSign
+      - UnitGrossTonage
+      - UnitHomePort
+      - UnitManager
+      - UnitFlagName
+      - UnitClassName
+      - UnitMMSI
+      - UnitNetTonnage
+      - UnitDeadweight
+      - UnitOfficialNumber
+      - UnitClassId
+      - UnitSatCNo
+      - UnitSatTelephoneNo
+      - UnitSatFaxNo
+      - UnitEmail
+      - UnitYard
+      - UnitYardNo
+      - UnitKeelLaid
+      - UnitBuiltDate
+      - FormReportNo
+      - FormReportDate
+      - FormStatus
+      - FormReportedBy
+      - FormTitleOfReportedUser
+      - FormTemplateNo
+      - FormTemplateName
+      - FormTemplateRevisionNo
+      - FormTemplateRevisionDate
+      - LatestChangeRequestCreateUserNo
+      - LatestChangeRequestCreateUserName
+      - LatestChangeRequestApprover1UserNo
+      - LatestChangeRequestApprover1UserName
+      - LatestChangeRequestApprover2UserNo
+      - LatestChangeRequestApprover2UserName
+      - FormCreatedDate
+      - FormTemplateDocumentUpdateUser
+      - FormTemplateReference
+      - FormApproverNo1
+      - FormApproverName1
+      - FormApproverUpdateDate1
+      - FormApproverUpdateUserNo1
+      - FormApproverUpdateUserName1
+      - FormApproverUpdateUserTitle1
+      - FormApproverStatus1
+      - FormApproverNo2
+      - FormApproverName2
+      - FormApproverUpdateDate2
+      - FormApproverUpdateUserNo2
+      - FormApproverUpdateUserName2
+      - FormApproverUpdateUserTitle2
+      - FormApproverStatus2
+      - FormApproverNo3
+      - FormApproverName3
+      - FormApproverUpdateDate3
+      - FormApproverUpdateUserNo3
+      - FormApproverUpdateUserName3
+      - FormApproverUpdateUserTitle3
+      - FormApproverStatus3
+      - FormApproverNo4
+      - FormApproverName4
+      - FormApproverUpdateDate4
+      - FormApproverUpdateUserNo4
+      - FormApproverUpdateUserName4
+      - FormApproverUpdateUserTitle4
+      - FormApproverStatus4
+      - FormApproverNo5
+      - FormApproverName5
+      - FormApproverUpdateDate5
+      - FormApproverUpdateUserNo5
+      - FormApproverUpdateUserName5
+      - FormApproverUpdateUserTitle5
+      - FormApproverStatus5
+      - CustomFieldText1
+      - CustomFieldText2
+      - CustomFieldText3
+      - CustomFieldText4
+      - CustomFieldText5
+      - CustomFieldText6
+      - CustomFieldText7
+      - CustomFieldText8
+      - CustomFieldText9
+      - CustomFieldText10
+      - CustomFieldNumeric1
+      - CustomFieldNumeric2
+      - CustomFieldNumeric3
+      - CustomFieldNumeric4
+      - CustomFieldNumeric5
+      - CustomFieldNumeric6
+      - CustomFieldNumeric7
+      - CustomFieldNumeric8
+      - CustomFieldNumeric9
+      - CustomFieldNumeric10
+      - CustomFieldNumeric11
+      - CustomFieldNumeric12
+      - CustomFieldNumeric13
+      - CustomFieldNumeric14
+      - CustomFieldNumeric15
+      - CustomFieldNumeric16
+      - CustomFieldNumeric17
+      - CustomFieldNumeric18
+      - CustomFieldNumeric19
+      - CustomFieldNumeric20
+      - CustomFieldDateTime1
+      - CustomFieldDateTime2
+      - CustomFieldDateTime3
+      - CustomFieldDateTime4
+      - CustomFieldDateTime5
+      - CustomFieldDateTime6
+      - CustomFieldDateTime7
+      - CustomFieldDateTime8
+      - CustomFieldDateTime9
+      - CustomFieldDateTime10
+      - CustomFieldCheckbox1
+      - CustomFieldCheckbox2
+      - CustomFieldCheckbox3
+      - CustomFieldCheckbox4
+      - CustomFieldCheckbox5
+      - CustomFieldCheckbox6
+      - CustomFieldCheckbox7
+      - CustomFieldCheckbox8
+      - CustomFieldCheckbox9
+      - CustomFieldCheckbox10
+      - CustomFieldMultilineText1
+      - CustomFieldMultilineText2
+      - CustomFieldMultilineText3
+      - CustomFieldMultilineText4
+      - CustomFieldMultilineText5
+      - CustomFieldMultilineText6
+      - CustomFieldMultilineText7
+      - CustomFieldMultilineText8
+      - CustomFieldMultilineText9
+      - CustomFieldMultilineText10
+      - CustomFieldMultilineText11
+      - CustomFieldMultilineText12
+      - CustomFieldMultilineText13
+      - CustomFieldMultilineText14
+      - CustomFieldMultilineText15
+      - EventReportNo
+      - EventReportType
+      - EventReportEventDepartment
+      - EventReportDateTimeOfEvent
+      - EventReportResponsible
+      - EventReportStatus
+      - EventReportDueDate
+      - EventReportOriginalDueDate
+      - EventReportProgressInitiated
+      - EventReportCompletedClosed
+      - EventReportPostponedDate
+      - EventReportPostponedStatus
+      - EventReportExpectedCompleteDate
+      - EventReportGroundsReason
+      - EventReportGrounds
+      - EventReportEnforceConfidentiality
+      - EventReportResponseLog
+      - EventReportDocuments
+      - EventReportDescriptionOfEvent
+      - EventReportImmediateCause
+      - EventReportCorrectiveAction
+      - EventReportCorrectiveActionText
+      - EventReportPreventativeMeasures
+      - EventReportPreventativeMeasuresText
+      - EventReportCorrectionText
+      - EventReportInitialComments
+      - EventReportSubsequentComments
+      - EventReportRiskIndex
+      - EventReportDetained
+      - EventReportConventionRef
+      - EventReportGroupCode
+      - EventReportActionCode
+      - EventReportStandardReference
+      - EventReportActivityOfTheUnit
+      - EventReportActivityOfThePerson
+      - EventReportLocation
+      - EventReportPositionRank
+      - EventReportHumanManning
+      - EventReportWorkingEnvoirment
+      - EventReportExternalEnvoirment
+      - EventReportTechnical
+      - EventReportEventHeading
+      - EventReportMechanism
+      - EventReportContact
+      - EventReportIndividual
+      - EventReportEnvoirment
+      - EventReportUnit
+      - EventReportThridParty
+      - EventReportWeatherConditions
+      - EventReportWindForce
+      - EventReportWindDirection
+      - EventReportSeaState
+      - EventReportOther
+      - EventReportManagement
+      - CauseAnalysisText
+      - EventReportISMRelatedDeficiency
+      - EventReportCeforMainEventCode
+      - EventReportCeforMainCasualtyCode
+      - EventReportCeforCauseCode
+      - EventReportGrossEstimate
+      - EventReportOwnRetention
+      - EventReportNetClaimToInsurance
+      - EventReportReserve
+      - EventReportPaid
+      - EventReportActualRepairCosts
+      - EventReportOtherCosts
+      - EventReportTotalCosts
+      - EventReportOwnersCost
+      - EventReportSuperintendentActualRepairCosts
+      - EventReportEstimatedRepairCost
+      - EventReportActualRepairCost
+      - EventReportEstimatedOffHireDays
+      - EventReportActualOffHireDays
+      - EventReportCeforCodesValidated
+      - EventReportFinancialFiguresEstimated
+      - EventReportLessonsLearnedDistributed
+      - EventReportIdentifiedArea
+      - EventReportProbRecurrenceRate
+      - EventReportSeverity
+      - ActivityManagementNo
+      - ActivityManagementTitle
+      - ActivityManagementType
+      - ActivityManagementConfirmedStartDate
+      - ActivityManagementConfirmedEndDate
+      - ActivityManagementCompletedDate
+      - ActivityManagementSurveyOrganization
+      - ActivityManagementPlaceOfInspection
+      - ActivityManagementSurveyors
+      - ActivityManagementSendRectRepTo
+      - BunkeringPortName
+      - BargeName
+      - VesselStandbyForBunkersDate
+      - VoyageNo
+      - ManagementSystemROCRevisionDate
+      - ManagementSystemROCRevisionNo
+      - ManagementSystemNo
+      - ManagementSystemTitle
+      - ManagementSystemHeadLine
+      - ManagementSystemCheckTitle
+      - ManagementSystemChangeRequestRequestedDate
+      - ManagementSystemChangeRequestNo
+      - ManagementSystemChangeRequestRequestedByNo
+      - ManagementSystemChangeRequestRequestedByName
+      - ManagementSystemChangeRequestSourceNo
+      - ManagementSystemChangeRequestSourceName
+      - ManagementSystemChangeRequestCriticalityNo
+      - ManagementSystemChangeRequestCriticalityName
+      - ManagementSystemChangeRequestDescription
+      - JobNo
+      - JobName
+      - JobDescription
+      - JobComponentNo
+      - JobComponentName
+      - EventPictureTable
+      - ActivityPictureTable
+      - FormLargestResidualRisk
+      - FormRiskNo
+      - FormRiskName
+      - FormRiskDescription
+      - FormRiskAreaNo
+      - FormRiskAreaName
+      - FormRiskRecurrencyBeforeNo
+      - FormRiskRecurrencyBeforeName
+      - FormRiskSeverityBeforeNo
+      - FormRiskSeverityBeforeName
+      - FormRiskIndexBefore
+      - FormRiskControls
+      - FormRiskRecurrencyAfterNo
+      - FormRiskRecurrencyAfterName
+      - FormRiskSeverityAfterNo
+      - FormRiskSeverityAfterName
+      - FormRiskIndexAfter
+      - FormRiskCompanyLeadComment
+      - FormRiskResponsibleNo
+      - FormRiskResponsibleName
+      - SupplierApprovalCompanyNo
+      - SupplierApprovalCompanyName
+      - SupplierApprovalAddressNo
+      - SupplierApprovalAddressName
+      - MeasurementName
+      - MeasurementDescription
+      - MeasurementRemarks
+      - MeasurementUnitOfMeasurement
+      - MeasurementLatestReadingValue
+      - MeasurementLatestReadingDate
+      - MeasurementLatestReadingRemark
+      - MeasurementReadingValue
+      - MeasurementReadingDate
+      - MeasurementReadingRemark
+      - JobHistoryDoneDate
+      - FormApprovalValidUntil
+      - CustomFieldCheckbox11
+      - CustomFieldCheckbox12
+      - CustomFieldCheckbox13
+      - CustomFieldCheckbox14
+      - CustomFieldCheckbox15
+      - CustomFieldCheckbox16
+      - CustomFieldCheckbox17
+      - CustomFieldCheckbox18
+      - CustomFieldCheckbox19
+      - CustomFieldCheckbox20
+      - CounterName
+      - CounterTypeNo
+      - CounterTypeName
+      - CounterLatestReadingValue
+      - CounterLatestReadingDate
+      - CounterLatestReadingRemark
+      - CounterReadingValue
+      - CounterReadingDate
+      - CounterReadingRemark
+      - ActivityManagementUnitNo
+      - ActivityManagementUnitName
+      - ActivityManagementDepartmentNo
+      - ActivityManagementDepartmentName
+      - ActivityManagementDescription
+      - ActivityManagementUnitResponsibleNo
+      - ActivityManagementUnitResponsibleName
+      - ActivityManagementCompanyLeadNo
+      - ActivityManagementCompanyLeadName
+      - ActivityManagementRemarks
+      - ActivityManagementStatus
+      - ActivityManagementWindowOpensDate
+      - ActivityManagementWindowClosesDate
+      - ActivityManagementRectificationDueDate
+      - ActivityManagementAllEventsClosedDate
+      - ActivityManagementQuestionnaireNo
+      - ActivityManagementQuestionnaireName
+      - ActivityManagementNumberOfDeficiencies
+      - ActivityManagementDeficiencyCategoryNo
+      - ActivityManagementDeficiencyCategoryName
+      - ActivityManagementInternalScore
+      - ActivityManagementInternalScoreCategoryNo
+      - ActivityManagementInternalScoreCategoryName
+      - ActivityManagementDateOfDetention
+      - ActivityManagementDateOfRelease
+      - ActivityManagementGrounds
+      - CustomFieldDropDown1
+      - CustomFieldDropDown2
+      - CustomFieldDropDown3
+      - CustomFieldDropDown4
+      - CustomFieldDropDown5
+      - CustomFieldDropDown6
+      - CustomFieldDropDown7
+      - CustomFieldDropDown8
+      - CustomFieldDropDown9
+      - CustomFieldDropDown10
+      - Port
+      - JobPurchaseOrder
+      - AddressBook
+      - UsersOnUnit
+      - FormPictureTable
+      - EventReportStandardReference2
+      - DefectReportNo
+      - DefectReportLocation
+      - DefectStatus
+      - DefectReportStatus
+      - DefectReportReportedByNo
+      - DefectReportReportedByName
+      - DateTimeOfDefect
+      - DefectReportComponentNo
+      - DefectReportComponentName
+      - DefectReportLastOverhauledJobNo
+      - DefectReportLastOverhauledJobName
+      - DefectReportSerialNo
+      - DefectReportIsCritical
+      - DefectReportDate
+      - DefectReportRemarks
+      - DefectReportDescription
+      - DefectReportPrevailingConditions
+      - DefectReportAdditionalObservations
+      - DefectReportRiskAssessmentNo
+      - DefectReportRiskAssessmentStatus
+      - DefectReportInvestigationNo
+      - DefectReportInvestigationStatus
+      - DefectReportInvestigationLocation
+      - DefectReportSystemGroupName
+      - DefectReportItemName
+      - DefectReportLiquidName
+      - DefectReportImmediateCause1
+      - DefectReportImmediateCause2
+      - DefectReportImmediateCause3
+      - DefectReportIsDryDock
+      - DefectReportBasicCause1
+      - DefectReportBasicCause2
+      - DefectReportBasicCause3
+      - DefectReportProbability
+      - DefectReportIsBlackoutEvent
+      - DefectReportBlackoutEventRestorationTime
+      - DefectReportIsLossOfManoeuvrabilityEvent
+      - DefectReportLossOfManoeuvrabilityEventRestorationTime
+      - DefectReportSeverityCostCategoryName
+      - DefectReportSeveritySafetyImpactName
+      - DefectReportSeverityEnvironmentalImpactName
+      - DefectReportRisk
+      - DefectReportCostBriefEstimationUSD
+      - DefectReportJobNo
+      - DefectReportJobName
+      - DefectReportTechnicalDepartmentRemarks
+      - DefectReportResponsibleNo
+      - DefectReportResponsibleName
+      - DefectReportRectificationTargetDate
+      - DefectReportClosingDate
+      - DefectReportPostponementDueDate
+      - DefectReportIsPostponed
+      - DefectReportPostponementRANo
+      - DefectReportPostponementRASubject
+      - DefectReportIsPreliminaryCE001RequirementStatus
+      - DefectReportDIRITApprovedNecessity
+      - DefectReportDIRITNecessityRemark
+      - DefectReportLeaderNo
+      - DefectReportLeaderName
+      - DefectReportDueDate
+      - DefectReportCloseOutDate
+      - EventReportWorkingEnvironment
+      - EventReportExternalEnvironment
+      - EventReportEnvironment
+      - EventReportThirdParty
+      - UnitGrossTonnage
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.TemplateTableRowRender:
+      type: object
+      properties:
+        mandatoryList:
+          uniqueItems: true
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        isSumRow:
+          type: boolean
+        indexColumn:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        error:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        column0: {}
+        columnCheckBox0:
+          type:
+          - boolean
+          - 'null'
+        columnDouble0:
+          type:
+          - number
+          - 'null'
+          format: double
+        column1: {}
+        columnCheckBox1:
+          type:
+          - boolean
+          - 'null'
+        columnDouble1:
+          type:
+          - number
+          - 'null'
+          format: double
+        column2: {}
+        columnCheckBox2:
+          type:
+          - boolean
+          - 'null'
+        columnDouble2:
+          type:
+          - number
+          - 'null'
+          format: double
+        column3: {}
+        columnCheckBox3:
+          type:
+          - boolean
+          - 'null'
+        columnDouble3:
+          type:
+          - number
+          - 'null'
+          format: double
+        column4: {}
+        columnCheckBox4:
+          type:
+          - boolean
+          - 'null'
+        columnDouble4:
+          type:
+          - number
+          - 'null'
+          format: double
+        column5: {}
+        columnCheckBox5:
+          type:
+          - boolean
+          - 'null'
+        columnDouble5:
+          type:
+          - number
+          - 'null'
+          format: double
+        column6: {}
+        columnCheckBox6:
+          type:
+          - boolean
+          - 'null'
+        columnDouble6:
+          type:
+          - number
+          - 'null'
+          format: double
+        column7: {}
+        columnCheckBox7:
+          type:
+          - boolean
+          - 'null'
+        columnDouble7:
+          type:
+          - number
+          - 'null'
+          format: double
+        column8: {}
+        columnCheckBox8:
+          type:
+          - boolean
+          - 'null'
+        columnDouble8:
+          type:
+          - number
+          - 'null'
+          format: double
+        column9: {}
+        columnCheckBox9:
+          type:
+          - boolean
+          - 'null'
+        columnDouble9:
+          type:
+          - number
+          - 'null'
+          format: double
+        column10: {}
+        columnCheckBox10:
+          type:
+          - boolean
+          - 'null'
+        columnDouble10:
+          type:
+          - number
+          - 'null'
+          format: double
+        column11: {}
+        columnCheckBox11:
+          type:
+          - boolean
+          - 'null'
+        columnDouble11:
+          type:
+          - number
+          - 'null'
+          format: double
+        column12: {}
+        columnCheckBox12:
+          type:
+          - boolean
+          - 'null'
+        columnDouble12:
+          type:
+          - number
+          - 'null'
+          format: double
+        column13: {}
+        columnCheckBox13:
+          type:
+          - boolean
+          - 'null'
+        columnDouble13:
+          type:
+          - number
+          - 'null'
+          format: double
+        column14: {}
+        columnCheckBox14:
+          type:
+          - boolean
+          - 'null'
+        columnDouble14:
+          type:
+          - number
+          - 'null'
+          format: double
+        column15: {}
+        columnCheckBox15:
+          type:
+          - boolean
+          - 'null'
+        columnDouble15:
+          type:
+          - number
+          - 'null'
+          format: double
+        column16: {}
+        columnCheckBox16:
+          type:
+          - boolean
+          - 'null'
+        columnDouble16:
+          type:
+          - number
+          - 'null'
+          format: double
+        column17: {}
+        columnCheckBox17:
+          type:
+          - boolean
+          - 'null'
+        columnDouble17:
+          type:
+          - number
+          - 'null'
+          format: double
+        column18: {}
+        columnCheckBox18:
+          type:
+          - boolean
+          - 'null'
+        columnDouble18:
+          type:
+          - number
+          - 'null'
+          format: double
+        column19: {}
+        columnCheckBox19:
+          type:
+          - boolean
+          - 'null'
+        columnDouble19:
+          type:
+          - number
+          - 'null'
+          format: double
+        column20: {}
+        columnCheckBox20:
+          type:
+          - boolean
+          - 'null'
+        columnDouble20:
+          type:
+          - number
+          - 'null'
+          format: double
+        column21: {}
+        columnCheckBox21:
+          type:
+          - boolean
+          - 'null'
+        columnDouble21:
+          type:
+          - number
+          - 'null'
+          format: double
+        column22: {}
+        columnCheckBox22:
+          type:
+          - boolean
+          - 'null'
+        columnDouble22:
+          type:
+          - number
+          - 'null'
+          format: double
+        column23: {}
+        columnCheckBox23:
+          type:
+          - boolean
+          - 'null'
+        columnDouble23:
+          type:
+          - number
+          - 'null'
+          format: double
+        column24: {}
+        columnCheckBox24:
+          type:
+          - boolean
+          - 'null'
+        columnDouble24:
+          type:
+          - number
+          - 'null'
+          format: double
+        column25: {}
+        columnCheckBox25:
+          type:
+          - boolean
+          - 'null'
+        columnDouble25:
+          type:
+          - number
+          - 'null'
+          format: double
+        column26: {}
+        columnCheckBox26:
+          type:
+          - boolean
+          - 'null'
+        columnDouble26:
+          type:
+          - number
+          - 'null'
+          format: double
+        column27: {}
+        columnCheckBox27:
+          type:
+          - boolean
+          - 'null'
+        columnDouble27:
+          type:
+          - number
+          - 'null'
+          format: double
+        column28: {}
+        columnCheckBox28:
+          type:
+          - boolean
+          - 'null'
+        columnDouble28:
+          type:
+          - number
+          - 'null'
+          format: double
+        column29: {}
+        columnCheckBox29:
+          type:
+          - boolean
+          - 'null'
+        columnDouble29:
+          type:
+          - number
+          - 'null'
+          format: double
+        column30: {}
+        columnCheckBox30:
+          type:
+          - boolean
+          - 'null'
+        columnDouble30:
+          type:
+          - number
+          - 'null'
+          format: double
+        column31: {}
+        columnCheckBox31:
+          type:
+          - boolean
+          - 'null'
+        columnDouble31:
+          type:
+          - number
+          - 'null'
+          format: double
+        column32: {}
+        columnCheckBox32:
+          type:
+          - boolean
+          - 'null'
+        columnDouble32:
+          type:
+          - number
+          - 'null'
+          format: double
+        column33: {}
+        columnCheckBox33:
+          type:
+          - boolean
+          - 'null'
+        columnDouble33:
+          type:
+          - number
+          - 'null'
+          format: double
+        column34: {}
+        columnCheckBox34:
+          type:
+          - boolean
+          - 'null'
+        columnDouble34:
+          type:
+          - number
+          - 'null'
+          format: double
+        column35: {}
+        columnCheckBox35:
+          type:
+          - boolean
+          - 'null'
+        columnDouble35:
+          type:
+          - number
+          - 'null'
+          format: double
+        column36: {}
+        columnCheckBox36:
+          type:
+          - boolean
+          - 'null'
+        columnDouble36:
+          type:
+          - number
+          - 'null'
+          format: double
+        column37: {}
+        columnCheckBox37:
+          type:
+          - boolean
+          - 'null'
+        columnDouble37:
+          type:
+          - number
+          - 'null'
+          format: double
+        column38: {}
+        columnCheckBox38:
+          type:
+          - boolean
+          - 'null'
+        columnDouble38:
+          type:
+          - number
+          - 'null'
+          format: double
+        column39: {}
+        columnCheckBox39:
+          type:
+          - boolean
+          - 'null'
+        columnDouble39:
+          type:
+          - number
+          - 'null'
+          format: double
+        column40: {}
+        columnCheckBox40:
+          type:
+          - boolean
+          - 'null'
+        columnDouble40:
+          type:
+          - number
+          - 'null'
+          format: double
+        column41: {}
+        columnCheckBox41:
+          type:
+          - boolean
+          - 'null'
+        columnDouble41:
+          type:
+          - number
+          - 'null'
+          format: double
+        column42: {}
+        columnCheckBox42:
+          type:
+          - boolean
+          - 'null'
+        columnDouble42:
+          type:
+          - number
+          - 'null'
+          format: double
+        column43: {}
+        columnCheckBox43:
+          type:
+          - boolean
+          - 'null'
+        columnDouble43:
+          type:
+          - number
+          - 'null'
+          format: double
+        column44: {}
+        columnCheckBox44:
+          type:
+          - boolean
+          - 'null'
+        columnDouble44:
+          type:
+          - number
+          - 'null'
+          format: double
+        column45: {}
+        columnCheckBox45:
+          type:
+          - boolean
+          - 'null'
+        columnDouble45:
+          type:
+          - number
+          - 'null'
+          format: double
+        column46: {}
+        columnCheckBox46:
+          type:
+          - boolean
+          - 'null'
+        columnDouble46:
+          type:
+          - number
+          - 'null'
+          format: double
+        column47: {}
+        columnCheckBox47:
+          type:
+          - boolean
+          - 'null'
+        columnDouble47:
+          type:
+          - number
+          - 'null'
+          format: double
+        column48: {}
+        columnCheckBox48:
+          type:
+          - boolean
+          - 'null'
+        columnDouble48:
+          type:
+          - number
+          - 'null'
+          format: double
+        column49: {}
+        columnCheckBox49:
+          type:
+          - boolean
+          - 'null'
+        columnDouble49:
+          type:
+          - number
+          - 'null'
+          format: double
+        column50: {}
+        columnCheckBox50:
+          type:
+          - boolean
+          - 'null'
+        columnDouble50:
+          type:
+          - number
+          - 'null'
+          format: double
+        column51: {}
+        columnCheckBox51:
+          type:
+          - boolean
+          - 'null'
+        columnDouble51:
+          type:
+          - number
+          - 'null'
+          format: double
+        column52: {}
+        columnCheckBox52:
+          type:
+          - boolean
+          - 'null'
+        columnDouble52:
+          type:
+          - number
+          - 'null'
+          format: double
+        column53: {}
+        columnCheckBox53:
+          type:
+          - boolean
+          - 'null'
+        columnDouble53:
+          type:
+          - number
+          - 'null'
+          format: double
+        column54: {}
+        columnCheckBox54:
+          type:
+          - boolean
+          - 'null'
+        columnDouble54:
+          type:
+          - number
+          - 'null'
+          format: double
+        column55: {}
+        columnCheckBox55:
+          type:
+          - boolean
+          - 'null'
+        columnDouble55:
+          type:
+          - number
+          - 'null'
+          format: double
+        column56: {}
+        columnCheckBox56:
+          type:
+          - boolean
+          - 'null'
+        columnDouble56:
+          type:
+          - number
+          - 'null'
+          format: double
+        column57: {}
+        columnCheckBox57:
+          type:
+          - boolean
+          - 'null'
+        columnDouble57:
+          type:
+          - number
+          - 'null'
+          format: double
+        column58: {}
+        columnCheckBox58:
+          type:
+          - boolean
+          - 'null'
+        columnDouble58:
+          type:
+          - number
+          - 'null'
+          format: double
+        column59: {}
+        columnCheckBox59:
+          type:
+          - boolean
+          - 'null'
+        columnDouble59:
+          type:
+          - number
+          - 'null'
+          format: double
+        column60: {}
+        columnCheckBox60:
+          type:
+          - boolean
+          - 'null'
+        columnDouble60:
+          type:
+          - number
+          - 'null'
+          format: double
+        column61: {}
+        columnCheckBox61:
+          type:
+          - boolean
+          - 'null'
+        columnDouble61:
+          type:
+          - number
+          - 'null'
+          format: double
+        column62: {}
+        columnCheckBox62:
+          type:
+          - boolean
+          - 'null'
+        columnDouble62:
+          type:
+          - number
+          - 'null'
+          format: double
+        column63: {}
+        columnCheckBox63:
+          type:
+          - boolean
+          - 'null'
+        columnDouble63:
+          type:
+          - number
+          - 'null'
+          format: double
+        column64: {}
+        columnCheckBox64:
+          type:
+          - boolean
+          - 'null'
+        columnDouble64:
+          type:
+          - number
+          - 'null'
+          format: double
+        column65: {}
+        columnCheckBox65:
+          type:
+          - boolean
+          - 'null'
+        columnDouble65:
+          type:
+          - number
+          - 'null'
+          format: double
+        column66: {}
+        columnCheckBox66:
+          type:
+          - boolean
+          - 'null'
+        columnDouble66:
+          type:
+          - number
+          - 'null'
+          format: double
+        column67: {}
+        columnCheckBox67:
+          type:
+          - boolean
+          - 'null'
+        columnDouble67:
+          type:
+          - number
+          - 'null'
+          format: double
+        column68: {}
+        columnCheckBox68:
+          type:
+          - boolean
+          - 'null'
+        columnDouble68:
+          type:
+          - number
+          - 'null'
+          format: double
+        column69: {}
+        columnCheckBox69:
+          type:
+          - boolean
+          - 'null'
+        columnDouble69:
+          type:
+          - number
+          - 'null'
+          format: double
+        column70: {}
+        columnCheckBox70:
+          type:
+          - boolean
+          - 'null'
+        columnDouble70:
+          type:
+          - number
+          - 'null'
+          format: double
+        column71: {}
+        columnCheckBox71:
+          type:
+          - boolean
+          - 'null'
+        columnDouble71:
+          type:
+          - number
+          - 'null'
+          format: double
+        column72: {}
+        columnCheckBox72:
+          type:
+          - boolean
+          - 'null'
+        columnDouble72:
+          type:
+          - number
+          - 'null'
+          format: double
+        column73: {}
+        columnCheckBox73:
+          type:
+          - boolean
+          - 'null'
+        columnDouble73:
+          type:
+          - number
+          - 'null'
+          format: double
+        column74: {}
+        columnCheckBox74:
+          type:
+          - boolean
+          - 'null'
+        columnDouble74:
+          type:
+          - number
+          - 'null'
+          format: double
+        column75: {}
+        columnCheckBox75:
+          type:
+          - boolean
+          - 'null'
+        columnDouble75:
+          type:
+          - number
+          - 'null'
+          format: double
+        column76: {}
+        columnCheckBox76:
+          type:
+          - boolean
+          - 'null'
+        columnDouble76:
+          type:
+          - number
+          - 'null'
+          format: double
+        column77: {}
+        columnCheckBox77:
+          type:
+          - boolean
+          - 'null'
+        columnDouble77:
+          type:
+          - number
+          - 'null'
+          format: double
+        column78: {}
+        columnCheckBox78:
+          type:
+          - boolean
+          - 'null'
+        columnDouble78:
+          type:
+          - number
+          - 'null'
+          format: double
+        column79: {}
+        columnCheckBox79:
+          type:
+          - boolean
+          - 'null'
+        columnDouble79:
+          type:
+          - number
+          - 'null'
+          format: double
+        column80: {}
+        columnCheckBox80:
+          type:
+          - boolean
+          - 'null'
+        columnDouble80:
+          type:
+          - number
+          - 'null'
+          format: double
+        column81: {}
+        columnCheckBox81:
+          type:
+          - boolean
+          - 'null'
+        columnDouble81:
+          type:
+          - number
+          - 'null'
+          format: double
+        column82: {}
+        columnCheckBox82:
+          type:
+          - boolean
+          - 'null'
+        columnDouble82:
+          type:
+          - number
+          - 'null'
+          format: double
+        column83: {}
+        columnCheckBox83:
+          type:
+          - boolean
+          - 'null'
+        columnDouble83:
+          type:
+          - number
+          - 'null'
+          format: double
+        column84: {}
+        columnCheckBox84:
+          type:
+          - boolean
+          - 'null'
+        columnDouble84:
+          type:
+          - number
+          - 'null'
+          format: double
+        column85: {}
+        columnCheckBox85:
+          type:
+          - boolean
+          - 'null'
+        columnDouble85:
+          type:
+          - number
+          - 'null'
+          format: double
+        column86: {}
+        columnCheckBox86:
+          type:
+          - boolean
+          - 'null'
+        columnDouble86:
+          type:
+          - number
+          - 'null'
+          format: double
+        column87: {}
+        columnCheckBox87:
+          type:
+          - boolean
+          - 'null'
+        columnDouble87:
+          type:
+          - number
+          - 'null'
+          format: double
+        column88: {}
+        columnCheckBox88:
+          type:
+          - boolean
+          - 'null'
+        columnDouble88:
+          type:
+          - number
+          - 'null'
+          format: double
+        column89: {}
+        columnCheckBox89:
+          type:
+          - boolean
+          - 'null'
+        columnDouble89:
+          type:
+          - number
+          - 'null'
+          format: double
+        column90: {}
+        columnCheckBox90:
+          type:
+          - boolean
+          - 'null'
+        columnDouble90:
+          type:
+          - number
+          - 'null'
+          format: double
+        column91: {}
+        columnCheckBox91:
+          type:
+          - boolean
+          - 'null'
+        columnDouble91:
+          type:
+          - number
+          - 'null'
+          format: double
+        column92: {}
+        columnCheckBox92:
+          type:
+          - boolean
+          - 'null'
+        columnDouble92:
+          type:
+          - number
+          - 'null'
+          format: double
+        column93: {}
+        columnCheckBox93:
+          type:
+          - boolean
+          - 'null'
+        columnDouble93:
+          type:
+          - number
+          - 'null'
+          format: double
+        column94: {}
+        columnCheckBox94:
+          type:
+          - boolean
+          - 'null'
+        columnDouble94:
+          type:
+          - number
+          - 'null'
+          format: double
+        column95: {}
+        columnCheckBox95:
+          type:
+          - boolean
+          - 'null'
+        columnDouble95:
+          type:
+          - number
+          - 'null'
+          format: double
+        column96: {}
+        columnCheckBox96:
+          type:
+          - boolean
+          - 'null'
+        columnDouble96:
+          type:
+          - number
+          - 'null'
+          format: double
+        column97: {}
+        columnCheckBox97:
+          type:
+          - boolean
+          - 'null'
+        columnDouble97:
+          type:
+          - number
+          - 'null'
+          format: double
+        column98: {}
+        columnCheckBox98:
+          type:
+          - boolean
+          - 'null'
+        columnDouble98:
+          type:
+          - number
+          - 'null'
+          format: double
+        column99: {}
+        columnCheckBox99:
+          type:
+          - boolean
+          - 'null'
+        columnDouble99:
+          type:
+          - number
+          - 'null'
+          format: double
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableColumnSetupJSON:
+      type: object
+      properties:
+        columnNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateTableColumnSetupDataType'
+        mandatory:
+          type: boolean
+        locked:
+          type: boolean
+        dropdown:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateJSON'
+        tag:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WordFields'
+        measurementNo:
+          type:
+          - string
+          - 'null'
+        dateFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats'
+        numericFormat:
+          type:
+          - string
+          - 'null'
+        measureUnit:
+          type:
+          - string
+          - 'null'
+        columnWidth:
+          type: integer
+          format: int32
+        dateMinValue:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateMaxValue:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        numericMinValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        numericMaxValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        sumColumn:
+          type: boolean
+        skipThousandsSeparator:
+          type:
+          - boolean
+          - 'null'
+        default:
+          type:
+          - string
+          - 'null'
+        unitGuid:
+          type:
+          - string
+          - 'null'
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Form.FormTemplateTable:
+      type: object
+      properties:
+        formTemplateTableNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        allowDeleteRows:
+          type: boolean
+        allowNewRows:
+          type: boolean
+        allowRowFilteringAndSorting:
+          type: boolean
+        tableRows:
+          type: integer
+          format: int32
+        tableObject:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableJSON'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateTableColumnSetupDataType:
+      enum:
+      - Numeric
+      - Date
+      - String
+      - Checkbox
+      - Dropdown
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats:
+      enum:
+      - YYYYMMDD
+      - YYYYMMDDHHMM
+      - YYYYMMDDHHMMSS
+      - DDMMYYY
+      - DDMMYYYHHMM
+      - DDMMYYYHHMMSS
+      - LocalizationDate
+      - LocalizationDateTime
+      - LocalizationDateLongTime
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateJSON:
+      type: object
+      properties:
+        listOfValuesTemplateNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        valueFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateValuesJSON'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableJSON:
+      type: object
+      properties:
+        formTemplateTableNo:
+          type:
+          - string
+          - 'null'
+        formTemplateTableName:
+          type:
+          - string
+          - 'null'
+        allowDeleteRows:
+          type:
+          - boolean
+          - 'null'
+        allowNewRows:
+          type:
+          - boolean
+          - 'null'
+        allowRowFilteringAndSorting:
+          type:
+          - boolean
+          - 'null'
+        tableRows:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rows:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.TemplateTableRowRender'
+        columnSetupList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableColumnSetupJSON'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

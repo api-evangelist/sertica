@@ -1,0 +1,274 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Master Data Management Unit Tree Structure API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: MasterDataManagementUnitTreeStructure
+paths:
+  /MasterDataManagementUnitTreeStructure:
+    get:
+      tags:
+      - MasterDataManagementUnitTreeStructure
+      operationId: GetTreeStructure
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>MasterDataManagement</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get tree structure
+      x-summary-source: derived
+    put:
+      tags:
+      - MasterDataManagementUnitTreeStructure
+      operationId: UpdateTreeStructure
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>MasterDataManagement_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Update tree structure
+      x-summary-source: derived
+components:
+  schemas:
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode:
+      type: object
+      properties:
+        dirty:
+          type: boolean
+        deleteUnitComponent:
+          type:
+          - boolean
+          - 'null'
+        componentNo:
+          type:
+          - string
+          - 'null'
+        componentName:
+          type:
+          - string
+          - 'null'
+        parentComponentGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        masterObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        masterObjectNo:
+          type:
+          - string
+          - 'null'
+        masterObjectName:
+          type:
+          - string
+          - 'null'
+        masterObjectParentGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        packageUnitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        packageUnitInstanceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitRootComponentGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        packageDataUnitRootComponentGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        packageDataUnitRootPackageUnitInstanceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        masterDataClassGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        placedInRootOnUnit:
+          type: boolean
+        overwriteExisting:
+          type: boolean
+        hasChildren:
+          type: boolean
+          readOnly: true
+        name:
+          type:
+          - string
+          - 'null'
+        visibleKey:
+          type:
+          - string
+          - 'null'
+        critical:
+          type: boolean
+        disabled:
+          type: boolean
+        nodeType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitNodeType'
+        hasComponents:
+          type:
+          - boolean
+          - 'null'
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.MasterDataManagementModels.MDMUnitNodeType:
+      enum:
+      - UnitComponent
+      - PackageDataComponent
+      - PackageDataComponentOnUnit
+      type: string
+    SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeArguments:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        tree:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+        deleteComponentNode:
+          $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

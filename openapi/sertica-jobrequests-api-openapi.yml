@@ -1,0 +1,3453 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Job Requests API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: JobRequests
+paths:
+  /JobRequests:
+    get:
+      tags:
+      - JobRequests
+      summary: Gets a list of JobRequests
+      operationId: GetJobRequests
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - JobRequests
+      summary: Creates a new jobRequest record
+      operationId: CreateJobRequest
+      parameters:
+      - name: unitNo
+        in: query
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        description: The JobRequest Object, including reference lists
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /JobRequests/{jobRequestNo}:
+    get:
+      tags:
+      - JobRequests
+      summary: Gets a specific JobRequest
+      operationId: GetJobRequest
+      parameters:
+      - name: jobRequestNo
+        in: path
+        description: the jobRequestNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested jobRequest
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an jobRequest with the supplied JobRequest No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - JobRequests
+      summary: Updates an existing JobRequest
+      operationId: UpdateJobRequest
+      parameters:
+      - name: jobRequestNo
+        in: path
+        description: The jobRequestNo of the jobRequest to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The JobRequest DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+      responses:
+        '200':
+          description: Returns the updated JobRequest object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - JobRequests
+      summary: Deletes an jobRequest record
+      parameters:
+      - name: jobRequestNo
+        in: path
+        description: The jobRequestNo of the JobRequest to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest_Delete</td><td style='border-bottom:none'>Delete</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      operationId: deleteJobRequestsByJobRequestNo
+      x-operation-id-source: derived
+  /JobRequests/{jobRequestNo}/history:
+    get:
+      tags:
+      - JobRequests
+      summary: Gets history for a specific JobRequest
+      operationId: GetJobRequestHistory
+      parameters:
+      - name: jobRequestNo
+        in: path
+        description: The jobRequestNo to get
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested jobRequest
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an jobRequest with the supplied JobRequest No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /JobRequests/search:
+    post:
+      tags:
+      - JobRequests
+      summary: Search for jobRequests Takes a SearchDefinition input, which can include…
+      operationId: SearchJobRequests
+      parameters:
+      - name: unitNo
+        in: query
+        description: ''
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /JobRequests/searchCount:
+    post:
+      tags:
+      - JobRequests
+      summary: Returns number of hits in a search for JobRequests Takes a SearchDefinition…
+      operationId: SearchCountJobRequests
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /JobRequests/searchIndex/{jobRequestGuid}:
+    post:
+      tags:
+      - JobRequests
+      summary: Get index of a record in a search for JobRequests Takes a SearchDefinition…
+      operationId: SearchIndexJobRequests
+      parameters:
+      - name: jobRequestGuid
+        in: path
+        description: The jobRequest to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /JobRequests/searchInfo:
+    get:
+      tags:
+      - JobRequests
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoJobRequests
+      parameters:
+      - name: unitNo
+        in: query
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /JobRequests/submit:
+    post:
+      tags:
+      - JobRequests
+      summary: Creates a new jobRequest record
+      operationId: CreateJobRequestWithFiles
+      parameters:
+      - name: unitNo
+        in: query
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        description: Choose the file to upload
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - File
+              type: object
+              properties:
+                File:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /JobRequests/{jobRequestNo}/copy:
+    get:
+      tags:
+      - JobRequests
+      summary: Copies an existing jobRequest to a new object
+      operationId: CopyJobRequest
+      parameters:
+      - name: jobRequestNo
+        in: path
+        description: The JobRequestNo of the jobRequest to copy
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the new JobRequest object with properties from original
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /JobRequests/{jobRequestNo}/jobTemplate:
+    get:
+      tags:
+      - JobRequests
+      summary: Creates a Job (non-persisted) based on the Job Request with the provided Job…
+      operationId: CreateJobFromJobRequest
+      parameters:
+      - name: jobRequestNo
+        in: path
+        description: Job Request No. of the Job Request to base the Job on
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Job.Job'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Job.Job'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Job.Job'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /JobRequests/tasklistNodes:
+    get:
+      tags:
+      - JobRequests
+      summary: Get jobrequest tasklist nodes
+      operationId: GetJobRequestTasklistNodes
+      responses:
+        '200':
+          description: Returns all new job request tasklistnodes
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /JobRequests/search/{jobRequestTemplateNo}:
+    post:
+      tags:
+      - JobRequests
+      summary: Search for jobRequests using a specific Job Request Template Takes a Job…
+      operationId: SearchJobRequestsByTemplateNo
+      parameters:
+      - name: jobRequestTemplateNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: unitNo
+        in: query
+        description: ''
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequest'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /JobRequests/searchInfo/{jobRequestTemplateNo}:
+    get:
+      tags:
+      - JobRequests
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoJobRequestsByTemplateNo
+      parameters:
+      - name: jobRequestTemplateNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: unitNo
+        in: query
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a list of valid search fields based on the given Job Request Template
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /JobRequests/searchCount/{jobRequestTemplateNo}:
+    post:
+      tags:
+      - JobRequests
+      summary: Returns number of hits in a search for JobRequests using a specific Job Request…
+      operationId: SearchCountJobRequestsByTemplateNo
+      parameters:
+      - name: jobRequestTemplateNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: unitNo
+        in: query
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /JobRequests/searchIndex/{jobRequestGuid}/{jobRequestTemplateNo}:
+    post:
+      tags:
+      - JobRequests
+      summary: Get index of a record in a search for JobRequests using a specific Job Request…
+      operationId: SearchIndexJobRequestsByTemplateNo
+      parameters:
+      - name: jobRequestGuid
+        in: path
+        description: The jobRequest to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: jobRequestTemplateNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: unitNo
+        in: query
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /JobRequests/{jobRequestNo}/documents:
+    get:
+      tags:
+      - JobRequests
+      summary: Returns a list of Documents used on the Job Request
+      operationId: GetJobRequestDocuments
+      parameters:
+      - name: jobRequestNo
+        in: path
+        description: The Job Request No to fetch documents for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the documents for the Job Requests
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequestDocument'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequestDocument'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequestDocument'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /JobRequests/{jobRequestNo}/documents/{documentNo}:
+    get:
+      tags:
+      - JobRequests
+      summary: Returns a Documents used on the Job Request
+      operationId: GetJobRequestDocument
+      parameters:
+      - name: jobRequestNo
+        in: path
+        description: The Job Request No to fetch documents for
+        required: true
+        schema:
+          type: string
+      - name: documentNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the documents for the Job Requests
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequestDocument'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequestDocument'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequestDocument'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>JobRequest</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    SerticaWebApi.Models.Job.JobJobGroup:
+      type: object
+      properties:
+        jobGroupNo:
+          type:
+          - string
+          - 'null'
+        jobGroupName:
+          type:
+          - string
+          - 'null'
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Job.JobAssignee:
+      type: object
+      properties:
+        resourceNo:
+          type:
+          - string
+          - 'null'
+        resourceName:
+          type:
+          - string
+          - 'null'
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        jobUnitNo:
+          type:
+          - string
+          - 'null'
+        allDay:
+          type:
+          - boolean
+          - 'null'
+        startTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        componentNo:
+          type:
+          - string
+          - 'null'
+        componentName:
+          type:
+          - string
+          - 'null'
+        componentUnitNo:
+          type:
+          - string
+          - 'null'
+        nextDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        highlight:
+          type:
+          - boolean
+          - 'null'
+        windowsUserName:
+          type:
+          - string
+          - 'null'
+        isJobOverdue:
+          type: boolean
+        jobOverdueDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        isJobActivated:
+          type: boolean
+        isJobIdle:
+          type: boolean
+        isJobPostponed:
+          type: boolean
+        externalReference:
+          type:
+          - string
+          - 'null'
+        jobEstimatedHours:
+          type: number
+          format: double
+        lastAllowedDoneDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormStatus:
+      enum:
+      - Open
+      - AwaitingApproval
+      - Approved
+      - Rejected
+      type: string
+    SerticaWebApi.Models.Framework.Amount:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ? Logimatic.BaseClasses30.IGenerateSqlWhereClause_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateNotificationUser__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    ? Logimatic.BaseClasses30.IGetConfidentialityColumnDefinition_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateNotificationUser__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    SerticaWebApi.Models.Job.JobFormTemplate:
+      type: object
+      properties:
+        activation:
+          type: boolean
+        completion:
+          type: boolean
+        jobGuid:
+          type: string
+          format: uuid
+        jobNo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        jobName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        formTemplateNo:
+          type:
+          - string
+          - 'null'
+        formTemplateName:
+          type:
+          - string
+          - 'null'
+        formGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        formNo:
+          type:
+          - string
+          - 'null'
+        formSubject:
+          type:
+          - string
+          - 'null'
+        formStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormStatus'
+        serticaFormUnitNo:
+          type:
+          - string
+          - 'null'
+        jobFormTemplateDefaultAction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_JobFormTemplateDefaultAction'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestListItem:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        referenceNo:
+          type:
+          - string
+          - 'null'
+        sortOrder:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestJobField:
+      enum:
+      - ComponentNo
+      - JobText
+      - JobName
+      - JobGroupNo
+      - ResourceNo
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplateJobRequestMailTemplateView:
+      type: object
+      properties:
+        sqlWhereClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGenerateSqlWhereClause_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateJobRequestMailTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestStatus'
+        jobRequestMailTemplateNo:
+          type:
+          - string
+          - 'null'
+        jobRequestTemplateGuid:
+          type: string
+          format: uuid
+        jobRequestTemplateNo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        idSeq:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        sqlCommandClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGenerateSqlCommand_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateJobRequestMailTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+        confidentialityColumnClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGetConfidentialityColumnDefinition_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateJobRequestMailTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+      additionalProperties: false
+    ? Logimatic.BaseClasses30.IGetConfidentialityColumnDefinition_1__Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    ? Logimatic.BaseClasses30.IGenerateSqlWhereClause_1__Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? Logimatic.BaseClasses30.IGenerateSqlCommand_1__Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestControlType:
+      enum:
+      - Text
+      - TextMultiline
+      - Dropdown
+      - Checkbox
+      - Number
+      - StaticText
+      - Email
+      - Image
+      - Date
+      type: string
+    SerticaWebApi.Models.Job.Job:
+      type: object
+      properties:
+        jobNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nextDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        jobInstanceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        componentNo:
+          type:
+          - string
+          - 'null'
+        componentName:
+          type:
+          - string
+          - 'null'
+        classification:
+          type:
+          - string
+          - 'null'
+        criticalEquipment:
+          type: boolean
+        originalNextDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        originalEvents:
+          type:
+          - number
+          - 'null'
+          format: double
+        teamNo:
+          type:
+          - string
+          - 'null'
+        maxExceedingDays:
+          type: integer
+          format: int32
+        overdueDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        responsibleUserNo:
+          type:
+          - string
+          - 'null'
+        responsibleUserName:
+          type:
+          - string
+          - 'null'
+        shortComment:
+          type:
+          - string
+          - 'null'
+        componentLocationNo:
+          type:
+          - string
+          - 'null'
+        componentLocationName:
+          type:
+          - string
+          - 'null'
+        componentSystemNo:
+          type:
+          - string
+          - 'null'
+        priorityNo:
+          type:
+          - string
+          - 'null'
+        priorityName:
+          type:
+          - string
+          - 'null'
+        lastDoneDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastAllowedDoneDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        statutoryNo:
+          type:
+          - string
+          - 'null'
+        statutoryName:
+          type:
+          - string
+          - 'null'
+        activatedByNo:
+          type:
+          - string
+          - 'null'
+        activatedByName:
+          type:
+          - string
+          - 'null'
+        nextCounterValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        remainingValueToNextCounterValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        triggerFrequencyShortDescription:
+          type:
+          - string
+          - 'null'
+        classCodeNo:
+          type:
+          - string
+          - 'null'
+        classCodeName:
+          type:
+          - string
+          - 'null'
+        classRelated:
+          type: boolean
+        technicalFile:
+          type: boolean
+        budgetCostEstimate:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        resourcesAsString:
+          type:
+          - string
+          - 'null'
+        resourceNamesAsString:
+          type:
+          - string
+          - 'null'
+        postponeRemark:
+          type:
+          - string
+          - 'null'
+        jobPostponementStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_JobInstancePostponementStatus'
+        isActivated:
+          type: boolean
+        isIdle:
+          type: boolean
+        isPostponed:
+          type: boolean
+        isOverdue:
+          type: boolean
+        estimatedHours:
+          type: number
+          format: double
+        estimatedCosts:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        standardCurrency:
+          type:
+          - string
+          - 'null'
+        activeTriggerDescription:
+          type:
+          - string
+          - 'null'
+        activeTriggerType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_TriggerType'
+        openJobHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        jobGroupsAsString:
+          type:
+          - string
+          - 'null'
+        jobGroupNamesAsString:
+          type:
+          - string
+          - 'null'
+        jobNotificationMailTemplatesAsString:
+          type:
+          - string
+          - 'null'
+        jobNotificationRecipientsAsString:
+          type:
+          - string
+          - 'null'
+        triggerTypesAsString:
+          type:
+          - string
+          - 'null'
+        componentNoStructure:
+          type:
+          - string
+          - 'null'
+        componentNameStructure:
+          type:
+          - string
+          - 'null'
+        externalReference:
+          type:
+          - string
+          - 'null'
+        formTemplatesAsString:
+          type:
+          - string
+          - 'null'
+        formTemplateNamesAsString:
+          type:
+          - string
+          - 'null'
+        isMainJob:
+          type:
+          - boolean
+          - 'null'
+        mainJobNo:
+          type:
+          - string
+          - 'null'
+        mainJobName:
+          type:
+          - string
+          - 'null'
+        jobOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        jobRequestNo:
+          type:
+          - string
+          - 'null'
+        logbookEventNo:
+          type:
+          - string
+          - 'null'
+        gpsLatitude:
+          type:
+          - number
+          - 'null'
+          format: double
+        gpsLongitude:
+          type:
+          - number
+          - 'null'
+          format: double
+        proceduresAsString:
+          type:
+          - string
+          - 'null'
+        procedureNamesAsString:
+          type:
+          - string
+          - 'null'
+        isPartOfJobSequence:
+          type:
+          - boolean
+          - 'null'
+        componentGpsLatitude:
+          type:
+          - number
+          - 'null'
+          format: double
+        componentGpsLongitude:
+          type:
+          - number
+          - 'null'
+          format: double
+        purchaseOrders:
+          type:
+          - string
+          - 'null'
+        jobSequenceNo:
+          type:
+          - string
+          - 'null'
+        jobSequenceName:
+          type:
+          - string
+          - 'null'
+        isNextJobInSequence:
+          type: boolean
+        postponementReasonNo:
+          type:
+          - string
+          - 'null'
+        postponementReasonDescription:
+          type:
+          - string
+          - 'null'
+        certificateNo:
+          type:
+          - string
+          - 'null'
+        certificateName:
+          type:
+          - string
+          - 'null'
+        accountNo:
+          type:
+          - string
+          - 'null'
+        accountName:
+          type:
+          - string
+          - 'null'
+        assigneesAsString:
+          type:
+          - string
+          - 'null'
+        assigneeNamesAsString:
+          type:
+          - string
+          - 'null'
+        customProperties: {}
+        defectJob:
+          type:
+          - boolean
+          - 'null'
+        hasOnlyRunOnceTrigger:
+          type:
+          - boolean
+          - 'null'
+        webhookLogStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_WebhookLogStatus'
+        readDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        acknowledgeDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        mdmUniqueMainJob:
+          type: boolean
+        hasJobFormTemplateActivation:
+          type:
+          - boolean
+          - 'null'
+        isJobFormTemplateActivationApproved:
+          type:
+          - boolean
+          - 'null'
+        hasJobFormTemplateCompletion:
+          type:
+          - boolean
+          - 'null'
+        isJobFormTemplateCompletionApproved:
+          type:
+          - boolean
+          - 'null'
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        componentDisabled:
+          type:
+          - boolean
+          - 'null'
+        disabledDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        componentDisabledDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        mitigatingMeasures:
+          type:
+          - string
+          - 'null'
+        actionPlan:
+          type:
+          - string
+          - 'null'
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobItem'
+        resources:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobResource'
+        procedures:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobProcedure'
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobDocument'
+        triggers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobTrigger'
+        jobGroups:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobJobGroup'
+        notifications:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobNotification'
+        formTemplates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobFormTemplate'
+        relatedJobs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.Job'
+        assignees:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Job.JobAssignee'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Job.JobProcedure:
+      type: object
+      properties:
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        procedureNo:
+          type:
+          - string
+          - 'null'
+        procedureName:
+          type:
+          - string
+          - 'null'
+        procedureText:
+          type:
+          - string
+          - 'null'
+        hasDocuments:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    ? Logimatic.BaseClasses30.IGenerateSqlCommand_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateNotificationUser__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_JobInstancePostponementStatus:
+      enum:
+      - All
+      - NotRequested
+      - Requested
+      - Rejected
+      - Approved
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.JobNotificationDaysDirection:
+      enum:
+      - Before
+      - After
+      type: string
+    SerticaWebApi.Models.Job.TriggerType:
+      enum:
+      - AllTriggers
+      - RunOnceTrigger
+      - RecurringTrigger
+      - CounterTrigger
+      - MeasurementTrigger
+      - DockTrigger
+      - OPCAlarmTrigger
+      - JobSequenceCalendarTrigger
+      - JobSequenceCounterTrigger
+      type: string
+    SerticaWebApi.Models.Job.Months:
+      enum:
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestStatus:
+      enum:
+      - New
+      - JobCreated
+      - Rejected
+      - JobActivated
+      - JobFinalized
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestField:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestControlType'
+        displayName:
+          type:
+          - string
+          - 'null'
+        propertyName:
+          type:
+          - string
+          - 'null'
+        required:
+          type: boolean
+        listValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestListItem'
+        includeInSearch:
+          type: boolean
+        showInSearchResults:
+          type: boolean
+        jobField:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestJobField'
+        row:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        skipThousandsSeparator:
+          type:
+          - boolean
+          - 'null'
+        numberOfDecimals:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        minNumberValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        maxNumberValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        new:
+          type: boolean
+        rejected:
+          type: boolean
+        jobCreated:
+          type: boolean
+        jobActivated:
+          type: boolean
+        jobFinalized:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.Job.OrdinalNumbers:
+      enum:
+      - First
+      - Second
+      - Third
+      - Fourth
+      - Last
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_TriggerType:
+      enum:
+      - AllTriggers
+      - RunOnceTrigger
+      - RecurringTrigger
+      - CounterTrigger
+      - MeasurementTrigger
+      - DockTrigger
+      - OPCAlarmTrigger
+      - JobSequenceCalendarTrigger
+      - JobSequenceCounterTrigger
+      type: string
+    SerticaWebApi.Models.Job.MeasureTriggerType:
+      enum:
+      - Limits
+      - Deviation_Percent
+      - DeviationFromAverage
+      - Prediction
+      type: string
+    SerticaWebApi.Models.Job.JobNotification:
+      type: object
+      properties:
+        days:
+          type: integer
+          format: int32
+        daysDirection:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.JobNotificationDaysDirection'
+        jobMailTemplateNo:
+          type:
+          - string
+          - 'null'
+        recipients:
+          type:
+          - string
+          - 'null'
+        dateSent:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Job.JobTrigger:
+      type: object
+      properties:
+        triggerType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Job.TriggerType'
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        nextDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        planningType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Job.PlanningType'
+        frequence:
+          type: number
+          format: double
+        longDescription:
+          type:
+          - string
+          - 'null'
+        recurringType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Job.RecurrenceType'
+        every:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          default: 0
+        everyWeekday:
+          type:
+          - boolean
+          - 'null'
+        monday:
+          type:
+          - boolean
+          - 'null'
+        tuesday:
+          type:
+          - boolean
+          - 'null'
+        wednesday:
+          type:
+          - boolean
+          - 'null'
+        thursday:
+          type:
+          - boolean
+          - 'null'
+        friday:
+          type:
+          - boolean
+          - 'null'
+        saturday:
+          type:
+          - boolean
+          - 'null'
+        sunday:
+          type:
+          - boolean
+          - 'null'
+        dayOfMonth:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          default: 0
+        ordinal:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Job.OrdinalNumbers'
+        month:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Job.Months'
+        useFloatingFixed:
+          type:
+          - boolean
+          - 'null'
+        seasonal:
+          type: boolean
+        seasonStartDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        seasonStartMonth:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Job.Months'
+        seasonEndDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        seasonEndMonth:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Job.Months'
+        componentCounterRelationGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        counterNo:
+          type:
+          - string
+          - 'null'
+        counterName:
+          type:
+          - string
+          - 'null'
+        counterFrequence:
+          type:
+          - number
+          - 'null'
+          format: double
+        counterStart:
+          type:
+          - number
+          - 'null'
+          format: double
+        postponedCounterStart:
+          type:
+          - number
+          - 'null'
+          format: double
+        nextRunValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        componentCounterEstimatedNow:
+          type:
+          - number
+          - 'null'
+          format: double
+        measureGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        measureNo:
+          type:
+          - string
+          - 'null'
+        measureName:
+          type:
+          - string
+          - 'null'
+        measureTriggerType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Job.MeasureTriggerType'
+        nominal:
+          type:
+          - number
+          - 'null'
+          format: double
+        highLimit:
+          type:
+          - number
+          - 'null'
+          format: double
+        lowLimit:
+          type:
+          - number
+          - 'null'
+          format: double
+        deviationPercent:
+          type:
+          - number
+          - 'null'
+          format: double
+        highLimitNumberOfExceedings:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        highLimitLatestNoOfDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        lowLimitNumberOfExceedings:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        lowLimitLatestNoOfDays:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        averageOverReadings:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        predictionValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        dockListGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        dockListNo:
+          type:
+          - string
+          - 'null'
+        dockListDescription:
+          type:
+          - string
+          - 'null'
+        opcMachineName:
+          type:
+          - string
+          - 'null'
+        opcServerName:
+          type:
+          - string
+          - 'null'
+        opcItemId:
+          type:
+          - string
+          - 'null'
+        opcActive:
+          type:
+          - boolean
+          - 'null'
+        opcItemIDAck:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    SerticaWebApi.Models.Job.JobItem:
+      type: object
+      properties:
+        itemNo:
+          type:
+          - string
+          - 'null'
+        itemName:
+          type:
+          - string
+          - 'null'
+        itemStock:
+          type:
+          - number
+          - 'null'
+          format: double
+        quantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        remarks:
+          type:
+          - string
+          - 'null'
+        warehouseNo:
+          type:
+          - string
+          - 'null'
+        warehouseName:
+          type:
+          - string
+          - 'null'
+        stockOnWarehouse:
+          type:
+          - number
+          - 'null'
+          format: double
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        itemLocationNo:
+          type:
+          - string
+          - 'null'
+        itemLocationName:
+          type:
+          - string
+          - 'null'
+        stockOnLocation:
+          type:
+          - number
+          - 'null'
+          format: double
+        currentStock:
+          type:
+          - number
+          - 'null'
+          format: double
+        jobUnitNo:
+          type:
+          - string
+          - 'null'
+        jobUnitName:
+          type:
+          - string
+          - 'null'
+        itemUnitNo:
+          type:
+          - string
+          - 'null'
+        itemUnitName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    ? Logimatic.BaseClasses30.IGetConfidentialityColumnDefinition_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateJobRequestMailTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    SerticaWebApi.Models.JobRequest.JobRequest:
+      type: object
+      properties:
+        jobRequestNo:
+          type:
+          - string
+          - 'null'
+        jobRequestTemplateNo:
+          type:
+          - string
+          - 'null'
+        jobRequestTemplateCopy:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplateView'
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestStatus'
+        fieldValues: {}
+        title:
+          type:
+          - string
+          - 'null'
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        rejectRemark:
+          type:
+          - string
+          - 'null'
+        defectJob:
+          type: boolean
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.JobRequest.JobRequestDocument'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Job.PlanningType:
+      enum:
+      - Floating
+      - Fixed
+      - FixedWhenOverdue
+      - RunningMonthPlusFrequency
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.JobRequest.JobRequestDocument:
+      type: object
+      properties:
+        jobRequestNo:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Job.RecurrenceType:
+      enum:
+      - Daily
+      - Weekly
+      - Monthly
+      - Yearly
+      type: string
+    SerticaWebApi.Models.Job.JobDocument:
+      type: object
+      properties:
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pageNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplateView:
+      type: object
+      properties:
+        sqlWhereClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGenerateSqlWhereClause_1__Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+        jobRequestTemplateNo:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        submitButtonText:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestField'
+        logoDocumentNo:
+          type:
+          - string
+          - 'null'
+        logoDocumentDescription:
+          type:
+          - string
+          - 'null'
+        usersAsString:
+          type:
+          - string
+          - 'null'
+        userNamesAsString:
+          type:
+          - string
+          - 'null'
+        mailTemplates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplateJobRequestMailTemplateView'
+        notificationUsers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplateNotificationUserView'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        idSeq:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        sqlCommandClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGenerateSqlCommand_1__Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+        confidentialityColumnClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGetConfidentialityColumnDefinition_1__Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_WebhookLogStatus:
+      enum:
+      - Error
+      - Resolved
+      - InSync
+      type: string
+    SerticaWebApi.Models.Job.JobResource:
+      type: object
+      properties:
+        resourceNo:
+          type:
+          - string
+          - 'null'
+        resourceName:
+          type:
+          - string
+          - 'null'
+        resourceRate:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        totalCosts:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        manhour:
+          type:
+          - number
+          - 'null'
+          format: double
+        externalCosts:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        jobNo:
+          type:
+          - string
+          - 'null'
+        jobName:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    ? Logimatic.BaseClasses30.IGenerateSqlCommand_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateJobRequestMailTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    ? Logimatic.BaseClasses30.IGenerateSqlWhereClause_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateJobRequestMailTemplate__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null
+    : type: object
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_JobFormTemplateDefaultAction:
+      enum:
+      - Activation
+      - Completion
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.JobRequestModule.JobRequestTemplateNotificationUserView:
+      type: object
+      properties:
+        sqlWhereClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGenerateSqlWhereClause_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateNotificationUser__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        userNo:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        jobRequestTemplateGuid:
+          type: string
+          format: uuid
+        jobRequestTemplateNo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        idSeq:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        sqlCommandClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGenerateSqlCommand_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateNotificationUser__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+        confidentialityColumnClass:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.IGetConfidentialityColumnDefinition_1__Logihold.BusinessObjects.LogiholdObjModel.JobRequestTemplateNotificationUser__LogiholdBusinessObjects__Version_5.26.9.1__Culture_neutral__PublicKeyToken_null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

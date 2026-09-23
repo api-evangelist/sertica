@@ -1,0 +1,1579 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Analytics Template User Rights API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: AnalyticsTemplateUserRights
+paths:
+  /AnalyticsTemplateUserRights/templates:
+    get:
+      tags:
+      - AnalyticsTemplateUserRights
+      operationId: GetAnalyticsTemplateUserRightsTemplateStructure
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsMenuItem'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsMenuItem'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsMenuItem'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AnalyticsTemplateAssignRights</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get analytics template user rights template structure
+      x-summary-source: derived
+  /AnalyticsTemplateUserRights/systemTemplate/{templateNo}:
+    get:
+      tags:
+      - AnalyticsTemplateUserRights
+      summary: Get Template by TemplateNo
+      operationId: TemplateUserRightsGetAnalyticsTemplate
+      parameters:
+      - name: templateNo
+        in: path
+        description: TemplateNo
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: Not Found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AnalyticsTemplateAssignRights</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - AnalyticsTemplateUserRights
+      summary: Updates an AnalyticsTemplate with Availability, Resource List and Role List
+      operationId: UpdateAnalyticsTemplateUserRights
+      parameters:
+      - name: templateNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplate'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AnalyticsTemplateAssignRights_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /AnalyticsTemplateUserRights/customtemplate/{templateNo}:
+    get:
+      tags:
+      - AnalyticsTemplateUserRights
+      summary: Gets a specific AnalyticsCustomTemplate
+      operationId: TemplateUserRightsGetAnalyticsCustomTemplate
+      parameters:
+      - name: templateNo
+        in: path
+        description: TemplateNo
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested analyticsCustomTemplate
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an analyticsCustomTemplate with the supplied AnalyticsCustomTemplate No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AnalyticsTemplateAssignRights</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - AnalyticsTemplateUserRights
+      operationId: UpdateAnalyticsCustomTemplateUserRights
+      parameters:
+      - name: templateNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AnalyticsTemplateAssignRights_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Update analytics custom template user rights
+      x-summary-source: derived
+  /AnalyticsTemplateUserRights/dataWarehouseTemplate/{templateNo}:
+    get:
+      tags:
+      - AnalyticsTemplateUserRights
+      operationId: TemplateUserRightsGetDataWarehouseAnalyticsTemplate
+      parameters:
+      - name: templateNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: Not Found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AnalyticsTemplateAssignRights</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Template user rights get data warehouse analytics template
+      x-summary-source: derived
+    put:
+      tags:
+      - AnalyticsTemplateUserRights
+      operationId: UpdateDataWarehouseAnalyticsTemplateUserRights
+      parameters:
+      - name: templateNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>AnalyticsTemplateAssignRights_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Update data warehouse analytics template user rights
+      x-summary-source: derived
+components:
+  schemas:
+    Logimatic.Analytics.Component.Model.TemplateFieldDisplayType:
+      enum:
+      - NumericFromTo
+      - DateRange
+      - DateDistinctList
+      - DateDistinctFilteredList
+      - TextLike
+      - TextRange
+      - TextDistinctList
+      - TextDistinctFilteredList
+      - SumDefault
+      - Boolean
+      - DateDynamic
+      - Comparison
+      - TextEmptyValues
+      - DateEmptyValues
+      - NumericEmptyValues
+      - PrimaryKey
+      - UnitGuid
+      - SystemFilterColumn
+      - DrilldownPrimaryKey
+      - DrilldownUnitGuid
+      type: string
+    SerticaWebApi.Models.Analytics.AnalyticsTemplateRole:
+      type: object
+      properties:
+        templateNo:
+          type:
+          - string
+          - 'null'
+        roleNo:
+          type:
+          - string
+          - 'null'
+        roleName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.AnalyticsCustomTemplateField:
+      type: object
+      properties:
+        analyticsCustomTemplateGuid:
+          type: string
+          format: uuid
+        fieldName:
+          type:
+          - string
+          - 'null'
+        displayType:
+          $ref: '#/components/schemas/Logimatic.Analytics.Component.Model.TemplateFieldDisplayType'
+        displayTypeFilterText:
+          $ref: '#/components/schemas/Logimatic.Analytics.Component.Model.TemplateFieldDisplayType'
+        templateNo:
+          type:
+          - string
+          - 'null'
+        templateName:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_TaskStatus:
+      enum:
+      - Inactive
+      - Waiting
+      - Running
+      - Completed
+      - Failed
+      - Cancelled
+      - LockedOut
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.AnalyticsTemplateField:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        templateGuid:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+        translatedNameByOutputLanguage:
+          type:
+          - string
+          - 'null'
+        displayType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.Report.AnalyticsTemplateFieldDisplayType'
+        outputLanguage:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.Report.AnalyticsLanguage'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.Report.AnalyticsLanguage:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logimatic.Analytics.Component.Model.TemplateType:
+      enum:
+      - SystemTemplate
+      - CustomTemplate
+      - DataWarehouseTemplate
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.AnalyticsTemplate:
+      type: object
+      properties:
+        templateType:
+          $ref: '#/components/schemas/Logimatic.Analytics.Component.Model.TemplateType'
+        templateNo:
+          type:
+          - string
+          - 'null'
+        viewName:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        expired:
+          type: boolean
+          readOnly: true
+        expireDescription:
+          type:
+          - string
+          - 'null'
+        templateFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplateField'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        drilldownScreen:
+          type:
+          - string
+          - 'null'
+        drilldownTypeName:
+          type:
+          - string
+          - 'null'
+        availableTo:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_AnalyticsTemplateAvailableTo'
+        resources:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplateResource'
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsTemplateRole'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataWarehouseExportFrequencyRecurrence:
+      enum:
+      - Months
+      - Days
+      - Hours
+      type: string
+    SerticaWebApi.Models.Analytics.AnalyticsTemplateResource:
+      type: object
+      properties:
+        templateNo:
+          type:
+          - string
+          - 'null'
+        resourceNo:
+          type:
+          - string
+          - 'null'
+        resourceName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataWarehouseDataPersistence:
+      enum:
+      - Overwrite
+      - Append
+      type: string
+    SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplateResource:
+      type: object
+      properties:
+        templateNo:
+          type:
+          - string
+          - 'null'
+        resourceNo:
+          type:
+          - string
+          - 'null'
+        resourceName:
+          type:
+          - string
+          - 'null'
+        isUser:
+          type: boolean
+        isUserGroup:
+          type: boolean
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.AnalyticsCustomTemplateRole:
+      type: object
+      properties:
+        templateNo:
+          type:
+          - string
+          - 'null'
+        roleNo:
+          type:
+          - string
+          - 'null'
+        roleName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.AnalyticsMenuItem:
+      type: object
+      properties:
+        parentGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        menuNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        menuType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsMenuType'
+        childItems:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsMenuItem'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplateRole:
+      type: object
+      properties:
+        templateNo:
+          type:
+          - string
+          - 'null'
+        roleNo:
+          type:
+          - string
+          - 'null'
+        roleName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplateTsTask:
+      type: object
+      properties:
+        templateNo:
+          type:
+          - string
+          - 'null'
+        taskNo:
+          type:
+          - string
+          - 'null'
+        dataWarehouseAnalyticsTemplateGuid:
+          type: string
+          format: uuid
+        activated:
+          type:
+          - boolean
+          - 'null'
+        taskStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_TaskStatus'
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.AnalyticsCustomTemplate:
+      type: object
+      properties:
+        templateType:
+          $ref: '#/components/schemas/Logimatic.Analytics.Component.Model.TemplateType'
+        templateNo:
+          type:
+          - string
+          - 'null'
+        viewName:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        templateFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplateField'
+        drilldownScreen:
+          type:
+          - string
+          - 'null'
+        drilldownTypeName:
+          type:
+          - string
+          - 'null'
+        menuNo:
+          type:
+          - string
+          - 'null'
+        menuName:
+          type:
+          - string
+          - 'null'
+        menuGuid:
+          type: string
+          format: uuid
+        analyticsCustomMenuGuid:
+          type:
+          - string
+          - 'null'
+        ownerUserNo:
+          type:
+          - string
+          - 'null'
+        ownerUserName:
+          type:
+          - string
+          - 'null'
+        formTemplateGuid:
+          type: string
+          format: uuid
+        formTemplateNo:
+          type:
+          - string
+          - 'null'
+        formTemplateName:
+          type:
+          - string
+          - 'null'
+        formTemplateTableNo:
+          type:
+          - string
+          - 'null'
+        formTemplateTableName:
+          type:
+          - string
+          - 'null'
+        viewScript:
+          type:
+          - string
+          - 'null'
+        availableTo:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_AnalyticsTemplateAvailableTo'
+        jobRequestTemplateGuid:
+          type: string
+          format: uuid
+        jobRequestTemplateNo:
+          type:
+          - string
+          - 'null'
+        jobRequestTemplateTitle:
+          type:
+          - string
+          - 'null'
+        jobRequestTemplateUnitNo:
+          type:
+          - string
+          - 'null'
+        resources:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplateResource'
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsCustomTemplateRole'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.Report.AnalyticsTemplateFieldDisplayType:
+      enum:
+      - NumericFromTo
+      - DateRange
+      - DateDistinctList
+      - DateDistinctFilteredList
+      - TextLike
+      - TextRange
+      - TextDistinctList
+      - TextDistinctFilteredList
+      - SumDefault
+      - Boolean
+      - DateDynamic
+      - Comparison
+      - TextEmptyValues
+      - DateEmptyValues
+      - NumericEmptyValues
+      - PrimaryKey
+      - UnitGuid
+      - SystemFilterColumn
+      type: string
+    SerticaWebApi.Models.Analytics.AnalyticsMenuType:
+      enum:
+      - Default
+      - Menu
+      - CustomMenu
+      - UserMenu
+      - Template
+      - CustomTemplate
+      - Report
+      - DataWarehouseTemplate
+      type: string
+    SerticaWebApi.Models.Analytics.AnalyticsCustomTemplateResource:
+      type: object
+      properties:
+        templateNo:
+          type:
+          - string
+          - 'null'
+        resourceNo:
+          type:
+          - string
+          - 'null'
+        resourceName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AnalyticsTemplateAvailableTo:
+      enum:
+      - ListOfResourcesOrRoles
+      - All
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplate:
+      type: object
+      properties:
+        templateNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        exportFrequency:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        exportFrequencyRecurrence:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataWarehouseExportFrequencyRecurrence'
+        exportDataPersistence:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataWarehouseDataPersistence'
+        lastSuccessfulRun:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nextRun:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lockedByUserNo:
+          type:
+          - string
+          - 'null'
+        lockedByUserName:
+          type:
+          - string
+          - 'null'
+        locked:
+          type: boolean
+        ownerUserNo:
+          type:
+          - string
+          - 'null'
+        ownerUserName:
+          type:
+          - string
+          - 'null'
+        reportNo:
+          type:
+          - string
+          - 'null'
+        reportDescription:
+          type:
+          - string
+          - 'null'
+        connectionNo:
+          type:
+          - string
+          - 'null'
+        connectionName:
+          type:
+          - string
+          - 'null'
+        menuNo:
+          type:
+          - string
+          - 'null'
+        availableTo:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_AnalyticsTemplateAvailableTo'
+        menuName:
+          type:
+          - string
+          - 'null'
+        menuGuid:
+          type: string
+          format: uuid
+        drilldownScreen:
+          type:
+          - string
+          - 'null'
+        drilldownTypeName:
+          type:
+          - string
+          - 'null'
+        enableDrilldown:
+          type:
+          - boolean
+          - 'null'
+        customMenuGuid:
+          type:
+          - string
+          - 'null'
+        templateType:
+          $ref: '#/components/schemas/Logimatic.Analytics.Component.Model.TemplateType'
+        tasks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplateTsTask'
+        resources:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplateResource'
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.DataWarehouse.DataWarehouseAnalyticsTemplateRole'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

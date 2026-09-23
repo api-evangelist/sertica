@@ -1,0 +1,2807 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Unit Shipments API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: UnitShipments
+paths:
+  /UnitShipments:
+    get:
+      tags:
+      - UnitShipments
+      summary: Gets a list of UnitShipments
+      operationId: GetUnitShipments
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{unitShipmentNo}:
+    get:
+      tags:
+      - UnitShipments
+      summary: Gets a specific UnitShipment
+      operationId: GetUnitShipment
+      parameters:
+      - name: unitShipmentNo
+        in: path
+        description: The ShipmentNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested Unit Shipment
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a Unit Shipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/searchInfo:
+    get:
+      tags:
+      - UnitShipments
+      summary: Returns structured information about what and how you can search for
+      operationId: UnitShipmentSearchInfo
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '403':
+          description: Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /UnitShipments/search:
+    post:
+      tags:
+      - UnitShipments
+      summary: Search for UnitShipments.
+      operationId: SearchUnitShipments
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Pagesize
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: Returns all UnitShipments matching the search criteria
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/searchCount:
+    post:
+      tags:
+      - UnitShipments
+      summary: Returns number of hits in a search for UnitShipments Takes a SearchDefinition…
+      operationId: SearchCountUnitShipments
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: Returns number of hits in a search for UnitShipments
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}:
+    put:
+      tags:
+      - UnitShipments
+      summary: Updates an existing Shipment
+      operationId: UpdateUnitShipment
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The Shipment No of the UnitShipment to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The UnitShipment DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+      responses:
+        '200':
+          description: Returns the updated UnitShipment object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Shipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Shipment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.Shipment'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - UnitShipments
+      summary: Deletes a Shipment record
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The Shipment No of the UnitShipment to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Returns NoContent result if the UnitShipment is succesfully deleted
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment_Delete</td><td style='border-bottom:none'>Delete</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      operationId: deleteUnitShipmentsByShipmentNo
+      x-operation-id-source: derived
+  /UnitShipments/{shipmentNo}/receiveShipment:
+    post:
+      tags:
+      - UnitShipments
+      summary: Receives a specific Unit Shipment without marking requisitions as received
+      operationId: ReceiveUnitShipment
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The Shipment No of the UnitShipment to receive
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the updated UnitShipment object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/receiveShipmentMarkings:
+    post:
+      tags:
+      - UnitShipments
+      summary: Receives specific markings on a Unit Shipment without marking requisitions as…
+      operationId: ReceiveUnitShipmentMarkings
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The Shipment No of the UnitShipment to receive markings on
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: List with marking nos
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: Returns the updated UnitShipment object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/receiveRequisitions:
+    post:
+      tags:
+      - UnitShipments
+      summary: Receives all requisitions on a specific Unit Shipment
+      operationId: ReceiveUnitShipmentRequisitions
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The Shipment No of the UnitShipment to receive requisitions for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the updated UnitShipment object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/history:
+    get:
+      tags:
+      - UnitShipments
+      summary: Gets history for a specific UnitShipment
+      operationId: GetUnitShipmentHistory
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The Shipment No to get
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested Shipment
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipment'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a Shipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/markings:
+    get:
+      tags:
+      - UnitShipments
+      summary: Returns a list of Markings used on the UnitShipment
+      operationId: GetUnitShipmentMarkings
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The UnitShipment No to fetch Markings for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the Markings for the UnitShipment
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarking'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarking'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarking'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: Not Found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/markingCarriers:
+    get:
+      tags:
+      - UnitShipments
+      summary: Returns a list of all Marking Carriers used on the UnitShipment
+      operationId: GetUnitShipmentMarkingCarriers
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The UnitShipment No to fetch Marking Carriers for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the Marking Carriers for the UnitShipment
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrier'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrier'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrier'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/markings/{markingNo}/carriers:
+    get:
+      tags:
+      - UnitShipments
+      summary: Returns a list of all Marking Carriers used on a specific Marking on the…
+      operationId: GetUnitMarkingCarriers
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The UnitShipment No in which the specific Marking is
+        required: true
+        schema:
+          type: string
+      - name: markingNo
+        in: path
+        description: The Marking No to fetch Marking Carriers for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the Marking Carriers for the UnitShipment Marking
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrier'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrier'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrier'
+        '400':
+          description: Returns a validation result
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No or a Marking with the supplied Marking No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/responses:
+    get:
+      tags:
+      - UnitShipments
+      summary: Returns a list of Responses used on the UnitShipment
+      operationId: GetUnitShipmentResponses
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The UnitShipment No to fetch Responses for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the Responses for the UnitShipment
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - UnitShipments
+      summary: Creates a new UnitShipmentResponse for the UnitShipment
+      operationId: CreateUnitShipmentResponse
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The UnitShipment No from the URL
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The UnitShipment Response retrieved from the body of the post request
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+      responses:
+        '200':
+          description: Returns the created UnitShipment Response object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentResponse'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If a UnitShipment with the supplied Shipment No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table><br/><br/>Customer must have one of these License values set<table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ProcurementDistributionModule</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/responses/count:
+    get:
+      tags:
+      - UnitShipments
+      summary: Returns the number of Responses on a specific UnitShipment
+      operationId: GetUnitShipmentResponsesCount
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The UnitShipment No to fetch the number of Responses for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the Responses Count for the UnitShipment
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '400':
+          description: Returns a validation result with information about the bad request
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/requisitions:
+    get:
+      tags:
+      - UnitShipments
+      summary: Gets a list of linked Requisitions
+      operationId: GetUnitShipmentRequisitions
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Distribution.UnitShipmentRequisitionView'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Distribution.UnitShipmentRequisitionView'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Distribution.UnitShipmentRequisitionView'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/markingCarriers/{markingCarrierNo}/positions:
+    get:
+      tags:
+      - UnitShipments
+      summary: Returns carrier details for a specific UnitShipment marking carrier
+      operationId: GetUnitShipmentMarkingCarrierPositions
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The UnitShipment No
+        required: true
+        schema:
+          type: string
+      - name: markingCarrierNo
+        in: path
+        description: The No of the UnitShipmentMarkingUnitCarrier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns requisition-linked and non-linked positions for the carrier
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPositions'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPositions'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPositions'
+        '400':
+          description: Returns validation result
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If the UnitShipment or marking carrier cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /UnitShipments/{shipmentNo}/markingCarrierPositions:
+    get:
+      tags:
+      - UnitShipments
+      summary: Returns carrier details for all marking carriers on a specific UnitShipment
+      operationId: GetUnitShipmentMarkingCarrierPositionsForShipment
+      parameters:
+      - name: shipmentNo
+        in: path
+        description: The UnitShipment No
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns requisition-linked and non-linked positions for all carriers on the shipment
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPositions'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPositions'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPositions'
+        '400':
+          description: Returns validation result
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If the UnitShipment cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>UnitShipment</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    SerticaWebApi.Models.Distribution.ShipmentFreightDetail:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        shipmentWayNo:
+          type:
+          - string
+          - 'null'
+        shipmentWayName:
+          type:
+          - string
+          - 'null'
+        placeOfDepartureNo:
+          type:
+          - string
+          - 'null'
+        placeOfDepartureName:
+          type:
+          - string
+          - 'null'
+        departureDateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        placeOfArrivalNo:
+          type:
+          - string
+          - 'null'
+        placeOfArrivalName:
+          type:
+          - string
+          - 'null'
+        arrivalDateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        trackingNumber:
+          type:
+          - string
+          - 'null'
+        airWayBillNo:
+          type:
+          - string
+          - 'null'
+        flightNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentStatus:
+      enum:
+      - Draft
+      - Picking
+      - Picked
+      - Shipped
+      - PartlyReceived
+      - Received
+      - Cancelled
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierRequisitionPosition:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        requisitionNo:
+          type:
+          - string
+          - 'null'
+        positionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        sparePartNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        measureUnitNo:
+          type:
+          - string
+          - 'null'
+        transitReceivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        orderedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        requestedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        price:
+          type: number
+          format: double
+        procurementRequisitionCurrencyNo:
+          type:
+          - string
+          - 'null'
+        receivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ProcurementRequisitionStatus:
+      enum:
+      - NotRequested
+      - Requested
+      - RequisitionHandling
+      - Rejected
+      - Ordered
+      - PartlyOrdered
+      - PartlyReceived
+      - Received
+      - Cancelled
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount:
+      type: object
+      properties:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        rate:
+          type:
+          - number
+          - 'null'
+          format: double
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentCarrier:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        carrierNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        remarks:
+          type:
+          - string
+          - 'null'
+        receivedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalValue:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        dangerousGoods:
+          type:
+          - boolean
+          - 'null'
+        certificate:
+          type:
+          - boolean
+          - 'null'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        orderDescription:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Distribution.UnitShipmentRequisitionView:
+      type: object
+      properties:
+        requisitionUnitNo:
+          type:
+          - string
+          - 'null'
+        requisitionNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ProcurementRequisitionStatus'
+        workflow:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ProcurementRequisitionWorkflow'
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPositions:
+      type: object
+      properties:
+        carrierGuid:
+          type:
+          - string
+          - 'null'
+        carrierNo:
+          type:
+          - string
+          - 'null'
+        requisitionPositions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierRequisitionPosition'
+        positionsWithoutRequisitionLink:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPosition'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ProcurementRequisitionWorkflow:
+      enum:
+      - Draft
+      - AwaitingTechnicalReview
+      - ReadyForRFQ
+      - AwaitingQuote
+      - ReadyForOrder
+      - Closed
+      - AwaitingUnitRespecification
+      - AwaitingRequest
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    SerticaWebApi.Models.Distribution.ShipmentResponse:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrierPosition:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        sparePartNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        measureUnitNo:
+          type:
+          - string
+          - 'null'
+        transitReceivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        receivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        price:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentMarkingCarrier:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        markingNo:
+          type:
+          - string
+          - 'null'
+        carrierNo:
+          type:
+          - string
+          - 'null'
+        picked:
+          type:
+          - boolean
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        remarks:
+          type:
+          - string
+          - 'null'
+        receivedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalValue:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        dangerousGoods:
+          type:
+          - boolean
+          - 'null'
+        certificate:
+          type:
+          - boolean
+          - 'null'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        orderDescription:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.UnitShipmentResponse:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.UnitShipmentMarking:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        markingNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        received:
+          type: boolean
+        netWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        grossWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        length:
+          type:
+          - number
+          - 'null'
+          format: double
+        width:
+          type:
+          - number
+          - 'null'
+          format: double
+        height:
+          type:
+          - number
+          - 'null'
+          format: double
+        volume:
+          type:
+          - number
+          - 'null'
+          format: double
+        value:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        carriers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrier'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.UnitShipment:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        expectedShipmentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        shippedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        receivedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        cancelledDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentStatus'
+        shippingCosts:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        dangerousGoods:
+          type:
+          - boolean
+          - 'null'
+        certificate:
+          type:
+          - boolean
+          - 'null'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        remarks:
+          type:
+          - string
+          - 'null'
+        warehouses:
+          type:
+          - string
+          - 'null'
+        externalReference1:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
+          type:
+          - string
+          - 'null'
+        externalReference4:
+          type:
+          - string
+          - 'null'
+        markings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.UnitShipmentMarking'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.UnitShipmentMarkingCarrier:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        markingNo:
+          type:
+          - string
+          - 'null'
+        carrierNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        remarks:
+          type:
+          - string
+          - 'null'
+        receivedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalValue:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        orderDescription:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentDocument:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pageNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentDestinationWarehouse:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        warehouseNo:
+          type:
+          - string
+          - 'null'
+        warehouseName:
+          type:
+          - string
+          - 'null'
+        remark:
+          type:
+          - string
+          - 'null'
+        received:
+          type:
+          - boolean
+          - 'null'
+        sortOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentType:
+      enum:
+      - Final
+      - Warehouse
+      - Landing
+      type: string
+    SerticaWebApi.Models.Distribution.ShipmentMarking:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        markingNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        picked:
+          type:
+          - boolean
+          - 'null'
+        netWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        grossWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        length:
+          type:
+          - number
+          - 'null'
+          format: double
+        width:
+          type:
+          - number
+          - 'null'
+          format: double
+        height:
+          type:
+          - number
+          - 'null'
+          format: double
+        volume:
+          type:
+          - number
+          - 'null'
+          format: double
+        value:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        carriers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentMarkingCarrier'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.Distribution.Shipment:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        shipmentType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentType'
+        expectedShipmentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        shippedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        receivedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        cancelledDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentStatus'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        exchangeRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        consigneeNo:
+          type:
+          - string
+          - 'null'
+        consigneeName:
+          type:
+          - string
+          - 'null'
+        freightForwarderNo:
+          type:
+          - string
+          - 'null'
+        freightForwarderName:
+          type:
+          - string
+          - 'null'
+        externalReference1:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
+          type:
+          - string
+          - 'null'
+        externalReference4:
+          type:
+          - string
+          - 'null'
+        shippingCosts:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        portNo:
+          type:
+          - string
+          - 'null'
+        portName:
+          type:
+          - string
+          - 'null'
+        finalUnitNo:
+          type:
+          - string
+          - 'null'
+        finalUnitName:
+          type:
+          - string
+          - 'null'
+        remarks:
+          type:
+          - string
+          - 'null'
+        dangerousGoods:
+          type:
+          - boolean
+          - 'null'
+        certificate:
+          type:
+          - boolean
+          - 'null'
+        advised:
+          type:
+          - boolean
+          - 'null'
+        urgent:
+          type:
+          - boolean
+          - 'null'
+        purchaseOrders:
+          type:
+          - string
+          - 'null'
+        markings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentMarking'
+        unassignedCarriers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentCarrier'
+        pickupWarehouses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentPickupWarehouse'
+        destinationWarehouses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentDestinationWarehouse'
+        freightDetails:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentFreightDetail'
+        responses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentResponse'
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentDocument'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentPickupWarehouse:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        warehouseNo:
+          type:
+          - string
+          - 'null'
+        warehouseName:
+          type:
+          - string
+          - 'null'
+        sortOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

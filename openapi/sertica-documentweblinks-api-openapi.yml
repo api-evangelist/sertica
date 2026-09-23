@@ -1,0 +1,304 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Document Weblinks API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: DocumentWeblinks
+paths:
+  /DocumentWeblinks/{documentWeblinksGuid}/preview:
+    get:
+      tags:
+      - DocumentWeblinks
+      operationId: GetDocumentWeblinkPreview
+      parameters:
+      - name: documentWeblinksGuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Document.DocumentSharePreview'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Document.DocumentSharePreview'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.Document.DocumentSharePreview'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      summary: Get document weblink preview
+      x-summary-source: derived
+  /DocumentWeblinks/{documentWeblinksGuid}/file:
+    get:
+      tags:
+      - DocumentWeblinks
+      operationId: GetDocumentWeblinkFile
+      parameters:
+      - name: documentWeblinksGuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: string
+                format: binary
+            text/json:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      summary: Get document weblink file
+      x-summary-source: derived
+  /DocumentWeblinks/{documentWeblinksGuid}/pdf:
+    get:
+      tags:
+      - DocumentWeblinks
+      operationId: GetDocumentWeblinkPdf
+      parameters:
+      - name: documentWeblinksGuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: string
+                format: binary
+            text/json:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Http.HttpResults.NotFound'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      summary: Get document weblink pdf
+      x-summary-source: derived
+components:
+  schemas:
+    SerticaWebApi.Models.Document.DocumentSharePreview:
+      type: object
+      properties:
+        filename:
+          type:
+          - string
+          - 'null'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        fileUrl:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Microsoft.AspNetCore.Http.HttpResults.NotFound:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

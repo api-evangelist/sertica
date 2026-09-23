@@ -1,0 +1,1591 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Tanks API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: Tanks
+paths:
+  /Tanks:
+    get:
+      tags:
+      - Tanks
+      summary: Gets a list of Tanks
+      operationId: GetTanks
+      parameters:
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - Tanks
+      summary: Creates a new Tank record
+      operationId: CreateTank
+      requestBody:
+        description: The Tank Object, including reference lists
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/{tankNo}:
+    get:
+      tags:
+      - Tanks
+      summary: Gets a specific Tank
+      operationId: GetTank
+      parameters:
+      - name: tankNo
+        in: path
+        description: The TankNo to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the requested tank
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If  tank with the supplied tank No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - Tanks
+      summary: Updates an existing Tank
+      operationId: UpdateTank
+      parameters:
+      - name: tankNo
+        in: path
+        description: The TankNo of the tank to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The Tank DTO object with the fields to update
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+      responses:
+        '200':
+          description: Returns the updated Tank object
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - Tanks
+      summary: Deletes a Tank record
+      parameters:
+      - name: tankNo
+        in: path
+        description: The TankNo of the Tank to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank_Delete</td><td style='border-bottom:none'>Delete</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      operationId: deleteTanksByTankNo
+      x-operation-id-source: derived
+  /Tanks/{tankNo}/history:
+    get:
+      tags:
+      - Tanks
+      summary: Gets history for a specific Tank
+      operationId: GetTankHistory
+      parameters:
+      - name: tankNo
+        in: path
+        description: The TankNo to get
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '200':
+          description: Returns the requested Tank
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If  Tank with the supplied Tank No cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank_HistoryMode</td><td style='border-bottom:none'>HistoryMode</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/search:
+    post:
+      tags:
+      - Tanks
+      summary: Search for Tank Takes a SearchDefinition input, which can include filters and…
+      operationId: SearchTanks
+      parameters:
+      - name: page
+        in: query
+        description: Page
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Page size
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: Returns the requested tank
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/searchIndex/{tankGuid}:
+    post:
+      tags:
+      - Tanks
+      summary: Get index of a record in a search for tanks Takes a SearchDefinition input…
+      operationId: SearchIndexTankGuid
+      parameters:
+      - name: tankGuid
+        in: path
+        description: The tank to get index for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/searchCount:
+    post:
+      tags:
+      - Tanks
+      summary: Returns number of hits in a search for tanks Takes a SearchDefinition input…
+      operationId: SearchCountTanks
+      requestBody:
+        description: The search definition
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/searchInfo:
+    get:
+      tags:
+      - Tanks
+      summary: Returns structured information about what and how you can search for
+      operationId: SearchInfoTanks
+      responses:
+        '200':
+          description: Returns a list of valid search fields
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo'
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+  /Tanks/{tankNo}/copy:
+    get:
+      tags:
+      - Tanks
+      summary: Copies an existing Tank to a new object
+      operationId: CopyTank
+      parameters:
+      - name: tankNo
+        in: path
+        description: The TankNo of the Tank to copy
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the new Tank object with properties from original
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Tank'
+        '400':
+          description: Returns a ValidationResult with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/{tankNo}/compartments:
+    get:
+      tags:
+      - Tanks
+      summary: Gets a list of TankCompartments positions
+      operationId: GetTankCompartments
+      parameters:
+      - name: tankNo
+        in: path
+        description: The Tank No. to fetch values for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.TankCompartment'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.TankCompartment'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.TankCompartment'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/{tankNo}/logbooks:
+    get:
+      tags:
+      - Tanks
+      summary: Gets a list of TankLogbooks positions
+      operationId: GetTankLogbooks
+      parameters:
+      - name: tankNo
+        in: path
+        description: The Tank No. to fetch values for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.TankLogbook'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.TankLogbook'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.TankLogbook'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/{tankNo}/soundingTable:
+    get:
+      tags:
+      - Tanks
+      summary: Get Tank Sounding Table
+      operationId: GetTankSoundingTable
+      parameters:
+      - name: tankNo
+        in: path
+        description: The Tank No. to fetch values for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SoundingTable'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SoundingTable'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SoundingTable'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>Tank</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/DailySoundingEnabledForLogbooks:
+    post:
+      tags:
+      - Tanks
+      summary: Is Daily Sounding Enabled for Logbooks
+      operationId: DailySoundingEnabledForLogbooks
+      requestBody:
+        description: The list of logbook enums that should be checked
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/AllowedProductClaasesForLogbooks:
+    post:
+      tags:
+      - Tanks
+      summary: Get list of allowed Product Classes for selected Logbook
+      operationId: AllowedProductClaasesForLogbooks
+      requestBody:
+        description: The list of logbook enums that should be checked
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+  /Tanks/AllowedLiquidsForTank/{tankNo}:
+    get:
+      tags:
+      - Tanks
+      summary: Get list of allowed Liquids for Tank
+      operationId: AllowedLiquidsForTank
+      parameters:
+      - name: tankNo
+        in: path
+        description: The tank
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid'
+        '401':
+          description: If user is unauthorized
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+components:
+  schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Models.SoundingTableData:
+      type: object
+      properties:
+        ullage:
+          type: boolean
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        trims:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        limits:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - object
+            - 'null'
+            additionalProperties:
+              type:
+              - number
+              - 'null'
+              format: float
+        rows: {}
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.ElectronicLogBook.TankLogbook:
+      type: object
+      properties:
+        tankNo:
+          type:
+          - string
+          - 'null'
+        logbook:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+        tankGuid:
+          type: string
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.ElectronicLogBook.TankCompartment:
+      type: object
+      properties:
+        tankGuid:
+          type: string
+          format: uuid
+        tankNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.ElectronicLogBook.Tank:
+      type: object
+      properties:
+        tankNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        calculateGenerated:
+          type: boolean
+        capacity:
+          type: number
+          format: double
+        fuelTypeNo:
+          type:
+          - string
+          - 'null'
+        fuelTypeName:
+          type:
+          - string
+          - 'null'
+        highLevelAlarmThreshold:
+          type: number
+          format: double
+        lowLevelAlarmThreshold:
+          type: number
+          format: double
+        levelTolerance:
+          type:
+          - number
+          - 'null'
+          format: double
+        iopp:
+          type: boolean
+        ioppName:
+          type:
+          - string
+          - 'null'
+        transversalPosition:
+          type:
+          - string
+          - 'null'
+        ioppType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookIOPPType'
+        lubeOilTypeNo:
+          type:
+          - string
+          - 'null'
+        lubeOilTypeName:
+          type:
+          - string
+          - 'null'
+        negativeVarianceMaxValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        negativeVarianceMessage:
+          type:
+          - string
+          - 'null'
+        negativeVarianceMessageType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_TankVarianceType'
+        positionFromFrame:
+          type:
+          - number
+          - 'null'
+          format: double
+        positionFromLevel:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        positionToFrame:
+          type:
+          - number
+          - 'null'
+          format: double
+        positionToLevel:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        positiveVarianceMaxValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        positiveVarianceMessage:
+          type:
+          - string
+          - 'null'
+        positiveVarianceMessageType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_TankVarianceType'
+        productClass:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass'
+        trimCorrection:
+          type: boolean
+        tanksOverview:
+          type: boolean
+        dailySounding:
+          type: boolean
+        dailySoundingPosition:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        trimTolerance:
+          type:
+          - number
+          - 'null'
+          format: double
+        ullage:
+          type: boolean
+        isGenericSource:
+          type: boolean
+        logbooks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.TankLogbook'
+        logbooksAsString:
+          type:
+          - string
+          - 'null'
+        compartments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.TankCompartment'
+        soundingTableEnabled:
+          type: boolean
+        soundingTableNo:
+          type:
+          - string
+          - 'null'
+        soundingTableData: {}
+        isInitialized:
+          type:
+          - boolean
+          - 'null'
+        withCompartments:
+          type: boolean
+        tankType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.Shared.Models.Operations.OperationSourceDestination'
+        lastRecordedVolume:
+          type:
+          - number
+          - 'null'
+          format: double
+        lastRecordedLiquid:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid'
+        lastRecordedLiquidTypeNo:
+          type:
+          - string
+          - 'null'
+        lastRecordedDensity:
+          type:
+          - number
+          - 'null'
+          format: double
+        lastRecordedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_TankVarianceType:
+      enum:
+      - None
+      - Warning
+      - Blocking
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.ElectronicLogBook.SoundingTable:
+      type: object
+      properties:
+        soundingTableNo:
+          type:
+          - string
+          - 'null'
+        sheetNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        type:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        soundingTableData:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Models.SoundingTableData'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook:
+      enum:
+      - ORBI
+      - ORBII
+      - ODSRB
+      - GRB
+      - CRB
+      - BRB
+      - ERB
+      - RRB
+      - DRB
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookIOPPType:
+      enum:
+      - 'No'
+      - Yes31
+      - Yes32
+      - Yes33
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass:
+      enum:
+      - Water
+      - GreyWater
+      - LubeOil
+      - Fuel
+      - Sludge
+      - Bilge
+      - Slop
+      - SewageSlop
+      - Chemical
+      - CargoOil
+      - CargoOilChemical
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid:
+      enum:
+      - Water
+      - GreyWater
+      - Bilge
+      - Sludge
+      - CargoOil
+      - Slop
+      - Fuel
+      - LubeOil
+      - Chemical
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.Shared.Models.Operations.OperationSourceDestination:
+      enum:
+      - Tank
+      - Custom
+      - Sea
+      - Ashore
+      - Evaporation
+      - Incinerator
+      - Boiler
+      - OilWaterSeparator
+      - BilgeWells
+      - ObservationTank
+      - Other
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

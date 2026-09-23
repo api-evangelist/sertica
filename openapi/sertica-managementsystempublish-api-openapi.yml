@@ -1,0 +1,972 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Management System Publish API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: ManagementSystemPublish
+paths:
+  /ManagementSystemPublish/{managementSystemNo}/setup:
+    post:
+      tags:
+      - ManagementSystemPublish
+      summary: Setup management system publish
+      operationId: SetupManagementSystemPublish
+      parameters:
+      - name: managementSystemNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/publishunits:
+    get:
+      tags:
+      - ManagementSystemPublish
+      summary: Get publish units
+      operationId: GetPublishUnits
+      parameters:
+      - name: managementSystemNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.IPublishUnit'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.IPublishUnit'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.IPublishUnit'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/validatePublishUnits:
+    post:
+      tags:
+      - ManagementSystemPublish
+      operationId: ValidatePublishUnits
+      parameters:
+      - name: managementSystemNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Validate publish units
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/publishabledocuments:
+    post:
+      tags:
+      - ManagementSystemPublish
+      operationId: GetPublishableDocuments
+      parameters:
+      - name: managementSystemNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get publishable documents
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/validatePublishDocuments:
+    post:
+      tags:
+      - ManagementSystemPublish
+      operationId: ValidatePublishDocuments
+      parameters:
+      - name: managementSystemNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Validate publish documents
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/initiatepublishtask:
+    post:
+      tags:
+      - ManagementSystemPublish
+      operationId: InitatePublishTask
+      parameters:
+      - name: managementSystemNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Initate publish task
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/initiateindexdocumentstask:
+    post:
+      tags:
+      - ManagementSystemPublish
+      operationId: InitateIndexDocumentsTask
+      parameters:
+      - name: managementSystemNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Initate index documents task
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/intiateunitdeletion:
+    post:
+      tags:
+      - ManagementSystemPublish
+      operationId: IntiateUnitDeletion
+      parameters:
+      - name: managementSystemNo
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishArguments'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ApiPublishResult'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Intiate unit deletion
+      x-summary-source: derived
+  /ManagementSystemPublish/publishtask/{guid}:
+    get:
+      tags:
+      - ManagementSystemPublish
+      operationId: GetPublishTask
+      parameters:
+      - name: guid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get publish task
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/{taskNo}:
+    get:
+      tags:
+      - ManagementSystemPublish
+      operationId: GetPublishTaskByTaskNo
+      parameters:
+      - name: managementSystemNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: taskNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask'
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Get publish task by task no
+      x-summary-source: derived
+  /ManagementSystemPublish/{managementSystemNo}/unlock:
+    post:
+      tags:
+      - ManagementSystemPublish
+      operationId: UnlockManagementSystem
+      parameters:
+      - name: managementSystemNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>ManagementSystem_Update</td><td style='border-bottom:none'>Update</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      summary: Unlock management system
+      x-summary-source: derived
+components:
+  schemas:
+    SerticaWebApi.Models.ManagementSystem.ApiPublishUnit:
+      type: object
+      properties:
+        unitGuid:
+          type:
+          - string
+          - 'null'
+        publish:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        draft:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ManagementSystemPublishTaskTaskType:
+      enum:
+      - Publish
+      - UnitDeletion
+      - IndexDocuments
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ManagementSystemPublishTaskStatus:
+      enum:
+      - Pending
+      - InProgress
+      - Published
+      - Failed
+      type: string
+    SerticaWebApi.Models.ManagementSystems.ApiPublishResult:
+      type: object
+      properties:
+        publishMode:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishMode'
+        success:
+          type: boolean
+          readOnly: true
+        validationResult:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        issues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssue'
+        warnings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssue'
+        skipRevisionDate:
+          type: boolean
+        publishTask:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishMode:
+      enum:
+      - FirstPublish
+      - ExportOnly
+      - Denied
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.IPublishUnit:
+      type: object
+      properties:
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        publish:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        draft:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystemPublisher_PublishableType:
+      enum:
+      - Document
+      - MainIndex
+      - Section
+      - RecordOfCorrection
+      - FrontPage
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask:
+      type: object
+      properties:
+        tsTaskTaskNo:
+          type:
+          - string
+          - 'null'
+        tsTaskNextRunTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        managementSystemGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        managementSystemNo:
+          type:
+          - string
+          - 'null'
+        managementSystemTitle:
+          type:
+          - string
+          - 'null'
+        taskNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        progressText:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ManagementSystemPublishTaskStatus'
+        publishArguments: {}
+        taskType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ManagementSystemPublishTaskTaskType'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssueReason:
+      enum:
+      - DisplayUserAlreadyPublishing
+      - DisplayPublishDeniedInfo
+      - DisplayUnapprovedChangeRequestsWarning
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssue:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssueReason'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.ManagementSystem.ApiPublishArguments:
+      type: object
+      properties:
+        continueWhenUserAlreadyPublishing:
+          type:
+          - boolean
+          - 'null'
+        publishUnits:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishUnit'
+        revisionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        authorizingUserNo:
+          type:
+          - string
+          - 'null'
+        publishMode:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishMode'
+        publishDocuments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument'
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        publish:
+          type: boolean
+        documentType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystemPublisher_PublishableType'
+        documentInfo:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        changeRequestNo:
+          type:
+          - string
+          - 'null'
+        affectedUnits:
+          type:
+          - string
+          - 'null'
+        documentFileOK:
+          type: boolean
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

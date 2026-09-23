@@ -1,0 +1,214 @@
+openapi: 3.2.0
+info:
+  title: SERTICA Web Vessel Report Type Field Definitions API
+  description: 'Online API browser for SERTICA Web API.
+
+
+    Be aware that some endpoints are restricted by license or user rights and may not be available in your environment.
+
+
+    Each endpoint includes a description of the required license and user rights.'
+  version: v1
+servers:
+- url: /api
+tags:
+- name: VesselReportTypeFieldDefinitions
+paths:
+  /VesselReportTypeFieldDefinitions/{vesselReportTypeNo}/{definitionId}/script/usage:
+    post:
+      tags:
+      - VesselReportTypeFieldDefinitions
+      summary: Get definition script usage
+      operationId: GetDefinitionScriptUsage
+      parameters:
+      - name: vesselReportTypeNo
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: definitionId
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns usage of the definition
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDefinitionScriptUsage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDefinitionScriptUsage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDefinitionScriptUsage'
+        '400':
+          description: Returns a validation result with information about the bad request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        '404':
+          description: If an Vessel Report Type with the supplied No. cannot be found
+        '401':
+          description: If user is unauthorized
+        '403':
+          description: User must have one of these User Rights</br><table><thead><tr><th>Key</th><th>Right</th></tr></thead><tbody><tr><td style='border-bottom:none;padding-right:5px'>VesselReportType</td><td style='border-bottom:none'>View</td></tr></tbody></table>
+        '500':
+          description: The api has encountered an unhandled exception. See Sertica logs for details
+      security:
+      - Bearer: []
+      x-summary-source: derived
+components:
+  schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDataType:
+      enum:
+      - None
+      - String
+      - Bool
+      - Signature
+      - Decimal
+      - Coordinates
+      - Int
+      - List
+      - Date
+      - DateTime
+      - Time
+      - Reference
+      - StaticText
+      - Document
+      - Table
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDefinitionScriptUsage:
+      type: object
+      properties:
+        vesselReportTypeGuid:
+          type: string
+          format: uuid
+        vesselReportTypeNo:
+          type:
+          - string
+          - 'null'
+        vesselReportTypeName:
+          type:
+          - string
+          - 'null'
+        definitionId:
+          type:
+          - string
+          - 'null'
+        calculationScript:
+          type:
+          - string
+          - 'null'
+        validationScript:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDataType'
+        layout:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      description: JWT Authorization header using the Bearer scheme
+      scheme: bearer

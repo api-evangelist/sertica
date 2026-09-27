@@ -186,6 +186,14 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBrowserNodeType:
+      enum:
+      - Root
+      - VesselReportType
+      - Year
+      - Month
+      - None
+      type: string
     SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBrowserNode:
       type: object
       properties:
@@ -244,14 +252,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBrowserNodeType:
-      enum:
-      - Root
-      - VesselReportType
-      - Year
-      - Month
-      - None
-      type: string
   securitySchemes:
     Bearer:
       type: http

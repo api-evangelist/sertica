@@ -102,14 +102,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.Certificate.CertificateTreeNodeType:
-      enum:
-      - CertificateGroup
-      - Certificate
-      - Obsolete
-      - Overdue
-      - Due
-      type: string
     SerticaWebApi.Models.Certificate.CertificateTreeNode:
       type: object
       properties:
@@ -171,6 +163,14 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    SerticaWebApi.Models.Certificate.CertificateTreeNodeType:
+      enum:
+      - CertificateGroup
+      - Certificate
+      - Obsolete
+      - Overdue
+      - Due
+      type: string
   securitySchemes:
     Bearer:
       type: http

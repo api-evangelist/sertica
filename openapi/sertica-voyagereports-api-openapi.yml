@@ -1083,7 +1083,23 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.VoyageReporting.VoyageReportOffHireItem:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2SeaState:
+      enum:
+      - SeaLikeAMirror
+      - RipplesWithScales
+      - SmallWavelets
+      - LargeWavelets
+      - SmallWaves
+      - ModerateLongerWaves
+      - LargeWaves
+      - SomeHeapsUp
+      - ModerateHeighWaves
+      - HighWaves
+      - VeryHighWaves
+      - ExceptionalHighWaves
+      - AirFilledWithFoamAndSpray
+      type: string
+    SerticaWebApi.Models.VoyageReporting.VoyageReportMEItem:
       type: object
       properties:
         voyageReportNo:
@@ -1178,27 +1194,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2WindForce:
-      enum:
-      - Calm
-      - LightAir
-      - LigtBreeze
-      - GentleBreeze
-      - ModerateBreeze
-      - FreshBreeze
-      - StrongBreeze
-      - HighWind
-      - Gale
-      - StrongGale
-      - Storm
-      - ViolentStorm
-      - Hurricane
-      type: string
     SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
@@ -1231,140 +1226,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    SerticaWebApi.Models.VoyageReporting.VoyageReportItemBoiler:
-      type: object
-      properties:
-        voyageReportNo:
-          type:
-          - string
-          - 'null'
-        itemNo:
-          type:
-          - string
-          - 'null'
-        itemName:
-          type:
-          - string
-          - 'null'
-        standardNo:
-          type:
-          - string
-          - 'null'
-        consumed:
-          type:
-          - number
-          - 'null'
-          format: double
-        correction:
-          type:
-          - number
-          - 'null'
-          format: double
-        currentStock:
-          type:
-          - number
-          - 'null'
-          format: double
-        price:
-          type:
-          - number
-          - 'null'
-          format: double
-        density:
-          type:
-          - number
-          - 'null'
-          format: double
-        volume:
-          type:
-          - number
-          - 'null'
-          format: double
-        temperature:
-          type:
-          - number
-          - 'null'
-          format: double
-        corrected:
-          type:
-          - boolean
-          - 'null'
-        source:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2ConsumptionSources'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.StationDescription:
       enum:
       - StatusReset
@@ -1388,501 +1249,15 @@ components:
       - ChangeOnPreliminaryBooked
       - ChangeOnBooked
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
       type: object
       properties:
-        deviceGuid:
+        field:
           type:
           - string
           - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.VoyageReporting.VoyageData:
-      type: object
-      properties:
-        voyageDataNo:
-          type:
-          - string
-          - 'null'
-        source:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageDataSource'
-        voyageDataDateTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        positionLatitude:
-          type:
-          - number
-          - 'null'
-          format: double
-        positionLongitude:
-          type:
-          - number
-          - 'null'
-          format: double
-        recommendedTrimFromGreenSteam:
-          type:
-          - number
-          - 'null'
-          format: double
-        operationalPerformanceGreenSteam:
-          type:
-          - number
-          - 'null'
-          format: double
-        calculatedSpeedThroughWater:
-          type:
-          - number
-          - 'null'
-          format: double
-        speedOverGround:
-          type:
-          - number
-          - 'null'
-          format: double
-        courseOverGround:
-          type:
-          - number
-          - 'null'
-          format: double
-        calculatedCurrentDirection:
-          type:
-          - number
-          - 'null'
-          format: double
-        calculatedCurrentSpeed:
-          type:
-          - number
-          - 'null'
-          format: double
-        draftForward:
-          type:
-          - number
-          - 'null'
-          format: double
-        draftAft:
-          type:
-          - number
-          - 'null'
-          format: double
-        propulsionPowerMeasuredViaTorqueMeters:
-          type:
-          - number
-          - 'null'
-          format: double
-        calculatedPropulsionPower:
-          type:
-          - number
-          - 'null'
-          format: double
-        trueWindForce:
-          type:
-          - number
-          - 'null'
-          format: double
-        trueWindDirection:
-          type:
-          - number
-          - 'null'
-          format: double
-        powerLostOnHullResistance:
-          type:
-          - number
-          - 'null'
-          format: double
-        powerLostOnPropellerResistance:
-          type:
-          - number
-          - 'null'
-          format: double
-        powerLostOnWindResistance:
-          type:
-          - number
-          - 'null'
-          format: double
-        powerLostOnWaveResistance:
-          type:
-          - number
-          - 'null'
-          format: double
-        powerLostOnWaterResistance:
-          type:
-          - number
-          - 'null'
-          format: double
-        powerLostDueToLessThanOptimumTrim:
-          type:
-          - number
-          - 'null'
-          format: double
-        depth:
-          type:
-          - number
-          - 'null'
-          format: double
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.VoyageReporting.VoyageReportCargo:
-      type: object
-      properties:
-        requestedStowageZoneNo:
-          type:
-          - string
-          - 'null'
-        voyageReportNo:
-          type:
-          - string
-          - 'null'
-        imdgDist:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        stowOnBoard:
-          type:
-          - string
-          - 'null'
-        releaseNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        phoenixVoyageNo:
-          type:
-          - string
-          - 'null'
-        cargoTypeNo:
-          type:
-          - string
-          - 'null'
-        unitNumber:
-          type:
-          - string
-          - 'null'
-        weight:
-          type:
-          - number
-          - 'null'
-          format: double
-        satlot:
-          type:
-          - boolean
-          - 'null'
-        length:
-          type:
-          - number
-          - 'null'
-          format: double
-        setp1:
-          type:
-          - number
-          - 'null'
-          format: double
-        setp2:
-          type:
-          - number
-          - 'null'
-          format: double
-        imoClasses:
-          type:
-          - string
-          - 'null'
-        passengers:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        pluggedIn:
-          type:
-          - boolean
-          - 'null'
-        status:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.StationDescription'
-        additionalCargo:
-          type:
-          - boolean
-          - 'null'
-        cargoDetails:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.VoyageReporting.VoyageReportCargoDetail'
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    SerticaWebApi.Models.VoyageReporting.VoyageReportCargoDetail:
-      type: object
-      properties:
-        portCallCargoGuid:
-          type: string
-          format: uuid
-        portCallCargoReleaseNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        technicalName:
-          type:
-          - string
-          - 'null'
-        emsNo:
-          type:
-          - string
-          - 'null'
-        flashPoint:
-          type:
-          - string
-          - 'null'
-        imoClass:
-          type:
-          - string
-          - 'null'
-        imoSubClass:
-          type:
-          - string
-          - 'null'
-        limitedQuantity:
-          type:
-          - boolean
-          - 'null'
-        marinePolutant:
-          type:
-          - boolean
-          - 'null'
-        packingGroup:
-          type:
-          - string
-          - 'null'
-        stCat:
-          type:
-          - string
-          - 'null'
-        unNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        comments:
-          type:
-          - string
-          - 'null'
-        noPkgs:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        isBulk:
-          type:
-          - boolean
-          - 'null'
-        isResidues:
-          type:
-          - boolean
-          - 'null'
-        packageType:
-          type:
-          - string
-          - 'null'
-        productName:
-          type:
-          - string
-          - 'null'
-        netWeight:
-          type:
-          - number
-          - 'null'
-          format: double
-        grossWeight:
-          type:
-          - number
-          - 'null'
-          format: double
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
       additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2WindDirection:
       enum:
@@ -1902,134 +1277,6 @@ components:
       - WNW
       - NW
       - NNW
-      type: string
-    SerticaWebApi.Models.VoyageReporting.VoyageReportAuxItem:
-      type: object
-      properties:
-        voyageReportNo:
-          type:
-          - string
-          - 'null'
-        itemNo:
-          type:
-          - string
-          - 'null'
-        itemName:
-          type:
-          - string
-          - 'null'
-        standardNo:
-          type:
-          - string
-          - 'null'
-        consumed:
-          type:
-          - number
-          - 'null'
-          format: double
-        correction:
-          type:
-          - number
-          - 'null'
-          format: double
-        currentStock:
-          type:
-          - number
-          - 'null'
-          format: double
-        price:
-          type:
-          - number
-          - 'null'
-          format: double
-        density:
-          type:
-          - number
-          - 'null'
-          format: double
-        volume:
-          type:
-          - number
-          - 'null'
-          format: double
-        temperature:
-          type:
-          - number
-          - 'null'
-          format: double
-        corrected:
-          type:
-          - boolean
-          - 'null'
-        source:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2ConsumptionSources'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2ConsumptionSources:
-      enum:
-      - ME
-      - AUX
-      - Boiler
-      - Offhire
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
-      type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageDataSource:
-      enum:
-      - Manual
-      - GreenSteam
-      - Excel
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_GreenSteamStatus:
-      enum:
-      - None
-      - AwaitingGreenSteam
-      - NoDataFound
-      - Completed
       type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
       type: object
@@ -2052,6 +1299,40 @@ components:
           - 'null'
         isCustomProperty:
           type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageDataSource:
+      enum:
+      - Manual
+      - GreenSteam
+      - Excel
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
       additionalProperties: false
     SerticaWebApi.Models.VoyageReporting.VoyageReport:
       type: object
@@ -2721,6 +2002,139 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    SerticaWebApi.Models.VoyageReporting.VoyageReportCargoDetail:
+      type: object
+      properties:
+        portCallCargoGuid:
+          type: string
+          format: uuid
+        portCallCargoReleaseNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        technicalName:
+          type:
+          - string
+          - 'null'
+        emsNo:
+          type:
+          - string
+          - 'null'
+        flashPoint:
+          type:
+          - string
+          - 'null'
+        imoClass:
+          type:
+          - string
+          - 'null'
+        imoSubClass:
+          type:
+          - string
+          - 'null'
+        limitedQuantity:
+          type:
+          - boolean
+          - 'null'
+        marinePolutant:
+          type:
+          - boolean
+          - 'null'
+        packingGroup:
+          type:
+          - string
+          - 'null'
+        stCat:
+          type:
+          - string
+          - 'null'
+        unNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        comments:
+          type:
+          - string
+          - 'null'
+        noPkgs:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        isBulk:
+          type:
+          - boolean
+          - 'null'
+        isResidues:
+          type:
+          - boolean
+          - 'null'
+        packageType:
+          type:
+          - string
+          - 'null'
+        productName:
+          type:
+          - string
+          - 'null'
+        netWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        grossWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2WindForce:
+      enum:
+      - Calm
+      - LightAir
+      - LigtBreeze
+      - GentleBreeze
+      - ModerateBreeze
+      - FreshBreeze
+      - StrongBreeze
+      - HighWind
+      - Gale
+      - StrongGale
+      - Storm
+      - ViolentStorm
+      - Hurricane
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2TugsReason:
       enum:
       - Weather
@@ -2728,94 +2142,402 @@ components:
       - ExternalRequirement
       - Other
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2SeaState:
-      enum:
-      - SeaLikeAMirror
-      - RipplesWithScales
-      - SmallWavelets
-      - LargeWavelets
-      - SmallWaves
-      - ModerateLongerWaves
-      - LargeWaves
-      - SomeHeapsUp
-      - ModerateHeighWaves
-      - HighWaves
-      - VeryHighWaves
-      - ExceptionalHighWaves
-      - AirFilledWithFoamAndSpray
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.ValidationResult:
+    SerticaWebApi.Models.VoyageReporting.VoyageData:
       type: object
       properties:
-        isValid:
+        voyageDataNo:
+          type:
+          - string
+          - 'null'
+        source:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageDataSource'
+        voyageDataDateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        positionLatitude:
+          type:
+          - number
+          - 'null'
+          format: double
+        positionLongitude:
+          type:
+          - number
+          - 'null'
+          format: double
+        recommendedTrimFromGreenSteam:
+          type:
+          - number
+          - 'null'
+          format: double
+        operationalPerformanceGreenSteam:
+          type:
+          - number
+          - 'null'
+          format: double
+        calculatedSpeedThroughWater:
+          type:
+          - number
+          - 'null'
+          format: double
+        speedOverGround:
+          type:
+          - number
+          - 'null'
+          format: double
+        courseOverGround:
+          type:
+          - number
+          - 'null'
+          format: double
+        calculatedCurrentDirection:
+          type:
+          - number
+          - 'null'
+          format: double
+        calculatedCurrentSpeed:
+          type:
+          - number
+          - 'null'
+          format: double
+        draftForward:
+          type:
+          - number
+          - 'null'
+          format: double
+        draftAft:
+          type:
+          - number
+          - 'null'
+          format: double
+        propulsionPowerMeasuredViaTorqueMeters:
+          type:
+          - number
+          - 'null'
+          format: double
+        calculatedPropulsionPower:
+          type:
+          - number
+          - 'null'
+          format: double
+        trueWindForce:
+          type:
+          - number
+          - 'null'
+          format: double
+        trueWindDirection:
+          type:
+          - number
+          - 'null'
+          format: double
+        powerLostOnHullResistance:
+          type:
+          - number
+          - 'null'
+          format: double
+        powerLostOnPropellerResistance:
+          type:
+          - number
+          - 'null'
+          format: double
+        powerLostOnWindResistance:
+          type:
+          - number
+          - 'null'
+          format: double
+        powerLostOnWaveResistance:
+          type:
+          - number
+          - 'null'
+          format: double
+        powerLostOnWaterResistance:
+          type:
+          - number
+          - 'null'
+          format: double
+        powerLostDueToLessThanOptimumTrim:
+          type:
+          - number
+          - 'null'
+          format: double
+        depth:
+          type:
+          - number
+          - 'null'
+          format: double
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
           type: boolean
-          readOnly: true
-        errors:
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
-        brokenRules:
+      additionalProperties: false
+    SerticaWebApi.Models.VoyageReporting.VoyageReportCargo:
+      type: object
+      properties:
+        requestedStowageZoneNo:
+          type:
+          - string
+          - 'null'
+        voyageReportNo:
+          type:
+          - string
+          - 'null'
+        imdgDist:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        stowOnBoard:
+          type:
+          - string
+          - 'null'
+        releaseNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        phoenixVoyageNo:
+          type:
+          - string
+          - 'null'
+        cargoTypeNo:
+          type:
+          - string
+          - 'null'
+        unitNumber:
+          type:
+          - string
+          - 'null'
+        weight:
+          type:
+          - number
+          - 'null'
+          format: double
+        satlot:
+          type:
+          - boolean
+          - 'null'
+        length:
+          type:
+          - number
+          - 'null'
+          format: double
+        setp1:
+          type:
+          - number
+          - 'null'
+          format: double
+        setp2:
+          type:
+          - number
+          - 'null'
+          format: double
+        imoClasses:
+          type:
+          - string
+          - 'null'
+        passengers:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        pluggedIn:
+          type:
+          - boolean
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.StationDescription'
+        additionalCargo:
+          type:
+          - boolean
+          - 'null'
+        cargoDetails:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
+            $ref: '#/components/schemas/SerticaWebApi.Models.VoyageReporting.VoyageReportCargoDetail'
+        guid:
           type:
-          - object
+          - string
           - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
       enum:
       - All
       - One
       type: string
-    SerticaWebApi.Models.BrokenRuleType:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
       enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
-    SerticaWebApi.Models.VoyageReporting.VoyageReportMEItem:
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2ConsumptionSources:
+      enum:
+      - ME
+      - AUX
+      - Boiler
+      - Offhire
+      type: string
+    SerticaWebApi.Models.VoyageReporting.VoyageReportAuxItem:
       type: object
       properties:
         voyageReportNo:
@@ -2910,6 +2632,284 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.VoyageReporting.VoyageReportOffHireItem:
+      type: object
+      properties:
+        voyageReportNo:
+          type:
+          - string
+          - 'null'
+        itemNo:
+          type:
+          - string
+          - 'null'
+        itemName:
+          type:
+          - string
+          - 'null'
+        standardNo:
+          type:
+          - string
+          - 'null'
+        consumed:
+          type:
+          - number
+          - 'null'
+          format: double
+        correction:
+          type:
+          - number
+          - 'null'
+          format: double
+        currentStock:
+          type:
+          - number
+          - 'null'
+          format: double
+        price:
+          type:
+          - number
+          - 'null'
+          format: double
+        density:
+          type:
+          - number
+          - 'null'
+          format: double
+        volume:
+          type:
+          - number
+          - 'null'
+          format: double
+        temperature:
+          type:
+          - number
+          - 'null'
+          format: double
+        corrected:
+          type:
+          - boolean
+          - 'null'
+        source:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2ConsumptionSources'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.VoyageReporting.VoyageReportItemBoiler:
+      type: object
+      properties:
+        voyageReportNo:
+          type:
+          - string
+          - 'null'
+        itemNo:
+          type:
+          - string
+          - 'null'
+        itemName:
+          type:
+          - string
+          - 'null'
+        standardNo:
+          type:
+          - string
+          - 'null'
+        consumed:
+          type:
+          - number
+          - 'null'
+          format: double
+        correction:
+          type:
+          - number
+          - 'null'
+          format: double
+        currentStock:
+          type:
+          - number
+          - 'null'
+          format: double
+        price:
+          type:
+          - number
+          - 'null'
+          format: double
+        density:
+          type:
+          - number
+          - 'null'
+          format: double
+        volume:
+          type:
+          - number
+          - 'null'
+          format: double
+        temperature:
+          type:
+          - number
+          - 'null'
+          format: double
+        corrected:
+          type:
+          - boolean
+          - 'null'
+        source:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_VoyageReport2ConsumptionSources'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_GreenSteamStatus:
+      enum:
+      - None
+      - AwaitingGreenSteam
+      - NoDataFound
+      - Completed
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
   securitySchemes:
     Bearer:
       type: http

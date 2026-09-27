@@ -152,38 +152,6 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     SerticaWebApi.Models.ErrorReason:
       type: object
       properties:
@@ -254,15 +222,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.UserManagement.InextiaUserRightIndexType:
-      enum:
-      - Root
-      - Group
-      - Entity
-      - GeneralUserRights
-      - FieldUserRights
-      - ReferenceUserRights
-      type: string
     SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
@@ -299,6 +258,47 @@ components:
       - Warning
       - Error
       - Delete
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.UserManagement.InextiaUserRightIndexType:
+      enum:
+      - Root
+      - Group
+      - Entity
+      - GeneralUserRights
+      - FieldUserRights
+      - ReferenceUserRights
       type: string
   securitySchemes:
     Bearer:

@@ -224,16 +224,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_TaskStatus:
-      enum:
-      - Inactive
-      - Waiting
-      - Running
-      - Completed
-      - Failed
-      - Cancelled
-      - LockedOut
-      type: string
     SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
@@ -266,18 +256,126 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
+    SerticaWebApi.Models.MasterDataManagementModels.ApiDuplicateJobsAction:
       type: object
       properties:
-        text:
+        unitNo:
           type:
           - string
           - 'null'
-        fieldName:
+        action:
+          $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.DuplicateJobsAction'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.UpdateUnitsIssue:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.UpdateUnitsIssueReason'
+        message:
           type:
           - string
           - 'null'
       additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.MasterDataManagementModels.ApiUpdateUnitsResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          readOnly: true
+        validationResult:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+        issues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.UpdateUnitsIssue'
+        task:
+          $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MasterDataManagementTask'
+      additionalProperties: false
+    SerticaWebApi.Models.MasterDataManagementModels.ApiSelectedPackageUnitInstance:
+      type: object
+      properties:
+        packageUnitInstanceGuid:
+          type: string
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.MasterDataManagementModels.ApiDuplicateJob:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        mdmJobNo:
+          type:
+          - string
+          - 'null'
+        mdmJobName:
+          type:
+          - string
+          - 'null'
+        unitJobNo:
+          type:
+          - string
+          - 'null'
+        unitJobName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.UpdateUnitsIssueReason:
+      enum:
+      - DuplicateDataOnUnit
+      type: string
+    SerticaWebApi.Models.MasterDataManagementModels.DuplicateJobsAction:
+      enum:
+      - AddAsNew
+      - LinkToExisting
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.MasterDataManagementTaskStatus:
+      enum:
+      - Pending
+      - Running
+      - Completed
+      - Error
+      type: string
     SerticaWebApi.Models.MasterDataManagementModels.ApiUpdateUnitsArguments:
       type: object
       properties:
@@ -297,6 +395,127 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.ApiDuplicateJobsAction'
+      additionalProperties: false
+    SerticaWebApi.Models.MasterDataManagementModels.ApiUpdatedPackageUnitInstance:
+      type: object
+      properties:
+        packageUnitInstanceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        masterObjectComponentNo:
+          type:
+          - string
+          - 'null'
+        masterObjectComponentName:
+          type:
+          - string
+          - 'null'
+        unitComponentNo:
+          type:
+          - string
+          - 'null'
+        unitComponentName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        displayName:
+          type:
+          - string
+          - 'null'
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.ApiUpdatedPackageUnitInstance'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.MasterDataManagementTaskType:
+      enum:
+      - UpdateUnits
+      - CopyUnit
+      type: string
+    SerticaWebApi.Models.MasterDataManagementModels.ApiMDMCopyUnitArguments:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        sourceUnitNo:
+          type:
+          - string
+          - 'null'
+        targetUnitNo:
+          type:
+          - string
+          - 'null'
+        copyJobNo:
+          type: boolean
+        copyJobName:
+          type: boolean
+        copyExternalReference:
+          type: boolean
+        copyJobRelations:
+          type: boolean
+        copyClassRelated:
+          type: boolean
+        copyDisabled:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     SerticaWebApi.Models.MasterDataManagementModels.MasterDataManagementTask:
       type: object
@@ -398,234 +617,15 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.MasterDataManagementModels.ApiDuplicateJobsAction:
-      type: object
-      properties:
-        unitNo:
-          type:
-          - string
-          - 'null'
-        action:
-          $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.DuplicateJobsAction'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.MasterDataManagementTaskStatus:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_TaskStatus:
       enum:
-      - Pending
+      - Inactive
+      - Waiting
       - Running
       - Completed
-      - Error
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.UpdateUnitsIssueReason:
-      enum:
-      - DuplicateDataOnUnit
-      type: string
-    SerticaWebApi.Models.MasterDataManagementModels.ApiMDMCopyUnitArguments:
-      type: object
-      properties:
-        userNo:
-          type:
-          - string
-          - 'null'
-        sourceUnitNo:
-          type:
-          - string
-          - 'null'
-        targetUnitNo:
-          type:
-          - string
-          - 'null'
-        copyJobNo:
-          type: boolean
-        copyJobName:
-          type: boolean
-        copyExternalReference:
-          type: boolean
-        copyJobRelations:
-          type: boolean
-        copyClassRelated:
-          type: boolean
-        copyDisabled:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.MasterDataManagementModels.ApiUpdatedPackageUnitInstance:
-      type: object
-      properties:
-        packageUnitInstanceGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        description:
-          type:
-          - string
-          - 'null'
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        masterObjectComponentNo:
-          type:
-          - string
-          - 'null'
-        masterObjectComponentName:
-          type:
-          - string
-          - 'null'
-        unitComponentNo:
-          type:
-          - string
-          - 'null'
-        unitComponentName:
-          type:
-          - string
-          - 'null'
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        displayName:
-          type:
-          - string
-          - 'null'
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.ApiUpdatedPackageUnitInstance'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.UpdateUnitsIssue:
-      type: object
-      properties:
-        reason:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.UpdateUnitsIssueReason'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.MasterDataManagementModels.ApiSelectedPackageUnitInstance:
-      type: object
-      properties:
-        packageUnitInstanceGuid:
-          type: string
-          format: uuid
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.MasterDataManagementTaskType:
-      enum:
-      - UpdateUnits
-      - CopyUnit
-      type: string
-    SerticaWebApi.Models.MasterDataManagementModels.ApiUpdateUnitsResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-          readOnly: true
-        validationResult:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-        issues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.UpdateUnitsIssue'
-        task:
-          $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MasterDataManagementTask'
-      additionalProperties: false
-    SerticaWebApi.Models.MasterDataManagementModels.ApiDuplicateJob:
-      type: object
-      properties:
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        mdmJobNo:
-          type:
-          - string
-          - 'null'
-        mdmJobName:
-          type:
-          - string
-          - 'null'
-        unitJobNo:
-          type:
-          - string
-          - 'null'
-        unitJobName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.MasterDataManagementModels.DuplicateJobsAction:
-      enum:
-      - AddAsNew
-      - LinkToExisting
-      type: string
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
+      - Failed
+      - Cancelled
+      - LockedOut
       type: string
   securitySchemes:
     Bearer:

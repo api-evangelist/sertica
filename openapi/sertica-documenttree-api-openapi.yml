@@ -153,12 +153,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.Document.DocumentTreeNodeType:
-      enum:
-      - DocumentGroup
-      - DocumentType
-      - Document
-      type: string
     SerticaWebApi.Models.Document.DocumentTreeNode:
       type: object
       properties:
@@ -214,6 +208,12 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    SerticaWebApi.Models.Document.DocumentTreeNodeType:
+      enum:
+      - DocumentGroup
+      - DocumentType
+      - Document
+      type: string
   securitySchemes:
     Bearer:
       type: http

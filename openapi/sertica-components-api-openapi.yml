@@ -2151,689 +2151,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    SerticaWebApi.Models.BatchEdit.BatchEditOperation:
-      enum:
-      - Add
-      - Replace
-      - Remove
-      - Clear
-      type: string
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.CustomProperties.PropertyDataType:
-      enum:
-      - Unknown
-      - Int
-      - Decimal
-      - String
-      - DateTime
-      - Bool
-      - List
-      - Date
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Framework.Amount:
-      type: object
-      properties:
-        value:
-          type: number
-          format: double
-        currencyNo:
-          type:
-          - string
-          - 'null'
-        decimalPlaces:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    SerticaWebApi.Models.CustomProperties.PropertyDefinitionUnitDependency:
-      type: object
-      properties:
-        mainObjectPropertyName:
-          type:
-          - string
-          - 'null'
-        referencedUnitNo:
-          type:
-          - string
-          - 'null'
-        referencedUnitName:
-          type:
-          - string
-          - 'null'
-        objectType:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BatchEdit.BatchEdit:
-      type: object
-      properties:
-        objectType:
-          type:
-          - string
-          - 'null'
-        recordNos:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        transformations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditTransformation'
-        enabledTransformations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditTransformation'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.Apps.Models.ComponentAppObject:
-      type: object
-      properties:
-        componentNo:
-          type:
-          - string
-          - 'null'
-        parentComponentNo:
-          type:
-          - string
-          - 'null'
-        gpsLatitude:
-          type:
-          - number
-          - 'null'
-          format: double
-        gpsLongitude:
-          type:
-          - number
-          - 'null'
-          format: double
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-      additionalProperties: false
-    SerticaWebApi.Models.CustomLayout.ScreenLayout:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        data: {}
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
-      type: object
-      properties:
-        deviceGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.Webhooks.WebhookLog:
-      type: object
-      properties:
-        idSeq:
-          type: integer
-          format: int32
-        startTimeStampUtc:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        endTimeStampUtc:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        duration:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        request: {}
-        retransmitted:
-          type:
-          - boolean
-          - 'null'
-        additionalData:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_WebhookLogStatus'
-        dataObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        webhookEvent:
-          type:
-          - string
-          - 'null'
-        dataObjectType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataObject'
-        webhookGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        webhookNo:
-          type:
-          - string
-          - 'null'
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Component.ComponentResponse:
-      type: object
-      properties:
-        componentGuid:
-          type: string
-          format: uuid
-        componentNo:
-          type:
-          - string
-          - 'null'
-        text:
-          type:
-          - string
-          - 'null'
-        createRoleNo:
-          type:
-          - string
-          - 'null'
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.BatchEdit.BatchEditRecordResult:
-      type: object
-      properties:
-        objectNo:
-          type:
-          - string
-          - 'null'
-        state:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditResultState'
-        result:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateIssueReason:
-      enum:
-      - JobRelationsExistForComponent
-      - PromptForRotateConfirmation
-      - IsSubComponentError
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateIssue:
-      type: object
-      properties:
-        reason:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateIssueReason'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.CustomProperties.PropertyDefinitionListValue:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        propertyDefinitionPropertyName:
-          type:
-          - string
-          - 'null'
-        sortOrder:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Component.ComponentItem:
-      type: object
-      properties:
-        componentNo:
-          type:
-          - string
-          - 'null'
-        componentName:
-          type:
-          - string
-          - 'null'
-        itemNo:
-          type:
-          - string
-          - 'null'
-        itemName:
-          type:
-          - string
-          - 'null'
-        drawingPosNo:
-          type:
-          - string
-          - 'null'
-        drawingPosRefNo:
-          type:
-          - string
-          - 'null'
-        quantity:
-          type:
-          - number
-          - 'null'
-          format: double
-        remarks:
-          type:
-          - string
-          - 'null'
-        stock:
-          type:
-          - number
-          - 'null'
-          format: double
-        componentUnitNo:
-          type:
-          - string
-          - 'null'
-        componentUnitName:
-          type:
-          - string
-          - 'null'
-        itemUnitNo:
-          type:
-          - string
-          - 'null'
-        itemUnitName:
-          type:
-          - string
-          - 'null'
-        componentNoStructure:
-          type:
-          - string
-          - 'null'
-        componentNameStructure:
-          type:
-          - string
-          - 'null'
-        masterDataClassNo:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.CustomLayout.ScreenLayoutBulkUpdate:
-      type: object
-      properties:
-        screenLayout:
-          $ref: '#/components/schemas/SerticaWebApi.Models.CustomLayout.ScreenLayout'
-        propertyDefinitions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.CustomProperties.PropertyDefinition'
-      additionalProperties: false
     SerticaWebApi.Models.CustomProperties.PropertyDefinition:
       type: object
       properties:
@@ -2981,36 +2298,100 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.CustomProperties.PropertyDefinitionFieldDependency:
+    SerticaWebApi.Models.BatchEdit.BatchEditApplyTransformations:
       type: object
       properties:
-        mainObjectPropertyName:
+        transformations:
           type:
-          - string
+          - array
           - 'null'
-        referencedObjectPropertyName:
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditTransformation'
+        enabledTransformations:
           type:
-          - string
+          - array
           - 'null'
-        boolValue:
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditTransformation'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BatchEdit.BatchEditOperation:
+      enum:
+      - Add
+      - Replace
+      - Remove
+      - Clear
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
           type:
-          - boolean
+          - integer
           - 'null'
-        listValue:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CustomProperties.PropertyDataType'
-        objectType:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
+          format: int32
+        objectGuid:
           type:
           - string
           - 'null'
           format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateIssueReason:
+      enum:
+      - JobRelationsExistForComponent
+      - PromptForRotateConfirmation
+      - IsSubComponentError
+      type: string
+    SerticaWebApi.Models.Component.ComponentCounterHistory:
+      type: object
+      properties:
+        idSeq:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        valueDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        reset:
+          type: boolean
+        componentNo:
+          type:
+          - string
+          - 'null'
+        componentName:
+          type:
+          - string
+          - 'null'
+        counterTypeUnit:
+          type:
+          - string
+          - 'null'
         guid:
           type:
           - string
@@ -3041,16 +2422,17 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.BatchEdit.BatchEditResult:
-      type: object
-      properties:
-        recordResults:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditRecordResult'
-      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_WebhookLogStatus:
+      enum:
+      - Error
+      - Resolved
+      - InSync
+      type: string
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
     SerticaWebApi.Models.Component.Component:
       type: object
       properties:
@@ -3396,108 +2778,48 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
-      enum:
-      - Unknown
-      - Image
-      - PDF
-      - WordDocument
-      - Link
-      - AutoCad
-      - Excel
-      - PowerPoint
-      - Email
-      - Visio
-      - Projects
-      - Website
-      - FormFields
-      type: string
-    Logimatic.BaseClasses30.DataOwner:
-      enum:
-      - Unit
-      - MasterUnit
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
       type: object
       properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BatchEdit.BatchEditApplyTransformations:
-      type: object
-      properties:
-        transformations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditTransformation'
-        enabledTransformations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditTransformation'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Component.ComponentRotateArguments:
-      type: object
-      properties:
-        rotateComponentNo:
-          type:
-          - string
-          - 'null'
-        jobRelationsExistForComponentAccepted:
-          type:
-          - boolean
-          - 'null'
-        continueAccepted:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
-    Microsoft.AspNetCore.Mvc.NotFoundResult:
-      type: object
-      properties:
-        statusCode:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.BatchEdit.BatchEditTransformation:
-      type: object
-      properties:
-        enabled:
-          type: boolean
         field:
           type:
           - string
           - 'null'
-        operation:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditOperation'
-        newObjectNo:
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    SerticaWebApi.Models.BatchEdit.BatchEditRecordResult:
+      type: object
+      properties:
+        objectNo:
           type:
           - string
           - 'null'
-        oldObjectNo:
+        state:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditResultState'
+        result:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
           type:
           - string
           - 'null'
-        newObjectNos:
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
           type:
           - array
           - 'null'
           items:
-            type: string
-        keepManHours:
-          type: boolean
-        keepExternalCost:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
           type: boolean
       additionalProperties: false
     SerticaWebApi.Models.Component.ComponentDocument:
@@ -3608,83 +2930,61 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+    SerticaWebApi.Models.CustomProperties.PropertyDefinitionUnitDependency:
       type: object
       properties:
-        field:
+        mainObjectPropertyName:
           type:
           - string
           - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
+        referencedUnitNo:
+          type:
+          - string
+          - 'null'
+        referencedUnitName:
+          type:
+          - string
+          - 'null'
+        objectType:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.BatchEdit.BatchEditResultState:
-      enum:
-      - Updated
-      - Skipped
-      - Failed
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateResult:
-      type: object
-      properties:
-        success:
-          type: boolean
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
-        issues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateIssue'
-          readOnly: true
-        refreshInSertica:
-          type:
-          - boolean
-          - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_WebhookLogStatus:
-      enum:
-      - Error
-      - Resolved
-      - InSync
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataObject:
-      enum:
-      - Invoice
-      - AccrualExport
-      - Currency
-      - AnalyticsSubscription
-      - ImInvoiceExport
-      - InvoiceInfo
-      - PurchaseOrder
-      - PunchOut
-      - Schedule
-      - VesselReport
-      - SyncItemExport
-      - Requisition
-      - PunchoutPurchaseOrder
-      - SparePart
-      - Job
-      - API
-      - Component
-      - JobHistory
-      - Unit
-      - ExternalCalendar
-      - Shipment
-      type: string
-    SerticaWebApi.Models.Component.ComponentSupplier:
+    SerticaWebApi.Models.Component.ComponentResponse:
       type: object
       properties:
         componentGuid:
@@ -3694,24 +2994,126 @@ components:
           type:
           - string
           - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Component.ComponentItem:
+      type: object
+      properties:
+        componentNo:
+          type:
+          - string
+          - 'null'
         componentName:
           type:
           - string
           - 'null'
-        supplierNo:
+        itemNo:
           type:
           - string
           - 'null'
-        supplierName:
+        itemName:
           type:
           - string
           - 'null'
-        phone:
+        drawingPosNo:
           type:
           - string
           - 'null'
-        standardSupplier:
-          type: boolean
+        drawingPosRefNo:
+          type:
+          - string
+          - 'null'
+        quantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        remarks:
+          type:
+          - string
+          - 'null'
+        stock:
+          type:
+          - number
+          - 'null'
+          format: double
+        componentUnitNo:
+          type:
+          - string
+          - 'null'
+        componentUnitName:
+          type:
+          - string
+          - 'null'
+        itemUnitNo:
+          type:
+          - string
+          - 'null'
+        itemUnitName:
+          type:
+          - string
+          - 'null'
+        componentNoStructure:
+          type:
+          - string
+          - 'null'
+        componentNameStructure:
+          type:
+          - string
+          - 'null'
+        masterDataClassNo:
+          type:
+          - string
+          - 'null'
         guidForReferencedObject:
           type:
           - string
@@ -3775,31 +3177,307 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+    SerticaWebApi.Models.BatchEdit.BatchEditTransformation:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        field:
+          type:
+          - string
+          - 'null'
+        operation:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditOperation'
+        newObjectNo:
+          type:
+          - string
+          - 'null'
+        oldObjectNo:
+          type:
+          - string
+          - 'null'
+        newObjectNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        keepManHours:
+          type: boolean
+        keepExternalCost:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.CustomLayout.ScreenLayout:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        data: {}
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.CustomProperties.PropertyDefinitionListValue:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        propertyDefinitionPropertyName:
+          type:
+          - string
+          - 'null'
+        sortOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.CustomProperties.PropertyDataType:
       enum:
-      - Unkonwn
-      - String
+      - Unknown
       - Int
       - Decimal
-      - Enum
+      - String
       - DateTime
-      - Guid
       - Bool
-      - Duration
+      - List
+      - Date
       type: string
+    SerticaWebApi.Models.Component.ComponentRotateArguments:
+      type: object
+      properties:
+        rotateComponentNo:
+          type:
+          - string
+          - 'null'
+        jobRelationsExistForComponentAccepted:
+          type:
+          - boolean
+          - 'null'
+        continueAccepted:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.BatchEdit.BatchEditResult:
+      type: object
+      properties:
+        recordResults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditRecordResult'
+      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
       enum:
       - All
       - One
       type: string
-    SerticaWebApi.Models.BrokenRuleType:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
       enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    SerticaWebApi.Models.BatchEdit.BatchEdit:
+      type: object
+      properties:
+        objectType:
+          type:
+          - string
+          - 'null'
+        recordNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        transformations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditTransformation'
+        enabledTransformations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BatchEdit.BatchEditTransformation'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataObject:
+      enum:
+      - Invoice
+      - AccrualExport
+      - Currency
+      - AnalyticsSubscription
+      - ImInvoiceExport
+      - InvoiceInfo
+      - PurchaseOrder
+      - PunchOut
+      - Schedule
+      - VesselReport
+      - SyncItemExport
+      - Requisition
+      - PunchoutPurchaseOrder
+      - SparePart
+      - Job
+      - API
+      - Component
+      - JobHistory
+      - Unit
+      - ExternalCalendar
+      - Shipment
       type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
       type: object
@@ -3818,26 +3496,37 @@ components:
         valuesMatching:
           $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
       additionalProperties: false
-    SerticaWebApi.Models.Component.ComponentCounterHistory:
+    SerticaWebApi.Models.BatchEdit.BatchEditResultState:
+      enum:
+      - Updated
+      - Skipped
+      - Failed
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:
-        idSeq:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value:
-          type:
-          - number
-          - 'null'
-          format: double
-        valueDate:
+        deviceGuid:
           type:
           - string
           - 'null'
-          format: date-time
-        reset:
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
           type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.Component.ComponentSupplier:
+      type: object
+      properties:
+        componentGuid:
+          type: string
+          format: uuid
         componentNo:
           type:
           - string
@@ -3846,7 +3535,118 @@ components:
           type:
           - string
           - 'null'
-        counterTypeUnit:
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        standardSupplier:
+          type: boolean
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateIssue:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateIssueReason'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Webhooks.WebhookLog:
+      type: object
+      properties:
+        idSeq:
+          type: integer
+          format: int32
+        startTimeStampUtc:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endTimeStampUtc:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        duration:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        request: {}
+        retransmitted:
+          type:
+          - boolean
+          - 'null'
+        additionalData:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_WebhookLogStatus'
+        dataObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        webhookEvent:
+          type:
+          - string
+          - 'null'
+        dataObjectType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataObject'
+        webhookGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        webhookNo:
           type:
           - string
           - 'null'
@@ -3879,6 +3679,206 @@ components:
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Microsoft.AspNetCore.Mvc.NotFoundResult:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          readOnly: true
+        issues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Maintenance.ComponentRotateIssue'
+          readOnly: true
+        refreshInSertica:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.Apps.Models.ComponentAppObject:
+      type: object
+      properties:
+        componentNo:
+          type:
+          - string
+          - 'null'
+        parentComponentNo:
+          type:
+          - string
+          - 'null'
+        gpsLatitude:
+          type:
+          - number
+          - 'null'
+          format: double
+        gpsLongitude:
+          type:
+          - number
+          - 'null'
+          format: double
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+      additionalProperties: false
+    SerticaWebApi.Models.Framework.Amount:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.CustomProperties.PropertyDefinitionFieldDependency:
+      type: object
+      properties:
+        mainObjectPropertyName:
+          type:
+          - string
+          - 'null'
+        referencedObjectPropertyName:
+          type:
+          - string
+          - 'null'
+        boolValue:
+          type:
+          - boolean
+          - 'null'
+        listValue:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CustomProperties.PropertyDataType'
+        objectType:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.CustomLayout.ScreenLayoutBulkUpdate:
+      type: object
+      properties:
+        screenLayout:
+          $ref: '#/components/schemas/SerticaWebApi.Models.CustomLayout.ScreenLayout'
+        propertyDefinitions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.CustomProperties.PropertyDefinition'
       additionalProperties: false
   securitySchemes:
     Bearer:

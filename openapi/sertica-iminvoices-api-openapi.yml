@@ -2482,135 +2482,22 @@ paths:
       - Bearer: []
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalSelectionKey:
-      enum:
-      - ApprovalSetup
-      - Approver
-      type: string
-    SerticaWebApi.Models.Framework.Amount:
+    SerticaWebApi.Models.ImInvoice.ImInvoiceMoveToUnitResult:
       type: object
       properties:
-        value:
-          type: number
-          format: double
-        currencyNo:
-          type:
-          - string
-          - 'null'
-        decimalPlaces:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveMessageType'
-        message:
-          type:
-          - string
-          - 'null'
-        affectedInvoices:
+        imInvoice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+        issues:
           type:
           - array
           - 'null'
           items:
-            type: string
-        isBlocking:
-          type: boolean
+            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.MoveToUnitIssue'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+    SerticaWebApi.Models.ImInvoice.ImInvoiceApprover:
       type: object
       properties:
-        deviceGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredDecision:
-      type: object
-      properties:
-        key:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDecisionKey'
-        question:
-          type:
-          - string
-          - 'null'
-        affectedInvoices:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        triggeredResponseLog:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification'
-        isOptional:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredDecision:
-      type: object
-      properties:
-        key:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDecisionKey'
-        question:
-          type:
-          - string
-          - 'null'
-        affectedInvoices:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        triggeredResponseLog:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification'
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.MoveToUnitIssue:
-      type: object
-      properties:
-        objectNo:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.ImInvoicePosition:
-      type: object
-      properties:
-        invoiceNo:
-          type:
-          - string
-          - 'null'
-        quantity:
-          type:
-          - number
-          - 'null'
-          format: double
-        measuringUnitNo:
+        userNo:
           type:
           - string
           - 'null'
@@ -2618,243 +2505,34 @@ components:
           type:
           - string
           - 'null'
-        price:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        discountPercent:
+        status:
+          type:
+          - string
+          - 'null'
+        reasonNo:
+          type:
+          - string
+          - 'null'
+        reasonName:
+          type:
+          - string
+          - 'null'
+        amount:
           type:
           - number
           - 'null'
           format: double
-        vatCode:
+        currencyNo:
           type:
           - string
           - 'null'
-        unitNo:
+        date:
           type:
           - string
           - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        departmentNo:
-          type:
-          - string
-          - 'null'
-        departmentUnitExternalReference1:
-          type:
-          - string
-          - 'null'
-        departmentUnitExternalReference2:
-          type:
-          - string
-          - 'null'
-        departmentUnitExternalReference3:
-          type:
-          - string
-          - 'null'
-        projectNo:
-          type:
-          - string
-          - 'null'
-        projectUnitExternalReference1:
-          type:
-          - string
-          - 'null'
-        projectUnitExternalReference2:
-          type:
-          - string
-          - 'null'
-        projectUnitExternalReference3:
-          type:
-          - string
-          - 'null'
-        incidentNo:
-          type:
-          - string
-          - 'null'
-        classNo:
-          type:
-          - string
-          - 'null'
-        sfiNo:
-          type:
-          - string
-          - 'null'
-        itemTypeNo:
-          type:
-          - string
-          - 'null'
-        userNo:
-          type:
-          - string
-          - 'null'
-        itemNo:
-          type:
-          - string
-          - 'null'
-        customReference1:
-          type:
-          - string
-          - 'null'
-        accountNo:
-          type:
-          - string
-          - 'null'
-        positionNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        sapInternalOrderNo:
-          type:
-          - string
-          - 'null'
-        lineAmount:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        vatAmount:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        lineTotal:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        unitExternalReference1:
-          type:
-          - string
-          - 'null'
-        unitExternalReference2:
-          type:
-          - string
-          - 'null'
-        unitExternalReference3:
-          type:
-          - string
-          - 'null'
-        materialNo:
-          type:
-          - string
-          - 'null'
-        purchaseOrderNo:
-          type:
-          - string
-          - 'null'
-        purchaseOrderPositionNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        purchaseOrderPositionUnitNo:
-          type:
-          - string
-          - 'null'
-        purchaseOrderPositionReceivedQuantity:
-          type:
-          - number
-          - 'null'
-          format: double
-        purchaseOrderPositionOrderedQuantity:
-          type:
-          - number
-          - 'null'
-          format: double
-        purchaseOrderPositionOutstandingQuantity:
-          type:
-          - number
-          - 'null'
-          format: double
-        purchaseOrderPositionRejectedQuantity:
-          type:
-          - number
-          - 'null'
-          format: double
-        measureUnitNo:
-          type:
-          - string
-          - 'null'
-        supplierItemNo:
-          type:
-          - string
-          - 'null'
-        purchaseOrderPositionPrice:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        purchaseOrderCurrencyNo:
-          type:
-          - string
-          - 'null'
-        approvedInvoicedQuantity:
-          type:
-          - number
-          - 'null'
-          format: double
-        outstandingQuantity:
-          type:
-          - number
-          - 'null'
-          format: double
-        vatName:
-          type:
-          - string
-          - 'null'
-        vatRate:
-          type:
-          - number
-          - 'null'
-          format: double
-        positionUnitNo:
-          type:
-          - string
-          - 'null'
-        positionUnitName:
-          type:
-          - string
-          - 'null'
-        sfiName:
-          type:
-          - string
-          - 'null'
-        projectName:
-          type:
-          - string
-          - 'null'
-        userName:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        purchaseOrderPositionReferenceValue:
-          type:
-          - string
-          - 'null'
-        className:
-          type:
-          - string
-          - 'null'
-        incidentDescription:
-          type:
-          - string
-          - 'null'
-        incidentCategory:
-          type:
-          - string
-          - 'null'
-        departmentName:
-          type:
-          - string
-          - 'null'
-        invoiceCurrencyNo:
-          type:
-          - string
-          - 'null'
-        itemUnitNo:
-          type:
-          - string
-          - 'null'
-        handled:
-          type:
-          - boolean
-          - 'null'
-        accountingDimensions: {}
+          format: date-time
+        current:
+          type: boolean
         guid:
           type:
           - string
@@ -2885,480 +2563,74 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PerInvoiceCostTypeSelectionRequirement:
+    SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
-        invoiceNo:
-          type:
-          - string
-          - 'null'
-        requiresUserInput:
+        isValid:
           type: boolean
-        preselectedCostTypeNo:
-          type:
-          - string
-          - 'null'
-        availableOptions:
+          readOnly: true
+        errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.ExecuteForwardForApprovalRequest:
-      type: object
-      properties:
-        invoiceNos:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
           type:
           - array
           - 'null'
           items:
-            type: string
-        context:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalArguments'
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleArguments:
-      type: object
-      properties:
-        userNo:
-          type:
-          - string
-          - 'null'
-        massChangeResponsible:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement:
-      type: object
-      properties:
-        reason:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
-        appliedToInvoices:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        scope:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope'
-        defaultMessage:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderWorkflow:
-      enum:
-      - Draft
-      - AwaitingPriceApproval
-      - AwaitingOrder
-      - OpenForChanges
-      - Closed
-      - AwaitingGatekeeperReview
-      - NotApproved
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceOperationResult:
-      type: object
-      properties:
-        invoiceNo:
-          type:
-          - string
-          - 'null'
-        passedValidation:
-          type: boolean
-        executedSuccessfully:
-          type: boolean
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage'
-        errorMessage:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason:
-      enum:
-      - MissingItemCertificates
-      - CompanyPolicy
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus:
-      enum:
-      - NotInvoiced
-      - PartlyInvoiced
-      - FullyInvoiced
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveArguments:
-      type: object
-      properties:
-        decisions:
-          type:
-          - object
-          - 'null'
-          properties:
-            AcceptMissingItemCertificates:
-              type: boolean
-            AcceptInvoiceDifferences:
-              type: boolean
-            MissingItemTypeContinueWithRemainingInvoices:
-              type: boolean
-            AcceptPOAlreadyFullyInvoiced:
-              type: boolean
-            ConfirmNextApproverUpdate:
-              type: boolean
-            ApproveViaNextApproverUpdate:
-              type: boolean
-            UpdateSupplierItemPrice:
-              type: boolean
-            ContinueWithMultiSelect:
-              type: boolean
-            UnitAccessContinueWithRemainingInvoices:
-              type: boolean
-            ConfirmApproval:
-              type: boolean
-          additionalProperties: false
-        selections:
-          type:
-          - object
-          - 'null'
-          properties:
-            CostType:
-              type: array
-              items:
-                type: string
-          additionalProperties: false
-        responseLogs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData'
-        doNotCancelChanges:
-          type: boolean
-        poStatusSelections:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
           type:
           - object
           - 'null'
           additionalProperties:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceSetPOStatus'
-        perInvoiceCostTypeSelections:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - array
-            - 'null'
-            items:
-              type: string
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveSelectionKey:
-      enum:
-      - CostType
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalArguments:
-      type: object
-      properties:
-        decisions:
-          type:
-          - object
-          - 'null'
-          properties:
-            AcceptMissingItemCertificates:
-              type: boolean
-            AcceptInvoiceDifferences:
-              type: boolean
-            MissingItemTypeContinueWithRemainingInvoices:
-              type: boolean
-          additionalProperties: false
-        selections:
-          type:
-          - object
-          - 'null'
-          properties:
-            ApprovalSetup:
-              type: array
-              items:
-                type: string
-            Approver:
-              type: array
-              items:
-                type: string
-          additionalProperties: false
-        responseLogs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData'
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.ImInvoiceMoveToUnitResult:
-      type: object
-      properties:
-        imInvoice:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
-        issues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.MoveToUnitIssue'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
-      enum:
-      - User
-      - Role
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-        flowType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType'
-        displayInfo:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage'
-        requiredInput:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInputContract'
-        invoiceNo:
-          type:
-          - string
-          - 'null'
-        invoiceResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInvoiceOperationResult'
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        hasBlockingErrors:
-          type: boolean
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderStatus:
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveMessageType:
       enum:
-      - NotOrdered
-      - Ordered
-      - PartlyReceived
-      - Received
-      - Cancelled
+      - InvoiceWillBeSkipped
+      - InvoiceSkippedMissingItemType
+      - NotAuthorized
+      - EmptyDimensions
+      - MissingItemType
+      - AlternatePayerNotAllowed
+      - InvoiceSkippedNoUnitAccess
+      - InvoiceSkippedInvalidPostingPeriod
+      - InvoiceSkippedMissingCertificates
+      - ApprovalResponsibleCannotApprove
+      - NoNextApprover
+      - NoneOfSelectedInvoicesCanBeApproved
+      - ValidationFailed
+      - ContractValidationFailed
+      - ExecutionFailed
+      - MultiSelectNotSupported
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceDocumentType:
-      enum:
-      - VendorInvoice
-      - VendorCreditNote
-      - InternalInvoice
-      - InternalCreditNote
-      - Prepayment
-      - Purchase
-      - PrepaymentCreditNote
-      type: string
-    Logimatic.BaseClasses30.DataOwner:
-      enum:
-      - Unit
-      - MasterUnit
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInvoiceOperationResult:
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount:
       type: object
       properties:
-        invoiceNo:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyNo:
           type:
           - string
           - 'null'
-        passedValidation:
-          type: boolean
-        executedSuccessfully:
-          type: boolean
-        messages:
+        rate:
           type:
-          - array
+          - number
           - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage'
-        errorMessage:
-          type:
-          - string
-          - 'null'
+          format: double
+        decimalPlaces:
+          type: integer
+          format: int32
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredSelection:
-      type: object
-      properties:
-        key:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveSelectionKey'
-        requiresUserInput:
-          type: boolean
-        availableOptions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
-        preselectedNo:
-          type:
-          - string
-          - 'null'
-        allowMultiple:
-          type: boolean
-        hasPreselection:
-          type: boolean
-          readOnly: true
-        hasOptions:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification:
-      type: object
-      properties:
-        reason:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
-        scope:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope'
-        appliedToInvoices:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        defaultMessage:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.ImInvoiceExternalPaymentInfo:
-      type: object
-      properties:
-        externalDocumentNo:
-          type:
-          - string
-          - 'null'
-        externalCreateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        paymentDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        clearingDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        paymentStatus:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalInputContract:
-      type: object
-      properties:
-        decisions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredDecision'
-        selections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredSelection'
-        invoiceResponseLogs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
-    SerticaWebApi.Models.ImInvoice.ImInvoiceReversal:
-      type: object
-      properties:
-        postingDate:
-          type: string
-          format: date-time
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
     SerticaWebApi.Models.ImInvoice.ImInvoiceDocument2Link:
       type: object
       properties:
@@ -3467,42 +2739,23 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    SerticaWebApi.Models.BrokenRule:
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveMessageType'
+        message:
           type:
           - string
           - 'null'
-          format: uuid
-        field:
+        affectedInvoices:
           type:
-          - string
+          - array
           - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
+          items:
+            type: string
+        isBlocking:
+          type: boolean
       additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
       enum:
@@ -3521,466 +2774,6 @@ components:
       - NotEquals
       - NotIn
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogStatus:
-      enum:
-      - OK
-      - Cancel
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDecisionKey:
-      enum:
-      - AcceptMissingItemCertificates
-      - AcceptInvoiceDifferences
-      - MissingItemTypeContinueWithRemainingInvoices
-      - AcceptPOAlreadyFullyInvoiced
-      - ConfirmNextApproverUpdate
-      - ApproveViaNextApproverUpdate
-      - UpdateSupplierItemPrice
-      - ContinueWithMultiSelect
-      - UnitAccessContinueWithRemainingInvoices
-      - ConfirmApproval
-      type: string
-    SerticaWebApi.Models.ImInvoice.ImInvoiceAdditionalCost:
-      type: object
-      properties:
-        invoiceNo:
-          type:
-          - string
-          - 'null'
-        purchaseOrderNo:
-          type:
-          - string
-          - 'null'
-        positionNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        deliveryCostNo:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        vatNo:
-          type:
-          - string
-          - 'null'
-        vatName:
-          type:
-          - string
-          - 'null'
-        vatRate:
-          type:
-          - number
-          - 'null'
-          format: double
-        vatAmount:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        postingDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        additionalCostUnitNo:
-          type:
-          - string
-          - 'null'
-        additionalCostUnitName:
-          type:
-          - string
-          - 'null'
-        accountSFINo:
-          type:
-          - string
-          - 'null'
-        accountSFIName:
-          type:
-          - string
-          - 'null'
-        projectNo:
-          type:
-          - string
-          - 'null'
-        projectName:
-          type:
-          - string
-          - 'null'
-        incidentNo:
-          type:
-          - string
-          - 'null'
-        incidentDescription:
-          type:
-          - string
-          - 'null'
-        category:
-          type:
-          - string
-          - 'null'
-        departmentNo:
-          type:
-          - string
-          - 'null'
-        departmentName:
-          type:
-          - string
-          - 'null'
-        userNo:
-          type:
-          - string
-          - 'null'
-        userName:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        price:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        invoiceCurrencyNo:
-          type:
-          - string
-          - 'null'
-        classNo:
-          type:
-          - string
-          - 'null'
-        className:
-          type:
-          - string
-          - 'null'
-        handled:
-          type:
-          - boolean
-          - 'null'
-        accountingDimensions: {}
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveMessageType:
-      enum:
-      - InvoiceWillBeSkipped
-      - InvoiceSkippedMissingItemType
-      - NotAuthorized
-      - EmptyDimensions
-      - MissingItemType
-      - AlternatePayerNotAllowed
-      - InvoiceSkippedNoUnitAccess
-      - InvoiceSkippedInvalidPostingPeriod
-      - InvoiceSkippedMissingCertificates
-      - ApprovalResponsibleCannotApprove
-      - NoNextApprover
-      - NoneOfSelectedInvoicesCanBeApproved
-      - ValidationFailed
-      - ContractValidationFailed
-      - ExecutionFailed
-      - MultiSelectNotSupported
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-        flowType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType'
-        displayInfo:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage'
-        requiredInput:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalInputContract'
-        invoiceNo:
-          type:
-          - string
-          - 'null'
-        invoiceResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceOperationResult'
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        hasBlockingErrors:
-          type: boolean
-          readOnly: true
-        requiresUserInput:
-          type: boolean
-          readOnly: true
-        canProceedToExecution:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        recipientId:
-          type:
-          - string
-          - 'null'
-        reason:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
-        invoiceNo:
-          type:
-          - string
-          - 'null'
-        dialogStatus:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogStatus'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.POStatusSelectionRequirement:
-      type: object
-      properties:
-        invoicePurchaseOrderGuid:
-          type:
-          - string
-          - 'null'
-        purchaseOrderNo:
-          type:
-          - string
-          - 'null'
-        suggestedStatus:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus'
-        index:
-          type: integer
-          format: int32
-        totalCount:
-          type: integer
-          format: int32
-        defaultMessage:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceInterfaceDocumentType:
-      enum:
-      - None
-      - NormalInvoice
-      - DetailedInvoice
-      - ApprovedInvoice
-      - CostInvoice
-      - TemporaryInvoice
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    SerticaWebApi.Models.ProcurementQA.EvaluationObjectLink.EvaluationQuestionImInvoiceLink:
-      type: object
-      properties:
-        addressName:
-          type:
-          - string
-          - 'null'
-        addressNo:
-          type:
-          - string
-          - 'null'
-        objectNo:
-          type:
-          - string
-          - 'null'
-        evaluationQuestionName:
-          type:
-          - string
-          - 'null'
-        evaluationQuestionNo:
-          type:
-          - string
-          - 'null'
-        evaluationAnswerName:
-          type:
-          - string
-          - 'null'
-        evaluationAnswerNo:
-          type:
-          - string
-          - 'null'
-        comment:
-          type:
-          - string
-          - 'null'
-        groupId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        evaluationStep:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_EvaluationProcess'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        score:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
-      type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.ExecuteApproveRequest:
-      type: object
-      properties:
-        invoiceNos:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        context:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveArguments'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PreApproveArguments:
-      type: object
-      properties:
-        decisions:
-          type:
-          - object
-          - 'null'
-          properties:
-            AcceptInvoiceDifferences:
-              type: boolean
-            ContinueWithMultiSelect:
-              type: boolean
-            ConfirmPreApproval:
-              type: boolean
-          additionalProperties: false
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType:
-      enum:
-      - ProcurementApprovalSetup
-      - InvoiceApprovalFlow
-      - CompanyUserApproval
-      type: string
     Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption:
       type: object
       properties:
@@ -3990,90 +2783,29 @@ components:
           - 'null'
         data: {}
       additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:
-        isValid:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
           type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
+        appType:
+          type: integer
+          format: int32
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalMessageType:
+    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
       enum:
-      - InvoiceWillBeSkipped
-      - InvoiceSkippedMissingPositionsWithPO
-      - InvoiceSkippedMissingPositionsWithoutPO
-      - InvoiceSkippedMissingItemType
-      - NotAuthorized
-      - EmptyDimensions
-      - MissingItemType
-      - AlternatePayerNotAllowed
-      - ApproverNotFound
-      - ValidationFailed
-      - ContractValidationFailed
-      - ExecutionFailed
-      - MultiSelectNotSupported
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceSetPOStatus:
-      enum:
-      - Auto
-      - PartlyInvoiced
-      - FullyInvoiced
-      type: string
-    SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo:
-      type: object
-      properties:
-        remarks:
-          type:
-          - string
-          - 'null'
-        rejectReasonNo:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDecisionKey:
-      enum:
-      - AcceptMissingItemCertificates
-      - AcceptInvoiceDifferences
-      - MissingItemTypeContinueWithRemainingInvoices
+      - User
+      - Role
       type: string
     SerticaWebApi.Models.ImInvoice.ExecutePreApproveRequest:
       type: object
@@ -4086,126 +2818,6 @@ components:
             type: string
         context:
           $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PreApproveArguments'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_EvaluationProcess:
-      enum:
-      - RejectingRFQ
-      - PlacingPurchaseOrder
-      - ReceivingRequisition
-      - ReceivingShipment
-      - TransitReceiving
-      - EvaluateSupplier
-      - ReceivingPurchaseOrder
-      - EvaluateImInvoice
-      type: string
-    SerticaWebApi.Models.ImInvoice.ImInvoiceCreateSelection:
-      type: object
-      properties:
-        selectedPurchaseOrderNo:
-          type:
-          - string
-          - 'null'
-        selectedUnitNo:
-          type:
-          - string
-          - 'null'
-        selectedCompanyNo:
-          type:
-          - string
-          - 'null'
-        selectedSupplierNo:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.ImInvoiceReturnToDraft:
-      type: object
-      properties:
-        response:
-          type:
-          - string
-          - 'null'
-        recipientNo:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount:
-      type: object
-      properties:
-        value:
-          type:
-          - number
-          - 'null'
-          format: double
-        currencyNo:
-          type:
-          - string
-          - 'null'
-        rate:
-          type:
-          - number
-          - 'null'
-          format: double
-        decimalPlaces:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type:
-          - string
-          - 'null'
-        imInvoice:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus:
-      enum:
-      - Draft
-      - AwaitingApproval
-      - Approved
-      - Rejected
-      - OnHold
-      - ApprovedOnHold
-      - PostApprovalRequired
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInputContract:
-      type: object
-      properties:
-        decisions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredDecision'
-        selections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredSelection'
-        invoiceResponseLogs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement'
-        poStatusSelections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.POStatusSelectionRequirement'
-        perInvoiceCostTypeSelections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PerInvoiceCostTypeSelectionRequirement'
       additionalProperties: false
     SerticaWebApi.Models.ImInvoice.ImInvoicePurchaseOrder:
       type: object
@@ -4302,38 +2914,46 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage:
+    SerticaWebApi.Models.ErrorReason:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalMessageType'
-        message:
+        text:
           type:
           - string
           - 'null'
-        affectedInvoices:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        isBlocking:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.ImInvoiceTotal:
-      type: object
-      properties:
-        name:
+        fieldName:
           type:
           - string
           - 'null'
-        value:
-          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
-        matched:
-          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
-        difference:
-          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalMessageType:
+      enum:
+      - InvoiceWillBeSkipped
+      - InvoiceSkippedMissingPositionsWithPO
+      - InvoiceSkippedMissingPositionsWithoutPO
+      - InvoiceSkippedMissingItemType
+      - NotAuthorized
+      - EmptyDimensions
+      - MissingItemType
+      - AlternatePayerNotAllowed
+      - ApproverNotFound
+      - ValidationFailed
+      - ContractValidationFailed
+      - ExecutionFailed
+      - MultiSelectNotSupported
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDecisionKey:
+      enum:
+      - AcceptMissingItemCertificates
+      - AcceptInvoiceDifferences
+      - MissingItemTypeContinueWithRemainingInvoices
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus:
+      enum:
+      - NotInvoiced
+      - PartlyInvoiced
+      - FullyInvoiced
+      type: string
     SerticaWebApi.Models.ImInvoice.ImInvoice:
       type: object
       properties:
@@ -4736,6 +3356,961 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderStatus:
+      enum:
+      - NotOrdered
+      - Ordered
+      - PartlyReceived
+      - Received
+      - Cancelled
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceOperationResult:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        passedValidation:
+          type: boolean
+        executedSuccessfully:
+          type: boolean
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        recipientId:
+          type:
+          - string
+          - 'null'
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        dialogStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogStatus'
+      additionalProperties: false
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason:
+      enum:
+      - MissingItemCertificates
+      - CompanyPolicy
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredSelection:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveSelectionKey'
+        requiresUserInput:
+          type: boolean
+        availableOptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
+        preselectedNo:
+          type:
+          - string
+          - 'null'
+        allowMultiple:
+          type: boolean
+        hasPreselection:
+          type: boolean
+          readOnly: true
+        hasOptions:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_EvaluationProcess:
+      enum:
+      - RejectingRFQ
+      - PlacingPurchaseOrder
+      - ReceivingRequisition
+      - ReceivingShipment
+      - TransitReceiving
+      - EvaluateSupplier
+      - ReceivingPurchaseOrder
+      - EvaluateImInvoice
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredSelection:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalSelectionKey'
+        promptText:
+          type:
+          - string
+          - 'null'
+        requiresUserInput:
+          type: boolean
+        availableOptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
+        preselectedNo:
+          type:
+          - string
+          - 'null'
+        allowMultiple:
+          type: boolean
+        hasPreselection:
+          type: boolean
+          readOnly: true
+        hasOptions:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ExecuteForwardForApprovalRequest:
+      type: object
+      properties:
+        invoiceNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        context:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalArguments'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceAdditionalCost:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        positionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        deliveryCostNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        vatNo:
+          type:
+          - string
+          - 'null'
+        vatName:
+          type:
+          - string
+          - 'null'
+        vatRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        vatAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        postingDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        additionalCostUnitNo:
+          type:
+          - string
+          - 'null'
+        additionalCostUnitName:
+          type:
+          - string
+          - 'null'
+        accountSFINo:
+          type:
+          - string
+          - 'null'
+        accountSFIName:
+          type:
+          - string
+          - 'null'
+        projectNo:
+          type:
+          - string
+          - 'null'
+        projectName:
+          type:
+          - string
+          - 'null'
+        incidentNo:
+          type:
+          - string
+          - 'null'
+        incidentDescription:
+          type:
+          - string
+          - 'null'
+        category:
+          type:
+          - string
+          - 'null'
+        departmentNo:
+          type:
+          - string
+          - 'null'
+        departmentName:
+          type:
+          - string
+          - 'null'
+        userNo:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        invoiceCurrencyNo:
+          type:
+          - string
+          - 'null'
+        classNo:
+          type:
+          - string
+          - 'null'
+        className:
+          type:
+          - string
+          - 'null'
+        handled:
+          type:
+          - boolean
+          - 'null'
+        accountingDimensions: {}
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogStatus:
+      enum:
+      - OK
+      - Cancel
+      type: string
+    SerticaWebApi.Models.ImInvoice.ExecuteApproveRequest:
+      type: object
+      properties:
+        invoiceNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        context:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveArguments'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceApproveResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        flowType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType'
+        displayInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage'
+        requiredInput:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInputContract'
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        invoiceResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInvoiceOperationResult'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        hasBlockingErrors:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoiceApprovalInfo:
+      type: object
+      properties:
+        remarks:
+          type:
+          - string
+          - 'null'
+        rejectReasonNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalInputContract:
+      type: object
+      properties:
+        decisions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredDecision'
+        selections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredSelection'
+        invoiceResponseLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalMessageType'
+        message:
+          type:
+          - string
+          - 'null'
+        affectedInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        isBlocking:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type:
+          - string
+          - 'null'
+        imInvoice:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ImInvoice.ImInvoice'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredDecision:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDecisionKey'
+        question:
+          type:
+          - string
+          - 'null'
+        affectedInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        triggeredResponseLog:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification'
+        isOptional:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoicePosition:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        quantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        measuringUnitNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        price:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        discountPercent:
+          type:
+          - number
+          - 'null'
+          format: double
+        vatCode:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        departmentNo:
+          type:
+          - string
+          - 'null'
+        departmentUnitExternalReference1:
+          type:
+          - string
+          - 'null'
+        departmentUnitExternalReference2:
+          type:
+          - string
+          - 'null'
+        departmentUnitExternalReference3:
+          type:
+          - string
+          - 'null'
+        projectNo:
+          type:
+          - string
+          - 'null'
+        projectUnitExternalReference1:
+          type:
+          - string
+          - 'null'
+        projectUnitExternalReference2:
+          type:
+          - string
+          - 'null'
+        projectUnitExternalReference3:
+          type:
+          - string
+          - 'null'
+        incidentNo:
+          type:
+          - string
+          - 'null'
+        classNo:
+          type:
+          - string
+          - 'null'
+        sfiNo:
+          type:
+          - string
+          - 'null'
+        itemTypeNo:
+          type:
+          - string
+          - 'null'
+        userNo:
+          type:
+          - string
+          - 'null'
+        itemNo:
+          type:
+          - string
+          - 'null'
+        customReference1:
+          type:
+          - string
+          - 'null'
+        accountNo:
+          type:
+          - string
+          - 'null'
+        positionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        sapInternalOrderNo:
+          type:
+          - string
+          - 'null'
+        lineAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        vatAmount:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        lineTotal:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        unitExternalReference1:
+          type:
+          - string
+          - 'null'
+        unitExternalReference2:
+          type:
+          - string
+          - 'null'
+        unitExternalReference3:
+          type:
+          - string
+          - 'null'
+        materialNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        purchaseOrderPositionUnitNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionReceivedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        purchaseOrderPositionOrderedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        purchaseOrderPositionOutstandingQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        purchaseOrderPositionRejectedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        measureUnitNo:
+          type:
+          - string
+          - 'null'
+        supplierItemNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionPrice:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        purchaseOrderCurrencyNo:
+          type:
+          - string
+          - 'null'
+        approvedInvoicedQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        outstandingQuantity:
+          type:
+          - number
+          - 'null'
+          format: double
+        vatName:
+          type:
+          - string
+          - 'null'
+        vatRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        positionUnitNo:
+          type:
+          - string
+          - 'null'
+        positionUnitName:
+          type:
+          - string
+          - 'null'
+        sfiName:
+          type:
+          - string
+          - 'null'
+        projectName:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        purchaseOrderPositionReferenceValue:
+          type:
+          - string
+          - 'null'
+        className:
+          type:
+          - string
+          - 'null'
+        incidentDescription:
+          type:
+          - string
+          - 'null'
+        incidentCategory:
+          type:
+          - string
+          - 'null'
+        departmentName:
+          type:
+          - string
+          - 'null'
+        invoiceCurrencyNo:
+          type:
+          - string
+          - 'null'
+        itemUnitNo:
+          type:
+          - string
+          - 'null'
+        handled:
+          type:
+          - boolean
+          - 'null'
+        accountingDimensions: {}
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceInterfaceDocumentType:
+      enum:
+      - None
+      - NormalInvoice
+      - DetailedInvoice
+      - ApprovedInvoice
+      - CostInvoice
+      - TemporaryInvoice
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceReturnToDraft:
+      type: object
+      properties:
+        response:
+          type:
+          - string
+          - 'null'
+        recipientNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.InvoiceChangeResponsibleArguments:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        massChangeResponsible:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalSelectionKey:
+      enum:
+      - ApprovalSetup
+      - Approver
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceExternalPaymentInfo:
+      type: object
+      properties:
+        externalDocumentNo:
+          type:
+          - string
+          - 'null'
+        externalCreateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        paymentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        clearingDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        paymentStatus:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredDecision:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDecisionKey'
+        question:
+          type:
+          - string
+          - 'null'
+        affectedInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        triggeredResponseLog:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ImInvoiceForwardForApprovalResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        flowType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType'
+        displayInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalDisplayMessage'
+        requiredInput:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalInputContract'
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        invoiceResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceOperationResult'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        hasBlockingErrors:
+          type: boolean
+          readOnly: true
+        requiresUserInput:
+          type: boolean
+          readOnly: true
+        canProceedToExecution:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogSpecification:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
+        scope:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope'
+        appliedToInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        defaultMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApprovalFlowType:
+      enum:
+      - ProcurementApprovalSetup
+      - InvoiceApprovalFlow
+      - CompanyUserApproval
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
       enum:
       - Unknown
@@ -4752,6 +4327,149 @@ components:
       - Website
       - FormFields
       type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.POStatusSelectionRequirement:
+      type: object
+      properties:
+        invoicePurchaseOrderGuid:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        suggestedStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_InvoiceStatus'
+        index:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        defaultMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoiceCreateSelection:
+      type: object
+      properties:
+        selectedPurchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        selectedUnitNo:
+          type:
+          - string
+          - 'null'
+        selectedCompanyNo:
+          type:
+          - string
+          - 'null'
+        selectedSupplierNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PurchaseOrderWorkflow:
+      enum:
+      - Draft
+      - AwaitingPriceApproval
+      - AwaitingOrder
+      - OpenForChanges
+      - Closed
+      - AwaitingGatekeeperReview
+      - NotApproved
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope:
+      enum:
+      - SharedAcrossInvoices
+      - PerInvoice
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceSetPOStatus:
+      enum:
+      - Auto
+      - PartlyInvoiced
+      - FullyInvoiced
+      type: string
+    SerticaWebApi.Models.Framework.Amount:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveArguments:
+      type: object
+      properties:
+        decisions:
+          type:
+          - object
+          - 'null'
+          properties:
+            AcceptMissingItemCertificates:
+              type: boolean
+            AcceptInvoiceDifferences:
+              type: boolean
+            MissingItemTypeContinueWithRemainingInvoices:
+              type: boolean
+            AcceptPOAlreadyFullyInvoiced:
+              type: boolean
+            ConfirmNextApproverUpdate:
+              type: boolean
+            ApproveViaNextApproverUpdate:
+              type: boolean
+            UpdateSupplierItemPrice:
+              type: boolean
+            ContinueWithMultiSelect:
+              type: boolean
+            UnitAccessContinueWithRemainingInvoices:
+              type: boolean
+            ConfirmApproval:
+              type: boolean
+          additionalProperties: false
+        selections:
+          type:
+          - object
+          - 'null'
+          properties:
+            CostType:
+              type: array
+              items:
+                type: string
+          additionalProperties: false
+        responseLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData'
+        doNotCancelChanges:
+          type: boolean
+        poStatusSelections:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceSetPOStatus'
+        perInvoiceCostTypeSelections:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - array
+            - 'null'
+            items:
+              type: string
+      additionalProperties: false
     SerticaWebApi.Models.ImInvoice.ImInvoiceResponse:
       type: object
       properties:
@@ -4815,45 +4533,316 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.ImInvoice.ImInvoiceApprover:
+    SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
-        userNo:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
           type:
           - string
           - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PreApproveArguments:
+      type: object
+      properties:
+        decisions:
+          type:
+          - object
+          - 'null'
+          properties:
+            AcceptInvoiceDifferences:
+              type: boolean
+            ContinueWithMultiSelect:
+              type: boolean
+            ConfirmPreApproval:
+              type: boolean
+          additionalProperties: false
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.ImInvoiceReversal:
+      type: object
+      properties:
+        postingDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    SerticaWebApi.Models.ImInvoice.MoveToUnitIssue:
+      type: object
+      properties:
+        objectNo:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PerInvoiceCostTypeSelectionRequirement:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        requiresUserInput:
+          type: boolean
+        preselectedCostTypeNo:
+          type:
+          - string
+          - 'null'
+        availableOptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDecisionKey:
+      enum:
+      - AcceptMissingItemCertificates
+      - AcceptInvoiceDifferences
+      - MissingItemTypeContinueWithRemainingInvoices
+      - AcceptPOAlreadyFullyInvoiced
+      - ConfirmNextApproverUpdate
+      - ApproveViaNextApproverUpdate
+      - UpdateSupplierItemPrice
+      - ContinueWithMultiSelect
+      - UnitAccessContinueWithRemainingInvoices
+      - ConfirmApproval
+      type: string
+    SerticaWebApi.Models.ImInvoice.ImInvoiceTotal:
+      type: object
+      properties:
         name:
           type:
           - string
           - 'null'
-        status:
+        value:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        matched:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+        difference:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Framework.Amount'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveSelectionKey:
+      enum:
+      - CostType
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogReason'
+        appliedToInvoices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        scope:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope'
+        defaultMessage:
           type:
           - string
           - 'null'
-        reasonNo:
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceDocumentType:
+      enum:
+      - VendorInvoice
+      - VendorCreditNote
+      - InternalInvoice
+      - InternalCreditNote
+      - Prepayment
+      - Purchase
+      - PrepaymentCreditNote
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInputContract:
+      type: object
+      properties:
+        decisions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredDecision'
+        selections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveRequiredSelection'
+        invoiceResponseLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.InvoiceResponseLogRequirement'
+        poStatusSelections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.POStatusSelectionRequirement'
+        perInvoiceCostTypeSelections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.PerInvoiceCostTypeSelectionRequirement'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImInvoiceStatus:
+      enum:
+      - Draft
+      - AwaitingApproval
+      - Approved
+      - Rejected
+      - OnHold
+      - ApprovedOnHold
+      - PostApprovalRequired
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalArguments:
+      type: object
+      properties:
+        decisions:
+          type:
+          - object
+          - 'null'
+          properties:
+            AcceptMissingItemCertificates:
+              type: boolean
+            AcceptInvoiceDifferences:
+              type: boolean
+            MissingItemTypeContinueWithRemainingInvoices:
+              type: boolean
+          additionalProperties: false
+        selections:
+          type:
+          - object
+          - 'null'
+          properties:
+            ApprovalSetup:
+              type: array
+              items:
+                type: string
+            Approver:
+              type: array
+              items:
+                type: string
+          additionalProperties: false
+        responseLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogData'
+      additionalProperties: false
+    SerticaWebApi.Models.ProcurementQA.EvaluationObjectLink.EvaluationQuestionImInvoiceLink:
+      type: object
+      properties:
+        addressName:
           type:
           - string
           - 'null'
-        reasonName:
+        addressNo:
           type:
           - string
           - 'null'
-        amount:
-          type:
-          - number
-          - 'null'
-          format: double
-        currencyNo:
+        objectNo:
           type:
           - string
           - 'null'
-        date:
+        evaluationQuestionName:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionNo:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerName:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerNo:
+          type:
+          - string
+          - 'null'
+        comment:
+          type:
+          - string
+          - 'null'
+        groupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        evaluationStep:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_EvaluationProcess'
+        updateDate:
           type:
           - string
           - 'null'
           format: date-time
-        current:
-          type: boolean
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
         guid:
           type:
           - string
@@ -4884,41 +4873,52 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalRequiredSelection:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.Link:
       type: object
       properties:
         key:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ForwardForApprovalSelectionKey'
-        promptText:
           type:
           - string
           - 'null'
-        requiresUserInput:
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveInvoiceOperationResult:
+      type: object
+      properties:
+        invoiceNo:
+          type:
+          - string
+          - 'null'
+        passedValidation:
           type: boolean
-        availableOptions:
+        executedSuccessfully:
+          type: boolean
+        messages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.SelectionOption'
-        preselectedNo:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ApproveDisplayMessage'
+        errorMessage:
           type:
           - string
           - 'null'
-        allowMultiple:
-          type: boolean
-        hasPreselection:
-          type: boolean
-          readOnly: true
-        hasOptions:
-          type: boolean
-          readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.InvoiceManagement.ResponseLogScope:
-      enum:
-      - SharedAcrossInvoices
-      - PerInvoice
-      type: string
   securitySchemes:
     Bearer:
       type: http

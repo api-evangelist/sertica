@@ -245,6 +245,22 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.MasterDataManagementModels.MDMComponentInstanceView:
+      type: object
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        unitComponentInfo:
+          type:
+          - string
+          - 'null'
+        serialNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.MasterDataManagementModels.MDMNodeType:
       enum:
       - BaseComponent
@@ -357,22 +373,6 @@ components:
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.MasterDataManagementModels.MDMComponentInstanceView:
-      type: object
-      properties:
-        unit:
-          type:
-          - string
-          - 'null'
-        unitComponentInfo:
-          type:
-          - string
-          - 'null'
-        serialNo:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

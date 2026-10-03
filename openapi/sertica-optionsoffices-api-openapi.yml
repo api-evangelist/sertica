@@ -421,229 +421,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink:
+    SerticaWebApi.Models.SystemOptions.PunchoutConnectionInput:
       type: object
       properties:
-        name:
+        punchoutID:
           type:
           - string
           - 'null'
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_GenericReportType'
-        documentNo:
+        punchoutURL:
           type:
           - string
           - 'null'
-        documentDescription:
-          type:
-          - string
-          - 'null'
-        documentTypeName:
-          type:
-          - string
-          - 'null'
-        documentTypeNo:
-          type:
-          - string
-          - 'null'
-        documentGroupName:
-          type:
-          - string
-          - 'null'
-        documentGroupNo:
-          type:
-          - string
-          - 'null'
-        communicationLanguageNo:
-          type:
-          - string
-          - 'null'
-        communicationLanguageName:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressClassificationAction:
-      enum:
-      - None
-      - Warning
-      - Block
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OfficeLabelType:
-      enum:
-      - Carrier
-      type: string
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
+        punchoutTokenKey:
           type:
           - string
           - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexSpecification:
-      enum:
-      - pc01
-      - pc02
-      - pc03
-      - pc04
-      - pc05
-      - pc06
-      - pc07
-      - pc08
-      - pc09
-      - pc10
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ComponentSortOrder:
-      enum:
-      - Alphabetical
-      - BySortOrder
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OrderBy:
-      enum:
-      - None
-      - JobNo
-      - NextDate
-      - LastDoneDateNextDate
-      type: string
-    SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_LabelType'
-        documentNo:
-          type:
-          - string
-          - 'null'
-        documentDescription:
-          type:
-          - string
-          - 'null'
-        documentTypeName:
-          type:
-          - string
-          - 'null'
-        documentTypeNo:
-          type:
-          - string
-          - 'null'
-        documentGroupName:
-          type:
-          - string
-          - 'null'
-        documentGroupNo:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UpdateSupplierItemPriceWhenApproveInvoice:
-      enum:
-      - NoUpdate
-      - PromptForUpdate
-      - AlwaysUpdate
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexMemberArea:
-      enum:
-      - sk01
-      - sk02
-      - sk03
-      type: string
     SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
@@ -677,6 +470,63 @@ components:
       - FIFO
       - PresentValue
       type: string
+    SerticaWebApi.Models.SystemOptions.OptionsShipdexResource:
+      type: object
+      properties:
+        resourceNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        specification:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexSpecification'
+        memberArea:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexMemberArea'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OrderBy:
+      enum:
+      - None
+      - JobNo
+      - NextDate
+      - LastDoneDateNextDate
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension:
       enum:
       - DimensionOriginal
@@ -685,7 +535,45 @@ components:
       - Dimension1024x768
       - Dimension800x600
       type: string
-    SerticaWebApi.Models.SystemOptions.OptionsOfficeImageSetting:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UpdateSupplierItemPriceWhenApproveInvoice:
+      enum:
+      - NoUpdate
+      - PromptForUpdate
+      - AlwaysUpdate
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.SystemOptions.OptionsImageSetting:
       type: object
       properties:
         imageArea:
@@ -732,587 +620,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.SystemOptions.Options:
-      type: object
-      properties:
-        componentTypeMandatory:
-          type:
-          - boolean
-          - 'null'
-        componentLocationMandatory:
-          type:
-          - boolean
-          - 'null'
-        componentAccountMandatory:
-          type:
-          - boolean
-          - 'null'
-        componentManufacturerMandatory:
-          type:
-          - boolean
-          - 'null'
-        componentTypeNoMandatory:
-          type:
-          - boolean
-          - 'null'
-        jobNameMandatory:
-          type:
-          - boolean
-          - 'null'
-        jobTriggerMandatory:
-          type:
-          - boolean
-          - 'null'
-        responsibleMandatoryOnJob:
-          type:
-          - boolean
-          - 'null'
-        jobGroupMandatory:
-          type:
-          - boolean
-          - 'null'
-        resourcesMandatory:
-          type:
-          - boolean
-          - 'null'
-        hideUsersAndUserGroupsAsResources:
-          type:
-          - boolean
-          - 'null'
-        postponeReasonMandatory:
-          type:
-          - boolean
-          - 'null'
-        jobPostponementWorkflow:
-          type:
-          - boolean
-          - 'null'
-        messageExpectedFaultMandatory:
-          type:
-          - boolean
-          - 'null'
-        warnOnMissingResource:
-          type:
-          - boolean
-          - 'null'
-        autoGenerateJobNo:
-          type: boolean
-        allowOnlyUseOfUserGroupAsResponsibleOnJob:
-          type: boolean
-        copyComponentAccountToJob:
-          type: boolean
-        jobCriticalRunOnceJobGroupGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        jobBreakdownJobGroupName:
-          type:
-          - string
-          - 'null'
-        jobBreakdownJobGroupNo:
-          type:
-          - string
-          - 'null'
-        webExternalCalendarIntegration:
-          type: boolean
-        jobHistoryRemarkMandatory:
-          type:
-          - boolean
-          - 'null'
-        resourceMandatoryJobHistory:
-          type:
-          - boolean
-          - 'null'
-        jobHistoryDefaultDoneDate:
-          type:
-          - boolean
-          - 'null'
-        transferResourceEstimateFromJobToJobHistory:
-          type:
-          - boolean
-          - 'null'
-        transferSparePartsFromJobToJobHistory:
-          type:
-          - boolean
-          - 'null'
-        registerHoursOverDays:
-          type:
-          - boolean
-          - 'null'
-        jobCopyTextToRemarkOnHistory:
-          type:
-          - boolean
-          - 'null'
-        lockCounterReadingFieldOnJobHistory:
-          type:
-          - boolean
-          - 'null'
-        automaticallyAddCurrentUserIfMandatory:
-          type:
-          - boolean
-          - 'null'
-        labelOptionsDocumentLinks:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
-        shipdexManufacturerNo:
-          type:
-          - string
-          - 'null'
-        shipdexManufacturerName:
-          type:
-          - string
-          - 'null'
-        shipdexComponentItemNo:
-          type:
-          - string
-          - 'null'
-        shipdexComponentItemName:
-          type:
-          - string
-          - 'null'
-        shipdexSuppliesNo:
-          type:
-          - string
-          - 'null'
-        shipdexSuppliesName:
-          type:
-          - string
-          - 'null'
-        shipdexSupportEquipmentNo:
-          type:
-          - string
-          - 'null'
-        shipdexSupportEquipmentName:
-          type:
-          - string
-          - 'null'
-        shipdexResources:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsShipdexResource'
-        autoGenerateSparePartNo:
-          type:
-          - boolean
-          - 'null'
-        sparePartPrefix:
-          type:
-          - string
-          - 'null'
-        sparePartSerialNoLength:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        defaultItemWarehouseNo:
-          type:
-          - string
-          - 'null'
-        defaultItemWarehouseName:
-          type:
-          - string
-          - 'null'
-        itemWarehouseMandatory:
-          type:
-          - boolean
-          - 'null'
-        itemLocationMandatory:
-          type:
-          - boolean
-          - 'null'
-        itemMinStockonWarehouseMandatory:
-          type:
-          - boolean
-          - 'null'
-        stockValue:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_StockValue'
-        useJobHistoryDoneDateForWarehouseHistory:
-          type:
-          - boolean
-          - 'null'
-        doNotShowItemsWithoutLocationInItemLocationTree:
-          type:
-          - boolean
-          - 'null'
-        sparePartImageDimension:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
-        sparePartImageQuality:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        serticaAppShowDocuments:
-          type:
-          - boolean
-          - 'null'
-        serticaAppShowJobTemplates:
-          type:
-          - boolean
-          - 'null'
-        serticaAppShowReportedBy:
-          type:
-          - boolean
-          - 'null'
-        serticaAppShowRemarks:
-          type:
-          - boolean
-          - 'null'
-        sparePartTextOnStockAdjustments:
-          type:
-          - boolean
-          - 'null'
-        statusChangeSubjectNo:
-          type:
-          - string
-          - 'null'
-        statusChangeSubjectName:
-          type:
-          - string
-          - 'null'
-        statusChangeBodyNo:
-          type:
-          - string
-          - 'null'
-        statusChangeBodyName:
-          type:
-          - string
-          - 'null'
-        formApproveSubjectNo:
-          type:
-          - string
-          - 'null'
-        formApproveSubjectName:
-          type:
-          - string
-          - 'null'
-        formApproveBodyNo:
-          type:
-          - string
-          - 'null'
-        formApproveBodyName:
-          type:
-          - string
-          - 'null'
-        formResponseSubjectNo:
-          type:
-          - string
-          - 'null'
-        formResponseSubjectName:
-          type:
-          - string
-          - 'null'
-        formResponseBodyNo:
-          type:
-          - string
-          - 'null'
-        formResponseBodyName:
-          type:
-          - string
-          - 'null'
-        formsImageDimension:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
-        formsImageQuality:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        defaultImageDimension:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
-        defaultImageQuality:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        imageSettings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsImageSetting'
-        year:
-          type:
-          - string
-          - 'null'
-        fleetSerialNo:
-          type:
-          - string
-          - 'null'
-        unitSerialNo:
-          type:
-          - string
-          - 'null'
-        eposUnitNo:
-          type:
-          - string
-          - 'null'
-        purchaseOrderAccountMandatory:
-          type: boolean
-        purchaseOrderDepartmentMandatory:
-          type: boolean
-        purchaseOrderComponentMandatory:
-          type: boolean
-        purchaseOrderProjectMandatory:
-          type: boolean
-        standardDeliveryPlaceNo:
-          type:
-          - string
-          - 'null'
-        standardDeliveryPlaceName:
-          type:
-          - string
-          - 'null'
-        standardCurrencyNo:
-          type:
-          - string
-          - 'null'
-        standardCurrencyName:
-          type:
-          - string
-          - 'null'
-        companyNo:
-          type:
-          - string
-          - 'null'
-        companyName:
-          type:
-          - string
-          - 'null'
-        requisitionForwardType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_RequisitionForwardType'
-        disableLocalRequisition:
-          type: boolean
-        descriptionMandatory:
-          type: boolean
-        departmentMandatory:
-          type: boolean
-        measureUnitMandatory:
-          type: boolean
-        requestedDeliveryDateMandatory:
-          type: boolean
-        estimatedCostsMandatoryServiceOrders:
-          type: boolean
-        estimatedCostsMandatoryOtherOrders:
-          type: boolean
-        rfqEmailSubjectNo:
-          type:
-          - string
-          - 'null'
-        rfqEmailSubjectName:
-          type:
-          - string
-          - 'null'
-        rfqEmailBodyNo:
-          type:
-          - string
-          - 'null'
-        rfqEmailBodyName:
-          type:
-          - string
-          - 'null'
-        purchaseOrderEmailSubjectNo:
-          type:
-          - string
-          - 'null'
-        purchaseOrderEmailSubjectName:
-          type:
-          - string
-          - 'null'
-        purchaseOrderEmailBodyNo:
-          type:
-          - string
-          - 'null'
-        purchaseOrderEmailBodyName:
-          type:
-          - string
-          - 'null'
-        addComponentInfoToProcurementRequisition:
-          type: boolean
-        purchaseOrderApprovalInvalidationRemarksToSupplier:
-          type: boolean
-        purchaseOrderApprovalInvalidationSupplier:
-          type: boolean
-        purchaseOrderApprovalInvalidationCurrency:
-          type: boolean
-        purchaseOrderApprovalInvalidationPositionOrderedQuantity:
-          type: boolean
-        purchaseOrderApprovalInvalidationPositionPrice:
-          type: boolean
-        purchaseOrderApprovalInvalidationPositionName:
-          type: boolean
-        purchaseOrderApprovalInvalidationPositionNumberOfPositions:
-          type: boolean
-        serticaPunchOutID:
-          type:
-          - string
-          - 'null'
-        punchOutURL:
-          type:
-          - string
-          - 'null'
-        punchoutAPITokenKey:
-          type:
-          - string
-          - 'null'
-        punchOutAPITokenHasValue:
-          type:
-          - boolean
-          - 'null'
-        punchOutRetryConfirmationRequestsForDays:
-          type: integer
-          format: int32
-        dynamicReportOptionsDocumentLinks:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
-        logbookEventComponentNoMandatory:
-          type: boolean
-        logbookEventSubjectMandatory:
-          type: boolean
-        logbookEventDescriptionMandatory:
-          type: boolean
-        sqlCommandTimeout:
-          type: integer
-          format: int32
-        orderJobsBy:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_OrderBy'
-        componentSortOrder:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ComponentSortOrder'
-        industryApprovalAppAvailabilityJobPostponement:
-          type: boolean
-        industryApprovalAppAvailabilityForm:
-          type: boolean
-        defaultUserLanguageNo:
-          type:
-          - string
-          - 'null'
-        defaultUserLanguageName:
-          type:
-          - string
-          - 'null'
-        certificateWindowDueOverdueCalc:
-          type:
-          - boolean
-          - 'null'
-        inheritableNotificationSettings:
-          type:
-          - boolean
-          - 'null'
-        arrangeCertificateGroupsBySortOrder:
-          type:
-          - boolean
-          - 'null'
-        hideCertificateGroupNoInCertificateBrowser:
-          type:
-          - boolean
-          - 'null'
-        copyCertificateVerificationDateOnRenew:
-          type:
-          - boolean
-          - 'null'
-        azureADUseAzureADlogin:
-          type: boolean
-        azureADClientId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        azureADTenantId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        azureADAttemptAutomaticlogIn:
-          type: boolean
-        azureADLogUserOutOnExit:
-          type: boolean
-        webOutlookCalendarIntegration:
-          type: boolean
-        autoGenerateDocumentNo:
-          type: boolean
-        checkInShowVersionPopup:
-          type: boolean
-        jobHistoryDataEntryWebTokenExpiration:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        jobHistoryDataEntryWebTokenExpirationFrequency:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FrequencyType'
-        fullScreenDashboardRefreshRate:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SendMethod:
-      enum:
-      - Direct
-      - Queue
-      - Outlook
-      - Mapi
-      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_FrequencyType:
       enum:
       - Minutes
@@ -1320,6 +627,13 @@ components:
       - Days
       - Months
       - Seconds
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SendMethod:
+      enum:
+      - Direct
+      - Queue
+      - Outlook
+      - Mapi
       type: string
     SerticaWebApi.Models.SystemOptions.LabelOptionsOfficeDocumentLink:
       type: object
@@ -1389,56 +703,66 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.SystemOptions.OptionsOfficeElectronicLogbookSetting:
+    SerticaWebApi.Models.ErrorReason:
       type: object
       properties:
-        logbook:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
-        maxSignLevel:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_LabelType:
+      enum:
+      - Item
+      - ItemLocation
+      - Component
+      - Measurement
+      - Counter
+      - JobRequestTemplate
+      - Barricade
+      type: string
+    SerticaWebApi.Models.SystemOptions.AiConnectionInput:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+        token:
+          type:
+          - string
+          - 'null'
+        useExistingToken:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.SystemOptions.OptionsOfficeImageSetting:
+      type: object
+      properties:
+        imageArea:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageArea'
+        imageDimension:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
+        imageQuality:
           type:
           - integer
           - 'null'
           format: int32
-        signLevel1RoleNo:
-          type:
-          - string
-          - 'null'
-        signLevel1RoleName:
-          type:
-          - string
-          - 'null'
-        signLevel2RoleNo:
-          type:
-          - string
-          - 'null'
-        signLevel2RoleName:
-          type:
-          - string
-          - 'null'
-        signLevel3RoleNo:
-          type:
-          - string
-          - 'null'
-        signLevel3RoleName:
-          type:
-          - string
-          - 'null'
-        signLevel4RoleNo:
-          type:
-          - string
-          - 'null'
-        signLevel4RoleName:
-          type:
-          - string
-          - 'null'
-        signLevel5RoleNo:
-          type:
-          - string
-          - 'null'
-        signLevel5RoleName:
-          type:
-          - string
-          - 'null'
         optionsGuid:
           type:
           - string
@@ -1474,6 +798,86 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_LabelType'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_GenericReportType:
+      enum:
+      - Requisition
+      - PurchaseOrder
+      - RequestForQuote
+      - Job
+      - JobList
+      - PurchaseOrderServiceOrder
+      - Reminder
+      - DockList
+      - Shipment
+      type: string
     SerticaWebApi.Models.SystemOptions.OptionsOffice:
       type: object
       properties:
@@ -2335,56 +1739,631 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_LabelType:
-      enum:
-      - Item
-      - ItemLocation
-      - Component
-      - Measurement
-      - Counter
-      - JobRequestTemplate
-      - Barricade
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_GenericReportType:
-      enum:
-      - Requisition
-      - PurchaseOrder
-      - RequestForQuote
-      - Job
-      - JobList
-      - PurchaseOrderServiceOrder
-      - Reminder
-      - DockList
-      - Shipment
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook:
-      enum:
-      - ORBI
-      - ORBII
-      - ODSRB
-      - GRB
-      - CRB
-      - BRB
-      - ERB
-      - RRB
-      - DRB
-      type: string
-    SerticaWebApi.Models.SystemOptions.OptionsShipdexResource:
+    SerticaWebApi.Models.SystemOptions.Options:
       type: object
       properties:
-        resourceNo:
+        componentTypeMandatory:
+          type:
+          - boolean
+          - 'null'
+        componentLocationMandatory:
+          type:
+          - boolean
+          - 'null'
+        componentAccountMandatory:
+          type:
+          - boolean
+          - 'null'
+        componentManufacturerMandatory:
+          type:
+          - boolean
+          - 'null'
+        componentTypeNoMandatory:
+          type:
+          - boolean
+          - 'null'
+        jobNameMandatory:
+          type:
+          - boolean
+          - 'null'
+        jobTriggerMandatory:
+          type:
+          - boolean
+          - 'null'
+        responsibleMandatoryOnJob:
+          type:
+          - boolean
+          - 'null'
+        jobGroupMandatory:
+          type:
+          - boolean
+          - 'null'
+        resourcesMandatory:
+          type:
+          - boolean
+          - 'null'
+        hideUsersAndUserGroupsAsResources:
+          type:
+          - boolean
+          - 'null'
+        postponeReasonMandatory:
+          type:
+          - boolean
+          - 'null'
+        jobPostponementWorkflow:
+          type:
+          - boolean
+          - 'null'
+        messageExpectedFaultMandatory:
+          type:
+          - boolean
+          - 'null'
+        warnOnMissingResource:
+          type:
+          - boolean
+          - 'null'
+        autoGenerateJobNo:
+          type: boolean
+        allowOnlyUseOfUserGroupAsResponsibleOnJob:
+          type: boolean
+        copyComponentAccountToJob:
+          type: boolean
+        jobCriticalRunOnceJobGroupGuid:
           type:
           - string
           - 'null'
-        name:
+          format: uuid
+        jobBreakdownJobGroupName:
           type:
           - string
           - 'null'
-        specification:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexSpecification'
-        memberArea:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexMemberArea'
-        guidForReferencedObject:
+        jobBreakdownJobGroupNo:
+          type:
+          - string
+          - 'null'
+        webExternalCalendarIntegration:
+          type: boolean
+        jobHistoryRemarkMandatory:
+          type:
+          - boolean
+          - 'null'
+        resourceMandatoryJobHistory:
+          type:
+          - boolean
+          - 'null'
+        jobHistoryDefaultDoneDate:
+          type:
+          - boolean
+          - 'null'
+        transferResourceEstimateFromJobToJobHistory:
+          type:
+          - boolean
+          - 'null'
+        transferSparePartsFromJobToJobHistory:
+          type:
+          - boolean
+          - 'null'
+        registerHoursOverDays:
+          type:
+          - boolean
+          - 'null'
+        jobCopyTextToRemarkOnHistory:
+          type:
+          - boolean
+          - 'null'
+        lockCounterReadingFieldOnJobHistory:
+          type:
+          - boolean
+          - 'null'
+        automaticallyAddCurrentUserIfMandatory:
+          type:
+          - boolean
+          - 'null'
+        labelOptionsDocumentLinks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.LabelOptionsDocumentLink'
+        shipdexManufacturerNo:
+          type:
+          - string
+          - 'null'
+        shipdexManufacturerName:
+          type:
+          - string
+          - 'null'
+        shipdexComponentItemNo:
+          type:
+          - string
+          - 'null'
+        shipdexComponentItemName:
+          type:
+          - string
+          - 'null'
+        shipdexSuppliesNo:
+          type:
+          - string
+          - 'null'
+        shipdexSuppliesName:
+          type:
+          - string
+          - 'null'
+        shipdexSupportEquipmentNo:
+          type:
+          - string
+          - 'null'
+        shipdexSupportEquipmentName:
+          type:
+          - string
+          - 'null'
+        shipdexResources:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsShipdexResource'
+        autoGenerateSparePartNo:
+          type:
+          - boolean
+          - 'null'
+        sparePartPrefix:
+          type:
+          - string
+          - 'null'
+        sparePartSerialNoLength:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        defaultItemWarehouseNo:
+          type:
+          - string
+          - 'null'
+        defaultItemWarehouseName:
+          type:
+          - string
+          - 'null'
+        itemWarehouseMandatory:
+          type:
+          - boolean
+          - 'null'
+        itemLocationMandatory:
+          type:
+          - boolean
+          - 'null'
+        itemMinStockonWarehouseMandatory:
+          type:
+          - boolean
+          - 'null'
+        stockValue:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_StockValue'
+        useJobHistoryDoneDateForWarehouseHistory:
+          type:
+          - boolean
+          - 'null'
+        doNotShowItemsWithoutLocationInItemLocationTree:
+          type:
+          - boolean
+          - 'null'
+        sparePartImageDimension:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
+        sparePartImageQuality:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        serticaAppShowDocuments:
+          type:
+          - boolean
+          - 'null'
+        serticaAppShowJobTemplates:
+          type:
+          - boolean
+          - 'null'
+        serticaAppShowReportedBy:
+          type:
+          - boolean
+          - 'null'
+        serticaAppShowRemarks:
+          type:
+          - boolean
+          - 'null'
+        sparePartTextOnStockAdjustments:
+          type:
+          - boolean
+          - 'null'
+        statusChangeSubjectNo:
+          type:
+          - string
+          - 'null'
+        statusChangeSubjectName:
+          type:
+          - string
+          - 'null'
+        statusChangeBodyNo:
+          type:
+          - string
+          - 'null'
+        statusChangeBodyName:
+          type:
+          - string
+          - 'null'
+        formApproveSubjectNo:
+          type:
+          - string
+          - 'null'
+        formApproveSubjectName:
+          type:
+          - string
+          - 'null'
+        formApproveBodyNo:
+          type:
+          - string
+          - 'null'
+        formApproveBodyName:
+          type:
+          - string
+          - 'null'
+        formResponseSubjectNo:
+          type:
+          - string
+          - 'null'
+        formResponseSubjectName:
+          type:
+          - string
+          - 'null'
+        formResponseBodyNo:
+          type:
+          - string
+          - 'null'
+        formResponseBodyName:
+          type:
+          - string
+          - 'null'
+        formsImageDimension:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
+        formsImageQuality:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        defaultImageDimension:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
+        defaultImageQuality:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        imageSettings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.OptionsImageSetting'
+        year:
+          type:
+          - string
+          - 'null'
+        fleetSerialNo:
+          type:
+          - string
+          - 'null'
+        unitSerialNo:
+          type:
+          - string
+          - 'null'
+        eposUnitNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderAccountMandatory:
+          type: boolean
+        purchaseOrderDepartmentMandatory:
+          type: boolean
+        purchaseOrderComponentMandatory:
+          type: boolean
+        purchaseOrderProjectMandatory:
+          type: boolean
+        standardDeliveryPlaceNo:
+          type:
+          - string
+          - 'null'
+        standardDeliveryPlaceName:
+          type:
+          - string
+          - 'null'
+        standardCurrencyNo:
+          type:
+          - string
+          - 'null'
+        standardCurrencyName:
+          type:
+          - string
+          - 'null'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        requisitionForwardType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_RequisitionForwardType'
+        disableLocalRequisition:
+          type: boolean
+        descriptionMandatory:
+          type: boolean
+        departmentMandatory:
+          type: boolean
+        measureUnitMandatory:
+          type: boolean
+        requestedDeliveryDateMandatory:
+          type: boolean
+        estimatedCostsMandatoryServiceOrders:
+          type: boolean
+        estimatedCostsMandatoryOtherOrders:
+          type: boolean
+        rfqEmailSubjectNo:
+          type:
+          - string
+          - 'null'
+        rfqEmailSubjectName:
+          type:
+          - string
+          - 'null'
+        rfqEmailBodyNo:
+          type:
+          - string
+          - 'null'
+        rfqEmailBodyName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderEmailSubjectNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderEmailSubjectName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderEmailBodyNo:
+          type:
+          - string
+          - 'null'
+        purchaseOrderEmailBodyName:
+          type:
+          - string
+          - 'null'
+        addComponentInfoToProcurementRequisition:
+          type: boolean
+        purchaseOrderApprovalInvalidationRemarksToSupplier:
+          type: boolean
+        purchaseOrderApprovalInvalidationSupplier:
+          type: boolean
+        purchaseOrderApprovalInvalidationCurrency:
+          type: boolean
+        purchaseOrderApprovalInvalidationPositionOrderedQuantity:
+          type: boolean
+        purchaseOrderApprovalInvalidationPositionPrice:
+          type: boolean
+        purchaseOrderApprovalInvalidationPositionName:
+          type: boolean
+        purchaseOrderApprovalInvalidationPositionNumberOfPositions:
+          type: boolean
+        serticaPunchOutID:
+          type:
+          - string
+          - 'null'
+        punchOutURL:
+          type:
+          - string
+          - 'null'
+        punchoutAPITokenKey:
+          type:
+          - string
+          - 'null'
+        punchOutAPITokenHasValue:
+          type:
+          - boolean
+          - 'null'
+        punchOutRetryConfirmationRequestsForDays:
+          type: integer
+          format: int32
+        dynamicReportOptionsDocumentLinks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink'
+        logbookEventComponentNoMandatory:
+          type: boolean
+        logbookEventSubjectMandatory:
+          type: boolean
+        logbookEventDescriptionMandatory:
+          type: boolean
+        sqlCommandTimeout:
+          type: integer
+          format: int32
+        orderJobsBy:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_OrderBy'
+        componentSortOrder:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ComponentSortOrder'
+        industryApprovalAppAvailabilityJobPostponement:
+          type: boolean
+        industryApprovalAppAvailabilityForm:
+          type: boolean
+        defaultUserLanguageNo:
+          type:
+          - string
+          - 'null'
+        defaultUserLanguageName:
+          type:
+          - string
+          - 'null'
+        certificateWindowDueOverdueCalc:
+          type:
+          - boolean
+          - 'null'
+        inheritableNotificationSettings:
+          type:
+          - boolean
+          - 'null'
+        arrangeCertificateGroupsBySortOrder:
+          type:
+          - boolean
+          - 'null'
+        hideCertificateGroupNoInCertificateBrowser:
+          type:
+          - boolean
+          - 'null'
+        copyCertificateVerificationDateOnRenew:
+          type:
+          - boolean
+          - 'null'
+        azureADUseAzureADlogin:
+          type: boolean
+        azureADClientId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        azureADTenantId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        azureADAttemptAutomaticlogIn:
+          type: boolean
+        azureADLogUserOutOnExit:
+          type: boolean
+        webOutlookCalendarIntegration:
+          type: boolean
+        autoGenerateDocumentNo:
+          type: boolean
+        checkInShowVersionPopup:
+          type: boolean
+        jobHistoryDataEntryWebTokenExpiration:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        jobHistoryDataEntryWebTokenExpirationFrequency:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FrequencyType'
+        fullScreenDashboardRefreshRate:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.SystemOptions.OptionsOfficeElectronicLogbookSetting:
+      type: object
+      properties:
+        logbook:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook'
+        maxSignLevel:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        signLevel1RoleNo:
+          type:
+          - string
+          - 'null'
+        signLevel1RoleName:
+          type:
+          - string
+          - 'null'
+        signLevel2RoleNo:
+          type:
+          - string
+          - 'null'
+        signLevel2RoleName:
+          type:
+          - string
+          - 'null'
+        signLevel3RoleNo:
+          type:
+          - string
+          - 'null'
+        signLevel3RoleName:
+          type:
+          - string
+          - 'null'
+        signLevel4RoleNo:
+          type:
+          - string
+          - 'null'
+        signLevel4RoleName:
+          type:
+          - string
+          - 'null'
+        signLevel5RoleNo:
+          type:
+          - string
+          - 'null'
+        signLevel5RoleName:
+          type:
+          - string
+          - 'null'
+        optionsGuid:
           type:
           - string
           - 'null'
@@ -2419,29 +2398,24 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_RequisitionForwardType:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexSpecification:
       enum:
-      - ForwardAllToTechnicalApproval
-      - ForwardAllToAwaitingOrder
-      - ForwardSelectedAccountsToTechnicalApproval
-      - ForwardSelectedAccountsToAwaitingOrder
-      - ForwardAllToRFQ
-      - ForwardSelectedAccountsToRFQ
+      - pc01
+      - pc02
+      - pc03
+      - pc04
+      - pc05
+      - pc06
+      - pc07
+      - pc08
+      - pc09
+      - pc10
       type: string
-    SerticaWebApi.Models.SystemOptions.AiConnectionInput:
-      type: object
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-        token:
-          type:
-          - string
-          - 'null'
-        useExistingToken:
-          type: boolean
-      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ComponentSortOrder:
+      enum:
+      - Alphabetical
+      - BySortOrder
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageArea:
       enum:
       - SerticaForm
@@ -2458,39 +2432,6 @@ components:
       - FormTemplateHelpImage
       - ElectronicLogbooks
       type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     SerticaWebApi.Models.SystemOptions.DynamicReportOptionsOfficeDocumentLink:
       type: object
       properties:
@@ -2571,19 +2512,69 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.SystemOptions.OptionsImageSetting:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLogbook:
+      enum:
+      - ORBI
+      - ORBII
+      - ODSRB
+      - GRB
+      - CRB
+      - BRB
+      - ERB
+      - RRB
+      - DRB
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.SystemOptions.DynamicReportOptionsDocumentLink:
       type: object
       properties:
-        imageArea:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageArea'
-        imageDimension:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_ImageDimension'
-        imageQuality:
+        name:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
-        optionsGuid:
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_GenericReportType'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        communicationLanguageNo:
+          type:
+          - string
+          - 'null'
+        communicationLanguageName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
           type:
           - string
           - 'null'
@@ -2618,22 +2609,25 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.SystemOptions.PunchoutConnectionInput:
-      type: object
-      properties:
-        punchoutID:
-          type:
-          - string
-          - 'null'
-        punchoutURL:
-          type:
-          - string
-          - 'null'
-        punchoutTokenKey:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OfficeLabelType:
+      enum:
+      - Carrier
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_RequisitionForwardType:
+      enum:
+      - ForwardAllToTechnicalApproval
+      - ForwardAllToAwaitingOrder
+      - ForwardSelectedAccountsToTechnicalApproval
+      - ForwardSelectedAccountsToAwaitingOrder
+      - ForwardAllToRFQ
+      - ForwardSelectedAccountsToRFQ
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipdexMemberArea:
+      enum:
+      - sk01
+      - sk02
+      - sk03
+      type: string
     SerticaWebApi.Models.SystemOptions.OptionsOfficeEvaluationThresholdSetting:
       type: object
       properties:
@@ -2697,6 +2691,12 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressClassificationAction:
+      enum:
+      - None
+      - Warning
+      - Block
+      type: string
   securitySchemes:
     Bearer:
       type: http

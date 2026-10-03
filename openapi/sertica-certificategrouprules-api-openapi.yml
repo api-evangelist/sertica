@@ -557,6 +557,50 @@ paths:
       - Bearer: []
 components:
   schemas:
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
     SerticaWebApi.Models.Certificate.CertificateGroupRule:
       type: object
       properties:
@@ -656,35 +700,63 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+    SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
-        supportsContains:
+        isValid:
           type: boolean
-        fields:
+          readOnly: true
+        errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule:
-      enum:
-      - Optional
-      - Mandatory
-      - Disabled
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+    SerticaWebApi.Models.Link:
       type: object
       properties:
-        field:
+        key:
           type:
           - string
           - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+        url:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
       type: object
       properties:
@@ -729,23 +801,51 @@ components:
           items:
             type: string
       additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
       type: object
       properties:
-        text:
+        field:
           type:
           - string
           - 'null'
-        fieldName:
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
           type:
-          - string
+          - array
           - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+    SerticaWebApi.Models.BrokenRuleType:
       enum:
-      - All
-      - One
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
       type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule:
+      enum:
+      - Optional
+      - Mandatory
+      - Disabled
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
       enum:
       - Unkonwn
@@ -758,59 +858,18 @@ components:
       - Bool
       - Duration
       type: string
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType:
       enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
+      - Verification
+      - Annual
+      - Intermediate
+      - Periodical
+      - Expire
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
       enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
+      - All
+      - One
       type: string
     SerticaWebApi.Models.BrokenRule:
       type: object
@@ -844,70 +903,11 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType:
-      enum:
-      - Verification
-      - Annual
-      - Intermediate
-      - Periodical
-      - Expire
-      type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
       enum:
       - Asc
       - Desc
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:

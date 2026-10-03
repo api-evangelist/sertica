@@ -160,6 +160,35 @@ paths:
       - Bearer: []
 components:
   schemas:
+    SerticaWebApi.Models.Form.FormBrowserNodeKeys:
+      type: object
+      properties:
+        activityGroupKey:
+          type:
+          - string
+          - 'null'
+        formTemplateKey:
+          type:
+          - string
+          - 'null'
+        yearKey:
+          type:
+          - string
+          - 'null'
+        monthKey:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Form.FormBrowserNodeType:
+      enum:
+      - Root
+      - ActivityGroup
+      - FormTemplate
+      - Year
+      - Month
+      - None
+      type: string
     SerticaWebApi.Models.Form.FormBrowserNode:
       type: object
       properties:
@@ -235,35 +264,6 @@ components:
           - string
           - 'null'
         url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Form.FormBrowserNodeType:
-      enum:
-      - Root
-      - ActivityGroup
-      - FormTemplate
-      - Year
-      - Month
-      - None
-      type: string
-    SerticaWebApi.Models.Form.FormBrowserNodeKeys:
-      type: object
-      properties:
-        activityGroupKey:
-          type:
-          - string
-          - 'null'
-        formTemplateKey:
-          type:
-          - string
-          - 'null'
-        yearKey:
-          type:
-          - string
-          - 'null'
-        monthKey:
           type:
           - string
           - 'null'

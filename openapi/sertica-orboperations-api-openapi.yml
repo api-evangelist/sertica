@@ -1027,10 +1027,516 @@ paths:
       - Bearer: []
 components:
   schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ElectronicLogBook.OrbOperationCreate:
+      type: object
+      properties:
+        orbOperation:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.OrbOperation'
+        missedOperation:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.OrbOperationCreate'
+        expectedSources:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SourceDestinationQuantity'
+        expectedDestinations:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SourceDestinationQuantity'
+        expectedSecondDestinations:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SourceDestinationQuantity'
+        soundings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Sounding'
+        receiver:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Receiver'
+        sealSubSealPoint:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SealSubSealPoint'
+        pin:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.Shared.Models.Operations.OperationType:
+      enum:
+      - ORB_I_A_1_1
+      - ORB_I_A_1_2
+      - ORB_I_A_1_3_1
+      - ORB_I_A_1_3_2
+      - ORB_I_A_1_4
+      - ORB_I_A_1_5
+      - ORB_I_A_3_A
+      - ORB_I_A_3_B
+      - ORB_I_A_4
+      - ORB_I_B_2
+      - ORB_I_B_2_A
+      - ORB_I_B_3
+      - ORB_I_B_9_1
+      - ORB_I_B_9_2
+      - ORB_I_C_3
+      - ORB_I_C_4
+      - ORB_I_C_4_A
+      - ORB_I_C_11
+      - ORB_I_C_11_4_A
+      - ORB_I_C_11_4_B
+      - ORB_I_C_11_4_C
+      - ORB_I_C_11_4_D
+      - ORB_I_C_11_4_E
+      - ORB_I_C_11_A
+      - ORB_I_C_11_B
+      - ORB_I_C_12_1
+      - ORB_I_C_12_2_A
+      - ORB_I_C_12_2_B
+      - ORB_I_C_12_2_C
+      - ORB_I_C_12_3
+      - ORB_I_C_12_4_A
+      - ORB_I_C_12_4_B
+      - ORB_I_C_12_4_C
+      - ORB_I_C_12_4_D
+      - ORB_I_C_12_4_E
+      - ORB_I_D_5
+      - ORB_I_D_15_1_A
+      - ORB_I_D_15_1_B
+      - ORB_I_D_15_1_C
+      - ORB_I_D_15_2
+      - ORB_I_D_15_3_A
+      - ORB_I_D_15_3_B
+      - ORB_I_D_15_3_C
+      - ORB_I_D_15_3_F
+      - ORB_I_D_15_3_G
+      - ORB_I_D_15_3_H
+      - ORB_I_D_15_3_I
+      - ORB_I_D_15_3_J
+      - ORB_I_E_16_A
+      - ORB_I_E_16_B
+      - ORB_I_E_17
+      - ORB_I_E_A
+      - ORB_I_F_A
+      - ORB_I_F_B
+      - ORB_I_F_C
+      - ORB_I_F_D
+      - ORB_I_G
+      - ORB_I_H_26_A
+      - ORB_I_H_26_B
+      - ORB_I_I
+      - ORB_I_I_A
+      - ORB_I_I_B
+      - ORB_I_I_D
+      - ORB_I_I_E
+      - ORB_I_I_F
+      - ORB_I_I_H
+      - ORB_I_I_J
+      - ORB_I_I_K
+      - ORB_I_I_L
+      - ORB_I_I_M
+      - ORB_I_I_N
+      - ORB_I_I_P
+      - ORB_I_I_Q
+      - ORB_I_ECP_I_A
+      - DAILY_SOUNDING
+      - ORB_I_CHAIN_D_15_3_C_C_11_4_A
+      - ORB_I_CHAIN_D_15_1_A_D_15_3_G
+      - ORB_I_CHAIN_I_F_B_9_1_I_E
+      - ORB_I_CHAIN_I_F_D_15_1_A_I_E
+      - ORB_I_CHAIN_I_F_E_16_A_I_E
+      - ORB_I_CHAIN_I_F_E_16_B_I_E
+      - GRB_A
+      - GRB_B
+      - GRB_C
+      - GRB_D
+      - GRB_E
+      - GRB_F
+      - GRB_G
+      - GRB_H
+      - ECP_1
+      - ECP_2
+      - GRB_I
+      - GRB_J
+      - ODSRB_1
+      - ODSRB_2
+      - ODSRB_3_1
+      - ODSRB_3_2
+      - ODSRB_4
+      - ODSRB_5
+      - ODSRB_A
+      - ODSRB_B
+      - BRB_A_1
+      - BRB_A_2
+      - BRB_B_1
+      - BRB_B_2
+      - BRB_C_1
+      - BRB_C_2
+      - BRB_D_1
+      - BRB_D_2
+      - BRB_E_1
+      - BRB_E_2
+      - BRB_E_3
+      - BRB_E_4
+      - BRB_F_1
+      - BRB_F_2
+      - BRB_G_4
+      - BRB_G_5
+      - BRB_H
+      - ERB_1
+      type: string
+    ? Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OzoneDepletingSubstancesRecordbook.Enums.InterventionDescriptionType
+    : enum:
+      - LeakTest
+      - RefrigerantAddition
+      - RefrigerantDischarged
+      type: string
+    SerticaWebApi.Models.ElectronicLogBook.OrbOperationReceiver:
+      type: object
+      properties:
+        operationNo:
+          type:
+          - string
+          - 'null'
+        receiverNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealSubSealPointType:
       enum:
       - Affixed
       - Broken
+      type: string
+    SerticaWebApi.Models.ElectronicLogBook.OrbOperationSealSubSealPoint:
+      type: object
+      properties:
+        operationNo:
+          type:
+          - string
+          - 'null'
+        sealSubSealPointNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ElectronicLogBook.Documents.OrbOperationDocument:
+      type: object
+      properties:
+        operationNo:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pageNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ElectronicLogBook.OrbOperationSounding:
+      type: object
+      properties:
+        operationNo:
+          type:
+          - string
+          - 'null'
+        soundingNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
       type: string
     Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.Shared.Models.Operations.OperationSourceDestination:
       enum:
@@ -1046,6 +1552,111 @@ components:
       - ObservationTank
       - Other
       type: string
+    SerticaWebApi.Models.ElectronicLogBook.OrbOperationContemporaryOperation:
+      type: object
+      properties:
+        orbOperationGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        operationNo:
+          type:
+          - string
+          - 'null'
+        contemporaryOperationNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
     SerticaWebApi.Models.ElectronicLogBook.OrbOperation:
       type: object
       properties:
@@ -1621,99 +2232,16 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Enums.ReceiverType:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
       enum:
-      - Sludge
-      - Bilge
-      - Bunkering
-      - Ozone
+      - All
+      - One
       type: string
-    Logimatic.BaseClasses30.DataOwner:
+    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Models.ChangeOver:
       enum:
-      - Unit
-      - MasterUnit
+      - EndedBeforeEntry
+      - StartedAfterExit
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.ElectronicLogbook.PrintoutOptions:
-      type: object
-      properties:
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        includeDraft:
-          type: boolean
-        part:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
     SerticaWebApi.Models.ElectronicLogbook.DeletionPINVerification:
       type: object
       properties:
@@ -1785,6 +2313,40 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    SerticaWebApi.Models.ElectronicLogBook.SourceDestinationQuantity:
+      enum:
+      - None
+      - Single
+      - Multiple
+      type: string
+    Logimatic.DocumentUtilities.Pdf.ElectronicLogbook.PrintoutEntry:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        columnIndex:
+          type: integer
+          format: int32
+        rowIndex:
+          type: integer
+          format: int32
+        subTypeIndex:
+          type: integer
+          format: int32
+        rowSpan:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OperationStatus:
+      enum:
+      - Signable
+      - Signed
+      - Unknown
+      - DeletionPendingSignature
+      - Deleted
+      type: string
     SerticaWebApi.Models.ElectronicLogBook.OrbOperationSigner:
       type: object
       properties:
@@ -1850,34 +2412,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
     SerticaWebApi.Models.ElectronicLogBook.Receiver:
@@ -1985,177 +2519,22 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OperationStatus:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
       enum:
-      - Signable
-      - Signed
-      - Unknown
-      - DeletionPendingSignature
-      - Deleted
-      type: string
-    SerticaWebApi.Models.ElectronicLogBook.OrbOperationCreate:
-      type: object
-      properties:
-        orbOperation:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.OrbOperation'
-        missedOperation:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.OrbOperationCreate'
-        expectedSources:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SourceDestinationQuantity'
-        expectedDestinations:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SourceDestinationQuantity'
-        expectedSecondDestinations:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SourceDestinationQuantity'
-        soundings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Sounding'
-        receiver:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.Receiver'
-        sealSubSealPoint:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ElectronicLogBook.SealSubSealPoint'
-        pin:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ElectronicLogBook.SourceDestinationQuantity:
-      enum:
-      - None
-      - Single
-      - Multiple
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Models.ChangeOver:
-      enum:
-      - EndedBeforeEntry
-      - StartedAfterExit
-      type: string
-    SerticaWebApi.Models.ElectronicLogBook.OrbOperationSealSubSealPoint:
-      type: object
-      properties:
-        operationNo:
-          type:
-          - string
-          - 'null'
-        sealSubSealPointNo:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ElectronicLogBook.OrbOperationSounding:
-      type: object
-      properties:
-        operationNo:
-          type:
-          - string
-          - 'null'
-        soundingNo:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
-      type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealAffixReason:
-      enum:
-      - NotAffixed
-      - Orbi
-      - Operation
-      - Inspection
-      - Maintenance
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid:
-      enum:
-      - Water
-      - GreyWater
-      - Bilge
-      - Sludge
-      - CargoOil
-      - Slop
-      - Fuel
-      - LubeOil
-      - Chemical
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
       type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
       type: object
@@ -2201,10 +2580,20 @@ components:
           items:
             type: string
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Enums.ReceiverType:
       enum:
-      - All
-      - One
+      - Sludge
+      - Bilge
+      - Bunkering
+      - Ozone
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Enums.ReceiverVesselType:
+      enum:
+      - Barge
+      - Vessel
+      - TankTruck
+      - AshoreFacility
+      - Other
       type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookIOPPType:
       enum:
@@ -2213,165 +2602,269 @@ components:
       - Yes32
       - Yes33
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid:
       enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
+      - Water
+      - GreyWater
+      - Bilge
+      - Sludge
+      - CargoOil
+      - Slop
+      - Fuel
+      - LubeOil
+      - Chemical
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass:
       enum:
-      - Unknown
-      - Image
-      - PDF
-      - WordDocument
-      - Link
-      - AutoCad
-      - Excel
-      - PowerPoint
-      - Email
-      - Visio
-      - Projects
-      - Website
-      - FormFields
+      - Water
+      - GreyWater
+      - LubeOil
+      - Fuel
+      - Sludge
+      - Bilge
+      - Slop
+      - SewageSlop
+      - Chemical
+      - CargoOil
+      - CargoOilChemical
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+    SerticaWebApi.Models.ElectronicLogBook.Documents.ReceiverDocument:
+      type: object
+      properties:
+        receiverNo:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentDescription:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pageNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ElectronicLogBook.OperationSignings:
+      type: object
+      properties:
+        operationNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        pin:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealBreakReason:
       enum:
-      - Asc
-      - Desc
+      - NotBroken
+      - Orbi
+      - Operation
+      - Inspection
+      - Maintenance
+      - Accidental
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.Shared.Models.Operations.OperationType:
+    SerticaWebApi.Models.ElectronicLogbook.PrintoutOptions:
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        includeDraft:
+          type: boolean
+        part:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
       enum:
-      - ORB_I_A_1_1
-      - ORB_I_A_1_2
-      - ORB_I_A_1_3_1
-      - ORB_I_A_1_3_2
-      - ORB_I_A_1_4
-      - ORB_I_A_1_5
-      - ORB_I_A_3_A
-      - ORB_I_A_3_B
-      - ORB_I_A_4
-      - ORB_I_B_2
-      - ORB_I_B_2_A
-      - ORB_I_B_3
-      - ORB_I_B_9_1
-      - ORB_I_B_9_2
-      - ORB_I_C_3
-      - ORB_I_C_4
-      - ORB_I_C_4_A
-      - ORB_I_C_11
-      - ORB_I_C_11_4_A
-      - ORB_I_C_11_4_B
-      - ORB_I_C_11_4_C
-      - ORB_I_C_11_4_D
-      - ORB_I_C_11_4_E
-      - ORB_I_C_11_A
-      - ORB_I_C_11_B
-      - ORB_I_C_12_1
-      - ORB_I_C_12_2_A
-      - ORB_I_C_12_2_B
-      - ORB_I_C_12_2_C
-      - ORB_I_C_12_3
-      - ORB_I_C_12_4_A
-      - ORB_I_C_12_4_B
-      - ORB_I_C_12_4_C
-      - ORB_I_C_12_4_D
-      - ORB_I_C_12_4_E
-      - ORB_I_D_5
-      - ORB_I_D_15_1_A
-      - ORB_I_D_15_1_B
-      - ORB_I_D_15_1_C
-      - ORB_I_D_15_2
-      - ORB_I_D_15_3_A
-      - ORB_I_D_15_3_B
-      - ORB_I_D_15_3_C
-      - ORB_I_D_15_3_F
-      - ORB_I_D_15_3_G
-      - ORB_I_D_15_3_H
-      - ORB_I_D_15_3_I
-      - ORB_I_D_15_3_J
-      - ORB_I_E_16_A
-      - ORB_I_E_16_B
-      - ORB_I_E_17
-      - ORB_I_E_A
-      - ORB_I_F_A
-      - ORB_I_F_B
-      - ORB_I_F_C
-      - ORB_I_F_D
-      - ORB_I_G
-      - ORB_I_H_26_A
-      - ORB_I_H_26_B
-      - ORB_I_I
-      - ORB_I_I_A
-      - ORB_I_I_B
-      - ORB_I_I_D
-      - ORB_I_I_E
-      - ORB_I_I_F
-      - ORB_I_I_H
-      - ORB_I_I_J
-      - ORB_I_I_K
-      - ORB_I_I_L
-      - ORB_I_I_M
-      - ORB_I_I_N
-      - ORB_I_I_P
-      - ORB_I_I_Q
-      - ORB_I_ECP_I_A
-      - DAILY_SOUNDING
-      - ORB_I_CHAIN_D_15_3_C_C_11_4_A
-      - ORB_I_CHAIN_D_15_1_A_D_15_3_G
-      - ORB_I_CHAIN_I_F_B_9_1_I_E
-      - ORB_I_CHAIN_I_F_D_15_1_A_I_E
-      - ORB_I_CHAIN_I_F_E_16_A_I_E
-      - ORB_I_CHAIN_I_F_E_16_B_I_E
-      - GRB_A
-      - GRB_B
-      - GRB_C
-      - GRB_D
-      - GRB_E
-      - GRB_F
-      - GRB_G
-      - GRB_H
-      - ECP_1
-      - ECP_2
-      - GRB_I
-      - GRB_J
-      - ODSRB_1
-      - ODSRB_2
-      - ODSRB_3_1
-      - ODSRB_3_2
-      - ODSRB_4
-      - ODSRB_5
-      - ODSRB_A
-      - ODSRB_B
-      - BRB_A_1
-      - BRB_A_2
-      - BRB_B_1
-      - BRB_B_2
-      - BRB_C_1
-      - BRB_C_2
-      - BRB_D_1
-      - BRB_D_2
-      - BRB_E_1
-      - BRB_E_2
-      - BRB_E_3
-      - BRB_E_4
-      - BRB_F_1
-      - BRB_F_2
-      - BRB_G_4
-      - BRB_G_5
-      - BRB_H
-      - ERB_1
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
       type: string
     Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Views.SoundingView_SoundingTypeEnum:
       enum:
@@ -2379,6 +2872,14 @@ components:
       - Daily
       - Operation
       - Justification
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealAffixReason:
+      enum:
+      - NotAffixed
+      - Orbi
+      - Operation
+      - Inspection
+      - Maintenance
       type: string
     SerticaWebApi.Models.ElectronicLogBook.Sounding:
       type: object
@@ -2566,23 +3067,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:
@@ -2601,490 +3085,6 @@ components:
         appType:
           type: integer
           format: int32
-      additionalProperties: false
-    Logimatic.DocumentUtilities.Pdf.ElectronicLogbook.PrintoutEntry:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        columnIndex:
-          type: integer
-          format: int32
-        rowIndex:
-          type: integer
-          format: int32
-        subTypeIndex:
-          type: integer
-          format: int32
-        rowSpan:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.ElectronicLogBook.OrbOperationReceiver:
-      type: object
-      properties:
-        operationNo:
-          type:
-          - string
-          - 'null'
-        receiverNo:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ElectronicLogBook.OperationSignings:
-      type: object
-      properties:
-        operationNos:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        pin:
-          type:
-          - string
-          - 'null'
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Enums.ReceiverVesselType:
-      enum:
-      - Barge
-      - Vessel
-      - TankTruck
-      - AshoreFacility
-      - Other
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass:
-      enum:
-      - Water
-      - GreyWater
-      - LubeOil
-      - Fuel
-      - Sludge
-      - Bilge
-      - Slop
-      - SewageSlop
-      - Chemical
-      - CargoOil
-      - CargoOilChemical
-      type: string
-    SerticaWebApi.Models.ElectronicLogBook.Documents.OrbOperationDocument:
-      type: object
-      properties:
-        operationNo:
-          type:
-          - string
-          - 'null'
-        documentNo:
-          type:
-          - string
-          - 'null'
-        documentDescription:
-          type:
-          - string
-          - 'null'
-        fileName:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        fileSize:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        pageNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        documentTypeNo:
-          type:
-          - string
-          - 'null'
-        documentTypeName:
-          type:
-          - string
-          - 'null'
-        documentTypeUnitNo:
-          type:
-          - string
-          - 'null'
-        documentGroupName:
-          type:
-          - string
-          - 'null'
-        documentGroupNo:
-          type:
-          - string
-          - 'null'
-        documentGroupUnitNo:
-          type:
-          - string
-          - 'null'
-        documentUnitNo:
-          type:
-          - string
-          - 'null'
-        documentUnitName:
-          type:
-          - string
-          - 'null'
-        documentDataOwner:
-          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
-        previewFormat:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ? Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OzoneDepletingSubstancesRecordbook.Enums.InterventionDescriptionType
-    : enum:
-      - LeakTest
-      - RefrigerantAddition
-      - RefrigerantDischarged
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealBreakReason:
-      enum:
-      - NotBroken
-      - Orbi
-      - Operation
-      - Inspection
-      - Maintenance
-      - Accidental
-      type: string
-    SerticaWebApi.Models.ElectronicLogBook.Documents.ReceiverDocument:
-      type: object
-      properties:
-        receiverNo:
-          type:
-          - string
-          - 'null'
-        documentNo:
-          type:
-          - string
-          - 'null'
-        documentDescription:
-          type:
-          - string
-          - 'null'
-        fileName:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        fileSize:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        pageNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        documentTypeNo:
-          type:
-          - string
-          - 'null'
-        documentTypeName:
-          type:
-          - string
-          - 'null'
-        documentTypeUnitNo:
-          type:
-          - string
-          - 'null'
-        documentGroupName:
-          type:
-          - string
-          - 'null'
-        documentGroupNo:
-          type:
-          - string
-          - 'null'
-        documentGroupUnitNo:
-          type:
-          - string
-          - 'null'
-        documentUnitNo:
-          type:
-          - string
-          - 'null'
-        documentUnitName:
-          type:
-          - string
-          - 'null'
-        documentDataOwner:
-          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
-        previewFormat:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ElectronicLogBook.OrbOperationContemporaryOperation:
-      type: object
-      properties:
-        orbOperationGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        operationNo:
-          type:
-          - string
-          - 'null'
-        contemporaryOperationNo:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
       additionalProperties: false
   securitySchemes:
     Bearer:

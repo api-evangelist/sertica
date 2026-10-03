@@ -97,40 +97,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeArguments:
-      type: object
-      properties:
-        unitNo:
-          type:
-          - string
-          - 'null'
-        tree:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
-        deleteComponentNode:
-          $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
-      additionalProperties: false
-    SerticaWebApi.Models.MasterDataManagementModels.MDMUnitNodeType:
-      enum:
-      - UnitComponent
-      - PackageDataComponent
-      - PackageDataComponentOnUnit
-      type: string
     SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode:
       type: object
       properties:
@@ -266,6 +232,40 @@ components:
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeArguments:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        tree:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+        deleteComponentNode:
+          $ref: '#/components/schemas/SerticaWebApi.Models.MasterDataManagementModels.MDMUnitTreeStructureNode'
+      additionalProperties: false
+    SerticaWebApi.Models.MasterDataManagementModels.MDMUnitNodeType:
+      enum:
+      - UnitComponent
+      - PackageDataComponent
+      - PackageDataComponentOnUnit
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

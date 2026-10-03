@@ -141,18 +141,6 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     SerticaWebApi.Models.Document.DocumentTreeNode:
       type: object
       properties:
@@ -214,6 +202,18 @@ components:
       - DocumentType
       - Document
       type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: http

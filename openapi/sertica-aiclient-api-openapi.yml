@@ -70,30 +70,6 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.AiClient.AiClientAskModel:
-      type: object
-      properties:
-        question:
-          type:
-          - string
-          - 'null'
-        managementSystemNo:
-          type:
-          - string
-          - 'null'
-        history:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiChatHistory'
-        unitNos:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
     SerticaWebApi.Models.ErrorReason:
       type: object
       properties:
@@ -105,6 +81,30 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.AiClient.AiClientAskResponseModel:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        answer:
+          type:
+          - string
+          - 'null'
+        talkId:
+          type:
+          - string
+          - 'null'
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientDocumentModel'
       additionalProperties: false
     SerticaWebApi.Models.ValidationResult:
       type: object
@@ -133,6 +133,32 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AiClient.AiClientDocumentModel:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        managementSystemNo:
+          type:
+          - string
+          - 'null'
+        unitNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
     SerticaWebApi.Models.BrokenRuleType:
       enum:
@@ -187,42 +213,10 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.AiClient.AiClientAskResponseModel:
+    SerticaWebApi.Models.AiClient.AiClientAskModel:
       type: object
       properties:
-        success:
-          type: boolean
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        answer:
-          type:
-          - string
-          - 'null'
-        talkId:
-          type:
-          - string
-          - 'null'
-        documents:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientDocumentModel'
-      additionalProperties: false
-    SerticaWebApi.Models.AiClient.AiClientDocumentModel:
-      type: object
-      properties:
-        guid:
-          type:
-          - string
-          - 'null'
-        documentNo:
-          type:
-          - string
-          - 'null'
-        name:
+        question:
           type:
           - string
           - 'null'
@@ -230,6 +224,12 @@ components:
           type:
           - string
           - 'null'
+        history:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiChatHistory'
         unitNos:
           type:
           - array

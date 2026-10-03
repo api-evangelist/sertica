@@ -164,6 +164,34 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
     SerticaWebApi.Models.UserManagement.InextiaUserRight:
       type: object
       properties:
@@ -222,34 +250,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
     SerticaWebApi.Models.BrokenRuleType:
       enum:
       - Default
@@ -258,6 +258,15 @@ components:
       - Warning
       - Error
       - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.UserManagement.InextiaUserRightIndexType:
+      enum:
+      - Root
+      - Group
+      - Entity
+      - GeneralUserRights
+      - FieldUserRights
+      - ReferenceUserRights
       type: string
     SerticaWebApi.Models.BrokenRule:
       type: object
@@ -291,15 +300,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.UserManagement.InextiaUserRightIndexType:
-      enum:
-      - Root
-      - Group
-      - Entity
-      - GeneralUserRights
-      - FieldUserRights
-      - ReferenceUserRights
-      type: string
   securitySchemes:
     Bearer:
       type: http

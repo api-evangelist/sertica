@@ -598,6 +598,68 @@ paths:
       - Bearer: []
 components:
   schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.GarbageRecordbook.Enums.GarbageReceiverVesselType:
+      enum:
+      - Barge
+      - Ship
+      - TankTruck
+      - AshoreFacility
+      type: string
     SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
@@ -626,6 +688,39 @@ components:
           - string
           - 'null'
         description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
           type:
           - string
           - 'null'
@@ -729,11 +824,35 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logimatic.BaseClasses30.DataOwner:
-      enum:
-      - Unit
-      - MasterUnit
-      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.ElectronicLogBook.Documents.GarbageReceiverDocument:
       type: object
       properties:
@@ -838,66 +957,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
       type: object
       properties:
@@ -911,6 +970,28 @@ components:
             $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
           readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
       type: object
       properties:
@@ -955,66 +1036,37 @@ components:
           items:
             type: string
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
-      enum:
-      - Unknown
-      - Image
-      - PDF
-      - WordDocument
-      - Link
-      - AutoCad
-      - Excel
-      - PowerPoint
-      - Email
-      - Visio
-      - Projects
-      - Website
-      - FormFields
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
       type: object
       properties:
         field:
           type:
           - string
           - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
       additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:
@@ -1033,58 +1085,6 @@ components:
         appType:
           type: integer
           format: int32
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.GarbageRecordbook.Enums.GarbageReceiverVesselType:
-      enum:
-      - Barge
-      - Ship
-      - TankTruck
-      - AshoreFacility
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

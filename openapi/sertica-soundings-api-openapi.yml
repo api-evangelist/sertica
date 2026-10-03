@@ -610,20 +610,56 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.Shared.Models.Operations.OperationSourceDestination:
-      enum:
-      - Tank
-      - Custom
-      - Sea
-      - Ashore
-      - Evaporation
-      - Incinerator
-      - Boiler
-      - OilWaterSeparator
-      - BilgeWells
-      - ObservationTank
-      - Other
-      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
     SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
@@ -656,74 +692,66 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OperationStatus:
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
       enum:
-      - Signable
-      - Signed
-      - Unknown
-      - DeletionPendingSignature
-      - Deleted
+      - Asc
+      - Desc
       type: string
+    Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.Shared.Models.Operations.OperationSourceDestination:
+      enum:
+      - Tank
+      - Custom
+      - Sea
+      - Ashore
+      - Evaporation
+      - Incinerator
+      - Boiler
+      - OilWaterSeparator
+      - BilgeWells
+      - ObservationTank
+      - Other
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
       type: object
       properties:
@@ -737,17 +765,35 @@ components:
             $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
       enum:
-      - Water
-      - GreyWater
-      - Bilge
-      - Sludge
-      - CargoOil
-      - Slop
-      - Fuel
-      - LubeOil
-      - Chemical
+      - All
+      - One
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_OperationStatus:
+      enum:
+      - Signable
+      - Signed
+      - Unknown
+      - DeletionPendingSignature
+      - Deleted
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
       type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
       type: object
@@ -793,11 +839,6 @@ components:
           items:
             type: string
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookIOPPType:
       enum:
       - 'No'
@@ -805,27 +846,62 @@ components:
       - Yes32
       - Yes33
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookLiquid:
       enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
+      - Water
+      - GreyWater
+      - Bilge
+      - Sludge
+      - CargoOil
+      - Slop
+      - Fuel
+      - LubeOil
+      - Chemical
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass:
       enum:
-      - Asc
-      - Desc
+      - Water
+      - GreyWater
+      - LubeOil
+      - Fuel
+      - Sludge
+      - Bilge
+      - Slop
+      - SewageSlop
+      - Chemical
+      - CargoOil
+      - CargoOilChemical
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
       type: string
     Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OilRecordbook.Views.SoundingView_SoundingTypeEnum:
       enum:
@@ -834,23 +910,6 @@ components:
       - Operation
       - Justification
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
     SerticaWebApi.Models.ElectronicLogBook.Sounding:
       type: object
       properties:
@@ -1055,65 +1114,6 @@ components:
         appType:
           type: integer
           format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ElectronicLogbookProductClass:
-      enum:
-      - Water
-      - GreyWater
-      - LubeOil
-      - Fuel
-      - Sludge
-      - Bilge
-      - Slop
-      - SewageSlop
-      - Chemical
-      - CargoOil
-      - CargoOilChemical
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

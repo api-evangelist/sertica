@@ -41,168 +41,6 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.UnitManagement.UnitCompany:
-      type: object
-      properties:
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        companyNo:
-          type:
-          - string
-          - 'null'
-        companyName:
-          type:
-          - string
-          - 'null'
-        standardText1No:
-          type:
-          - string
-          - 'null'
-        standardText1Text:
-          type:
-          - string
-          - 'null'
-        standardText2No:
-          type:
-          - string
-          - 'null'
-        standardText2Text:
-          type:
-          - string
-          - 'null'
-        standardText3No:
-          type:
-          - string
-          - 'null'
-        standardText3Text:
-          type:
-          - string
-          - 'null'
-        default:
-          type:
-          - boolean
-          - 'null'
-        externalReference1:
-          type:
-          - string
-          - 'null'
-        externalReference2:
-          type:
-          - string
-          - 'null'
-        externalReference3:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.UserManagement.UserUnit:
-      type: object
-      properties:
-        userNo:
-          type:
-          - string
-          - 'null'
-        userName:
-          type:
-          - string
-          - 'null'
-        inactiveUser:
-          type: boolean
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        inactiveUnit:
-          type: boolean
-        userTitle:
-          type:
-          - string
-          - 'null'
-        selectAtLogin:
-          type: boolean
-        markAsReadRight:
-          type: boolean
-        acknowledgeRight:
-          type: boolean
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
     SerticaWebApi.Models.FunctionArea.FunctionAreaUnit:
       type: object
       properties:
@@ -219,6 +57,60 @@ components:
           - string
           - 'null'
         functionAreaName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.UnitManagement.UnitDocumentClass:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        documentClassNo:
+          type:
+          - string
+          - 'null'
+        documentClassName:
           type:
           - string
           - 'null'
@@ -868,7 +760,75 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.UnitManagement.UnitDocumentClass:
+    SerticaWebApi.Models.UserManagement.UserUnit:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        inactiveUser:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        inactiveUnit:
+          type: boolean
+        userTitle:
+          type:
+          - string
+          - 'null'
+        selectAtLogin:
+          type: boolean
+        markAsReadRight:
+          type: boolean
+        acknowledgeRight:
+          type: boolean
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.UnitManagement.UnitCompany:
       type: object
       properties:
         unitNo:
@@ -879,11 +839,51 @@ components:
           type:
           - string
           - 'null'
-        documentClassNo:
+        companyNo:
           type:
           - string
           - 'null'
-        documentClassName:
+        companyName:
+          type:
+          - string
+          - 'null'
+        standardText1No:
+          type:
+          - string
+          - 'null'
+        standardText1Text:
+          type:
+          - string
+          - 'null'
+        standardText2No:
+          type:
+          - string
+          - 'null'
+        standardText2Text:
+          type:
+          - string
+          - 'null'
+        standardText3No:
+          type:
+          - string
+          - 'null'
+        standardText3Text:
+          type:
+          - string
+          - 'null'
+        default:
+          type:
+          - boolean
+          - 'null'
+        externalReference1:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
           type:
           - string
           - 'null'

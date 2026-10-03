@@ -141,6 +141,19 @@ paths:
       - Bearer: []
 components:
   schemas:
+    SerticaWebApi.Models.TreeStructure.NodeType:
+      enum:
+      - Component
+      - DisabledComponent
+      - JobFolder
+      - Job
+      - RecurringJobFolder
+      - RecurringJob
+      - RunOnceJobFolder
+      - RunOnceJob
+      - JobHistoryYear
+      - JobHistory
+      type: string
     SerticaWebApi.Models.Link:
       type: object
       properties:
@@ -212,19 +225,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.TreeStructure.NodeType:
-      enum:
-      - Component
-      - DisabledComponent
-      - JobFolder
-      - Job
-      - RecurringJobFolder
-      - RecurringJob
-      - RunOnceJobFolder
-      - RunOnceJob
-      - JobHistoryYear
-      - JobHistory
-      type: string
   securitySchemes:
     Bearer:
       type: http

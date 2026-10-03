@@ -1388,6 +1388,268 @@ paths:
       - Bearer: []
 components:
   schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressResponse:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressTypeSearchFlag:
+      enum:
+      - All
+      - Supplier
+      - DeliveryPlace
+      - InvoiceAddress
+      - ShipYard
+      - SurveyOrganization
+      - Agent
+      - Unit
+      - Manufacturer
+      - CertificateAuthority
+      - Customer
+      - Office
+      - Contractor
+      type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierPurchaseOrderForwardType:
+      enum:
+      - None
+      - Email
+      - EmailWeb
+      - ShipServ
+      - OpenTRANS
+      - Tobit
+      - EDI
+      - SeaProc
+      - Connect
+      - Source2Sea
+      - Punchout
+      type: string
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    SerticaWebApi.Models.AddressBook.AddressItemType:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        itemTypeNo:
+          type:
+          - string
+          - 'null'
+        itemTypeName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.AddressBook.AddressUnit:
       type: object
       properties:
@@ -1442,11 +1704,242 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressClassificationAction:
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressAddressCategory:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        addressCategoryNo:
+          type:
+          - string
+          - 'null'
+        addressCategoryName:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressAvailable:
+      enum:
+      - AllUnits
+      - ListOfUnits
+      - OfficeOnly
+      type: string
+    SerticaWebApi.Models.AddressBook.AddressAlternatePayer:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierForwardType:
       enum:
       - None
-      - Warning
-      - Block
+      - Email
+      - EmailWeb
+      - Excel
+      - Tobit
+      - ShipServ
+      - SeaProc
+      - Connect
       type: string
     SerticaWebApi.Models.AddressBook.AddressDocument:
       type: object
@@ -1552,12 +2045,376 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressAvailable:
+    SerticaWebApi.Models.AddressBook.AddressDeliveryCost:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        deliveryCostNo:
+          type:
+          - string
+          - 'null'
+        deliveryCostName:
+          type:
+          - string
+          - 'null'
+        defaultAmount:
+          type:
+          - number
+          - 'null'
+          format: double
+        poValueLimit:
+          type:
+          - number
+          - 'null'
+          format: double
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.AddressBook.AddressContact:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        areaOfResponsibility:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        inductedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expireDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        location:
+          type:
+          - string
+          - 'null'
+        externalReference:
+          type:
+          - string
+          - 'null'
+        addressGuid:
+          type: string
+          format: uuid
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        connectLogin:
+          type:
+          - string
+          - 'null'
+        connectPasswordExpireDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        connectLockedUntilDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        hasConnectPassword:
+          type: boolean
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PunchOutType:
       enum:
-      - AllUnits
-      - ListOfUnits
-      - OfficeOnly
+      - Standard
+      - Webhook
       type: string
+    SerticaWebApi.Models.AddressBook.AddressEvaluation:
+      type: object
+      properties:
+        addressName:
+          type:
+          - string
+          - 'null'
+        addressNo:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionName:
+          type:
+          - string
+          - 'null'
+        evaluationQuestionNo:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerName:
+          type:
+          - string
+          - 'null'
+        evaluationAnswerNo:
+          type:
+          - string
+          - 'null'
+        comment:
+          type:
+          - string
+          - 'null'
+        groupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        addressGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.AddressBook.AddressPunchOut:
+      type: object
+      properties:
+        addressNo:
+          type:
+          - string
+          - 'null'
+        addressName:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        supplierId:
+          type:
+          - string
+          - 'null'
+        clientId:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        authUrl:
+          type:
+          - string
+          - 'null'
+        authPost:
+          type:
+          - string
+          - 'null'
+        punchOutId:
+          type:
+          - string
+          - 'null'
+        punchOutToken:
+          type:
+          - string
+          - 'null'
+        punchOutType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PunchOutType'
+        rePunchOut:
+          type:
+          - boolean
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
     SerticaWebApi.Models.AddressBook.Address:
       type: object
       properties:
@@ -1888,658 +2745,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.AddressBook.AddressContact:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        email:
-          type:
-          - string
-          - 'null'
-        phone:
-          type:
-          - string
-          - 'null'
-        mobile:
-          type:
-          - string
-          - 'null'
-        areaOfResponsibility:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-        inductedDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        expireDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        location:
-          type:
-          - string
-          - 'null'
-        externalReference:
-          type:
-          - string
-          - 'null'
-        addressGuid:
-          type: string
-          format: uuid
-        addressNo:
-          type:
-          - string
-          - 'null'
-        addressName:
-          type:
-          - string
-          - 'null'
-        connectLogin:
-          type:
-          - string
-          - 'null'
-        connectPasswordExpireDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        connectLockedUntilDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        hasConnectPassword:
-          type: boolean
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logimatic.BaseClasses30.DataOwner:
-      enum:
-      - Unit
-      - MasterUnit
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.AddressBook.AddressEvaluation:
-      type: object
-      properties:
-        addressName:
-          type:
-          - string
-          - 'null'
-        addressNo:
-          type:
-          - string
-          - 'null'
-        evaluationQuestionName:
-          type:
-          - string
-          - 'null'
-        evaluationQuestionNo:
-          type:
-          - string
-          - 'null'
-        evaluationAnswerName:
-          type:
-          - string
-          - 'null'
-        evaluationAnswerNo:
-          type:
-          - string
-          - 'null'
-        comment:
-          type:
-          - string
-          - 'null'
-        groupId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        addressGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        score:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.AddressBook.AddressTypeSearchFlag:
-      enum:
-      - All
-      - Supplier
-      - DeliveryPlace
-      - InvoiceAddress
-      - ShipYard
-      - SurveyOrganization
-      - Agent
-      - Unit
-      - Manufacturer
-      - CertificateAuthority
-      - Customer
-      - Office
-      - Contractor
-      type: string
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.AddressBook.AddressDeliveryCost:
-      type: object
-      properties:
-        addressNo:
-          type:
-          - string
-          - 'null'
-        addressName:
-          type:
-          - string
-          - 'null'
-        deliveryCostNo:
-          type:
-          - string
-          - 'null'
-        deliveryCostName:
-          type:
-          - string
-          - 'null'
-        defaultAmount:
-          type:
-          - number
-          - 'null'
-          format: double
-        poValueLimit:
-          type:
-          - number
-          - 'null'
-          format: double
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.AddressBook.AddressPunchOut:
-      type: object
-      properties:
-        addressNo:
-          type:
-          - string
-          - 'null'
-        addressName:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        supplierId:
-          type:
-          - string
-          - 'null'
-        clientId:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        authUrl:
-          type:
-          - string
-          - 'null'
-        authPost:
-          type:
-          - string
-          - 'null'
-        punchOutId:
-          type:
-          - string
-          - 'null'
-        punchOutToken:
-          type:
-          - string
-          - 'null'
-        punchOutType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_PunchOutType'
-        rePunchOut:
-          type:
-          - boolean
-          - 'null'
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
-      type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_PunchOutType:
-      enum:
-      - Standard
-      - Webhook
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierPurchaseOrderForwardType:
-      enum:
-      - None
-      - Email
-      - EmailWeb
-      - ShipServ
-      - OpenTRANS
-      - Tobit
-      - EDI
-      - SeaProc
-      - Connect
-      - Source2Sea
-      - Punchout
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    SerticaWebApi.Models.AddressBook.AddressResponse:
-      type: object
-      properties:
-        addressNo:
-          type:
-          - string
-          - 'null'
-        text:
-          type:
-          - string
-          - 'null'
-        createRoleNo:
-          type:
-          - string
-          - 'null'
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
-      enum:
-      - Unknown
-      - Image
-      - PDF
-      - WordDocument
-      - Link
-      - AutoCad
-      - Excel
-      - PowerPoint
-      - Email
-      - Visio
-      - Projects
-      - Website
-      - FormFields
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SupplierForwardType:
-      enum:
-      - None
-      - Email
-      - EmailWeb
-      - Excel
-      - Tobit
-      - ShipServ
-      - SeaProc
-      - Connect
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:
@@ -2559,217 +2764,12 @@ components:
           type: integer
           format: int32
       additionalProperties: false
-    SerticaWebApi.Models.AddressBook.AddressAlternatePayer:
-      type: object
-      properties:
-        addressNo:
-          type:
-          - string
-          - 'null'
-        addressName:
-          type:
-          - string
-          - 'null'
-        supplierNo:
-          type:
-          - string
-          - 'null'
-        supplierName:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AddressClassificationAction:
       enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
+      - None
       - Warning
-      - Error
-      - Delete
+      - Block
       type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.AddressBook.AddressItemType:
-      type: object
-      properties:
-        addressNo:
-          type:
-          - string
-          - 'null'
-        addressName:
-          type:
-          - string
-          - 'null'
-        itemTypeNo:
-          type:
-          - string
-          - 'null'
-        itemTypeName:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.AddressBook.AddressAddressCategory:
-      type: object
-      properties:
-        addressNo:
-          type:
-          - string
-          - 'null'
-        addressName:
-          type:
-          - string
-          - 'null'
-        addressCategoryNo:
-          type:
-          - string
-          - 'null'
-        addressCategoryName:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: http

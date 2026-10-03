@@ -520,119 +520,51 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.UnitManagement.UnitCompany:
+    SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        companyNo:
-          type:
-          - string
-          - 'null'
-        companyName:
-          type:
-          - string
-          - 'null'
-        standardText1No:
-          type:
-          - string
-          - 'null'
-        standardText1Text:
-          type:
-          - string
-          - 'null'
-        standardText2No:
-          type:
-          - string
-          - 'null'
-        standardText2Text:
-          type:
-          - string
-          - 'null'
-        standardText3No:
-          type:
-          - string
-          - 'null'
-        standardText3Text:
-          type:
-          - string
-          - 'null'
-        default:
-          type:
-          - boolean
-          - 'null'
-        externalReference1:
-          type:
-          - string
-          - 'null'
-        externalReference2:
-          type:
-          - string
-          - 'null'
-        externalReference3:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
+        isValid:
           type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
+          readOnly: true
+        errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.FunctionArea.FunctionAreaUnit:
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemConfidentiality:
       type: object
       properties:
-        unitNo:
+        managementSystemNo:
           type:
           - string
           - 'null'
-        unitName:
+        combinedUserRoleNo:
           type:
           - string
           - 'null'
-        functionAreaNo:
+        combinedUserRoleName:
           type:
           - string
           - 'null'
-        functionAreaName:
-          type:
-          - string
-          - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
         guidForReferencedObject:
           type:
           - string
@@ -700,6 +632,616 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemApprover:
+      type: object
+      properties:
+        managementSystemNo:
+          type:
+          - string
+          - 'null'
+        approvalOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        approverNo:
+          type:
+          - string
+          - 'null'
+        approverName:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.UnitManagement.UnitDocumentClass:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        documentClassNo:
+          type:
+          - string
+          - 'null'
+        documentClassName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserTreeStructureNode:
+      type: object
+      properties:
+        hasChildren:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        visibleKey:
+          type:
+          - string
+          - 'null'
+        sortKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        nodeType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserNodeType'
+        parentSectionGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        parentSectionNo:
+          type:
+          - string
+          - 'null'
+        parentSectionName:
+          type:
+          - string
+          - 'null'
+        isReadByCurrentUser:
+          type:
+          - boolean
+          - 'null'
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserTreeStructureNode'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
+      enum:
+      - User
+      - Role
+      type: string
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemUnit:
+      type: object
+      properties:
+        managementSystemGuid:
+          type: string
+          format: uuid
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        draft:
+          type: boolean
+        approvedPlanDocumentNo:
+          type:
+          - string
+          - 'null'
+        allowBypassApproval:
+          type: boolean
+        approvedPlanPassword:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemAcknowledgerSection:
+      type: object
+      properties:
+        managementSystemAcknowledgerGuid:
+          type: string
+          format: uuid
+        managementSystemNo:
+          type:
+          - string
+          - 'null'
+        acknowledgerNo:
+          type:
+          - string
+          - 'null'
+        acknowledgerName:
+          type:
+          - string
+          - 'null'
+        sectionID:
+          type:
+          - string
+          - 'null'
+        sectionNo:
+          type:
+          - string
+          - 'null'
+        sectionName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.UserManagement.UserUnit:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        inactiveUser:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        inactiveUnit:
+          type: boolean
+        userTitle:
+          type:
+          - string
+          - 'null'
+        selectAtLogin:
+          type: boolean
+        markAsReadRight:
+          type: boolean
+        acknowledgeRight:
+          type: boolean
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UnitForSale:
+      enum:
+      - 'No'
+      - 'Yes'
+      type: string
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemDeletedUnit:
+      type: object
+      properties:
+        managementSystemGuid:
+          type: string
+          format: uuid
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        deletedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        deleteUserNo:
+          type:
+          - string
+          - 'null'
+        deleteUserName:
+          type:
+          - string
+          - 'null'
+        revisionAtDeletion:
+          type: integer
+          format: int32
+        deleteInProgress:
+          type:
+          - boolean
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserDocument:
+      type: object
+      properties:
+        documentNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        revisionNo:
+          type:
+          - string
+          - 'null'
+        revisionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        area:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        documentFileNo:
+          type:
+          - string
+          - 'null'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        wordsToHighlight:
+          type:
+          - string
+          - 'null'
+        isReadByCurrentUser:
+          type:
+          - boolean
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
     SerticaWebApi.Models.UnitManagement.Unit:
       type: object
       properties:
@@ -1299,304 +1841,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserNodeType:
-      enum:
-      - Section
-      - Document
-      type: string
-    SerticaWebApi.Models.UserManagement.UserUnit:
-      type: object
-      properties:
-        userNo:
-          type:
-          - string
-          - 'null'
-        userName:
-          type:
-          - string
-          - 'null'
-        inactiveUser:
-          type: boolean
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        inactiveUnit:
-          type: boolean
-        userTitle:
-          type:
-          - string
-          - 'null'
-        selectAtLogin:
-          type: boolean
-        markAsReadRight:
-          type: boolean
-        acknowledgeRight:
-          type: boolean
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemApprover:
-      type: object
-      properties:
-        managementSystemNo:
-          type:
-          - string
-          - 'null'
-        approvalOrder:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        approverNo:
-          type:
-          - string
-          - 'null'
-        approverName:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemAcknowledger:
-      type: object
-      properties:
-        managementSystemNo:
-          type:
-          - string
-          - 'null'
-        acknowledgerNo:
-          type:
-          - string
-          - 'null'
-        acknowledgerName:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        sectionsAsString:
-          type:
-          - string
-          - 'null'
-        sections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ManagementSystemAcknowledgerSection'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UnitForSale:
-      enum:
-      - 'No'
-      - 'Yes'
-      type: string
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserTreeStructureNode:
-      type: object
-      properties:
-        hasChildren:
-          type: boolean
-        name:
-          type:
-          - string
-          - 'null'
-        visibleKey:
-          type:
-          - string
-          - 'null'
-        sortKey:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        nodeType:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserNodeType'
-        parentSectionGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        parentSectionNo:
-          type:
-          - string
-          - 'null'
-        parentSectionName:
-          type:
-          - string
-          - 'null'
-        isReadByCurrentUser:
-          type:
-          - boolean
-          - 'null'
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserTreeStructureNode'
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
     SerticaWebApi.Models.ManagementSystem.ManagementSystem:
       type: object
       properties:
@@ -1907,28 +2151,108 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserNodeType:
       enum:
-      - Unknown
-      - Image
-      - PDF
-      - WordDocument
-      - Link
-      - AutoCad
-      - Excel
-      - PowerPoint
-      - Email
-      - Visio
-      - Projects
-      - Website
-      - FormFields
+      - Section
+      - Document
       type: string
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemAcknowledgerSection:
+    SerticaWebApi.Models.UnitManagement.UnitCompany:
       type: object
       properties:
-        managementSystemAcknowledgerGuid:
-          type: string
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        standardText1No:
+          type:
+          - string
+          - 'null'
+        standardText1Text:
+          type:
+          - string
+          - 'null'
+        standardText2No:
+          type:
+          - string
+          - 'null'
+        standardText2Text:
+          type:
+          - string
+          - 'null'
+        standardText3No:
+          type:
+          - string
+          - 'null'
+        standardText3Text:
+          type:
+          - string
+          - 'null'
+        default:
+          type:
+          - boolean
+          - 'null'
+        externalReference1:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
           format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystem.ManagementSystemAcknowledger:
+      type: object
+      properties:
         managementSystemNo:
           type:
           - string
@@ -1941,342 +2265,18 @@ components:
           type:
           - string
           - 'null'
-        sectionID:
-          type:
-          - string
-          - 'null'
-        sectionNo:
-          type:
-          - string
-          - 'null'
-        sectionName:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
-      enum:
-      - User
-      - Role
-      type: string
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemUnit:
-      type: object
-      properties:
-        managementSystemGuid:
-          type: string
-          format: uuid
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        draft:
-          type: boolean
-        approvedPlanDocumentNo:
-          type:
-          - string
-          - 'null'
-        allowBypassApproval:
-          type: boolean
-        approvedPlanPassword:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemBrowserDocument:
-      type: object
-      properties:
-        documentNo:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        revisionNo:
-          type:
-          - string
-          - 'null'
-        revisionDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        area:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        documentFileNo:
-          type:
-          - string
-          - 'null'
-        previewFormat:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
-        wordsToHighlight:
-          type:
-          - string
-          - 'null'
-        isReadByCurrentUser:
-          type:
-          - boolean
-          - 'null'
-        id:
-          type:
-          - string
-          - 'null'
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemDeletedUnit:
-      type: object
-      properties:
-        managementSystemGuid:
-          type: string
-          format: uuid
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        deletedDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        deleteUserNo:
-          type:
-          - string
-          - 'null'
-        deleteUserName:
-          type:
-          - string
-          - 'null'
-        revisionAtDeletion:
-          type: integer
-          format: int32
-        deleteInProgress:
-          type:
-          - boolean
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ManagementSystemConfidentiality:
-      type: object
-      properties:
-        managementSystemNo:
-          type:
-          - string
-          - 'null'
-        combinedUserRoleNo:
-          type:
-          - string
-          - 'null'
-        combinedUserRoleName:
-          type:
-          - string
-          - 'null'
         type:
           $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        sectionsAsString:
+          type:
+          - string
+          - 'null'
+        sections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ManagementSystemAcknowledgerSection'
         guidForReferencedObject:
           type:
           - string
@@ -2312,7 +2312,7 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.UnitManagement.UnitDocumentClass:
+    SerticaWebApi.Models.FunctionArea.FunctionAreaUnit:
       type: object
       properties:
         unitNo:
@@ -2323,11 +2323,11 @@ components:
           type:
           - string
           - 'null'
-        documentClassNo:
+        functionAreaNo:
           type:
           - string
           - 'null'
-        documentClassName:
+        functionAreaName:
           type:
           - string
           - 'null'

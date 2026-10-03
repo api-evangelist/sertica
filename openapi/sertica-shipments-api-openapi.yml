@@ -1531,196 +1531,6 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.Distribution.ShipmentFreightDetail:
-      type: object
-      properties:
-        shipmentNo:
-          type:
-          - string
-          - 'null'
-        shipmentWayNo:
-          type:
-          - string
-          - 'null'
-        shipmentWayName:
-          type:
-          - string
-          - 'null'
-        placeOfDepartureNo:
-          type:
-          - string
-          - 'null'
-        placeOfDepartureName:
-          type:
-          - string
-          - 'null'
-        departureDateTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        placeOfArrivalNo:
-          type:
-          - string
-          - 'null'
-        placeOfArrivalName:
-          type:
-          - string
-          - 'null'
-        arrivalDateTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        trackingNumber:
-          type:
-          - string
-          - 'null'
-        airWayBillNo:
-          type:
-          - string
-          - 'null'
-        flightNo:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Distribution.ShipmentPickupWarehouse:
-      type: object
-      properties:
-        shipmentNo:
-          type:
-          - string
-          - 'null'
-        warehouseNo:
-          type:
-          - string
-          - 'null'
-        warehouseName:
-          type:
-          - string
-          - 'null'
-        sortOrder:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logimatic.BaseClasses30.DataOwner:
-      enum:
-      - Unit
-      - MasterUnit
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
       type: object
       properties:
@@ -1742,546 +1552,6 @@ components:
           - 'null'
         isCustomProperty:
           type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.Distribution.ShipmentMailRecipientType:
-      enum:
-      - Consignee
-      - FreightForwarder
-      type: string
-    SerticaWebApi.Models.Distribution.ShipmentMailRequest:
-      type: object
-      properties:
-        recipient:
-          $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentMailRecipientType'
-        reportDocumentNos:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        includeCarrierDocuments:
-          type: boolean
-        includeLandingAdviceDocuments:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Distribution.ShipmentMarkingCarrier:
-      type: object
-      properties:
-        shipmentNo:
-          type:
-          - string
-          - 'null'
-        markingNo:
-          type:
-          - string
-          - 'null'
-        carrierNo:
-          type:
-          - string
-          - 'null'
-        picked:
-          type:
-          - boolean
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        supplierNo:
-          type:
-          - string
-          - 'null'
-        supplierName:
-          type:
-          - string
-          - 'null'
-        remarks:
-          type:
-          - string
-          - 'null'
-        receivedDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        totalWeight:
-          type:
-          - number
-          - 'null'
-          format: double
-        totalValue:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        dangerousGoods:
-          type:
-          - boolean
-          - 'null'
-        certificate:
-          type:
-          - boolean
-          - 'null'
-        currencyNo:
-          type:
-          - string
-          - 'null'
-        currencyName:
-          type:
-          - string
-          - 'null'
-        purchaseOrderNo:
-          type:
-          - string
-          - 'null'
-        orderDescription:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount:
-      type: object
-      properties:
-        value:
-          type:
-          - number
-          - 'null'
-          format: double
-        currencyNo:
-          type:
-          - string
-          - 'null'
-        rate:
-          type:
-          - number
-          - 'null'
-          format: double
-        decimalPlaces:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
-      type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
-      enum:
-      - Unknown
-      - Image
-      - PDF
-      - WordDocument
-      - Link
-      - AutoCad
-      - Excel
-      - PowerPoint
-      - Email
-      - Visio
-      - Projects
-      - Website
-      - FormFields
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentStatus:
-      enum:
-      - Draft
-      - Picking
-      - Picked
-      - Shipped
-      - PartlyReceived
-      - Received
-      - Cancelled
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentType:
-      enum:
-      - Final
-      - Warehouse
-      - Landing
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
-      type: object
-      properties:
-        deviceGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.Distribution.ShipmentDocument:
-      type: object
-      properties:
-        shipmentNo:
-          type:
-          - string
-          - 'null'
-        documentNo:
-          type:
-          - string
-          - 'null'
-        documentDescription:
-          type:
-          - string
-          - 'null'
-        fileName:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        fileSize:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        pageNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        documentTypeNo:
-          type:
-          - string
-          - 'null'
-        documentTypeName:
-          type:
-          - string
-          - 'null'
-        documentTypeUnitNo:
-          type:
-          - string
-          - 'null'
-        documentGroupName:
-          type:
-          - string
-          - 'null'
-        documentGroupNo:
-          type:
-          - string
-          - 'null'
-        documentGroupUnitNo:
-          type:
-          - string
-          - 'null'
-        documentUnitNo:
-          type:
-          - string
-          - 'null'
-        documentUnitName:
-          type:
-          - string
-          - 'null'
-        documentDataOwner:
-          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
-        previewFormat:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Distribution.ShipmentDestinationWarehouse:
-      type: object
-      properties:
-        shipmentNo:
-          type:
-          - string
-          - 'null'
-        warehouseNo:
-          type:
-          - string
-          - 'null'
-        warehouseName:
-          type:
-          - string
-          - 'null'
-        remark:
-          type:
-          - string
-          - 'null'
-        received:
-          type:
-          - boolean
-          - 'null'
-        sortOrder:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
       additionalProperties: false
     SerticaWebApi.Models.Distribution.Shipment:
       type: object
@@ -2519,30 +1789,664 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Distribution.ShipmentResponse:
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount:
+      type: object
+      properties:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        rate:
+          type:
+          - number
+          - 'null'
+          format: double
+        decimalPlaces:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logimatic.BaseClasses30.DataOwner:
+      enum:
+      - Unit
+      - MasterUnit
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentDocument:
       type: object
       properties:
         shipmentNo:
           type:
           - string
           - 'null'
-        text:
+        documentNo:
           type:
           - string
           - 'null'
-        createRoleNo:
+        documentDescription:
           type:
           - string
           - 'null'
-        createUserNo:
+        fileName:
           type:
           - string
           - 'null'
-        createDate:
+        url:
+          type:
+          - string
+          - 'null'
+        fileSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        pageNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        documentTypeNo:
+          type:
+          - string
+          - 'null'
+        documentTypeName:
+          type:
+          - string
+          - 'null'
+        documentTypeUnitNo:
+          type:
+          - string
+          - 'null'
+        documentGroupName:
+          type:
+          - string
+          - 'null'
+        documentGroupNo:
+          type:
+          - string
+          - 'null'
+        documentGroupUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+        documentUnitName:
+          type:
+          - string
+          - 'null'
+        documentDataOwner:
+          $ref: '#/components/schemas/Logimatic.BaseClasses30.DataOwner'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.Distribution.ShipmentPickupWarehouse:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        warehouseNo:
+          type:
+          - string
+          - 'null'
+        warehouseName:
+          type:
+          - string
+          - 'null'
+        sortOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentMarking:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        markingNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        picked:
+          type:
+          - boolean
+          - 'null'
+        netWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        grossWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        length:
+          type:
+          - number
+          - 'null'
+          format: double
+        width:
+          type:
+          - number
+          - 'null'
+          format: double
+        height:
+          type:
+          - number
+          - 'null'
+          format: double
+        volume:
+          type:
+          - number
+          - 'null'
+          format: double
+        value:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        carriers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentMarkingCarrier'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentMarkingCarrier:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        markingNo:
+          type:
+          - string
+          - 'null'
+        carrierNo:
+          type:
+          - string
+          - 'null'
+        picked:
+          type:
+          - boolean
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        supplierNo:
+          type:
+          - string
+          - 'null'
+        supplierName:
+          type:
+          - string
+          - 'null'
+        remarks:
+          type:
+          - string
+          - 'null'
+        receivedDate:
           type:
           - string
           - 'null'
           format: date-time
+        totalWeight:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalValue:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
+        dangerousGoods:
+          type:
+          - boolean
+          - 'null'
+        certificate:
+          type:
+          - boolean
+          - 'null'
+        currencyNo:
+          type:
+          - string
+          - 'null'
+        currencyName:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNo:
+          type:
+          - string
+          - 'null'
+        orderDescription:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentMailRequest:
+      type: object
+      properties:
+        recipient:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentMailRecipientType'
+        reportDocumentNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        includeCarrierDocuments:
+          type: boolean
+        includeLandingAdviceDocuments:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentMailRecipientType:
+      enum:
+      - Consignee
+      - FreightForwarder
+      type: string
+    SerticaWebApi.Models.Distribution.ShipmentFreightDetail:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        shipmentWayNo:
+          type:
+          - string
+          - 'null'
+        shipmentWayName:
+          type:
+          - string
+          - 'null'
+        placeOfDepartureNo:
+          type:
+          - string
+          - 'null'
+        placeOfDepartureName:
+          type:
+          - string
+          - 'null'
+        departureDateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        placeOfArrivalNo:
+          type:
+          - string
+          - 'null'
+        placeOfArrivalName:
+          type:
+          - string
+          - 'null'
+        arrivalDateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        trackingNumber:
+          type:
+          - string
+          - 'null'
+        airWayBillNo:
+          type:
+          - string
+          - 'null'
+        flightNo:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
         guid:
           type:
           - string
@@ -2671,63 +2575,50 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Distribution.ShipmentMarking:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentStatus:
+      enum:
+      - Draft
+      - Picking
+      - Picked
+      - Shipped
+      - PartlyReceived
+      - Received
+      - Cancelled
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    SerticaWebApi.Models.Distribution.ShipmentResponse:
       type: object
       properties:
         shipmentNo:
           type:
           - string
           - 'null'
-        markingNo:
+        text:
           type:
           - string
           - 'null'
-        description:
+        createRoleNo:
           type:
           - string
           - 'null'
-        picked:
+        createUserNo:
           type:
-          - boolean
+          - string
           - 'null'
-        netWeight:
+        createDate:
           type:
-          - number
+          - string
           - 'null'
-          format: double
-        grossWeight:
-          type:
-          - number
-          - 'null'
-          format: double
-        length:
-          type:
-          - number
-          - 'null'
-          format: double
-        width:
-          type:
-          - number
-          - 'null'
-          format: double
-        height:
-          type:
-          - number
-          - 'null'
-          format: double
-        volume:
-          type:
-          - number
-          - 'null'
-          format: double
-        value:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Procurement.Amount'
-        carriers:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Distribution.ShipmentMarkingCarrier'
+          format: date-time
         guid:
           type:
           - string
@@ -2757,6 +2648,115 @@ components:
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ShipmentType:
+      enum:
+      - Final
+      - Warehouse
+      - Landing
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.Distribution.ShipmentDestinationWarehouse:
+      type: object
+      properties:
+        shipmentNo:
+          type:
+          - string
+          - 'null'
+        warehouseNo:
+          type:
+          - string
+          - 'null'
+        warehouseName:
+          type:
+          - string
+          - 'null'
+        remark:
+          type:
+          - string
+          - 'null'
+        received:
+          type:
+          - boolean
+          - 'null'
+        sortOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
       additionalProperties: false
   securitySchemes:
     Bearer:

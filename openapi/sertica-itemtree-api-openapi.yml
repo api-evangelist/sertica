@@ -148,6 +148,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SerticaWebApi.Models.Item.ItemTreeNodeType:
+      enum:
+      - Item
+      - ItemGroup
+      - ItemSupplier
+      type: string
     SerticaWebApi.Models.Link:
       type: object
       properties:
@@ -160,12 +166,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.Item.ItemTreeNodeType:
-      enum:
-      - Item
-      - ItemGroup
-      - ItemSupplier
-      type: string
     SerticaWebApi.Models.Item.ItemTreeNode:
       type: object
       properties:

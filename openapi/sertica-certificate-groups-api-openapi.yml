@@ -685,145 +685,6 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.Certificate.CertificateGroupRule:
-      type: object
-      properties:
-        certificateGroupRuleNo:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        issueDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        expireDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        lastVerificationDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        nextVerificationDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        firstVerificationDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        firstVerificationDateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
-        secondVerificationDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        secondVerificationDateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
-        thirdVerificationDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        thirdVerificationDateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
-        fourthVerificationDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        fourthVerificationDateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
-        fifthVerificationDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        fifthVerificationDateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
-        sixthVerificationDateRule:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
-        sixthVerificationDateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType:
-      enum:
-      - Verification
-      - Annual
-      - Intermediate
-      - Periodical
-      - Expire
-      type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
       type: object
       properties:
@@ -845,16 +706,6 @@ components:
           - 'null'
         isCustomProperty:
           type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
       additionalProperties: false
     SerticaWebApi.Models.ValidationResult:
       type: object
@@ -1066,6 +917,144 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Certificate.CertificateNotificationSettingCertificateGroup:
+      type: object
+      properties:
+        certificateGroupID:
+          type:
+          - string
+          - 'null'
+        certificateGroupNo:
+          type:
+          - string
+          - 'null'
+        certificateGroupName:
+          type:
+          - string
+          - 'null'
+        certificateNotificationSettingNo:
+          type:
+          - string
+          - 'null'
+        certificateNotificationSettingName:
+          type:
+          - string
+          - 'null'
+        active:
+          type: boolean
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
     SerticaWebApi.Models.Certificate.CertificateGroupVesselType:
       type: object
       properties:
@@ -1137,85 +1126,80 @@ components:
             $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
       enum:
       - All
       - One
       type: string
-    SerticaWebApi.Models.Certificate.CertificateNotificationSettingCertificateGroup:
+    SerticaWebApi.Models.Certificate.CertificateGroupRule:
       type: object
       properties:
-        certificateGroupID:
+        certificateGroupRuleNo:
           type:
           - string
           - 'null'
-        certificateGroupNo:
+        name:
           type:
           - string
           - 'null'
-        certificateGroupName:
+        issueDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        expireDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        lastVerificationDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        nextVerificationDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        firstVerificationDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        firstVerificationDateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
+        secondVerificationDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        secondVerificationDateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
+        thirdVerificationDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        thirdVerificationDateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
+        fourthVerificationDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        fourthVerificationDateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
+        fifthVerificationDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        fifthVerificationDateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
+        sixthVerificationDateRule:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule'
+        sixthVerificationDateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType'
+        updateUserNo:
           type:
           - string
           - 'null'
-        certificateNotificationSettingNo:
+        updateUserName:
           type:
           - string
           - 'null'
-        certificateNotificationSettingName:
+        updateDate:
           type:
           - string
           - 'null'
-        active:
-          type: boolean
-        guidForReferencedObject:
+          format: date-time
+        createUserNo:
           type:
           - string
           - 'null'
-          format: uuid
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
         guid:
           type:
           - string
@@ -1263,77 +1247,50 @@ components:
       - NotEquals
       - NotIn
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
       type: object
       properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
           type:
           - array
           - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
-      type: object
-      properties:
-        deviceGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule:
-      enum:
-      - Optional
-      - Mandatory
-      - Disabled
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
     SerticaWebApi.Models.Certificate.CertificateCertificateNotificationSetting:
       type: object
       properties:
@@ -1391,6 +1348,24 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleVerificationType:
+      enum:
+      - Verification
+      - Annual
+      - Intermediate
+      - Periodical
+      - Expire
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
     SerticaWebApi.Models.BrokenRuleType:
       enum:
       - Default
@@ -1400,17 +1375,42 @@ components:
       - Error
       - Delete
       type: string
-    SerticaWebApi.Models.Link:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_CertificateGroupRuleFieldRule:
+      enum:
+      - Optional
+      - Mandatory
+      - Disabled
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:
-        key:
+        deviceGuid:
           type:
           - string
           - 'null'
-        url:
+          format: uuid
+        requestIdGuid:
           type:
           - string
           - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
       additionalProperties: false
   securitySchemes:
     Bearer:

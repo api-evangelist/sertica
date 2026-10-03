@@ -190,14 +190,22 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Microsoft.AspNetCore.Http.HttpResults.NotFound:
-      type: object
-      properties:
-        statusCode:
-          type: integer
-          format: int32
-          readOnly: true
-      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
+      enum:
+      - Unknown
+      - Image
+      - PDF
+      - WordDocument
+      - Link
+      - AutoCad
+      - Excel
+      - PowerPoint
+      - Email
+      - Visio
+      - Projects
+      - Website
+      - FormFields
+      type: string
     SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
@@ -226,6 +234,20 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
+    SerticaWebApi.Models.Document.DocumentSharePreview:
+      type: object
+      properties:
+        filename:
+          type:
+          - string
+          - 'null'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        fileUrl:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.BrokenRuleType:
       enum:
       - Default
@@ -234,22 +256,6 @@ components:
       - Warning
       - Error
       - Delete
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
-      enum:
-      - Unknown
-      - Image
-      - PDF
-      - WordDocument
-      - Link
-      - AutoCad
-      - Excel
-      - PowerPoint
-      - Email
-      - Visio
-      - Projects
-      - Website
-      - FormFields
       type: string
     SerticaWebApi.Models.BrokenRule:
       type: object
@@ -283,19 +289,13 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.Document.DocumentSharePreview:
+    Microsoft.AspNetCore.Http.HttpResults.NotFound:
       type: object
       properties:
-        filename:
-          type:
-          - string
-          - 'null'
-        previewFormat:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
-        fileUrl:
-          type:
-          - string
-          - 'null'
+        statusCode:
+          type: integer
+          format: int32
+          readOnly: true
       additionalProperties: false
   securitySchemes:
     Bearer:

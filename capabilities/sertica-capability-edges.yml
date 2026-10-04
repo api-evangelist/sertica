@@ -1,0 +1,395 @@
+slug: sertica
+provider: SERTICA
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 36
+edges:
+- tag: Purchase Orders
+  spec_file: sertica-purchase-orders-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.92
+  evidence: '''CreatePurchaseOrder  Creates a new purchaseOrder record''; ''ReceivePurchaseOrder  Received
+    positions on the PurchaseOrder''; schemas PurchaseOrder, PurchaseOrderPosition, SystemData_PurchaseOrderWorkflow'
+  reason: 'Full purchase-order lifecycle: creation, positions, workflow, placement, receipt of goods.
+    This is Purchase Order Management within procurement, with adjacent P2P receipt operations.'
+- tag: CalculatePurchaseOrder
+  spec_file: sertica-calculatepurchaseorder-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.88
+  evidence: POST /CalculatePurchaseOrder  CalculatePOCreatePurchaseOrders  Calculate PO create purchase
+    orders
+  reason: Operations select available suppliers/ports and then create purchase orders from requisitions
+    (PurchaseOrderRequisition, ItemSupplierPortPrice) — purchase order creation within procurement.
+- tag: Analytics
+  spec_file: sertica-analytics-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.85
+  evidence: POST /Analytics  CreateReport  'Save a Report'; GET /Analytics/{reportNo}/dataset  'Get Dataset
+    by ReportNo'; GET /Analytics/{reportNo}/excel  'Get Excel Doc by ReportNo'
+  reason: Operations define, copy, filter and export reports and datasets, with data-warehouse template
+    schemas. This is reporting/BI delivery tooling, i.e. Analytics & BI Management.
+- tag: Analytics Reports
+  spec_file: sertica-analytics-reports-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.85
+  evidence: GET /AnalyticsReports/{reportNo}  GetReport  'Get Report by ReportNo'; GET /AnalyticsReports/{reportNo}/subReports  'Fetches
+    all sub reports attached to the Report'
+  reason: Report lifecycle (read, update, delete, search) plus report resources, sub-reports and subscriptions
+    — report definition management within a BI/analytics module, so Analytics & BI Management.
+- tag: RequestForQuotes
+  spec_file: sertica-requestforquotes-api-openapi.yml
+  capability_id: BC-500.10
+  capability_id_l1: BC-500
+  capability_name: Sourcing Management
+  confidence: 0.85
+  evidence: CreateRequestForQuote  Creates a new requestForQuote record; schema SerticaWebApi.Models.RequestForQuote.RequestForQuotePurchaseOrder,
+    SystemData_RequestForQuoteStatus
+  reason: Full RFQ lifecycle (create, update, status, supplier forwarding, price trend indicator) — this
+    is RFx / supplier quotation solicitation, i.e. Sourcing Management.
+- tag: Requisitions
+  spec_file: sertica-requisitions-api-openapi.yml
+  capability_id: BC-500.40
+  capability_id_l1: BC-500
+  capability_name: Procure-to-Pay Operations Management
+  confidence: 0.85
+  evidence: CreateRequisition  Creates a new requisition record; schemas RequisitionCreatePurchaseOrderIssue,
+    RequisitionPositionReception, RequisitionRejectArguments
+  reason: Requisition lifecycle including approval/rejection, conversion to purchase orders and goods
+    reception — core procure-to-pay operations.
+- tag: User rights
+  spec_file: sertica-user-rights-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /UserRights/{userRightKey}/{userGroupNo}  CreateUserRight  "Grants the right for the
+    specified user right key and user group no"
+  reason: Explicitly grants and revokes application permissions to user groups — authorisation administration,
+    squarely Identity & Access Management.
+- tag: PurchaseOrderApprovals
+  spec_file: sertica-purchaseorderapprovals-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.82
+  evidence: SearchPurchaseOrderApprovals  Search for Purchase Order Approvals; schema SerticaWebApi.Models.PurchaseOrder.PurchaseOrderApproval
+  reason: Operations expose purchase order approval records with amounts — the approval step of PO creation/execution,
+    i.e. Purchase Order Management.
+- tag: PurchaseOrderPositions
+  spec_file: sertica-purchaseorderpositions-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.82
+  evidence: schema SerticaWebApi.Models.PurchaseOrder.PurchaseOrderPosition and PurchaseOrderPositionRequisitionPosition
+  reason: Purchase order line items (positions) linked to requisition positions — core purchase order
+    management data in the procurement module.
+- tag: AnalyticsCustomTemplates
+  spec_file: sertica-analyticscustomtemplates-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.8
+  evidence: POST /AnalyticsCustomTemplates  'Creates a new Custom Analytics Template record'; GET /AnalyticsCustomTemplates/{templateNo}/templateFields  'Fetches
+    all AnalyticsCustomTemplateFields'
+  reason: Management of analytics templates and their output/display fields, including a view scan that
+    refreshes template metadata — the semantic layer behind reporting, i.e. Analytics & BI Management.
+- tag: ImInvoices
+  spec_file: sertica-iminvoices-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.8
+  evidence: POST /ImInvoices CreateImInvoice "Creates a new invoice record"; schemas "InvoiceManagement.ImInvoiceApproveResult",
+    "SystemData_PurchaseOrderWorkflow", "ImInvoicePurchaseOrder", "ForwardForApprovalRequiredDecision"
+  reason: 'Incoming-invoice management: invoice records matched to purchase orders with approval/forwarding
+    workflow and cost-type selection — supplier invoice processing, i.e. Accounts Payable. Procure-to-Pay
+    was the alternative, but the surface is specifically the invoice object and its approval chain.'
+- tag: MasterDataManagement
+  spec_file: sertica-masterdatamanagement-api-openapi.yml
+  capability_id: BC-610.20
+  capability_id_l1: BC-610
+  capability_name: Master Data Management
+  confidence: 0.8
+  evidence: '"GetDuplicateJobs", "InitiateUpdateUnitsTask", "InitiateCopyUnitTask", schema "ApiUpdatedPackageUnitInstance"'
+  reason: 'This is SERTICA''s master data management module: propagating master component/unit data across
+    vessel units, copying units and resolving duplicates — squarely Master Data Management for equipment/unit
+    master records.'
+- tag: Shipments
+  spec_file: sertica-shipments-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.8
+  evidence: SerticaWebApi.Models.Distribution.Shipment, SerticaWebApi.Models.Distribution.ShipmentPickupWarehouse,
+    SerticaWebApi.Models.Distribution.ShipmentMarkingCarrier, SerticaWebApi.Models.Distribution.ShipmentDocument
+  reason: Full shipment lifecycle with pickup warehouse, carrier markings and shipping documents — transport/forwarding
+    execution of goods to vessels, i.e. logistics operations within the supply chain.
+- tag: RequisitionPositions
+  spec_file: sertica-requisitionpositions-api-openapi.yml
+  capability_id: BC-500.40
+  capability_id_l1: BC-500
+  capability_name: Procure-to-Pay Operations Management
+  confidence: 0.78
+  evidence: SearchRequisitionPositions  Search for requisition positions; schemas SystemData_ProcurementRequisitionStatus,
+    SystemData_ProcurementRequisitionWorkflow
+  reason: Line-level requisition data with procurement requisition status and workflow enums — day-to-day
+    procure-to-pay requisitioning operations.
+- tag: Accounts
+  spec_file: sertica-accounts-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.75
+  evidence: POST /Accounts CreateAccount Creates a new account record; schema SerticaWebApi.Models.Accounting.Account
+  reason: The Accounting namespace and accountNo key show these are general-ledger accounts (chart of
+    accounts) in the maritime ERP, not customer or user accounts. CRUD plus history over the account master
+    maps to General Ledger Management.
+- tag: OdsrbOperations
+  spec_file: sertica-odsrboperations-api-openapi.yml
+  capability_id: BC-730.30
+  capability_id_l1: BC-730
+  capability_name: Environmental Management
+  confidence: 0.75
+  evidence: SerticaWebApi.Models.ElectronicLogBook.OdsrbOperation; Logihold.BusinessObjects.LogiholdObjModel.ElectronicLogbook.OzoneDepletingSubstancesRecordbook.Enums.InterventionDescriptionType;
+    'Creates a new OdsrbOperation'
+  reason: ODSRB = Ozone Depleting Substances Record Book, the MARPOL-mandated electronic logbook recording
+    refrigerant/ODS handling events with signers and documents. That is environmental compliance record-keeping,
+    mapping to Environmental Management; some ambiguity with HSE Compliance & Reporting keeps confidence
+    moderate.
+- tag: Roles
+  spec_file: sertica-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: SerticaWebApi.Models.UserManagement.Role, SerticaWebApi.Models.UserManagement.RoleUnit, SerticaWebApi.Models.UserManagement.UserUnit;
+    'GET /Roles/{roleNo}/units  GetRoleUnits'
+  reason: Schemas sit in the UserManagement namespace and roles are scoped to units/users, i.e. authorisation
+    role administration for application access rather than HR job roles. Maps to Identity & Access Management,
+    with residual ambiguity about an HR reading.
+- tag: User Groups
+  spec_file: sertica-user-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: GET /UserGroups/{userGroupNo}/users  "Returns a list of Users associated with the User Group";
+    schemas SerticaWebApi.Models.UserManagement.UserGroupUserGroupLimitation, Logihold...UserManagement.InextiaUserRightIndexType
+  reason: Manages security groups, their user membership and right limitations — access-control group
+    administration, i.e. identity and access management for the application.
+- tag: Users
+  spec_file: sertica-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /Users/{userNo}/resend  ResendUserWelcomeMail; schemas SerticaWebApi.Models.Security.ChangePasswordInformation,
+    SerticaWebApi.Models.UserManagement.UserRoleRelation
+  reason: 'User account lifecycle: create/update/delete accounts, role relations, password change, welcome
+    mail — joiner-mover-leaver style account administration for the application. Some crew-related attributes
+    exist (UserEmbarkationStatus) but the surface is account and role management, not HR.'
+- tag: AccountingDimensions
+  spec_file: sertica-accountingdimensions-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.72
+  evidence: SerticaWebApi.Models.Accounting.AccountingDimension, GET /AccountingDimensions/{dimensionNo}/values
+    GetAccountingDimensionValues
+  reason: CRUD over accounting dimensions and their permitted/mandatory/derived values — i.e. the accounting
+    coding-block structure that underpins the general ledger chart of accounts. Maps to General Ledger
+    Management, though it is master/reference data configuration rather than journal posting, hence moderate
+    confidence.
+- tag: Auth
+  spec_file: sertica-auth-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /Auth/resetPassword  ResetPassword; GET /Auth/{login}/roles  Returns a list of roles
+    valid for the user with supplied login
+  reason: Token issuance, password reset/change, role and user-right resolution are identity and access
+    management operations. Mapped with moderate confidence since authentication endpoints are also arguably
+    pure platform plumbing.
+- tag: CombinedUserRoles
+  spec_file: sertica-combineduserroles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: GET /CombinedUserRoles/{userRoleNo}  GetCombinedUserRole  Gets a specific userRole; schemas
+    SerticaWebApi.Models.UserManagement.User, SerticaWebApi.Models.UserManagement.UserRoleRelation, UserServicePrincipalMapping
+  reason: The surface exposes user-to-role assignments and service-principal mappings from a UserManagement
+    model, which is access/role administration. Read-only and configuration-flavoured, hence moderate
+    rather than high confidence.
+- tag: GrbOperations
+  spec_file: sertica-grboperations-api-openapi.yml
+  capability_id: BC-730.30
+  capability_id_l1: BC-730
+  capability_name: Environmental Management
+  confidence: 0.72
+  evidence: schemas "ElectronicLogBook.GrbOperationEnvironmentalItem", "ElectronicLogBook.DischargedProduct",
+    "GarbageRecordbook.Views.GrbOperationEnvironmentalItemView"
+  reason: Garbage Record Book operations recording discharged products and environmental items against
+    receivers — the statutory waste-discharge logging required under MARPOL. This is environmental (waste)
+    management and its record-keeping.
+- tag: Projects
+  spec_file: sertica-projects-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.72
+  evidence: SerticaWebApi.Models.Project.Project, SerticaWebApi.Models.Project.ProjectUnit, SerticaWebApi.Models.Project.ProjectStakeholder;
+    'GET /Projects/{projectNo}/units  GetProjectUnits'
+  reason: Project records with stakeholders and associated units (e.g. dry-dock or refit projects) — project
+    execution and tracking. Could alternatively be treated as cost-collection objects, hence not full
+    confidence.
+- tag: WebDashboardContent
+  spec_file: sertica-webdashboardcontent-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.72
+  evidence: GET /WebDashboardContent/{webDashboardContentNo}/dataset "Gets dataset for content"; schemas
+    SystemData_WebDashboardContentDimension, SystemData_DynamicDashboardNumberCalculation
+  reason: The tag defines dashboard content items with dimensions, number sources and calculated figures
+    and serves their datasets — definition and delivery of reporting/BI artefacts. Maps to Analytics &
+    BI Management; some residual risk that it is treated as mere UI configuration.
+- tag: AnalyticsSubscriptions
+  spec_file: sertica-analyticssubscriptions-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.7
+  evidence: GET /AnalyticsSubscriptions/{guid}  'Gets a specific AnalyticsSubscription including its recipients';
+    schemas 'AnalyticsSubscriptionIntervalType', 'AnalyticsSubscriptionRecipient'
+  reason: Despite the word 'Subscriptions', these are scheduled report distributions (interval type, recipients)
+    — not commercial SaaS subscriptions or billing. Scheduled report delivery belongs to Analytics & BI
+    Management.
+- tag: Certificates
+  spec_file: sertica-certificates-api-openapi.yml
+  capability_id: BC-130.10
+  capability_id_l1: BC-130
+  capability_name: Regulatory Compliance Management
+  confidence: 0.7
+  evidence: CreateCertificate 'Creates a new certificate record'; schemas SystemData_CertificateStatus,
+    SerticaWebApi.Models.Certificate.CertificateMail, GetCertificateDocumentLinks 'Returns a list of Documents
+    on the Certificate'
+  reason: Core register of vessel certificates with status, expiry notification and supporting documents
+    — in a maritime fleet system these are statutory and class certificates, so the capability realised
+    is regulatory compliance management rather than PKI or training certificates.
+- tag: InspectionLists
+  spec_file: sertica-inspectionlists-api-openapi.yml
+  capability_id: BC-720.30
+  capability_id_l1: BC-720
+  capability_name: Quality Control Management
+  confidence: 0.7
+  evidence: POST /InspectionLists/appSubmit "Receive/Update InspectionList"; GET /InspectionLists/{inspectionListNo}/surveyors
+    "Fetches all Surveyors attached to the InspectionList"; schemas "SystemData_InspectionListStatus",
+    "SystemData_RatingTypeDisplay"
+  reason: 'Inspection execution: lists of inspection jobs with statuses, ratings and attached surveyors,
+    submitted from the vessel app — inspection and acceptance management.'
+- tag: ItemLocations
+  spec_file: sertica-itemlocations-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.7
+  evidence: POST /ItemLocations 'Creates a new itemLocation record'; schema 'SerticaWebApi.Models.Stock.ItemLocation';
+    'PrintItemLocationLabels  Gets the labels to print'
+  reason: CRUD over stock storage locations (namespaced under Models.Stock) with label printing — warehouse/stock
+    location administration, i.e. inventory management. No sub-capability cleanly fits bin/location setup,
+    so L1 only.
+- tag: Items
+  spec_file: sertica-items-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.7
+  evidence: GET /Items/{itemNo}/warehouses  'Returns a list of warehouses on the Item'; schemas 'SerticaWebApi.Models.Stock.StockAdjustment',
+    'SerticaWebApi.Models.Stock.StockAdjustmentType'
+  reason: Full CRUD over the spare-part item master with warehouse holdings and stock adjustments, within
+    a ship-management system's stock module. Inventory management is the dominant reading; some overlap
+    with item master data and procurement (ItemSupplierPortPrice, ItemPurchaseOrderView) keeps confidence
+    below 0.8.
+- tag: OrbOperations
+  spec_file: sertica-orboperations-api-openapi.yml
+  capability_id: BC-730.30
+  capability_id_l1: BC-730
+  capability_name: Environmental Management
+  confidence: 0.7
+  evidence: SerticaWebApi.Models.ElectronicLogBook.OrbOperationSounding, OrbOperationReceiver, OrbOperationSealSubSealPoint,
+    ...ElectronicLogbook.OzoneDepletingSubstancesRecordbook.Enums.InterventionDescriptionType
+  reason: Oil Record Book / ozone-depleting-substances record book operations with soundings, discharge
+    receivers and seal points — environmental (MARPOL) record keeping and compliance evidence for the
+    vessel.
+- tag: PostingPeriods
+  spec_file: sertica-postingperiods-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.7
+  evidence: SerticaWebApi.Models.PostingPeriod.PostingPeriod, PostingPeriodPeriod, PostingPeriodCompany;
+    'GetPostingPeriodCompanies  Fetches all Companies attached to the posting period'
+  reason: Accounting posting periods defined per company — the ledger period control used for posting
+    and period close, which sits in General Ledger Management.
+- tag: PurchaseOrderDeliveryCosts
+  spec_file: sertica-purchaseorderdeliverycosts-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.7
+  evidence: SearchPurchaseOrderDeliveryCosts  Search for Purchase Order Delivery Costs; schema SerticaWebApi.Models.PurchaseOrder.PurchaseOrderDeliveryCost
+  reason: Delivery cost lines attached to purchase orders — part of PO content management. Read/search-only
+    surface, so somewhat thin, but the schema namespace ties it unambiguously to purchase orders.
+- tag: UnitShipments
+  spec_file: sertica-unitshipments-api-openapi.yml
+  capability_id: BC-500.40
+  capability_id_l1: BC-500
+  capability_name: Procure-to-Pay Operations Management
+  confidence: 0.7
+  evidence: POST /UnitShipments/{shipmentNo}/receiveRequisitions  "Receives all requisitions on a specific
+    Unit Shipment"; schema Logihold...SystemData_ProcurementRequisitionStatus, SerticaWebApi.Models.Distribution.ShipmentPickupWarehouse
+  reason: Operations receive shipments against procurement requisitions and track markings/pickup warehouse,
+    i.e. the goods-receipt step of procure-to-pay operations on board a unit. Logistics execution is an
+    alternative reading, but the explicit requisition-receipt semantics point to P2P operations.
+- tag: WebDashboardPages
+  spec_file: sertica-webdashboardpages-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.7
+  evidence: schemas WebDashboard.WebDashboardPage, WebDashboardPageWebDashboardContent, WebDashboardPageFilter,
+    WebDashboardPageSharedLink
+  reason: Operations assemble dashboard pages from content items, apply filters, attach units and expose
+    shared links — authoring and distribution of reporting dashboards, i.e. Analytics & BI delivery. Confidence
+    tempered because it could also be read as UI layout configuration.
+- tag: WebDashboards
+  spec_file: sertica-webdashboards-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.7
+  evidence: GET /WebDashboards/{webDashboardNo}/WebDashboardPages "Returns a list of WebDashboardPages
+    used to perform the WebDashboard"; schema WebDashboard.WebDashboardCombinedUserRole
+  reason: Manages dashboard definitions, their constituent pages and the user roles permitted to see them
+    — provisioning of business intelligence/reporting output to users. Maps to Analytics & BI Management
+    at moderate confidence.

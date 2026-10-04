@@ -574,123 +574,61 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+    SerticaWebApi.Models.Analytics.AnalyticsReportOutputField:
       type: object
       properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.Analytics.AnalyticsSubscription:
-      type: object
-      properties:
-        analyticsReportGuid:
+        guid:
           type:
           - string
           - 'null'
           format: uuid
-        reportNo:
+        liveObjectGuid:
           type:
           - string
           - 'null'
-        description:
+          format: uuid
+        unitGuid:
           type:
           - string
           - 'null'
-        startDate:
+          format: uuid
+        latestHistoryGuid:
           type:
           - string
           - 'null'
-          format: date-time
-        frequency:
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+        position:
           type:
           - integer
           - 'null'
           format: int32
-        exportFolderPath:
+        width:
           type:
-          - string
+          - integer
           - 'null'
-        mailingList:
+          format: int32
+        numberOfDecimals:
           type:
-          - string
+          - integer
           - 'null'
-        intervalType:
-          $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsSubscriptionIntervalType'
-        doNotSendEmptyReports:
+          format: int32
+        skipThousandsSeparator:
           type:
           - boolean
           - 'null'
-        mailSubject:
-          type:
-          - string
-          - 'null'
-        mailBody:
-          type:
-          - string
-          - 'null'
-        startTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        runTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        recipientEmailsAsString:
-          type:
-          - string
-          - 'null'
-        scheduledExecutionDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        recipients:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsSubscriptionRecipient'
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
+        displayType:
+          $ref: '#/components/schemas/Logimatic.Analytics.Component.Model.TemplateFieldDisplayType'
+        analyticsTemplateFieldGuid:
           type:
           - string
           - 'null'
           format: uuid
         deleted:
           type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
         links:
           type:
           - array
@@ -699,229 +637,14 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Analytics.Report.AnalyticsReportSubReport:
-      type: object
-      properties:
-        parentReportNo:
-          type:
-          - string
-          - 'null'
-        reportNo:
-          type:
-          - string
-          - 'null'
-        reportDescription:
-          type:
-          - string
-          - 'null'
-        sheetInDocument:
-          type:
-          - string
-          - 'null'
-        dataRange:
-          type:
-          - string
-          - 'null'
-        subReport:
-          $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsReport'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+    SerticaWebApi.Models.BrokenRuleType:
       enum:
-      - Asc
-      - Desc
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Analytics.Report.AnalyticsTemplateFieldDisplayType:
-      enum:
-      - NumericFromTo
-      - DateRange
-      - DateDistinctList
-      - DateDistinctFilteredList
-      - TextLike
-      - TextRange
-      - TextDistinctList
-      - TextDistinctFilteredList
-      - SumDefault
-      - Boolean
-      - DateDynamic
-      - Comparison
-      - TextEmptyValues
-      - DateEmptyValues
-      - NumericEmptyValues
-      - PrimaryKey
-      - UnitGuid
-      - SystemFilterColumn
-      type: string
-    SerticaWebApi.Models.Analytics.Report.AnalyticsReportFilterFieldDynamicDateType:
-      enum:
-      - Days
-      - Weeks
-      - WholeWeeks
-      - Months
-      - WholeMonths
-      - Quarter
-      - PresentQuarter
-      - Year
-      - WholeYear
-      - YearToDate
-      - PresentDay
-      - PresentWeek
-      - PresentMonth
-      - PresentYear
-      - WholeDays
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
-      type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
-      additionalProperties: false
-    Logimatic.Analytics.Component.Model.TemplateType:
-      enum:
-      - SystemTemplate
-      - CustomTemplate
-      - DataWarehouseTemplate
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
       type: string
     SerticaWebApi.Models.Analytics.Report.AnalyticsReportFilterField:
       type: object
@@ -1074,99 +797,349 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Analytics.AnalyticsSubscriptionIntervalType:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
       enum:
-      - Months
-      - Days
-      - SpecificTimes
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
-    SerticaWebApi.Models.Analytics.Report.AnalyticsReportFilterFieldDynamicDateDirection:
-      enum:
-      - Last
-      - Next
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    SerticaWebApi.Models.Analytics.Report.AnalyticsComparison:
-      enum:
-      - None
-      - SmallerThan
-      - Equal
-      - GreaterThan
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+    SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
-        distinct:
+        isValid:
           type: boolean
-        subObjectsToInclude:
+          readOnly: true
+        errors:
           type:
           - array
           - 'null'
           items:
-            type: string
-        contains:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
           type:
           - array
           - 'null'
           items:
-            type: string
-        criteria:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
           type:
-          - array
+          - object
           - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
       additionalProperties: false
-    Logimatic.Analytics.Component.Model.AggregationType:
+    SerticaWebApi.Models.Analytics.Report.AnalyticsReportFilterFieldDynamicDateType:
       enum:
-      - None
-      - Sum
-      - Average
-      - Count
-      - Minimum
-      - Maximum
+      - Days
+      - Weeks
+      - WholeWeeks
+      - Months
+      - WholeMonths
+      - Quarter
+      - PresentQuarter
+      - Year
+      - WholeYear
+      - YearToDate
+      - PresentDay
+      - PresentWeek
+      - PresentMonth
+      - PresentYear
+      - WholeDays
       type: string
+    Logimatic.Analytics.Component.Model.TemplateFieldDisplayType:
+      enum:
+      - NumericFromTo
+      - DateRange
+      - DateDistinctList
+      - DateDistinctFilteredList
+      - TextLike
+      - TextRange
+      - TextDistinctList
+      - TextDistinctFilteredList
+      - SumDefault
+      - Boolean
+      - DateDynamic
+      - Comparison
+      - TextEmptyValues
+      - DateEmptyValues
+      - NumericEmptyValues
+      - PrimaryKey
+      - UnitGuid
+      - SystemFilterColumn
+      - DrilldownPrimaryKey
+      - DrilldownUnitGuid
+      type: string
+    SerticaWebApi.Models.Analytics.AnalyticsReportResource:
+      type: object
+      properties:
+        resourceNo:
+          type:
+          - string
+          - 'null'
+        resourceName:
+          type:
+          - string
+          - 'null'
+        analyticsReportGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        reportNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.Report.AnalyticsReportOutput:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        reportGuid:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.AnalyticsSubscription:
+      type: object
+      properties:
+        analyticsReportGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        reportNo:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        frequency:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        exportFolderPath:
+          type:
+          - string
+          - 'null'
+        mailingList:
+          type:
+          - string
+          - 'null'
+        intervalType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsSubscriptionIntervalType'
+        doNotSendEmptyReports:
+          type:
+          - boolean
+          - 'null'
+        mailSubject:
+          type:
+          - string
+          - 'null'
+        mailBody:
+          type:
+          - string
+          - 'null'
+        startTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        runTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        recipientEmailsAsString:
+          type:
+          - string
+          - 'null'
+        scheduledExecutionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        recipients:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsSubscriptionRecipient'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
     SerticaWebApi.Models.Analytics.AnalyticsReport:
       type: object
       properties:
@@ -1324,84 +1297,23 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Analytics.Report.AnalyticsReportFilterRange:
-      type: object
-      properties:
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        reportFilterFieldGuid:
-          type:
-          - string
-          - 'null'
-        textRangeValue:
-          type:
-          - string
-          - 'null'
-        dateRangeValue:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        deleted:
-          type: boolean
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logimatic.Analytics.Component.Model.TemplateFieldDisplayType:
+    Logimatic.Analytics.Component.Model.TemplateType:
       enum:
-      - NumericFromTo
-      - DateRange
-      - DateDistinctList
-      - DateDistinctFilteredList
-      - TextLike
-      - TextRange
-      - TextDistinctList
-      - TextDistinctFilteredList
-      - SumDefault
-      - Boolean
-      - DateDynamic
-      - Comparison
-      - TextEmptyValues
-      - DateEmptyValues
-      - NumericEmptyValues
-      - PrimaryKey
-      - UnitGuid
-      - SystemFilterColumn
-      - DrilldownPrimaryKey
-      - DrilldownUnitGuid
+      - SystemTemplate
+      - CustomTemplate
+      - DataWarehouseTemplate
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+    SerticaWebApi.Models.Link:
       type: object
       properties:
-        field:
+        key:
           type:
           - string
           - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+        url:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Logimatic.Analytics.Component.Model.SortingType:
       enum:
@@ -1409,115 +1321,42 @@ components:
       - Ascending
       - Descending
       type: string
-    SerticaWebApi.Models.Analytics.AnalyticsReportOutputField:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    SerticaWebApi.Models.Analytics.AnalyticsSubscriptionIntervalType:
+      enum:
+      - Months
+      - Days
+      - SpecificTimes
+      type: string
+    SerticaWebApi.Models.Analytics.Report.AnalyticsReportSubReport:
       type: object
       properties:
-        guid:
+        parentReportNo:
           type:
           - string
           - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-        position:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        width:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        numberOfDecimals:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        skipThousandsSeparator:
-          type:
-          - boolean
-          - 'null'
-        displayType:
-          $ref: '#/components/schemas/Logimatic.Analytics.Component.Model.TemplateFieldDisplayType'
-        analyticsTemplateFieldGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Analytics.AnalyticsReportResource:
-      type: object
-      properties:
-        resourceNo:
-          type:
-          - string
-          - 'null'
-        resourceName:
-          type:
-          - string
-          - 'null'
-        analyticsReportGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
         reportNo:
           type:
           - string
           - 'null'
-        createUserNo:
+        reportDescription:
           type:
           - string
           - 'null'
-        createUserName:
+        sheetInDocument:
           type:
           - string
           - 'null'
-        updateUserNo:
+        dataRange:
           type:
           - string
           - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
+        subReport:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Analytics.AnalyticsReport'
         guidForReferencedObject:
           type:
           - string
@@ -1553,38 +1392,60 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.Analytics.Report.AnalyticsReportOutput:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
       type: object
       properties:
-        guid:
+        field:
           type:
           - string
           - 'null'
-        reportGuid:
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    SerticaWebApi.Models.Analytics.Report.AnalyticsReportFilterFieldDynamicDateDirection:
+      enum:
+      - Last
+      - Next
+      type: string
+    Logimatic.Analytics.Component.Model.AggregationType:
+      enum:
+      - None
+      - Sum
+      - Average
+      - Count
+      - Minimum
+      - Maximum
+      type: string
+    SerticaWebApi.Models.Analytics.Report.AnalyticsComparison:
+      enum:
+      - None
+      - SmallerThan
+      - Equal
+      - GreaterThan
+      type: string
+    SerticaWebApi.Models.Analytics.Report.AnalyticsTimeComparison:
+      enum:
+      - None
+      - Today
+      - CurrentMonth
+      - CurrentYear
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
           type:
           - string
           - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
       additionalProperties: false
     SerticaWebApi.Models.Analytics.AnalyticsSubscriptionRecipient:
       type: object
@@ -1641,32 +1502,171 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+    SerticaWebApi.Models.Analytics.Report.AnalyticsTemplateFieldDisplayType:
+      enum:
+      - NumericFromTo
+      - DateRange
+      - DateDistinctList
+      - DateDistinctFilteredList
+      - TextLike
+      - TextRange
+      - TextDistinctList
+      - TextDistinctFilteredList
+      - SumDefault
+      - Boolean
+      - DateDynamic
+      - Comparison
+      - TextEmptyValues
+      - DateEmptyValues
+      - NumericEmptyValues
+      - PrimaryKey
+      - UnitGuid
+      - SystemFilterColumn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
-        deviceGuid:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
           type:
-          - string
+          - integer
           - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
           format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.Analytics.Report.AnalyticsTimeComparison:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
       enum:
-      - None
-      - Today
-      - CurrentMonth
-      - CurrentYear
+      - Asc
+      - Desc
       type: string
+    SerticaWebApi.Models.Analytics.Report.AnalyticsReportFilterRange:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        reportFilterFieldGuid:
+          type:
+          - string
+          - 'null'
+        textRangeValue:
+          type:
+          - string
+          - 'null'
+        dateRangeValue:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        deleted:
+          type: boolean
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: http

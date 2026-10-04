@@ -70,18 +70,6 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     SerticaWebApi.Models.AiClient.AiClientAskResponseModel:
       type: object
       properties:
@@ -105,81 +93,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.AiClient.AiClientDocumentModel'
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.AiClient.AiClientDocumentModel:
-      type: object
-      properties:
-        guid:
-          type:
-          - string
-          - 'null'
-        documentNo:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        managementSystemNo:
-          type:
-          - string
-          - 'null'
-        unitNos:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.AiClient.AiChatHistory:
-      type: object
-      properties:
-        role:
-          type:
-          - string
-          - 'null'
-        content:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
     SerticaWebApi.Models.BrokenRule:
       type: object
@@ -213,6 +126,15 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
     SerticaWebApi.Models.AiClient.AiClientAskModel:
       type: object
       properties:
@@ -236,6 +158,84 @@ components:
           - 'null'
           items:
             type: string
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.AiClient.AiChatHistory:
+      type: object
+      properties:
+        role:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.AiClient.AiClientDocumentModel:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        documentNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        managementSystemNo:
+          type:
+          - string
+          - 'null'
+        unitNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
       additionalProperties: false
   securitySchemes:
     Bearer:

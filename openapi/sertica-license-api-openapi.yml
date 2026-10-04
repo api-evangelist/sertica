@@ -109,50 +109,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Logimatic.StandardFunctionsCS.WebhooksMode:
+    Logimatic.StandardFunctionsCS.CustomerType:
       enum:
-      - RestrictedAccess
-      - FullAccess
+      - Inextia
+      - Sertica
       type: string
-    Logimatic.StandardFunctionsCS.AIIntegrationFlag:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AccountLayout:
       enum:
-      - None
-      - ManagementSystem
-      type: string
-    Logihold.BusinessObjects.Licensing.LicenseValidationIssue:
-      type: object
-      properties:
-        license:
-          type:
-          - string
-          - 'null'
-        value: {}
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logimatic.StandardFunctionsCS.IntegrationMode:
-      enum:
-      - None
-      - SupplierMustMatchVendor
-      - Torm
-      - AXMode
-      - AddressTypeRestrictions
-      - FilterInvoiceFields
-      - FilterProjectFields
-      - FilterProjectCodeFields
-      - AutoGenerateAddressNo
-      - ExternalReferencesOnUnit
-      - Humboldt
-      - EDIInterface
-      - MDMInterface
-      - OpusCapita
-      - RALAX
-      - SvitzerAzureServiceBus
-      - CozmosAzureServiceBus
-      - MintraOCSAPIAdapter
-      - ItemWebhookExport
+      - Clipper
+      - A2SEA
+      - Epr
+      - Axis
+      - Svitzer
+      - AccountSFI
+      - CORO_AS
+      - TORM
+      - Visma
+      - Echebastar
+      - JL
+      - DBB
+      - ClassSFIOnPositions
+      - NineDimensions
+      - AccountingDimensions
       type: string
     Logihold.BusinessObjects.Licensing.LicenseValidationResult:
       type: object
@@ -374,28 +352,50 @@ components:
         mailAccountOnUnitCompany:
           type: boolean
       additionalProperties: false
-    Logimatic.StandardFunctionsCS.CustomerType:
+    Logihold.BusinessObjects.Licensing.LicenseValidationIssue:
+      type: object
+      properties:
+        license:
+          type:
+          - string
+          - 'null'
+        value: {}
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logimatic.StandardFunctionsCS.WebhooksMode:
       enum:
-      - Inextia
-      - Sertica
+      - RestrictedAccess
+      - FullAccess
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AccountLayout:
+    Logimatic.StandardFunctionsCS.IntegrationMode:
       enum:
-      - Clipper
-      - A2SEA
-      - Epr
-      - Axis
-      - Svitzer
-      - AccountSFI
-      - CORO_AS
-      - TORM
-      - Visma
-      - Echebastar
-      - JL
-      - DBB
-      - ClassSFIOnPositions
-      - NineDimensions
-      - AccountingDimensions
+      - None
+      - SupplierMustMatchVendor
+      - Torm
+      - AXMode
+      - AddressTypeRestrictions
+      - FilterInvoiceFields
+      - FilterProjectFields
+      - FilterProjectCodeFields
+      - AutoGenerateAddressNo
+      - ExternalReferencesOnUnit
+      - Humboldt
+      - EDIInterface
+      - MDMInterface
+      - OpusCapita
+      - RALAX
+      - SvitzerAzureServiceBus
+      - CozmosAzureServiceBus
+      - MintraOCSAPIAdapter
+      - ItemWebhookExport
+      type: string
+    Logimatic.StandardFunctionsCS.AIIntegrationFlag:
+      enum:
+      - None
+      - ManagementSystem
       type: string
   securitySchemes:
     Bearer:

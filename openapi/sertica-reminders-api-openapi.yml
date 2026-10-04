@@ -301,6 +301,16 @@ paths:
       - Bearer: []
 components:
   schemas:
+    SerticaWebApi.Models.Reminder.ReminderEmailAttachment:
+      type: object
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        fileFound:
+          type: boolean
+      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
       type: object
       properties:
@@ -322,6 +332,65 @@ components:
           - 'null'
         isCustomProperty:
           type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AutomaticReminderType:
+      enum:
+      - RequestForQuoteNotConfirmed
+      - PurchaseOrderNotConfirmed
+      - DeliveryDateExceeded
+      - InvoicedButNotReceived
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
       additionalProperties: false
     SerticaWebApi.Models.Reminder.Reminder:
       type: object
@@ -435,62 +504,129 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+    SerticaWebApi.Models.Reminder.ReminderEmailDetails:
       type: object
       properties:
-        field:
+        from:
           type:
           - string
           - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
+        to:
           type:
           - string
           - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
+        subject:
+          type:
+          - string
+          - 'null'
+        sentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        statusName:
+          type:
+          - string
+          - 'null'
+        mailAccountNo:
+          type:
+          - string
+          - 'null'
+        smtpHostName:
+          type:
+          - string
+          - 'null'
+        smtpUserAccount:
+          type:
+          - string
+          - 'null'
+        attachments:
           type:
           - array
           - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Reminder.ReminderEmailAttachment'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
       enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
       type: string
-    SerticaWebApi.Models.Link:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:
-        key:
+        deviceGuid:
           type:
           - string
           - 'null'
-        url:
+          format: uuid
+        requestIdGuid:
           type:
           - string
           - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
     SerticaWebApi.Models.Reminder.ReminderPosition:
       type: object
       properties:
@@ -542,170 +678,34 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    SerticaWebApi.Models.Reminder.ReminderEmailDetails:
-      type: object
-      properties:
-        from:
-          type:
-          - string
-          - 'null'
-        to:
-          type:
-          - string
-          - 'null'
-        subject:
-          type:
-          - string
-          - 'null'
-        sentDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        statusName:
-          type:
-          - string
-          - 'null'
-        mailAccountNo:
-          type:
-          - string
-          - 'null'
-        smtpHostName:
-          type:
-          - string
-          - 'null'
-        smtpUserAccount:
-          type:
-          - string
-          - 'null'
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Reminder.ReminderEmailAttachment'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
-      type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.Reminder.ReminderEmailAttachment:
-      type: object
-      properties:
-        fileName:
-          type:
-          - string
-          - 'null'
-        fileFound:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_EmailStatus:
       enum:
       - AwaitingTransmission
       - Sent
       - Failed
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
       type: object
       properties:
-        deviceGuid:
+        field:
           type:
           - string
           - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_AutomaticReminderType:
-      enum:
-      - RequestForQuoteNotConfirmed
-      - PurchaseOrderNotConfirmed
-      - DeliveryDateExceeded
-      - InvoicedButNotReceived
-      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: http

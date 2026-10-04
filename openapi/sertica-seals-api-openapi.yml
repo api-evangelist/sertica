@@ -788,46 +788,35 @@ paths:
       - Bearer: []
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.ElectronicLogBook.Seal:
       type: object
       properties:
-        field:
+        sealNo:
           type:
           - string
           - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.ElectronicLogbook.SealStatusUpdate:
-      type: object
-      properties:
-        sealNos:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        sealStatus:
-          type:
-          - string
-          - 'null'
-        sealStorageLocationNo:
-          type:
-          - string
-          - 'null'
-        remark:
+        description:
           type:
           - string
           - 'null'
@@ -841,10 +830,99 @@ components:
           - integer
           - 'null'
           format: int32
-        pin:
+        sealTypeNo:
           type:
           - string
           - 'null'
+        sealTypeName:
+          type:
+          - string
+          - 'null'
+        currentSubSealPointNo:
+          type:
+          - string
+          - 'null'
+        currentSubSealPointName:
+          type:
+          - string
+          - 'null'
+        sealStorageLocationNo:
+          type:
+          - string
+          - 'null'
+        sealStorageLocationName:
+          type:
+          - string
+          - 'null'
+        sealStatus:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealStatus'
+        remark:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
       additionalProperties: false
     SerticaWebApi.Models.ValidationResult:
       type: object
@@ -874,101 +952,27 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealSubSealPointType:
-      enum:
-      - Affixed
-      - Broken
-      type: string
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
       type: object
       properties:
         field:
           type:
           - string
           - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
-      type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
       additionalProperties: false
     SerticaWebApi.Models.ElectronicLogBook.SealSubSealPoint:
       type: object
@@ -1089,11 +1093,62 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.ElectronicLogbook.DeletionPINVerification:
       type: object
       properties:
@@ -1165,6 +1220,64 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealBreakReason:
+      enum:
+      - NotBroken
+      - Orbi
+      - Operation
+      - Inspection
+      - Maintenance
+      - Accidental
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealStatus:
+      enum:
+      - New
+      - Available
+      - Affixed
+      - Broken
+      - NotValid
+      - Lost
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealAffixReason:
+      enum:
+      - NotAffixed
+      - Orbi
+      - Operation
+      - Inspection
+      - Maintenance
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
       enum:
       - Equals
@@ -1182,14 +1295,56 @@ components:
       - NotEquals
       - NotIn
       type: string
-    SerticaWebApi.Models.ElectronicLogBook.Seal:
+    SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
-        sealNo:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
           type:
           - string
           - 'null'
         description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ElectronicLogbook.SealStatusUpdate:
+      type: object
+      properties:
+        sealNos:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        sealStatus:
+          type:
+          - string
+          - 'null'
+        sealStorageLocationNo:
+          type:
+          - string
+          - 'null'
+        remark:
           type:
           - string
           - 'null'
@@ -1203,99 +1358,10 @@ components:
           - integer
           - 'null'
           format: int32
-        sealTypeNo:
+        pin:
           type:
           - string
           - 'null'
-        sealTypeName:
-          type:
-          - string
-          - 'null'
-        currentSubSealPointNo:
-          type:
-          - string
-          - 'null'
-        currentSubSealPointName:
-          type:
-          - string
-          - 'null'
-        sealStorageLocationNo:
-          type:
-          - string
-          - 'null'
-        sealStorageLocationName:
-          type:
-          - string
-          - 'null'
-        sealStatus:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealStatus'
-        remark:
-          type:
-          - string
-          - 'null'
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
       additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
       type: object
@@ -1341,82 +1407,16 @@ components:
           items:
             type: string
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealBreakReason:
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
       enum:
-      - NotBroken
-      - Orbi
-      - Operation
-      - Inspection
-      - Maintenance
-      - Accidental
+      - Asc
+      - Desc
       type: string
-    SerticaWebApi.Models.BrokenRuleType:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealSubSealPointType:
       enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealAffixReason:
-      enum:
-      - NotAffixed
-      - Orbi
-      - Operation
-      - Inspection
-      - Maintenance
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_SealStatus:
-      enum:
-      - New
-      - Available
       - Affixed
       - Broken
-      - NotValid
-      - Lost
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
-      type: object
-      properties:
-        deviceGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: http

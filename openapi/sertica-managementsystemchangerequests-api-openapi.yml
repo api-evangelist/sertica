@@ -1434,174 +1434,15 @@ paths:
       - Bearer: []
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ChangeRequestStatus:
+    SerticaWebApi.Models.BrokenRuleType:
       enum:
-      - Draft
-      - Requested
-      - Accepted
-      - Rejected
-      - Published
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
       type: string
-    SerticaWebApi.Models.ChangeRequestApprover:
-      type: object
-      properties:
-        changeRequestNo:
-          type:
-          - string
-          - 'null'
-        approverNo:
-          type:
-          - string
-          - 'null'
-        approverName:
-          type:
-          - string
-          - 'null'
-        approvalOrder:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssueReason:
-      enum:
-      - DocumentCouldNotBeValidated
-      - ChangeRequestWithOlderRevisionWarning
-      - UnitChangeMissingChangeOnUnit
-      - DocumentHasOutstandingChangeRequests
-      - IsDocNoStillUniquePerUnitIfStatusIsChangedTo
-      - DocumentUsedOnJobError
-      - ChangeToDraftDenied
-      - ChangeToRequestedDenied
-      - BypassApprovalDenied
-      type: string
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResult:
       type: object
       properties:
@@ -1621,81 +1462,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssue'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse:
-      type: object
-      properties:
-        changeRequestNo:
-          type:
-          - string
-          - 'null'
-        text:
-          type:
-          - string
-          - 'null'
-        createRoleNo:
-          type:
-          - string
-          - 'null'
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
     SerticaWebApi.Models.UnitManagement.UnitDocumentClass:
@@ -1752,220 +1518,97 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
-          type:
-          - array
-          - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
       enum:
-      - User
-      - Role
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+    System.IO.File:
       type: object
-      properties:
-        supportsContains:
-          type: boolean
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssueReason:
+      enum:
+      - DocumentCouldNotBeValidated
+      - ChangeRequestWithOlderRevisionWarning
+      - UnitChangeMissingChangeOnUnit
+      - DocumentHasOutstandingChangeRequests
+      - IsDocNoStillUniquePerUnitIfStatusIsChangedTo
+      - DocumentUsedOnJobError
+      - ChangeToDraftDenied
+      - ChangeToRequestedDenied
+      - BypassApprovalDenied
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_ChangeRequestType:
       enum:
       - Change
       - Delete
       - UnitChange
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_ChangeRequestStatus:
       enum:
-      - All
-      - One
+      - Draft
+      - Requested
+      - Accepted
+      - Rejected
+      - Published
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssue:
+    SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
-        reason:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssueReason'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
+        isValid:
           type: boolean
-        subObjectsToInclude:
+          readOnly: true
+        errors:
           type:
           - array
           - 'null'
           items:
-            type: string
-        contains:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
           type:
           - array
           - 'null'
           items:
-            type: string
-        criteria:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
           type:
-          - array
+          - object
           - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    SerticaWebApi.Models.UserManagement.UserUnit:
-      type: object
-      properties:
-        userNo:
-          type:
-          - string
-          - 'null'
-        userName:
-          type:
-          - string
-          - 'null'
-        inactiveUser:
-          type: boolean
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        inactiveUnit:
-          type: boolean
-        userTitle:
-          type:
-          - string
-          - 'null'
-        selectAtLogin:
-          type: boolean
-        markAsReadRight:
-          type: boolean
-        acknowledgeRight:
-          type: boolean
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
       type: object
       properties:
-        changeRequestWithOlderRevisionAnswer:
-          type:
-          - boolean
-          - 'null'
-        remark:
+        field:
           type:
           - string
           - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UnitForSale:
-      enum:
-      - 'No'
-      - 'Yes'
-      type: string
     SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequest:
       type: object
       properties:
@@ -2168,6 +1811,232 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.FunctionArea.FunctionAreaUnit:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        functionAreaNo:
+          type:
+          - string
+          - 'null'
+        functionAreaName:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    SerticaWebApi.Models.UnitManagement.UnitCompany:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        standardText1No:
+          type:
+          - string
+          - 'null'
+        standardText1Text:
+          type:
+          - string
+          - 'null'
+        standardText2No:
+          type:
+          - string
+          - 'null'
+        standardText2Text:
+          type:
+          - string
+          - 'null'
+        standardText3No:
+          type:
+          - string
+          - 'null'
+        standardText3Text:
+          type:
+          - string
+          - 'null'
+        default:
+          type:
+          - boolean
+          - 'null'
+        externalReference1:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
       type: object
       properties:
@@ -2178,27 +2047,89 @@ components:
         direction:
           $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
       additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
+    SerticaWebApi.Models.ManagementSystem.ApiChangeRequestApproveArguments:
+      type: object
+      properties:
+        changeRequestWithOlderRevisionAnswer:
+          type:
+          - boolean
+          - 'null'
+        remark:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
       enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
+      - User
+      - Role
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
+    SerticaWebApi.Models.ChangeRequestApprover:
+      type: object
+      properties:
+        changeRequestNo:
+          type:
+          - string
+          - 'null'
+        approverNo:
+          type:
+          - string
+          - 'null'
+        approverName:
+          type:
+          - string
+          - 'null'
+        approvalOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
     SerticaWebApi.Models.UnitManagement.Unit:
       type: object
       properties:
@@ -2855,12 +2786,132 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    System.IO.File:
-      type: object
-      additionalProperties: false
-    SerticaWebApi.Models.UnitManagement.UnitCompany:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssue:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ChangeRequestApproveResultIssueReason'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UnitForSale:
+      enum:
+      - 'No'
+      - 'Yes'
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.UserManagement.UserUnit:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        inactiveUser:
+          type: boolean
         unitNo:
           type:
           - string
@@ -2869,54 +2920,18 @@ components:
           type:
           - string
           - 'null'
-        companyNo:
+        inactiveUnit:
+          type: boolean
+        userTitle:
           type:
           - string
           - 'null'
-        companyName:
-          type:
-          - string
-          - 'null'
-        standardText1No:
-          type:
-          - string
-          - 'null'
-        standardText1Text:
-          type:
-          - string
-          - 'null'
-        standardText2No:
-          type:
-          - string
-          - 'null'
-        standardText2Text:
-          type:
-          - string
-          - 'null'
-        standardText3No:
-          type:
-          - string
-          - 'null'
-        standardText3Text:
-          type:
-          - string
-          - 'null'
-        default:
-          type:
-          - boolean
-          - 'null'
-        externalReference1:
-          type:
-          - string
-          - 'null'
-        externalReference2:
-          type:
-          - string
-          - 'null'
-        externalReference3:
-          type:
-          - string
-          - 'null'
+        selectAtLogin:
+          type: boolean
+        markAsReadRight:
+          type: boolean
+        acknowledgeRight:
+          type: boolean
         guidForReferencedObject:
           type:
           - string
@@ -2952,49 +2967,34 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+    SerticaWebApi.Models.ManagementSystems.ManagementSystemChangeRequestResponse:
       type: object
       properties:
-        deviceGuid:
+        changeRequestNo:
           type:
           - string
           - 'null'
-          format: uuid
-        requestIdGuid:
+        text:
           type:
           - string
           - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.FunctionArea.FunctionAreaUnit:
-      type: object
-      properties:
-        unitNo:
+        createRoleNo:
           type:
           - string
           - 'null'
-        unitName:
+        createUserNo:
           type:
           - string
           - 'null'
-        functionAreaNo:
+        createUserName:
           type:
           - string
           - 'null'
-        functionAreaName:
+        createDate:
           type:
           - string
           - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
+          format: date-time
         guid:
           type:
           - string

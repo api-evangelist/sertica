@@ -1901,28 +1901,126 @@ paths:
       - Bearer: []
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportRejectReason:
       type: object
       properties:
-        field:
+        text:
           type:
           - string
           - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
+        recipient:
+          $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.CombinedUserRole2'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportApproverAddedBy:
+      enum:
+      - User
+      - Automatic
+      - Manually
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportConfidentiality:
+      type: object
+      properties:
+        vesselReportNo:
+          type:
+          - string
+          - 'null'
+        combinedUserRoleNo:
+          type:
+          - string
+          - 'null'
+        combinedUserRoleName:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportApprovalFlow:
+      enum:
+      - None
+      - Fixed
+      type: string
+    SerticaWebApi.Models.WebVesselReportingSystem.ExecuteVesselReportWebhookResult:
+      type: object
+      properties:
+        vesselReportNo:
           type:
           - string
           - 'null'
-        isCustomProperty:
+        webhookNo:
+          type:
+          - string
+          - 'null'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        success:
           type: boolean
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportApprovalStatus:
+      enum:
+      - Open
+      - AwaitingApproval
+      - Approved
+      - Rejected
+      - ApprovalNotNeeded
+      type: string
     SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
@@ -1950,6 +2048,20 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportActions:
+      type: object
+      properties:
+        allowApproveVesselReport:
+          type: boolean
+        allowRejectVesselReport:
+          type: boolean
+        allowRequestApproval:
+          type: boolean
+        allowFillOutVesselReport:
+          type: boolean
+        allowReopenVesselReport:
+          type: boolean
       additionalProperties: false
     SerticaWebApi.Models.WebVesselReportingSystem.VesselReport:
       type: object
@@ -2108,49 +2220,87 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportApproverAddedBy:
-      enum:
-      - User
-      - Automatic
-      - Manually
-      type: string
-    SerticaWebApi.Models.BrokenRule:
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportConsumption:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
+        mainVesselReportNo:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
-        objectGuid:
+        referencedVesselReportNo:
+          type:
+          - string
+          - 'null'
+        quantity:
+          type: number
+          format: double
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guidForReferencedObject:
           type:
           - string
           - 'null'
           format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+      type: object
+      properties:
         field:
           type:
           - string
           - 'null'
-        field2:
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
           type:
           - string
           - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
+        isCustomProperty:
+          type: boolean
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportApprovalFlow:
-      enum:
-      - None
-      - Fixed
-      type: string
     SerticaWebApi.Models.WebVesselReportingSystem.VesselReportCreateNode:
       type: object
       properties:
@@ -2212,11 +2362,90 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTypeConfidentiality:
+      type: object
+      properties:
+        vesselReportTypeNo:
+          type:
+          - string
+          - 'null'
+        combinedUserRoleNo:
+          type:
+          - string
+          - 'null'
+        combinedUserRoleName:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+      type: object
+      properties:
+        supportsContains:
+          type: boolean
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+      type: object
+      properties:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
     SerticaWebApi.Models.ErrorReason:
       type: object
       properties:
@@ -2229,6 +2458,129 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBuildRequest:
+      type: object
+      properties:
+        vesselReportTypeNo:
+          type:
+          - string
+          - 'null'
+        vesselReportSequenceInstanceNo:
+          type:
+          - string
+          - 'null'
+        reportDateUtc:
+          type: string
+          format: date-time
+        reportDateUtcOffset:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportResponse:
+      type: object
+      properties:
+        vesselReportNo:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        createRoleNo:
+          type:
+          - string
+          - 'null'
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_WebhookLogStatus:
+      enum:
+      - Error
+      - Resolved
+      - InSync
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataObject:
+      enum:
+      - Invoice
+      - AccrualExport
+      - Currency
+      - AnalyticsSubscription
+      - ImInvoiceExport
+      - InvoiceInfo
+      - PurchaseOrder
+      - PunchOut
+      - Schedule
+      - VesselReport
+      - SyncItemExport
+      - Requisition
+      - PunchoutPurchaseOrder
+      - SparePart
+      - Job
+      - API
+      - Component
+      - JobHistory
+      - Unit
+      - ExternalCalendar
+      - Shipment
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
+      enum:
+      - All
+      - One
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
       type: object
       properties:
@@ -2246,50 +2598,184 @@ components:
         valuesMatching:
           $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
       additionalProperties: false
-    SerticaWebApi.Models.Link:
+    SerticaWebApi.Models.UserManagement.CombinedUserRole2:
       type: object
       properties:
-        key:
+        'no':
           type:
           - string
           - 'null'
-        url:
+        name:
           type:
           - string
           - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        inactive:
+          type: boolean
+        access:
+          type: boolean
+        unitsAsString:
+          type:
+          - string
+          - 'null'
+        unitNamesAsString:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
       additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
       enum:
       - User
       - Role
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportCreateNodeType:
+      enum:
+      - Root
+      - Sequence
+      - SequenceInstance
+      - Report
+      - ReportType
+      - SequencesAndReportTypes
+      - ActiveSequences
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
-        supportsContains:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
           type: boolean
-        fields:
+        subObjectsToInclude:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportActions:
-      type: object
-      properties:
-        allowApproveVesselReport:
-          type: boolean
-        allowRejectVesselReport:
-          type: boolean
-        allowRequestApproval:
-          type: boolean
-        allowFillOutVesselReport:
-          type: boolean
-        allowReopenVesselReport:
-          type: boolean
-      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
     SerticaWebApi.Models.Webhooks.WebhookLog:
       type: object
       properties:
@@ -2376,238 +2862,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBuildRequest:
-      type: object
-      properties:
-        vesselReportTypeNo:
-          type:
-          - string
-          - 'null'
-        vesselReportSequenceInstanceNo:
-          type:
-          - string
-          - 'null'
-        reportDateUtc:
-          type: string
-          format: date-time
-        reportDateUtcOffset:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportRejectReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        recipient:
-          $ref: '#/components/schemas/SerticaWebApi.Models.UserManagement.CombinedUserRole2'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportConsumption:
-      type: object
-      properties:
-        mainVesselReportNo:
-          type:
-          - string
-          - 'null'
-        referencedVesselReportNo:
-          type:
-          - string
-          - 'null'
-        quantity:
-          type: number
-          format: double
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_WebhookLogStatus:
-      enum:
-      - Error
-      - Resolved
-      - InSync
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    SerticaWebApi.Models.UserManagement.CombinedUserRole2:
-      type: object
-      properties:
-        'no':
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        inactive:
-          type: boolean
-        access:
-          type: boolean
-        unitsAsString:
-          type:
-          - string
-          - 'null'
-        unitNamesAsString:
-          type:
-          - string
-          - 'null'
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBuildResult:
-      type: object
-      properties:
-        report:
-          $ref: '#/components/schemas/SerticaWebApi.Models.WebVesselReportingSystem.VesselReport'
-        apiScriptValidationResult:
-          $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
-      type: object
-      properties:
-        field:
-          type:
-          - string
-          - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
     SerticaWebApi.Models.WebVesselReportingSystem.VesselReportApprover:
       type: object
       properties:
@@ -2669,267 +2923,13 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DataObject:
-      enum:
-      - Invoice
-      - AccrualExport
-      - Currency
-      - AnalyticsSubscription
-      - ImInvoiceExport
-      - InvoiceInfo
-      - PurchaseOrder
-      - PunchOut
-      - Schedule
-      - VesselReport
-      - SyncItemExport
-      - Requisition
-      - PunchoutPurchaseOrder
-      - SparePart
-      - Job
-      - API
-      - Component
-      - JobHistory
-      - Unit
-      - ExternalCalendar
-      - Shipment
-      type: string
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.WebVesselReportingSystem.ExecuteVesselReportWebhookResult:
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBuildResult:
       type: object
       properties:
-        vesselReportNo:
-          type:
-          - string
-          - 'null'
-        webhookNo:
-          type:
-          - string
-          - 'null'
-        errorMessage:
-          type:
-          - string
-          - 'null'
-        success:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportCreateNodeType:
-      enum:
-      - Root
-      - Sequence
-      - SequenceInstance
-      - Report
-      - ReportType
-      - SequencesAndReportTypes
-      - ActiveSequences
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportConfidentiality:
-      type: object
-      properties:
-        vesselReportNo:
-          type:
-          - string
-          - 'null'
-        combinedUserRoleNo:
-          type:
-          - string
-          - 'null'
-        combinedUserRoleName:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportApprovalStatus:
-      enum:
-      - Open
-      - AwaitingApproval
-      - Approved
-      - Rejected
-      - ApprovalNotNeeded
-      type: string
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportResponse:
-      type: object
-      properties:
-        vesselReportNo:
-          type:
-          - string
-          - 'null'
-        text:
-          type:
-          - string
-          - 'null'
-        createRoleNo:
-          type:
-          - string
-          - 'null'
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTypeConfidentiality:
-      type: object
-      properties:
-        vesselReportTypeNo:
-          type:
-          - string
-          - 'null'
-        combinedUserRoleNo:
-          type:
-          - string
-          - 'null'
-        combinedUserRoleName:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
-      type: object
-      properties:
-        deviceGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
+        report:
+          $ref: '#/components/schemas/SerticaWebApi.Models.WebVesselReportingSystem.VesselReport'
+        apiScriptValidationResult:
+          $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
       additionalProperties: false
   securitySchemes:
     Bearer:

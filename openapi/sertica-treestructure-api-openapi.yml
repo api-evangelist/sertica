@@ -141,6 +141,18 @@ paths:
       - Bearer: []
 components:
   schemas:
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.TreeStructure.NodeType:
       enum:
       - Component
@@ -154,18 +166,6 @@ components:
       - JobHistoryYear
       - JobHistory
       type: string
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     SerticaWebApi.Models.TreeStructure.TreeStructureNode:
       type: object
       properties:

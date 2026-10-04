@@ -164,6 +164,12 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    SerticaWebApi.Models.ItemLocationTree.ItemLocationTreeNodeType:
+      enum:
+      - Warehouse
+      - ItemLocation
+      - Item
+      type: string
     SerticaWebApi.Models.ItemLocationTree.ItemLocationTreeNode:
       type: object
       properties:
@@ -256,12 +262,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.ItemLocationTree.ItemLocationTreeNodeType:
-      enum:
-      - Warehouse
-      - ItemLocation
-      - Item
-      type: string
   securitySchemes:
     Bearer:
       type: http

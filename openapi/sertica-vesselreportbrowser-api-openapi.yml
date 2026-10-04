@@ -158,6 +158,26 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBrowserNodeType:
+      enum:
+      - Root
+      - VesselReportType
+      - Year
+      - Month
+      - None
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBrowserNode:
       type: object
       properties:
@@ -216,14 +236,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBrowserNodeType:
-      enum:
-      - Root
-      - VesselReportType
-      - Year
-      - Month
-      - None
-      type: string
     SerticaWebApi.Models.WebVesselReportingSystem.VesselReportBrowserNodeKeys:
       type: object
       properties:
@@ -236,18 +248,6 @@ components:
           - string
           - 'null'
         monthKey:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
           type:
           - string
           - 'null'

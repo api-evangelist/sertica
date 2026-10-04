@@ -595,6 +595,148 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SerticaWebApi.Models.ManagementSystem.ApiPublishUnit:
+      type: object
+      properties:
+        unitGuid:
+          type:
+          - string
+          - 'null'
+        publish:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        draft:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        publish:
+          type: boolean
+        documentType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystemPublisher_PublishableType'
+        documentInfo:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        changeRequestNo:
+          type:
+          - string
+          - 'null'
+        affectedUnits:
+          type:
+          - string
+          - 'null'
+        documentFileOK:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.ManagementSystem.ApiPublishArguments:
+      type: object
+      properties:
+        continueWhenUserAlreadyPublishing:
+          type:
+          - boolean
+          - 'null'
+        publishUnits:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishUnit'
+        revisionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        authorizingUserNo:
+          type:
+          - string
+          - 'null'
+        publishMode:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishMode'
+        publishDocuments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssue:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssueReason'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ManagementSystemPublishTaskTaskType:
+      enum:
+      - Publish
+      - UnitDeletion
+      - IndexDocuments
+      type: string
     SerticaWebApi.Models.ErrorReason:
       type: object
       properties:
@@ -607,15 +749,29 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssue:
+    Logihold.BusinessObjects.LogiholdObjModel.IPublishUnit:
       type: object
       properties:
-        reason:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssueReason'
-        message:
+        unitGuid:
           type:
           - string
           - 'null'
+          readOnly: true
+        publish:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        unitName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        draft:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask:
       type: object
@@ -722,11 +878,31 @@ components:
       - Published
       - Failed
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishMode:
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssueReason:
       enum:
-      - FirstPublish
-      - ExportOnly
-      - Denied
+      - DisplayUserAlreadyPublishing
+      - DisplayPublishDeniedInfo
+      - DisplayUnapprovedChangeRequestsWarning
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystemPublisher_PublishableType:
+      enum:
+      - Document
+      - MainIndex
+      - Section
+      - RecordOfCorrection
+      - FrontPage
       type: string
     SerticaWebApi.Models.ManagementSystems.ApiPublishResult:
       type: object
@@ -755,6 +931,12 @@ components:
         publishTask:
           $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystems.ManagementSystemPublishTask'
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishMode:
+      enum:
+      - FirstPublish
+      - ExportOnly
+      - Denied
+      type: string
     SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
@@ -782,188 +964,6 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.ManagementSystemPublishTaskTaskType:
-      enum:
-      - Publish
-      - UnitDeletion
-      - IndexDocuments
-      type: string
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishIssueReason:
-      enum:
-      - DisplayUserAlreadyPublishing
-      - DisplayPublishDeniedInfo
-      - DisplayUnapprovedChangeRequestsWarning
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.ManagementSystemPublisher_PublishableType:
-      enum:
-      - Document
-      - MainIndex
-      - Section
-      - RecordOfCorrection
-      - FrontPage
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.IPublishUnit:
-      type: object
-      properties:
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        publish:
-          type: boolean
-        unitNo:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        unitName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        draft:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ApiPublishArguments:
-      type: object
-      properties:
-        continueWhenUserAlreadyPublishing:
-          type:
-          - boolean
-          - 'null'
-        publishUnits:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishUnit'
-        revisionDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        authorizingUserNo:
-          type:
-          - string
-          - 'null'
-        publishMode:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystems.PublishMode'
-        publishDocuments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument'
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ApiPublishUnit:
-      type: object
-      properties:
-        unitGuid:
-          type:
-          - string
-          - 'null'
-        publish:
-          type: boolean
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        draft:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ManagementSystem.ApiPublishableDocument:
-      type: object
-      properties:
-        guid:
-          type:
-          - string
-          - 'null'
-        publish:
-          type: boolean
-        documentType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ManagementSystemPublisher_PublishableType'
-        documentInfo:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        changeRequestNo:
-          type:
-          - string
-          - 'null'
-        affectedUnits:
-          type:
-          - string
-          - 'null'
-        documentFileOK:
-          type: boolean
       additionalProperties: false
   securitySchemes:
     Bearer:

@@ -1136,32 +1136,10 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
+    SerticaWebApi.Models.Form.FormTemplate:
       type: object
       properties:
-        field:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
-        operators:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        enumType:
-          type:
-          - string
-          - 'null'
-        isCustomProperty:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateJSON:
-      type: object
-      properties:
-        listOfValuesTemplateNo:
+        formTemplateNo:
           type:
           - string
           - 'null'
@@ -1169,440 +1147,119 @@ components:
           type:
           - string
           - 'null'
-        valueFields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateValuesJSON'
-      additionalProperties: false
-    SerticaWebApi.Models.Form.FormTemplateAutomaticDeletion:
-      type: object
-      properties:
-        formTemplateNo:
+        helpDescription:
           type:
           - string
           - 'null'
-        unitNo:
+        documentNo:
           type:
           - string
           - 'null'
-        unitName:
+        documentDescription:
           type:
           - string
           - 'null'
-        monthsBeforeDeletion:
+        activityGroupNo:
           type:
-          - integer
+          - string
           - 'null'
+        activityGroupName:
+          type:
+          - string
+          - 'null'
+        companyLeadNo:
+          type:
+          - string
+          - 'null'
+        companyLeadName:
+          type:
+          - string
+          - 'null'
+        companyLeadUserRoleType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        unitLeadNo:
+          type:
+          - string
+          - 'null'
+        unitLeadName:
+          type:
+          - string
+          - 'null'
+        unitLeadUserRoleType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        enforceConfidentiality:
+          type: boolean
+        inactive:
+          type: boolean
+        fixedApprovalFlow:
+          type: boolean
+        allowAdditionalApprovers:
+          type: boolean
+        formTemplateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateFormEditor'
+        jobFormTemplateDefaultAction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_JobFormTemplateDefaultAction'
+        hashCode:
+          type: integer
           format: int32
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
+        formObject:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormObject'
+        confidentialityUserRoles:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateConfidentialityUserRole'
+        functionAreas:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateFunctionArea'
+        approvers:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateApprover'
+        automaticDeletions:
           type:
-          - object
+          - array
           - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateFormEditor:
-      enum:
-      - Document
-      - RiskAssessment
-      - Sertica
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormObject:
-      type: object
-      properties:
-        formTemplateGuid:
-          type: string
-          format: uuid
-        unitGuid:
-          type: string
-          format: uuid
-        formTemplateNo:
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateAutomaticDeletion'
+        templateCustomProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateCustomProperty'
+        updateUserNo:
           type:
           - string
           - 'null'
-        formTemplateName:
+        updateUserName:
           type:
           - string
-          - 'null'
-        formTemplateHelpDescription:
-          type:
-          - string
-          - 'null'
-        pages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormPage'
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormField'
-        counterFormInfos:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.CounterFormInfo'
-        isFormDuringApproval:
-          type: boolean
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormField:
-      type: object
-      properties:
-        fieldName:
-          type:
-          - string
-          - 'null'
-        fieldType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FieldFormFieldsTypeColumnTypes'
-        sortOrder:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        mandatory:
-          type:
-          - boolean
-          - 'null'
-        timestamp:
-          type:
-          - boolean
           - 'null'
         updateDate:
           type:
           - string
           - 'null'
           format: date-time
-        updateUserGuid:
+        createUserNo:
           type:
           - string
           - 'null'
-          format: uuid
-        caption:
+        createUserName:
           type:
           - string
           - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        tag:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WordFields'
-        default:
-          type:
-          - string
-          - 'null'
-        dateFormat:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats'
-        numberFormat:
-          type:
-          - string
-          - 'null'
-        measureUnit:
-          type:
-          - string
-          - 'null'
-        measurementNo:
-          type:
-          - string
-          - 'null'
-        counterNo:
-          type:
-          - string
-          - 'null'
-        minNumberValue:
-          type:
-          - number
-          - 'null'
-          format: double
-        maxNumberValue:
-          type:
-          - number
-          - 'null'
-          format: double
-        minTextLength:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        maxTextLength:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        minDateTime:
+        createDate:
           type:
           - string
           - 'null'
           format: date-time
-        maxDateTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dynamicDateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DynamicDateType'
-        dynamicDateOffset:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value: {}
-        valueType:
-          type:
-          - string
-          - 'null'
-        column:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        row:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        page:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        listOfValueTemplateNo:
-          type:
-          - string
-          - 'null'
-        listOfValues:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormFieldListOfValue'
-          readOnly: true
-        formTemplateTableGuid:
-          type:
-          - string
-          - 'null'
-        isDateTimeTag:
-          type: boolean
-          readOnly: true
-        isNumberTag:
-          type: boolean
-          readOnly: true
-        formTemplateTableJSON:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableJSON'
-        documents:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.FormFieldDocument'
-        signature:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.FormFieldDocument'
-        helpImage:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.FormFieldDocument'
-        helpImageSize:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        columnSpan:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        rowSpan:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        propertyName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
-      enum:
-      - Asc
-      - Desc
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.FormFieldDocument:
-      type: object
-      properties:
-        guid:
-          type: string
-          format: uuid
-        description:
-          type:
-          - string
-          - 'null'
-        deleted:
-          type: boolean
-        documentNo:
-          type:
-          - string
-          - 'null'
-        documentFileName:
-          type:
-          - string
-          - 'null'
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        documentUnitNo:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        documentWebLink:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateValuesJSON:
-      type: object
-      properties:
-        value:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        text:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Form.FormTemplateFunctionArea:
-      type: object
-      properties:
-        formTemplateNo:
-          type:
-          - string
-          - 'null'
-        formTemplateName:
-          type:
-          - string
-          - 'null'
-        functionAreaNo:
-          type:
-          - string
-          - 'null'
-        functionAreaName:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
-          type:
-          - string
-          - 'null'
-          format: uuid
         guid:
           type:
           - string
@@ -1633,18 +1290,15 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
     SerticaWebApi.Models.UnitManagement.UnitDocumentClass:
       type: object
       properties:
@@ -1699,28 +1353,641 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
+    SerticaWebApi.Models.Form.FormTemplateTableFieldNameDto:
       type: object
       properties:
-        field:
+        formTemplateTableFieldName:
           type:
           - string
           - 'null'
-        operator:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
-        values:
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
+      enum:
+      - Unkonwn
+      - String
+      - Int
+      - Decimal
+      - Enum
+      - DateTime
+      - Guid
+      - Bool
+      - Duration
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.FormFieldDocument:
+      type: object
+      properties:
+        guid:
+          type: string
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+        deleted:
+          type: boolean
+        documentNo:
+          type:
+          - string
+          - 'null'
+        documentFileName:
+          type:
+          - string
+          - 'null'
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        documentUnitNo:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        documentWebLink:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Form.FormTemplateAppObject:
+      type: object
+      properties:
+        guid:
+          type:
+          - string
+          - 'null'
+        unitGuid:
+          type: string
+          format: uuid
+        formTemplateNo:
+          type:
+          - string
+          - 'null'
+        formTemplateName:
+          type:
+          - string
+          - 'null'
+        formTemplateGuid:
+          type: string
+          format: uuid
+        formLayoutJSON:
+          type:
+          - string
+          - 'null'
+        hashCode:
+          type: integer
+          format: int32
+        activityGroupGuid:
+          type:
+          - string
+          - 'null'
+        helpDescription:
+          type:
+          - string
+          - 'null'
+        doNotShowInApp:
+          type: boolean
+        formTemplateAvailable:
+          type: boolean
+        formTemplateConfidentialityList:
+          type:
+          - string
+          - 'null'
+        requiresApproval:
+          type: boolean
+        formTemplateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateFormEditor'
+        onlyCreateFormsFromJobs:
+          type:
+          - boolean
+          - 'null'
+        enforceConfidentiality:
+          type: boolean
+      additionalProperties: false
+    SerticaWebApi.Models.Form.FormTemplateApprover:
+      type: object
+      properties:
+        formTemplateNo:
+          type:
+          - string
+          - 'null'
+        combinedUserRoleNo:
+          type:
+          - string
+          - 'null'
+        combinedUserRoleName:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
+        approvalOrder:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
           type:
           - array
           - 'null'
-          items: {}
-        valuesMatching:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
+    Logihold.BusinessObjects.LogiholdObjModel.WordFields:
       enum:
-      - User
-      - Role
+      - Subject
+      - EventReportUnitLead
+      - EventReportCompanyLead
+      - FormRemarks
+      - UnitNo
+      - UnitName
+      - UnitImoNo
+      - UnitVesselTypeName
+      - UnitCallSign
+      - UnitGrossTonage
+      - UnitHomePort
+      - UnitManager
+      - UnitFlagName
+      - UnitClassName
+      - UnitMMSI
+      - UnitNetTonnage
+      - UnitDeadweight
+      - UnitOfficialNumber
+      - UnitClassId
+      - UnitSatCNo
+      - UnitSatTelephoneNo
+      - UnitSatFaxNo
+      - UnitEmail
+      - UnitYard
+      - UnitYardNo
+      - UnitKeelLaid
+      - UnitBuiltDate
+      - FormReportNo
+      - FormReportDate
+      - FormStatus
+      - FormReportedBy
+      - FormTitleOfReportedUser
+      - FormTemplateNo
+      - FormTemplateName
+      - FormTemplateRevisionNo
+      - FormTemplateRevisionDate
+      - LatestChangeRequestCreateUserNo
+      - LatestChangeRequestCreateUserName
+      - LatestChangeRequestApprover1UserNo
+      - LatestChangeRequestApprover1UserName
+      - LatestChangeRequestApprover2UserNo
+      - LatestChangeRequestApprover2UserName
+      - FormCreatedDate
+      - FormTemplateDocumentUpdateUser
+      - FormTemplateReference
+      - FormApproverNo1
+      - FormApproverName1
+      - FormApproverUpdateDate1
+      - FormApproverUpdateUserNo1
+      - FormApproverUpdateUserName1
+      - FormApproverUpdateUserTitle1
+      - FormApproverStatus1
+      - FormApproverNo2
+      - FormApproverName2
+      - FormApproverUpdateDate2
+      - FormApproverUpdateUserNo2
+      - FormApproverUpdateUserName2
+      - FormApproverUpdateUserTitle2
+      - FormApproverStatus2
+      - FormApproverNo3
+      - FormApproverName3
+      - FormApproverUpdateDate3
+      - FormApproverUpdateUserNo3
+      - FormApproverUpdateUserName3
+      - FormApproverUpdateUserTitle3
+      - FormApproverStatus3
+      - FormApproverNo4
+      - FormApproverName4
+      - FormApproverUpdateDate4
+      - FormApproverUpdateUserNo4
+      - FormApproverUpdateUserName4
+      - FormApproverUpdateUserTitle4
+      - FormApproverStatus4
+      - FormApproverNo5
+      - FormApproverName5
+      - FormApproverUpdateDate5
+      - FormApproverUpdateUserNo5
+      - FormApproverUpdateUserName5
+      - FormApproverUpdateUserTitle5
+      - FormApproverStatus5
+      - CustomFieldText1
+      - CustomFieldText2
+      - CustomFieldText3
+      - CustomFieldText4
+      - CustomFieldText5
+      - CustomFieldText6
+      - CustomFieldText7
+      - CustomFieldText8
+      - CustomFieldText9
+      - CustomFieldText10
+      - CustomFieldNumeric1
+      - CustomFieldNumeric2
+      - CustomFieldNumeric3
+      - CustomFieldNumeric4
+      - CustomFieldNumeric5
+      - CustomFieldNumeric6
+      - CustomFieldNumeric7
+      - CustomFieldNumeric8
+      - CustomFieldNumeric9
+      - CustomFieldNumeric10
+      - CustomFieldNumeric11
+      - CustomFieldNumeric12
+      - CustomFieldNumeric13
+      - CustomFieldNumeric14
+      - CustomFieldNumeric15
+      - CustomFieldNumeric16
+      - CustomFieldNumeric17
+      - CustomFieldNumeric18
+      - CustomFieldNumeric19
+      - CustomFieldNumeric20
+      - CustomFieldDateTime1
+      - CustomFieldDateTime2
+      - CustomFieldDateTime3
+      - CustomFieldDateTime4
+      - CustomFieldDateTime5
+      - CustomFieldDateTime6
+      - CustomFieldDateTime7
+      - CustomFieldDateTime8
+      - CustomFieldDateTime9
+      - CustomFieldDateTime10
+      - CustomFieldCheckbox1
+      - CustomFieldCheckbox2
+      - CustomFieldCheckbox3
+      - CustomFieldCheckbox4
+      - CustomFieldCheckbox5
+      - CustomFieldCheckbox6
+      - CustomFieldCheckbox7
+      - CustomFieldCheckbox8
+      - CustomFieldCheckbox9
+      - CustomFieldCheckbox10
+      - CustomFieldMultilineText1
+      - CustomFieldMultilineText2
+      - CustomFieldMultilineText3
+      - CustomFieldMultilineText4
+      - CustomFieldMultilineText5
+      - CustomFieldMultilineText6
+      - CustomFieldMultilineText7
+      - CustomFieldMultilineText8
+      - CustomFieldMultilineText9
+      - CustomFieldMultilineText10
+      - CustomFieldMultilineText11
+      - CustomFieldMultilineText12
+      - CustomFieldMultilineText13
+      - CustomFieldMultilineText14
+      - CustomFieldMultilineText15
+      - EventReportNo
+      - EventReportType
+      - EventReportEventDepartment
+      - EventReportDateTimeOfEvent
+      - EventReportResponsible
+      - EventReportStatus
+      - EventReportDueDate
+      - EventReportOriginalDueDate
+      - EventReportProgressInitiated
+      - EventReportCompletedClosed
+      - EventReportPostponedDate
+      - EventReportPostponedStatus
+      - EventReportExpectedCompleteDate
+      - EventReportGroundsReason
+      - EventReportGrounds
+      - EventReportEnforceConfidentiality
+      - EventReportResponseLog
+      - EventReportDocuments
+      - EventReportDescriptionOfEvent
+      - EventReportImmediateCause
+      - EventReportCorrectiveAction
+      - EventReportCorrectiveActionText
+      - EventReportPreventativeMeasures
+      - EventReportPreventativeMeasuresText
+      - EventReportCorrectionText
+      - EventReportInitialComments
+      - EventReportSubsequentComments
+      - EventReportRiskIndex
+      - EventReportDetained
+      - EventReportConventionRef
+      - EventReportGroupCode
+      - EventReportActionCode
+      - EventReportStandardReference
+      - EventReportActivityOfTheUnit
+      - EventReportActivityOfThePerson
+      - EventReportLocation
+      - EventReportPositionRank
+      - EventReportHumanManning
+      - EventReportWorkingEnvoirment
+      - EventReportExternalEnvoirment
+      - EventReportTechnical
+      - EventReportEventHeading
+      - EventReportMechanism
+      - EventReportContact
+      - EventReportIndividual
+      - EventReportEnvoirment
+      - EventReportUnit
+      - EventReportThridParty
+      - EventReportWeatherConditions
+      - EventReportWindForce
+      - EventReportWindDirection
+      - EventReportSeaState
+      - EventReportOther
+      - EventReportManagement
+      - CauseAnalysisText
+      - EventReportISMRelatedDeficiency
+      - EventReportCeforMainEventCode
+      - EventReportCeforMainCasualtyCode
+      - EventReportCeforCauseCode
+      - EventReportGrossEstimate
+      - EventReportOwnRetention
+      - EventReportNetClaimToInsurance
+      - EventReportReserve
+      - EventReportPaid
+      - EventReportActualRepairCosts
+      - EventReportOtherCosts
+      - EventReportTotalCosts
+      - EventReportOwnersCost
+      - EventReportSuperintendentActualRepairCosts
+      - EventReportEstimatedRepairCost
+      - EventReportActualRepairCost
+      - EventReportEstimatedOffHireDays
+      - EventReportActualOffHireDays
+      - EventReportCeforCodesValidated
+      - EventReportFinancialFiguresEstimated
+      - EventReportLessonsLearnedDistributed
+      - EventReportIdentifiedArea
+      - EventReportProbRecurrenceRate
+      - EventReportSeverity
+      - ActivityManagementNo
+      - ActivityManagementTitle
+      - ActivityManagementType
+      - ActivityManagementConfirmedStartDate
+      - ActivityManagementConfirmedEndDate
+      - ActivityManagementCompletedDate
+      - ActivityManagementSurveyOrganization
+      - ActivityManagementPlaceOfInspection
+      - ActivityManagementSurveyors
+      - ActivityManagementSendRectRepTo
+      - BunkeringPortName
+      - BargeName
+      - VesselStandbyForBunkersDate
+      - VoyageNo
+      - ManagementSystemROCRevisionDate
+      - ManagementSystemROCRevisionNo
+      - ManagementSystemNo
+      - ManagementSystemTitle
+      - ManagementSystemHeadLine
+      - ManagementSystemCheckTitle
+      - ManagementSystemChangeRequestRequestedDate
+      - ManagementSystemChangeRequestNo
+      - ManagementSystemChangeRequestRequestedByNo
+      - ManagementSystemChangeRequestRequestedByName
+      - ManagementSystemChangeRequestSourceNo
+      - ManagementSystemChangeRequestSourceName
+      - ManagementSystemChangeRequestCriticalityNo
+      - ManagementSystemChangeRequestCriticalityName
+      - ManagementSystemChangeRequestDescription
+      - JobNo
+      - JobName
+      - JobDescription
+      - JobComponentNo
+      - JobComponentName
+      - EventPictureTable
+      - ActivityPictureTable
+      - FormLargestResidualRisk
+      - FormRiskNo
+      - FormRiskName
+      - FormRiskDescription
+      - FormRiskAreaNo
+      - FormRiskAreaName
+      - FormRiskRecurrencyBeforeNo
+      - FormRiskRecurrencyBeforeName
+      - FormRiskSeverityBeforeNo
+      - FormRiskSeverityBeforeName
+      - FormRiskIndexBefore
+      - FormRiskControls
+      - FormRiskRecurrencyAfterNo
+      - FormRiskRecurrencyAfterName
+      - FormRiskSeverityAfterNo
+      - FormRiskSeverityAfterName
+      - FormRiskIndexAfter
+      - FormRiskCompanyLeadComment
+      - FormRiskResponsibleNo
+      - FormRiskResponsibleName
+      - SupplierApprovalCompanyNo
+      - SupplierApprovalCompanyName
+      - SupplierApprovalAddressNo
+      - SupplierApprovalAddressName
+      - MeasurementName
+      - MeasurementDescription
+      - MeasurementRemarks
+      - MeasurementUnitOfMeasurement
+      - MeasurementLatestReadingValue
+      - MeasurementLatestReadingDate
+      - MeasurementLatestReadingRemark
+      - MeasurementReadingValue
+      - MeasurementReadingDate
+      - MeasurementReadingRemark
+      - JobHistoryDoneDate
+      - FormApprovalValidUntil
+      - CustomFieldCheckbox11
+      - CustomFieldCheckbox12
+      - CustomFieldCheckbox13
+      - CustomFieldCheckbox14
+      - CustomFieldCheckbox15
+      - CustomFieldCheckbox16
+      - CustomFieldCheckbox17
+      - CustomFieldCheckbox18
+      - CustomFieldCheckbox19
+      - CustomFieldCheckbox20
+      - CounterName
+      - CounterTypeNo
+      - CounterTypeName
+      - CounterLatestReadingValue
+      - CounterLatestReadingDate
+      - CounterLatestReadingRemark
+      - CounterReadingValue
+      - CounterReadingDate
+      - CounterReadingRemark
+      - ActivityManagementUnitNo
+      - ActivityManagementUnitName
+      - ActivityManagementDepartmentNo
+      - ActivityManagementDepartmentName
+      - ActivityManagementDescription
+      - ActivityManagementUnitResponsibleNo
+      - ActivityManagementUnitResponsibleName
+      - ActivityManagementCompanyLeadNo
+      - ActivityManagementCompanyLeadName
+      - ActivityManagementRemarks
+      - ActivityManagementStatus
+      - ActivityManagementWindowOpensDate
+      - ActivityManagementWindowClosesDate
+      - ActivityManagementRectificationDueDate
+      - ActivityManagementAllEventsClosedDate
+      - ActivityManagementQuestionnaireNo
+      - ActivityManagementQuestionnaireName
+      - ActivityManagementNumberOfDeficiencies
+      - ActivityManagementDeficiencyCategoryNo
+      - ActivityManagementDeficiencyCategoryName
+      - ActivityManagementInternalScore
+      - ActivityManagementInternalScoreCategoryNo
+      - ActivityManagementInternalScoreCategoryName
+      - ActivityManagementDateOfDetention
+      - ActivityManagementDateOfRelease
+      - ActivityManagementGrounds
+      - CustomFieldDropDown1
+      - CustomFieldDropDown2
+      - CustomFieldDropDown3
+      - CustomFieldDropDown4
+      - CustomFieldDropDown5
+      - CustomFieldDropDown6
+      - CustomFieldDropDown7
+      - CustomFieldDropDown8
+      - CustomFieldDropDown9
+      - CustomFieldDropDown10
+      - Port
+      - JobPurchaseOrder
+      - AddressBook
+      - UsersOnUnit
+      - FormPictureTable
+      - EventReportStandardReference2
+      - DefectReportNo
+      - DefectReportLocation
+      - DefectStatus
+      - DefectReportStatus
+      - DefectReportReportedByNo
+      - DefectReportReportedByName
+      - DateTimeOfDefect
+      - DefectReportComponentNo
+      - DefectReportComponentName
+      - DefectReportLastOverhauledJobNo
+      - DefectReportLastOverhauledJobName
+      - DefectReportSerialNo
+      - DefectReportIsCritical
+      - DefectReportDate
+      - DefectReportRemarks
+      - DefectReportDescription
+      - DefectReportPrevailingConditions
+      - DefectReportAdditionalObservations
+      - DefectReportRiskAssessmentNo
+      - DefectReportRiskAssessmentStatus
+      - DefectReportInvestigationNo
+      - DefectReportInvestigationStatus
+      - DefectReportInvestigationLocation
+      - DefectReportSystemGroupName
+      - DefectReportItemName
+      - DefectReportLiquidName
+      - DefectReportImmediateCause1
+      - DefectReportImmediateCause2
+      - DefectReportImmediateCause3
+      - DefectReportIsDryDock
+      - DefectReportBasicCause1
+      - DefectReportBasicCause2
+      - DefectReportBasicCause3
+      - DefectReportProbability
+      - DefectReportIsBlackoutEvent
+      - DefectReportBlackoutEventRestorationTime
+      - DefectReportIsLossOfManoeuvrabilityEvent
+      - DefectReportLossOfManoeuvrabilityEventRestorationTime
+      - DefectReportSeverityCostCategoryName
+      - DefectReportSeveritySafetyImpactName
+      - DefectReportSeverityEnvironmentalImpactName
+      - DefectReportRisk
+      - DefectReportCostBriefEstimationUSD
+      - DefectReportJobNo
+      - DefectReportJobName
+      - DefectReportTechnicalDepartmentRemarks
+      - DefectReportResponsibleNo
+      - DefectReportResponsibleName
+      - DefectReportRectificationTargetDate
+      - DefectReportClosingDate
+      - DefectReportPostponementDueDate
+      - DefectReportIsPostponed
+      - DefectReportPostponementRANo
+      - DefectReportPostponementRASubject
+      - DefectReportIsPreliminaryCE001RequirementStatus
+      - DefectReportDIRITApprovedNecessity
+      - DefectReportDIRITNecessityRemark
+      - DefectReportLeaderNo
+      - DefectReportLeaderName
+      - DefectReportDueDate
+      - DefectReportCloseOutDate
+      - EventReportWorkingEnvironment
+      - EventReportExternalEnvironment
+      - EventReportEnvironment
+      - EventReportThirdParty
+      - UnitGrossTonnage
       type: string
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateValuesJSON:
+      type: object
+      properties:
+        value:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        text:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormFieldListOfValue:
       type: object
       properties:
@@ -1735,24 +2002,33 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_JobFormTemplateDefaultAction:
+      enum:
+      - Activation
+      - Completion
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField:
       type: object
       properties:
-        supportsContains:
-          type: boolean
-        fields:
+        field:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType'
+        operators:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
-          readOnly: true
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        enumType:
+          type:
+          - string
+          - 'null'
+        isCustomProperty:
+          type: boolean
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
-      enum:
-      - All
-      - One
-      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.TemplateTableRowRender:
       type: object
       properties:
@@ -2776,165 +3052,127 @@ components:
           - 'null'
           format: double
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableColumnSetupJSON:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfo:
       type: object
       properties:
-        columnNo:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateTableColumnSetupDataType'
-        mandatory:
+        supportsContains:
           type: boolean
-        locked:
-          type: boolean
-        dropdown:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateJSON'
-        tag:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WordFields'
-        measurementNo:
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchInfoField'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.FunctionArea.FunctionAreaUnit:
+      type: object
+      properties:
+        unitNo:
           type:
           - string
           - 'null'
-        dateFormat:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats'
-        numericFormat:
+        unitName:
           type:
           - string
           - 'null'
-        measureUnit:
+        functionAreaNo:
           type:
           - string
           - 'null'
-        columnWidth:
-          type: integer
-          format: int32
-        dateMinValue:
+        functionAreaName:
           type:
           - string
           - 'null'
-          format: date-time
-        dateMaxValue:
+        guidForReferencedObject:
           type:
           - string
           - 'null'
-          format: date-time
-        numericMinValue:
-          type:
-          - number
-          - 'null'
-          format: double
-        numericMaxValue:
-          type:
-          - number
-          - 'null'
-          format: double
-        sumColumn:
-          type: boolean
-        skipThousandsSeparator:
-          type:
-          - boolean
-          - 'null'
-        default:
-          type:
-          - string
-          - 'null'
-        unitGuid:
-          type:
-          - string
-          - 'null'
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
+          format: uuid
         guid:
           type:
           - string
           - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateTableColumnSetupDataType:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateFormEditor:
       enum:
-      - Numeric
-      - Date
-      - String
-      - Checkbox
-      - Dropdown
+      - Document
+      - RiskAssessment
+      - Sertica
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
-      enum:
-      - Equals
-      - LessThan
-      - GreaterThan
-      - Like
-      - Range
-      - In
-      - Dynamic
-      - StartsWith
-      - EndsWith
-      - IsNull
-      - NotLike
-      - Or
-      - NotEquals
-      - NotIn
-      type: string
-    SerticaWebApi.Models.Form.FormTemplateTableFieldNameDto:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
       type: object
       properties:
-        formTemplateTableFieldName:
+        deviceGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        requestIdGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        fullSynchronization:
+          type: boolean
+        appType:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DynamicDateType:
+      enum:
+      - AfterToday
+      - BeforeToday
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
           type:
           - string
           - 'null'
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
-      type: object
-      properties:
-        distinct:
-          type: boolean
-        subObjectsToInclude:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        contains:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
-        sorting:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        forDeviceRequest:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
-        unitFilter:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats:
+      enum:
+      - YYYYMMDD
+      - YYYYMMDDHHMM
+      - YYYYMMDDHHMMSS
+      - DDMMYYY
+      - DDMMYYYHHMM
+      - DDMMYYYHHMMSS
+      - LocalizationDate
+      - LocalizationDateTime
+      - LocalizationDateLongTime
+      type: string
     Logihold.BusinessObjects.LogiholdObjModel.SystemData_FieldFormFieldsTypeColumnTypes:
       enum:
       - StaticText
@@ -2995,39 +3233,33 @@ components:
           - 'null'
           format: double
       additionalProperties: false
-    SerticaWebApi.Models.UserManagement.UserUnit:
+    SerticaWebApi.Models.Form.FormTemplateConfidentialityUserRole:
       type: object
       properties:
-        userNo:
+        formTemplateGuid:
+          type: string
+          format: uuid
+        combinedUserRoleNo:
           type:
           - string
           - 'null'
-        userName:
+        combinedUserRoleName:
           type:
           - string
           - 'null'
-        inactiveUser:
-          type: boolean
-        unitNo:
+        formTemplateNo:
           type:
           - string
           - 'null'
-        unitName:
+        formTemplateName:
           type:
           - string
           - 'null'
-        inactiveUnit:
-          type: boolean
-        userTitle:
-          type:
-          - string
-          - 'null'
-        selectAtLogin:
-          type: boolean
-        markAsReadRight:
-          type: boolean
-        acknowledgeRight:
-          type: boolean
+        defaultExpiryDays:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole_CombinedType'
         guidForReferencedObject:
           type:
           - string
@@ -3063,470 +3295,14 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.WordFields:
-      enum:
-      - Subject
-      - EventReportUnitLead
-      - EventReportCompanyLead
-      - FormRemarks
-      - UnitNo
-      - UnitName
-      - UnitImoNo
-      - UnitVesselTypeName
-      - UnitCallSign
-      - UnitGrossTonage
-      - UnitHomePort
-      - UnitManager
-      - UnitFlagName
-      - UnitClassName
-      - UnitMMSI
-      - UnitNetTonnage
-      - UnitDeadweight
-      - UnitOfficialNumber
-      - UnitClassId
-      - UnitSatCNo
-      - UnitSatTelephoneNo
-      - UnitSatFaxNo
-      - UnitEmail
-      - UnitYard
-      - UnitYardNo
-      - UnitKeelLaid
-      - UnitBuiltDate
-      - FormReportNo
-      - FormReportDate
-      - FormStatus
-      - FormReportedBy
-      - FormTitleOfReportedUser
-      - FormTemplateNo
-      - FormTemplateName
-      - FormTemplateRevisionNo
-      - FormTemplateRevisionDate
-      - LatestChangeRequestCreateUserNo
-      - LatestChangeRequestCreateUserName
-      - LatestChangeRequestApprover1UserNo
-      - LatestChangeRequestApprover1UserName
-      - LatestChangeRequestApprover2UserNo
-      - LatestChangeRequestApprover2UserName
-      - FormCreatedDate
-      - FormTemplateDocumentUpdateUser
-      - FormTemplateReference
-      - FormApproverNo1
-      - FormApproverName1
-      - FormApproverUpdateDate1
-      - FormApproverUpdateUserNo1
-      - FormApproverUpdateUserName1
-      - FormApproverUpdateUserTitle1
-      - FormApproverStatus1
-      - FormApproverNo2
-      - FormApproverName2
-      - FormApproverUpdateDate2
-      - FormApproverUpdateUserNo2
-      - FormApproverUpdateUserName2
-      - FormApproverUpdateUserTitle2
-      - FormApproverStatus2
-      - FormApproverNo3
-      - FormApproverName3
-      - FormApproverUpdateDate3
-      - FormApproverUpdateUserNo3
-      - FormApproverUpdateUserName3
-      - FormApproverUpdateUserTitle3
-      - FormApproverStatus3
-      - FormApproverNo4
-      - FormApproverName4
-      - FormApproverUpdateDate4
-      - FormApproverUpdateUserNo4
-      - FormApproverUpdateUserName4
-      - FormApproverUpdateUserTitle4
-      - FormApproverStatus4
-      - FormApproverNo5
-      - FormApproverName5
-      - FormApproverUpdateDate5
-      - FormApproverUpdateUserNo5
-      - FormApproverUpdateUserName5
-      - FormApproverUpdateUserTitle5
-      - FormApproverStatus5
-      - CustomFieldText1
-      - CustomFieldText2
-      - CustomFieldText3
-      - CustomFieldText4
-      - CustomFieldText5
-      - CustomFieldText6
-      - CustomFieldText7
-      - CustomFieldText8
-      - CustomFieldText9
-      - CustomFieldText10
-      - CustomFieldNumeric1
-      - CustomFieldNumeric2
-      - CustomFieldNumeric3
-      - CustomFieldNumeric4
-      - CustomFieldNumeric5
-      - CustomFieldNumeric6
-      - CustomFieldNumeric7
-      - CustomFieldNumeric8
-      - CustomFieldNumeric9
-      - CustomFieldNumeric10
-      - CustomFieldNumeric11
-      - CustomFieldNumeric12
-      - CustomFieldNumeric13
-      - CustomFieldNumeric14
-      - CustomFieldNumeric15
-      - CustomFieldNumeric16
-      - CustomFieldNumeric17
-      - CustomFieldNumeric18
-      - CustomFieldNumeric19
-      - CustomFieldNumeric20
-      - CustomFieldDateTime1
-      - CustomFieldDateTime2
-      - CustomFieldDateTime3
-      - CustomFieldDateTime4
-      - CustomFieldDateTime5
-      - CustomFieldDateTime6
-      - CustomFieldDateTime7
-      - CustomFieldDateTime8
-      - CustomFieldDateTime9
-      - CustomFieldDateTime10
-      - CustomFieldCheckbox1
-      - CustomFieldCheckbox2
-      - CustomFieldCheckbox3
-      - CustomFieldCheckbox4
-      - CustomFieldCheckbox5
-      - CustomFieldCheckbox6
-      - CustomFieldCheckbox7
-      - CustomFieldCheckbox8
-      - CustomFieldCheckbox9
-      - CustomFieldCheckbox10
-      - CustomFieldMultilineText1
-      - CustomFieldMultilineText2
-      - CustomFieldMultilineText3
-      - CustomFieldMultilineText4
-      - CustomFieldMultilineText5
-      - CustomFieldMultilineText6
-      - CustomFieldMultilineText7
-      - CustomFieldMultilineText8
-      - CustomFieldMultilineText9
-      - CustomFieldMultilineText10
-      - CustomFieldMultilineText11
-      - CustomFieldMultilineText12
-      - CustomFieldMultilineText13
-      - CustomFieldMultilineText14
-      - CustomFieldMultilineText15
-      - EventReportNo
-      - EventReportType
-      - EventReportEventDepartment
-      - EventReportDateTimeOfEvent
-      - EventReportResponsible
-      - EventReportStatus
-      - EventReportDueDate
-      - EventReportOriginalDueDate
-      - EventReportProgressInitiated
-      - EventReportCompletedClosed
-      - EventReportPostponedDate
-      - EventReportPostponedStatus
-      - EventReportExpectedCompleteDate
-      - EventReportGroundsReason
-      - EventReportGrounds
-      - EventReportEnforceConfidentiality
-      - EventReportResponseLog
-      - EventReportDocuments
-      - EventReportDescriptionOfEvent
-      - EventReportImmediateCause
-      - EventReportCorrectiveAction
-      - EventReportCorrectiveActionText
-      - EventReportPreventativeMeasures
-      - EventReportPreventativeMeasuresText
-      - EventReportCorrectionText
-      - EventReportInitialComments
-      - EventReportSubsequentComments
-      - EventReportRiskIndex
-      - EventReportDetained
-      - EventReportConventionRef
-      - EventReportGroupCode
-      - EventReportActionCode
-      - EventReportStandardReference
-      - EventReportActivityOfTheUnit
-      - EventReportActivityOfThePerson
-      - EventReportLocation
-      - EventReportPositionRank
-      - EventReportHumanManning
-      - EventReportWorkingEnvoirment
-      - EventReportExternalEnvoirment
-      - EventReportTechnical
-      - EventReportEventHeading
-      - EventReportMechanism
-      - EventReportContact
-      - EventReportIndividual
-      - EventReportEnvoirment
-      - EventReportUnit
-      - EventReportThridParty
-      - EventReportWeatherConditions
-      - EventReportWindForce
-      - EventReportWindDirection
-      - EventReportSeaState
-      - EventReportOther
-      - EventReportManagement
-      - CauseAnalysisText
-      - EventReportISMRelatedDeficiency
-      - EventReportCeforMainEventCode
-      - EventReportCeforMainCasualtyCode
-      - EventReportCeforCauseCode
-      - EventReportGrossEstimate
-      - EventReportOwnRetention
-      - EventReportNetClaimToInsurance
-      - EventReportReserve
-      - EventReportPaid
-      - EventReportActualRepairCosts
-      - EventReportOtherCosts
-      - EventReportTotalCosts
-      - EventReportOwnersCost
-      - EventReportSuperintendentActualRepairCosts
-      - EventReportEstimatedRepairCost
-      - EventReportActualRepairCost
-      - EventReportEstimatedOffHireDays
-      - EventReportActualOffHireDays
-      - EventReportCeforCodesValidated
-      - EventReportFinancialFiguresEstimated
-      - EventReportLessonsLearnedDistributed
-      - EventReportIdentifiedArea
-      - EventReportProbRecurrenceRate
-      - EventReportSeverity
-      - ActivityManagementNo
-      - ActivityManagementTitle
-      - ActivityManagementType
-      - ActivityManagementConfirmedStartDate
-      - ActivityManagementConfirmedEndDate
-      - ActivityManagementCompletedDate
-      - ActivityManagementSurveyOrganization
-      - ActivityManagementPlaceOfInspection
-      - ActivityManagementSurveyors
-      - ActivityManagementSendRectRepTo
-      - BunkeringPortName
-      - BargeName
-      - VesselStandbyForBunkersDate
-      - VoyageNo
-      - ManagementSystemROCRevisionDate
-      - ManagementSystemROCRevisionNo
-      - ManagementSystemNo
-      - ManagementSystemTitle
-      - ManagementSystemHeadLine
-      - ManagementSystemCheckTitle
-      - ManagementSystemChangeRequestRequestedDate
-      - ManagementSystemChangeRequestNo
-      - ManagementSystemChangeRequestRequestedByNo
-      - ManagementSystemChangeRequestRequestedByName
-      - ManagementSystemChangeRequestSourceNo
-      - ManagementSystemChangeRequestSourceName
-      - ManagementSystemChangeRequestCriticalityNo
-      - ManagementSystemChangeRequestCriticalityName
-      - ManagementSystemChangeRequestDescription
-      - JobNo
-      - JobName
-      - JobDescription
-      - JobComponentNo
-      - JobComponentName
-      - EventPictureTable
-      - ActivityPictureTable
-      - FormLargestResidualRisk
-      - FormRiskNo
-      - FormRiskName
-      - FormRiskDescription
-      - FormRiskAreaNo
-      - FormRiskAreaName
-      - FormRiskRecurrencyBeforeNo
-      - FormRiskRecurrencyBeforeName
-      - FormRiskSeverityBeforeNo
-      - FormRiskSeverityBeforeName
-      - FormRiskIndexBefore
-      - FormRiskControls
-      - FormRiskRecurrencyAfterNo
-      - FormRiskRecurrencyAfterName
-      - FormRiskSeverityAfterNo
-      - FormRiskSeverityAfterName
-      - FormRiskIndexAfter
-      - FormRiskCompanyLeadComment
-      - FormRiskResponsibleNo
-      - FormRiskResponsibleName
-      - SupplierApprovalCompanyNo
-      - SupplierApprovalCompanyName
-      - SupplierApprovalAddressNo
-      - SupplierApprovalAddressName
-      - MeasurementName
-      - MeasurementDescription
-      - MeasurementRemarks
-      - MeasurementUnitOfMeasurement
-      - MeasurementLatestReadingValue
-      - MeasurementLatestReadingDate
-      - MeasurementLatestReadingRemark
-      - MeasurementReadingValue
-      - MeasurementReadingDate
-      - MeasurementReadingRemark
-      - JobHistoryDoneDate
-      - FormApprovalValidUntil
-      - CustomFieldCheckbox11
-      - CustomFieldCheckbox12
-      - CustomFieldCheckbox13
-      - CustomFieldCheckbox14
-      - CustomFieldCheckbox15
-      - CustomFieldCheckbox16
-      - CustomFieldCheckbox17
-      - CustomFieldCheckbox18
-      - CustomFieldCheckbox19
-      - CustomFieldCheckbox20
-      - CounterName
-      - CounterTypeNo
-      - CounterTypeName
-      - CounterLatestReadingValue
-      - CounterLatestReadingDate
-      - CounterLatestReadingRemark
-      - CounterReadingValue
-      - CounterReadingDate
-      - CounterReadingRemark
-      - ActivityManagementUnitNo
-      - ActivityManagementUnitName
-      - ActivityManagementDepartmentNo
-      - ActivityManagementDepartmentName
-      - ActivityManagementDescription
-      - ActivityManagementUnitResponsibleNo
-      - ActivityManagementUnitResponsibleName
-      - ActivityManagementCompanyLeadNo
-      - ActivityManagementCompanyLeadName
-      - ActivityManagementRemarks
-      - ActivityManagementStatus
-      - ActivityManagementWindowOpensDate
-      - ActivityManagementWindowClosesDate
-      - ActivityManagementRectificationDueDate
-      - ActivityManagementAllEventsClosedDate
-      - ActivityManagementQuestionnaireNo
-      - ActivityManagementQuestionnaireName
-      - ActivityManagementNumberOfDeficiencies
-      - ActivityManagementDeficiencyCategoryNo
-      - ActivityManagementDeficiencyCategoryName
-      - ActivityManagementInternalScore
-      - ActivityManagementInternalScoreCategoryNo
-      - ActivityManagementInternalScoreCategoryName
-      - ActivityManagementDateOfDetention
-      - ActivityManagementDateOfRelease
-      - ActivityManagementGrounds
-      - CustomFieldDropDown1
-      - CustomFieldDropDown2
-      - CustomFieldDropDown3
-      - CustomFieldDropDown4
-      - CustomFieldDropDown5
-      - CustomFieldDropDown6
-      - CustomFieldDropDown7
-      - CustomFieldDropDown8
-      - CustomFieldDropDown9
-      - CustomFieldDropDown10
-      - Port
-      - JobPurchaseOrder
-      - AddressBook
-      - UsersOnUnit
-      - FormPictureTable
-      - EventReportStandardReference2
-      - DefectReportNo
-      - DefectReportLocation
-      - DefectStatus
-      - DefectReportStatus
-      - DefectReportReportedByNo
-      - DefectReportReportedByName
-      - DateTimeOfDefect
-      - DefectReportComponentNo
-      - DefectReportComponentName
-      - DefectReportLastOverhauledJobNo
-      - DefectReportLastOverhauledJobName
-      - DefectReportSerialNo
-      - DefectReportIsCritical
-      - DefectReportDate
-      - DefectReportRemarks
-      - DefectReportDescription
-      - DefectReportPrevailingConditions
-      - DefectReportAdditionalObservations
-      - DefectReportRiskAssessmentNo
-      - DefectReportRiskAssessmentStatus
-      - DefectReportInvestigationNo
-      - DefectReportInvestigationStatus
-      - DefectReportInvestigationLocation
-      - DefectReportSystemGroupName
-      - DefectReportItemName
-      - DefectReportLiquidName
-      - DefectReportImmediateCause1
-      - DefectReportImmediateCause2
-      - DefectReportImmediateCause3
-      - DefectReportIsDryDock
-      - DefectReportBasicCause1
-      - DefectReportBasicCause2
-      - DefectReportBasicCause3
-      - DefectReportProbability
-      - DefectReportIsBlackoutEvent
-      - DefectReportBlackoutEventRestorationTime
-      - DefectReportIsLossOfManoeuvrabilityEvent
-      - DefectReportLossOfManoeuvrabilityEventRestorationTime
-      - DefectReportSeverityCostCategoryName
-      - DefectReportSeveritySafetyImpactName
-      - DefectReportSeverityEnvironmentalImpactName
-      - DefectReportRisk
-      - DefectReportCostBriefEstimationUSD
-      - DefectReportJobNo
-      - DefectReportJobName
-      - DefectReportTechnicalDepartmentRemarks
-      - DefectReportResponsibleNo
-      - DefectReportResponsibleName
-      - DefectReportRectificationTargetDate
-      - DefectReportClosingDate
-      - DefectReportPostponementDueDate
-      - DefectReportIsPostponed
-      - DefectReportPostponementRANo
-      - DefectReportPostponementRASubject
-      - DefectReportIsPreliminaryCE001RequirementStatus
-      - DefectReportDIRITApprovedNecessity
-      - DefectReportDIRITNecessityRemark
-      - DefectReportLeaderNo
-      - DefectReportLeaderName
-      - DefectReportDueDate
-      - DefectReportCloseOutDate
-      - EventReportWorkingEnvironment
-      - EventReportExternalEnvironment
-      - EventReportEnvironment
-      - EventReportThirdParty
-      - UnitGrossTonnage
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_JobFormTemplateDefaultAction:
-      enum:
-      - Activation
-      - Completion
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UnitForSale:
-      enum:
-      - 'No'
-      - 'Yes'
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DynamicDateType:
-      enum:
-      - AfterToday
-      - BeforeToday
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateCustomPropertyDataType:
-      enum:
-      - Bool
-      - String
-      - Date
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+    SerticaWebApi.Models.Link:
       type: object
       properties:
-        field:
+        key:
           type:
           - string
           - 'null'
-        direction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormPage:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        name:
+        url:
           type:
           - string
           - 'null'
@@ -3572,33 +3348,45 @@ components:
           items:
             $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableColumnSetupJSON'
       additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching:
       enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
+      - All
+      - One
       type: string
-    SerticaWebApi.Models.Form.FormTemplateApprover:
+    Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateJSON:
+      type: object
+      properties:
+        listOfValuesTemplateNo:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        valueFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateValuesJSON'
+      additionalProperties: false
+    SerticaWebApi.Models.Form.FormTemplateAutomaticDeletion:
       type: object
       properties:
         formTemplateNo:
           type:
           - string
           - 'null'
-        combinedUserRoleNo:
+        unitNo:
           type:
           - string
           - 'null'
-        combinedUserRoleName:
+        unitName:
           type:
           - string
           - 'null'
-        type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        approvalOrder:
+        monthsBeforeDeletion:
           type:
           - integer
           - 'null'
@@ -3638,130 +3426,261 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Form.FormTemplate:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria:
       type: object
       properties:
-        formTemplateNo:
+        field:
           type:
           - string
           - 'null'
-        name:
+        operator:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator'
+        values:
+          type:
+          - array
+          - 'null'
+          items: {}
+        valuesMatching:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ValuesMatching'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormField:
+      type: object
+      properties:
+        fieldName:
           type:
           - string
           - 'null'
-        helpDescription:
+        fieldType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FieldFormFieldsTypeColumnTypes'
+        sortOrder:
           type:
-          - string
+          - integer
           - 'null'
-        documentNo:
-          type:
-          - string
-          - 'null'
-        documentDescription:
-          type:
-          - string
-          - 'null'
-        activityGroupNo:
-          type:
-          - string
-          - 'null'
-        activityGroupName:
-          type:
-          - string
-          - 'null'
-        companyLeadNo:
-          type:
-          - string
-          - 'null'
-        companyLeadName:
-          type:
-          - string
-          - 'null'
-        companyLeadUserRoleType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        unitLeadNo:
-          type:
-          - string
-          - 'null'
-        unitLeadName:
-          type:
-          - string
-          - 'null'
-        unitLeadUserRoleType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type'
-        enforceConfidentiality:
-          type: boolean
-        inactive:
-          type: boolean
-        fixedApprovalFlow:
-          type: boolean
-        allowAdditionalApprovers:
-          type: boolean
-        formTemplateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateFormEditor'
-        jobFormTemplateDefaultAction:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_JobFormTemplateDefaultAction'
-        hashCode:
-          type: integer
           format: int32
-        formObject:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormObject'
-        confidentialityUserRoles:
+        mandatory:
           type:
-          - array
+          - boolean
           - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateConfidentialityUserRole'
-        functionAreas:
+        timestamp:
           type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateFunctionArea'
-        approvers:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateApprover'
-        automaticDeletions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateAutomaticDeletion'
-        templateCustomProperties:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateCustomProperty'
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
+          - boolean
           - 'null'
         updateDate:
           type:
           - string
           - 'null'
           format: date-time
-        createUserNo:
+        updateUserGuid:
           type:
           - string
           - 'null'
-        createUserName:
+          format: uuid
+        caption:
           type:
           - string
           - 'null'
-        createDate:
+        url:
+          type:
+          - string
+          - 'null'
+        tag:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WordFields'
+        default:
+          type:
+          - string
+          - 'null'
+        dateFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats'
+        numberFormat:
+          type:
+          - string
+          - 'null'
+        measureUnit:
+          type:
+          - string
+          - 'null'
+        measurementNo:
+          type:
+          - string
+          - 'null'
+        counterNo:
+          type:
+          - string
+          - 'null'
+        minNumberValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        maxNumberValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        minTextLength:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        maxTextLength:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        minDateTime:
           type:
           - string
           - 'null'
           format: date-time
+        maxDateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dynamicDateType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DynamicDateType'
+        dynamicDateOffset:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value: {}
+        valueType:
+          type:
+          - string
+          - 'null'
+        column:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        row:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        page:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        listOfValueTemplateNo:
+          type:
+          - string
+          - 'null'
+        listOfValues:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormFieldListOfValue'
+          readOnly: true
+        formTemplateTableGuid:
+          type:
+          - string
+          - 'null'
+        isDateTimeTag:
+          type: boolean
+          readOnly: true
+        isNumberTag:
+          type: boolean
+          readOnly: true
+        formTemplateTableJSON:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableJSON'
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.FormFieldDocument'
+        signature:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.FormFieldDocument'
+        helpImage:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.FormFieldDocument'
+        helpImageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        columnSpan:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rowSpan:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        propertyName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.UnitManagement.UnitCompany:
+      type: object
+      properties:
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        companyNo:
+          type:
+          - string
+          - 'null'
+        companyName:
+          type:
+          - string
+          - 'null'
+        standardText1No:
+          type:
+          - string
+          - 'null'
+        standardText1Text:
+          type:
+          - string
+          - 'null'
+        standardText2No:
+          type:
+          - string
+          - 'null'
+        standardText2Text:
+          type:
+          - string
+          - 'null'
+        standardText3No:
+          type:
+          - string
+          - 'null'
+        standardText3Text:
+          type:
+          - string
+          - 'null'
+        default:
+          type:
+          - boolean
+          - 'null'
+        externalReference1:
+          type:
+          - string
+          - 'null'
+        externalReference2:
+          type:
+          - string
+          - 'null'
+        externalReference3:
+          type:
+          - string
+          - 'null'
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
         guid:
           type:
           - string
@@ -3792,6 +3711,84 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateCustomPropertyDataType:
+      enum:
+      - Bool
+      - String
+      - Date
+      type: string
+    SerticaWebApi.Models.Form.FormTemplateCustomProperty:
+      type: object
+      properties:
+        formTemplateNo:
+          type:
+          - string
+          - 'null'
+        tag:
+          type:
+          - string
+          - 'null'
+        displayName:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateCustomPropertyDataType'
+        systemTag:
+          type: boolean
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy:
+      type: object
+      properties:
+        field:
+          type:
+          - string
+          - 'null'
+        direction:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateTableColumnSetupDataType:
+      enum:
+      - Numeric
+      - Date
+      - String
+      - Checkbox
+      - Dropdown
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole2Type:
+      enum:
+      - User
+      - Role
+      type: string
     SerticaWebApi.Models.UnitManagement.Unit:
       type: object
       properties:
@@ -4408,289 +4405,54 @@ components:
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.Form.FormTemplateAppObject'
       additionalProperties: false
-    SerticaWebApi.Models.Form.FormTemplateCustomProperty:
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchOperator:
+      enum:
+      - Equals
+      - LessThan
+      - GreaterThan
+      - Like
+      - Range
+      - In
+      - Dynamic
+      - StartsWith
+      - EndsWith
+      - IsNull
+      - NotLike
+      - Or
+      - NotEquals
+      - NotIn
+      type: string
+    SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
-        formTemplateNo:
-          type:
-          - string
-          - 'null'
-        tag:
-          type:
-          - string
-          - 'null'
-        displayName:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateCustomPropertyDataType'
-        systemTag:
-          type: boolean
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Form.FormTemplateConfidentialityUserRole:
-      type: object
-      properties:
-        formTemplateGuid:
-          type: string
-          format: uuid
-        combinedUserRoleNo:
-          type:
-          - string
-          - 'null'
-        combinedUserRoleName:
-          type:
-          - string
-          - 'null'
-        formTemplateNo:
-          type:
-          - string
-          - 'null'
-        formTemplateName:
-          type:
-          - string
-          - 'null'
-        defaultExpiryDays:
-          type: integer
-          format: int32
         type:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole_CombinedType'
-        guidForReferencedObject:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
           type:
-          - string
+          - integer
           - 'null'
-          format: uuid
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats:
-      enum:
-      - YYYYMMDD
-      - YYYYMMDDHHMM
-      - YYYYMMDDHHMMSS
-      - DDMMYYY
-      - DDMMYYYHHMM
-      - DDMMYYYHHMMSS
-      - LocalizationDate
-      - LocalizationDateTime
-      - LocalizationDateLongTime
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDataType:
-      enum:
-      - Unkonwn
-      - String
-      - Int
-      - Decimal
-      - Enum
-      - DateTime
-      - Guid
-      - Bool
-      - Duration
-      type: string
-    SerticaWebApi.Models.Form.FormTemplateAppObject:
-      type: object
-      properties:
-        guid:
-          type:
-          - string
-          - 'null'
-        unitGuid:
-          type: string
-          format: uuid
-        formTemplateNo:
-          type:
-          - string
-          - 'null'
-        formTemplateName:
-          type:
-          - string
-          - 'null'
-        formTemplateGuid:
-          type: string
-          format: uuid
-        formLayoutJSON:
-          type:
-          - string
-          - 'null'
-        hashCode:
-          type: integer
           format: int32
-        activityGroupGuid:
-          type:
-          - string
-          - 'null'
-        helpDescription:
-          type:
-          - string
-          - 'null'
-        doNotShowInApp:
-          type: boolean
-        formTemplateAvailable:
-          type: boolean
-        formTemplateConfidentialityList:
-          type:
-          - string
-          - 'null'
-        requiresApproval:
-          type: boolean
-        formTemplateType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateFormEditor'
-        onlyCreateFormsFromJobs:
-          type:
-          - boolean
-          - 'null'
-        enforceConfidentiality:
-          type: boolean
-      additionalProperties: false
-    SerticaWebApi.Models.UnitManagement.UnitCompany:
-      type: object
-      properties:
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
-          type:
-          - string
-          - 'null'
-        companyNo:
-          type:
-          - string
-          - 'null'
-        companyName:
-          type:
-          - string
-          - 'null'
-        standardText1No:
-          type:
-          - string
-          - 'null'
-        standardText1Text:
-          type:
-          - string
-          - 'null'
-        standardText2No:
-          type:
-          - string
-          - 'null'
-        standardText2Text:
-          type:
-          - string
-          - 'null'
-        standardText3No:
-          type:
-          - string
-          - 'null'
-        standardText3Text:
-          type:
-          - string
-          - 'null'
-        default:
-          type:
-          - boolean
-          - 'null'
-        externalReference1:
-          type:
-          - string
-          - 'null'
-        externalReference2:
-          type:
-          - string
-          - 'null'
-        externalReference3:
-          type:
-          - string
-          - 'null'
-        guidForReferencedObject:
+        objectGuid:
           type:
           - string
           - 'null'
           format: uuid
-        guid:
+        field:
           type:
           - string
           - 'null'
-          format: uuid
-        liveObjectGuid:
+        field2:
           type:
           - string
           - 'null'
-          format: uuid
-        unitGuid:
+        field3:
           type:
           - string
           - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
+        description:
           type:
           - string
           - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
       additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.CombinedUserRole_CombinedType:
       enum:
@@ -4698,33 +4460,19 @@ components:
       - User
       - Role
       type: string
-    Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest:
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_UnitForSale:
+      enum:
+      - 'No'
+      - 'Yes'
+      type: string
+    SerticaWebApi.Models.Form.FormTemplateFunctionArea:
       type: object
       properties:
-        deviceGuid:
+        formTemplateNo:
           type:
           - string
           - 'null'
-          format: uuid
-        requestIdGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        fullSynchronization:
-          type: boolean
-        appType:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.FunctionArea.FunctionAreaUnit:
-      type: object
-      properties:
-        unitNo:
-          type:
-          - string
-          - 'null'
-        unitName:
+        formTemplateName:
           type:
           - string
           - 'null'
@@ -4770,6 +4518,258 @@ components:
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.Search.SearchDefinition:
+      type: object
+      properties:
+        distinct:
+          type: boolean
+        subObjectsToInclude:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contains:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.SearchCriteria'
+        sorting:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.OrderBy'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        forDeviceRequest:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.Search.ForDeviceRequest'
+        unitFilter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.View.SortDirection:
+      enum:
+      - Asc
+      - Desc
+      type: string
+    SerticaWebApi.Models.UserManagement.UserUnit:
+      type: object
+      properties:
+        userNo:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        inactiveUser:
+          type: boolean
+        unitNo:
+          type:
+          - string
+          - 'null'
+        unitName:
+          type:
+          - string
+          - 'null'
+        inactiveUnit:
+          type: boolean
+        userTitle:
+          type:
+          - string
+          - 'null'
+        selectAtLogin:
+          type: boolean
+        markAsReadRight:
+          type: boolean
+        acknowledgeRight:
+          type: boolean
+        guidForReferencedObject:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.FormTemplateTableColumnSetupJSON:
+      type: object
+      properties:
+        columnNo:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_FormTemplateTableColumnSetupDataType'
+        mandatory:
+          type: boolean
+        locked:
+          type: boolean
+        dropdown:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.ListOfValueTemplateJSON'
+        tag:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WordFields'
+        measurementNo:
+          type:
+          - string
+          - 'null'
+        dateFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats'
+        numericFormat:
+          type:
+          - string
+          - 'null'
+        measureUnit:
+          type:
+          - string
+          - 'null'
+        columnWidth:
+          type: integer
+          format: int32
+        dateMinValue:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateMaxValue:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        numericMinValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        numericMaxValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        sumColumn:
+          type: boolean
+        skipThousandsSeparator:
+          type:
+          - boolean
+          - 'null'
+        default:
+          type:
+          - string
+          - 'null'
+        unitGuid:
+          type:
+          - string
+          - 'null'
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+        guid:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormObject:
+      type: object
+      properties:
+        formTemplateGuid:
+          type: string
+          format: uuid
+        unitGuid:
+          type: string
+          format: uuid
+        formTemplateNo:
+          type:
+          - string
+          - 'null'
+        formTemplateName:
+          type:
+          - string
+          - 'null'
+        formTemplateHelpDescription:
+          type:
+          - string
+          - 'null'
+        pages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormPage'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormField'
+        counterFormInfos:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.CounterFormInfo'
+        isFormDuringApproval:
+          type: boolean
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SerticaForms.SerticaFormPage:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

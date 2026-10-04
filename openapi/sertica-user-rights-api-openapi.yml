@@ -152,6 +152,56 @@ paths:
       - Bearer: []
 components:
   schemas:
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.UserManagement.InextiaUserRightIndexType:
+      enum:
+      - Root
+      - Group
+      - Entity
+      - GeneralUserRights
+      - FieldUserRights
+      - ReferenceUserRights
+      type: string
     SerticaWebApi.Models.ErrorReason:
       type: object
       properties:
@@ -163,34 +213,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
       additionalProperties: false
     SerticaWebApi.Models.UserManagement.InextiaUserRight:
       type: object
@@ -250,55 +272,33 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.UserManagement.InextiaUserRightIndexType:
-      enum:
-      - Root
-      - Group
-      - Entity
-      - GeneralUserRights
-      - FieldUserRights
-      - ReferenceUserRights
-      type: string
-    SerticaWebApi.Models.BrokenRule:
+    SerticaWebApi.Models.ValidationResult:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
           type:
-          - integer
+          - array
           - 'null'
-          format: int32
-        objectGuid:
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
           type:
-          - string
+          - array
           - 'null'
-          format: uuid
-        field:
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
           type:
-          - string
+          - object
           - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
       additionalProperties: false
   securitySchemes:
     Bearer:

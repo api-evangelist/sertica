@@ -62,6 +62,8 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/sertica/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 common:
+  - type: FinOps
+    url: finops/sertica-finops.yml
   - type: CapabilityMap
     url: capabilities/sertica-capability-edges.yml
     name: SERTICA Business Capability Map

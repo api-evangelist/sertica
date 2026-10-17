@@ -71,6 +71,73 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDataType:
+      enum:
+      - None
+      - String
+      - Bool
+      - Signature
+      - Decimal
+      - Coordinates
+      - Int
+      - List
+      - Date
+      - DateTime
+      - Time
+      - Reference
+      - StaticText
+      - Document
+      - Table
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDefinitionScriptUsage:
+      type: object
+      properties:
+        vesselReportTypeGuid:
+          type: string
+          format: uuid
+        vesselReportTypeNo:
+          type:
+          - string
+          - 'null'
+        vesselReportTypeName:
+          type:
+          - string
+          - 'null'
+        definitionId:
+          type:
+          - string
+          - 'null'
+        calculationScript:
+          type:
+          - string
+          - 'null'
+        validationScript:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        dataType:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDataType'
+        layout:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
@@ -111,73 +178,6 @@ components:
       - Warning
       - Error
       - Delete
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDefinitionScriptUsage:
-      type: object
-      properties:
-        vesselReportTypeGuid:
-          type: string
-          format: uuid
-        vesselReportTypeNo:
-          type:
-          - string
-          - 'null'
-        vesselReportTypeName:
-          type:
-          - string
-          - 'null'
-        definitionId:
-          type:
-          - string
-          - 'null'
-        calculationScript:
-          type:
-          - string
-          - 'null'
-        validationScript:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        dataType:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDataType'
-        layout:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTypeFieldDataType:
-      enum:
-      - None
-      - String
-      - Bool
-      - Signature
-      - Decimal
-      - Coordinates
-      - Int
-      - List
-      - Date
-      - DateTime
-      - Time
-      - Reference
-      - StaticText
-      - Document
-      - Table
       type: string
     SerticaWebApi.Models.ValidationResult:
       type: object

@@ -154,6 +154,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
@@ -182,33 +206,6 @@ components:
           - string
           - 'null'
         description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.BudgetModule.FinancialFollowupSummary_Mode:
-      enum:
-      - Month
-      - Year
-      - Quarter
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
           type:
           - string
           - 'null'
@@ -434,18 +431,21 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.BudgetModule.FinancialFollowupSummary_Mode:
+      enum:
+      - Month
+      - Year
+      - Quarter
+      type: string
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
     SerticaWebApi.Models.ValidationResult:
       type: object
       properties:

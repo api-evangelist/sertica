@@ -675,256 +675,14 @@ paths:
       - Bearer: []
 components:
   schemas:
-    SerticaWebApi.Models.Security.ForgotPasswordInformation:
+    SerticaWebApi.Models.Security.TotpSetup:
       type: object
       properties:
-        email:
+        secret:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRuleType:
-      enum:
-      - Default
-      - ShouldBeFilled
-      - Information
-      - Warning
-      - Error
-      - Delete
-      type: string
-    SerticaWebApi.Models.Security.ChangePasswordInformation:
-      type: object
-      properties:
-        password1:
-          type:
-          - string
-          - 'null'
-        password2:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Security.ResetPasswordInformation:
-      type: object
-      properties:
-        token:
-          type:
-          - string
-          - 'null'
-        password1:
-          type:
-          - string
-          - 'null'
-        password2:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Microsoft.AspNetCore.Mvc.UnauthorizedResult:
-      type: object
-      properties:
-        statusCode:
-          type: integer
-          format: int32
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Security.UnitStructureNode:
-      type: object
-      properties:
-        hasChildren:
-          type: boolean
-          readOnly: true
-        name:
-          type:
-          - string
-          - 'null'
-        visibleKey:
-          type:
-          - string
-          - 'null'
-        nodeType:
-          $ref: '#/components/schemas/SerticaWebApi.Models.Security.UnitNodeType'
-        selectAtLogin:
-          type: boolean
-        inactive:
-          type: boolean
-        unitGuid:
-          type:
-          - string
-          - 'null'
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Security.UnitStructureNode'
-      additionalProperties: false
-    SerticaWebApi.Models.Security.AuthenticationIntegration:
-      type: object
-      properties:
-        azureAD:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.AzureAD.AzureADInformation'
-      additionalProperties: false
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Security.UnitNodeType:
-      enum:
-      - Unit
-      - UnitGroup
-      type: string
-    SerticaWebApi.Models.Security.SerticaUser:
-      type: object
-      properties:
-        login:
-          type:
-          - string
-          - 'null'
-        password:
-          type:
-          - string
-          - 'null'
-        roleNo:
-          type:
-          - string
-          - 'null'
-        unitNo:
-          type:
-          - string
-          - 'null'
-        totpCode:
-          type:
-          - string
-          - 'null'
-        recoveryCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.AzureAD.AzureADInformation:
-      type: object
-      properties:
-        tenantId:
-          type:
-          - string
-          - 'null'
-        clientId:
-          type:
-          - string
-          - 'null'
-        attemptAutomaticLogin:
-          type: boolean
-        logoutUserOnExit:
-          type: boolean
-        useAzureAD:
-          type: boolean
-        hasTenantId:
-          type: boolean
-          readOnly: true
-        hasClientId:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Security.ResetPinInformation:
-      type: object
-      properties:
-        pin:
-          type:
-          - string
-          - 'null'
-        password:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Security.AccessRequest:
-      type: object
-      properties:
-        roleNo:
-          type:
-          - string
-          - 'null'
-        unitNo:
+        qrCodeImage:
           type:
           - string
           - 'null'
@@ -998,25 +756,42 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    SerticaWebApi.Models.Security.JwtToken:
+    SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
-        accessToken:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
           type:
           - string
           - 'null'
-        expiresIn:
-          type: number
-          format: double
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    SerticaWebApi.Models.Security.TotpSetup:
+    SerticaWebApi.Models.Security.ForgotPasswordInformation:
       type: object
       properties:
-        secret:
-          type:
-          - string
-          - 'null'
-        qrCodeImage:
+        email:
           type:
           - string
           - 'null'
@@ -1098,6 +873,231 @@ components:
           - 'null'
           items:
             type: string
+      additionalProperties: false
+    Microsoft.AspNetCore.Mvc.UnauthorizedResult:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SerticaWebApi.Models.Security.ChangePasswordInformation:
+      type: object
+      properties:
+        password1:
+          type:
+          - string
+          - 'null'
+        password2:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Security.AuthenticationIntegration:
+      type: object
+      properties:
+        azureAD:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.AzureAD.AzureADInformation'
+      additionalProperties: false
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Security.AccessRequest:
+      type: object
+      properties:
+        roleNo:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Security.ResetPinInformation:
+      type: object
+      properties:
+        pin:
+          type:
+          - string
+          - 'null'
+        password:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Security.UnitNodeType:
+      enum:
+      - Unit
+      - UnitGroup
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.AzureAD.AzureADInformation:
+      type: object
+      properties:
+        tenantId:
+          type:
+          - string
+          - 'null'
+        clientId:
+          type:
+          - string
+          - 'null'
+        attemptAutomaticLogin:
+          type: boolean
+        logoutUserOnExit:
+          type: boolean
+        useAzureAD:
+          type: boolean
+        hasTenantId:
+          type: boolean
+          readOnly: true
+        hasClientId:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.Security.UnitStructureNode:
+      type: object
+      properties:
+        hasChildren:
+          type: boolean
+          readOnly: true
+        name:
+          type:
+          - string
+          - 'null'
+        visibleKey:
+          type:
+          - string
+          - 'null'
+        nodeType:
+          $ref: '#/components/schemas/SerticaWebApi.Models.Security.UnitNodeType'
+        selectAtLogin:
+          type: boolean
+        inactive:
+          type: boolean
+        unitGuid:
+          type:
+          - string
+          - 'null'
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Security.UnitStructureNode'
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRuleType:
+      enum:
+      - Default
+      - ShouldBeFilled
+      - Information
+      - Warning
+      - Error
+      - Delete
+      type: string
+    SerticaWebApi.Models.Security.JwtToken:
+      type: object
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+        expiresIn:
+          type: number
+          format: double
+      additionalProperties: false
+    SerticaWebApi.Models.Security.SerticaUser:
+      type: object
+      properties:
+        login:
+          type:
+          - string
+          - 'null'
+        password:
+          type:
+          - string
+          - 'null'
+        roleNo:
+          type:
+          - string
+          - 'null'
+        unitNo:
+          type:
+          - string
+          - 'null'
+        totpCode:
+          type:
+          - string
+          - 'null'
+        recoveryCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.Security.ResetPasswordInformation:
+      type: object
+      properties:
+        token:
+          type:
+          - string
+          - 'null'
+        password1:
+          type:
+          - string
+          - 'null'
+        password2:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

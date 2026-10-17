@@ -178,6 +178,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.BrokenRule:
       type: object
       properties:
@@ -210,6 +222,20 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    SerticaWebApi.Models.Document.DocumentSharePreview:
+      type: object
+      properties:
+        filename:
+          type:
+          - string
+          - 'null'
+        previewFormat:
+          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
+        fileUrl:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.BrokenRuleType:
       enum:
       - Default
@@ -219,14 +245,6 @@ components:
       - Error
       - Delete
       type: string
-    Microsoft.AspNetCore.Http.HttpResults.NotFound:
-      type: object
-      properties:
-        statusCode:
-          type: integer
-          format: int32
-          readOnly: true
-      additionalProperties: false
     Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat:
       enum:
       - Unknown
@@ -243,31 +261,13 @@ components:
       - Website
       - FormFields
       type: string
-    SerticaWebApi.Models.ErrorReason:
+    Microsoft.AspNetCore.Http.HttpResults.NotFound:
       type: object
       properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.Document.DocumentSharePreview:
-      type: object
-      properties:
-        filename:
-          type:
-          - string
-          - 'null'
-        previewFormat:
-          $ref: '#/components/schemas/Logihold.BusinessObjects.LogiholdObjModel.DocumentPreview.PreviewFormat'
-        fileUrl:
-          type:
-          - string
-          - 'null'
+        statusCode:
+          type: integer
+          format: int32
+          readOnly: true
       additionalProperties: false
     SerticaWebApi.Models.ValidationResult:
       type: object

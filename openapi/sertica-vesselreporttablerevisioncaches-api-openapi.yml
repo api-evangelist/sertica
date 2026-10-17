@@ -112,6 +112,198 @@ paths:
       - Bearer: []
 components:
   schemas:
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTableColumnReference:
+      enum:
+      - VesselReport
+      - Port
+      type: string
+    SerticaWebApi.Models.Link:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats:
+      enum:
+      - YYYYMMDD
+      - YYYYMMDDHHMM
+      - YYYYMMDDHHMMSS
+      - DDMMYYY
+      - DDMMYYYHHMM
+      - DDMMYYYHHMMSS
+      - LocalizationDate
+      - LocalizationDateTime
+      - LocalizationDateLongTime
+      type: string
+    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTableColumnDataType:
+      enum:
+      - String
+      - Number
+      - DateTime
+      - Duration
+      - Bool
+      - List
+      - Reference
+      - Document
+      type: string
+    SerticaWebApi.Models.ErrorReason:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        fieldName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTableRevisionCache:
+      type: object
+      properties:
+        vesselReportTableRevisionCacheNo:
+          type:
+          - string
+          - 'null'
+        vesselReportTableGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        allowDeleteRows:
+          type:
+          - boolean
+          - 'null'
+        allowSorting:
+          type:
+          - boolean
+          - 'null'
+        allowNewRows:
+          type:
+          - boolean
+          - 'null'
+        revision:
+          type:
+          - string
+          - 'null'
+        predefinedRows:
+          type:
+          - string
+          - 'null'
+        vesselReportTableNo:
+          type:
+          - string
+          - 'null'
+        vesselReportTableName:
+          type:
+          - string
+          - 'null'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTableColumn'
+        consumptionMappings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTableConsumptionMapping'
+        updateUserNo:
+          type:
+          - string
+          - 'null'
+        updateUserName:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createUserNo:
+          type:
+          - string
+          - 'null'
+        createUserName:
+          type:
+          - string
+          - 'null'
+        createDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        liveObjectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        unitGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        deleted:
+          type: boolean
+        latestHistoryGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.BrokenRule:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
+        index:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        objectGuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        field:
+          type:
+          - string
+          - 'null'
+        field2:
+          type:
+          - string
+          - 'null'
+        field3:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTableColumn:
       type: object
       properties:
@@ -247,49 +439,6 @@ components:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
           readOnly: true
       additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTableColumnDataType:
-      enum:
-      - String
-      - Number
-      - DateTime
-      - Duration
-      - Bool
-      - List
-      - Reference
-      - Document
-      type: string
-    SerticaWebApi.Models.BrokenRule:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRuleType'
-        index:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        objectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        field:
-          type:
-          - string
-          - 'null'
-        field2:
-          type:
-          - string
-          - 'null'
-        field3:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     SerticaWebApi.Models.BrokenRuleType:
       enum:
       - Default
@@ -298,183 +447,6 @@ components:
       - Warning
       - Error
       - Delete
-      type: string
-    Logihold.BusinessObjects.LogiholdObjModel.SystemData_DateTimeFormats:
-      enum:
-      - YYYYMMDD
-      - YYYYMMDDHHMM
-      - YYYYMMDDHHMMSS
-      - DDMMYYY
-      - DDMMYYYHHMM
-      - DDMMYYYHHMMSS
-      - LocalizationDate
-      - LocalizationDateTime
-      - LocalizationDateLongTime
-      type: string
-    SerticaWebApi.Models.ErrorReason:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-        fieldName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTableRevisionCache:
-      type: object
-      properties:
-        vesselReportTableRevisionCacheNo:
-          type:
-          - string
-          - 'null'
-        vesselReportTableGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        allowDeleteRows:
-          type:
-          - boolean
-          - 'null'
-        allowSorting:
-          type:
-          - boolean
-          - 'null'
-        allowNewRows:
-          type:
-          - boolean
-          - 'null'
-        revision:
-          type:
-          - string
-          - 'null'
-        predefinedRows:
-          type:
-          - string
-          - 'null'
-        vesselReportTableNo:
-          type:
-          - string
-          - 'null'
-        vesselReportTableName:
-          type:
-          - string
-          - 'null'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTableColumn'
-        consumptionMappings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTableConsumptionMapping'
-        updateUserNo:
-          type:
-          - string
-          - 'null'
-        updateUserName:
-          type:
-          - string
-          - 'null'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createUserNo:
-          type:
-          - string
-          - 'null'
-        createUserName:
-          type:
-          - string
-          - 'null'
-        createDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        guid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        liveObjectGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        unitGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        deleted:
-          type: boolean
-        latestHistoryGuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        links:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.Link'
-          readOnly: true
-      additionalProperties: false
-    SerticaWebApi.Models.Link:
-      type: object
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SerticaWebApi.Models.ValidationResult:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          readOnly: true
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
-          readOnly: true
-        brokenRules:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
-          readOnly: true
-        subResults:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
-          readOnly: true
-      additionalProperties: false
-    Logihold.BusinessObjects.LogiholdObjModel.WebVesselReportingSystem.VesselReportTableColumnReference:
-      enum:
-      - VesselReport
-      - Port
       type: string
     SerticaWebApi.Models.WebVesselReportingSystem.VesselReportTableConsumptionMapping:
       type: object
@@ -532,6 +504,34 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/SerticaWebApi.Models.Link'
+          readOnly: true
+      additionalProperties: false
+    SerticaWebApi.Models.ValidationResult:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          readOnly: true
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ErrorReason'
+          readOnly: true
+        brokenRules:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SerticaWebApi.Models.BrokenRule'
+          readOnly: true
+        subResults:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/SerticaWebApi.Models.ValidationResult'
           readOnly: true
       additionalProperties: false
   securitySchemes:

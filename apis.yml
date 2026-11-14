@@ -1264,6 +1264,8 @@ apis:
   humanURL: https://www.sertica.com/modules/maintenance-api/
   baseURL: https://{sitename}.sertica.com/api
   tags:
+  - Component Types
+  tags_raw:
   - ComponentTypes
   properties:
   - type: OpenAPI
@@ -1947,6 +1949,8 @@ apis:
   humanURL: https://www.sertica.com/modules/maintenance-api/
   baseURL: https://{sitename}.sertica.com/api
   tags:
+  - Excel Import
+  tags_raw:
   - ExcelImport
   properties:
   - type: OpenAPI
